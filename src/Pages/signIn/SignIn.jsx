@@ -3,12 +3,13 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../provider/AuthProvider";
 import { toast } from "react-toastify";
 import Swal from "sweetalert2";
-
+import { AiFillGoogleCircle } from "react-icons/ai";
 
 const SignIn = () => {
     const navigate = useNavigate();
     const location = useLocation();
-    const { userSignIn,logOut} = useContext(AuthContext);
+    const { userSignIn,signInWithGoogle,logOut} = useContext(AuthContext);
+
     const handelSignIn = (e) => {
         e.preventDefault();
         const email = e.target.email.value;
@@ -95,7 +96,16 @@ const SignIn = () => {
                 }
             });
     };
-
+    const handelWithGoogle = () => {
+        signInWithGoogle()
+            .then((result) => {
+                console.log(result.user);
+                navigate(location?.state ? location.state : "/");
+            })
+            .catch((error) => {
+                console.error(error);
+            });
+    };
     return (
         <div className="w-[100%] mt-20 mb-10 ">
             <div className="w-[80%]  flex flex-col gap-10 lg:flex-row mx-auto">
@@ -119,13 +129,16 @@ const SignIn = () => {
                                 <label className="label">
                                     <span className="label-text">Email</span>
                                 </label>
-                                <input type="email" placeholder="email" className="input input-bordered" required />
+                                <input type="email" 
+                                name="email"
+                                placeholder="email" className="input input-bordered" required />
                             </div>
                             <div className="form-control">
                                 <label className="label">
                                     <span className="label-text">Password</span>
                                 </label>
-                                <input type="password" placeholder="password" className="input  input-bordered" required />
+                                <input type="password"
+                                name="password" placeholder="password" className="input  input-bordered" required />
                                 <label className="label">
                                     <a href="#" className="label-text-alt link link-hover">Forgot password?</a>
                                 </label>
@@ -134,6 +147,15 @@ const SignIn = () => {
                                 <button className="btn btn-primary">Sign In</button>
                             </div>
                         </form>
+                        <div className="divider text-black">OR</div>
+                            <div className="flex gap-2 items-center justify-center">
+                                <button onClick={handelWithGoogle}>
+                                    {" "}
+                                    <AiFillGoogleCircle className="text-3xl text-red-400">
+                                        google
+                                    </AiFillGoogleCircle>
+                                </button>
+                            </div>
                         <p className="text-center pt-6">
                                 New here?please {""}
                                 <Link to="/signUp" className=" text-rose-400 font-bold">
