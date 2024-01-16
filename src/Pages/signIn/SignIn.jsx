@@ -104,7 +104,7 @@ const SignIn = () => {
                         <h1 className=" text-xl font-semibold pt-20">Nice to see you again</h1>
                         <p className=" text-6xl font-bold  py-3">Welcome Back</p>
                         <div className="divider w-[30%] mx-auto"></div>
-                        <p className="text-xl font-normal">Welcome back, valued member! Your enduring presence enriches our community. We appreciate your continued support and look forward to providing you with an exceptional experience on our website. Thank you for being part of our journey!</p>
+                        <p className="text-xl font-normal">Welcome back, valued member! Your continued presence enriches our community. We appreciate your continued support and look forward to providing you with an exceptional experience on our website. Thank you for being part of our journey!</p>
                     </div>
                 </div>
                 <div className="flex-1 w-full">
