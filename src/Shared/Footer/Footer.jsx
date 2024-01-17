@@ -103,7 +103,7 @@ const Footer = () => {
                     </div>
                 </div>
                 {/*  */}
-                <div className="grid grid-cols-4 gap-10">
+                <div className="grid grid-cols-4 gap-x-10 gap-y-3">
                     <div className="hidden md:flex">
                         <div>
                             <header className="footer-title">Home</header>

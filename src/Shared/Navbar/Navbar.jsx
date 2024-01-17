@@ -1,6 +1,10 @@
+import { useContext } from "react";
 import { FaSearch, FaShoppingCart } from "react-icons/fa";
+import { Link } from "react-router-dom";
+import { AuthContext } from "../../provider/AuthProvider";
 
 const Navbar = () => {
+    const { user } = useContext(AuthContext)
     return (
         <div>
             {/* Desktop Navbar */}
@@ -26,7 +30,23 @@ const Navbar = () => {
                 {/* Cart Icon */}
                 <div className="flex items-center justify-center  space-x-4 w-2/12">
                     <span><FaShoppingCart className="text-3xl font-bold"></FaShoppingCart></span>
-                    <button className="text-black border px-4 py-2 rounded text-xl">Sign In</button>
+                    {user && user?.email ? <div className="dropdown dropdown-end">
+                        <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
+                            <div className="w-10 rounded-full">
+                                <img alt="Tailwind CSS Navbar component" src="https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
+                            </div>
+                        </div>
+                        <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
+                            <li>
+                                <a className="justify-between">
+                                    Profile
+                                    <span className="badge">New</span>
+                                </a>
+                            </li>
+                            <li><a>Settings</a></li>
+                            <li><a>Logout</a></li>
+                        </ul>
+                    </div> : <Link to='/signIn'><button className="text-black border px-4 py-2 rounded text-xl">Sign In</button></Link>}
                 </div>
             </div>
 
@@ -36,7 +56,23 @@ const Navbar = () => {
                     <img src="https://i.postimg.cc/JnQjXLgB/417533939-1451020992427951-1786153557459718164-n-removebg-preview.png" alt="Logo" className="h-24 w-28" />
                     <div className="flex items-center space-x-4">
                         <span><FaShoppingCart className="text-3xl font-bold"></FaShoppingCart></span>
-                        <button className="text-black border px-4 py-2 rounded text-xl">Sign In</button>
+                        {user && user?.email ? <div className="dropdown dropdown-end">
+                            <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
+                                <div className="w-10 rounded-full">
+                                    <img alt="Tailwind CSS Navbar component" src={user?.photoURL} />
+                                </div>
+                            </div>
+                            <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
+                                <li>
+                                    <a className="justify-between">
+                                        Profile
+                                        <span className="badge">New</span>
+                                    </a>
+                                </li>
+                                <li><a>Settings</a></li>
+                                <li><a>Logout</a></li>
+                            </ul>
+                        </div> : <Link to='/signIn'><button className="text-black border px-4 py-2 rounded text-xl">Sign In</button></Link>}
                     </div>
                 </div>
                 <hr></hr>
