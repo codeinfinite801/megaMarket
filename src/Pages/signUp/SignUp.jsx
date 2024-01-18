@@ -6,7 +6,7 @@ import { AuthContext } from "../../provider/AuthProvider";
 import { AiFillGoogleCircle } from "react-icons/ai";
 
 const SignUp = () => {
-    const { createUser,signInWithGoogle } = useContext(AuthContext);
+    const { createUser, signInWithGoogle } = useContext(AuthContext);
     const navigate = useNavigate();
     const location = useLocation();
 
@@ -118,7 +118,7 @@ const SignUp = () => {
                         <h1 className=" text-6xl font-bold  pt-36">Welcome to</h1>
                         <div className="divider w-[30%] mx-auto"></div>
                         <p className="text-xl font-normal">
-                             Mega Market! 🌟 Explore, connect, and enjoy a seamless experience. Your journey with us begins now. For assistance, contact our support team. Thrilled to have you on board!!</p>
+                            Mega Market! 🌟 Explore, connect, and enjoy a seamless experience. Your journey with us begins now. For assistance, contact our support team. Thrilled to have you on board!!</p>
                     </div>
                 </div>
                 <div className="flex-1 w-full">
@@ -134,32 +134,31 @@ const SignUp = () => {
                                     <span className="label-text">Email</span>
                                 </label>
                                 <input type="email" placeholder="email"
-                                name="email" className="input input-bordered" required />
+                                    name="email" className="input input-bordered" required />
                             </div>
                             <div className="form-control">
                                 <label className="label">
                                     <span className="label-text">Password</span>
                                 </label>
                                 <input type="password" placeholder="password"
-                                name="password" className="input  input-bordered" required />
+                                    name="password" className="input  input-bordered" required />
                             </div>
                             <div className="form-control mt-6">
                                 <button className="btn btn-primary">Sign Up</button>
                             </div>
                         </form>
                         <div className="divider text-black">OR</div>
-                            <div className="flex gap-2 items-center justify-center">
-                                <button onClick={handelWithGoogle}>
-                                    {" "}
-                                    <AiFillGoogleCircle className="text-3xl text-red-400">
-                                        google
-                                    </AiFillGoogleCircle>
-                                </button>
-                            </div>
+                        <div className="flex gap-2 items-center justify-center">
+                            <button onClick={handelWithGoogle}>
+                                <div className="border p-2 rounded-lg hover:bg-gray-100 flex items-center gap-2">
+                                    <img className="w-[30px]" src="https://www.pngall.com/wp-content/uploads/13/Google-Logo-PNG-Image.png" alt="" />
+                                    <h4 className="text-xl font-medium">Google</h4>
+                                </div>
+                            </button>
+                        </div>
                         <p className="text-center pt-6">
-                        Already have account?please {""} {""}
-                            <Link to="/signIn" className=" text-rose-400 font-bold">
-                                SignIn
+                            Already have account? please <Link to="/signIn" className=" text-rose-400 font-bold underline">
+                                Sign In
                             </Link>
                         </p>
                     </div>
