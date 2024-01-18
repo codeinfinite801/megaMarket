@@ -1,4 +1,4 @@
-import { FaDollarSign, FaFacebookSquare, FaHome, FaInstagramSquare, FaLinkedinIn, FaTwitterSquare, FaWhatsapp, FaYoutubeSquare } from "react-icons/fa";
+import {  FaDollarSign, FaFacebookSquare, FaHome, FaInstagramSquare, FaLinkedinIn, FaTwitterSquare, FaWhatsapp, FaYoutubeSquare } from "react-icons/fa";
 import { FaHandshakeSimple } from "react-icons/fa6";
 import { MdAssignmentReturn, MdEmail } from "react-icons/md";
 import { TbBus } from "react-icons/tb";
@@ -38,11 +38,11 @@ const Footer = () => {
             </div>
 
             {/* footer */}
-            <div className="bg-white flex mt-10 gap-8">
+            <div className="bg-white flex mt-10 gap-8 px-4">
                 {/* nav */}
                 <div>
-                    <div className="flex md:justify-start justify-center">
-                        <img className="w-[150px] h-[70px] mb-5" src="https://i.postimg.cc/Bn1xYC9C/417533939-1451020992427951-1786153557459718164-n-removebg-preview-1-removebg-preview.png" alt="" />
+                    <div className="flex justify-center">
+                        <img className="w-[150px] h-[100px] mb-5" src="https://i.postimg.cc/Bn1xYC9C/417533939-1451020992427951-1786153557459718164-n-removebg-preview-1-removebg-preview.png" alt="" />
                     </div>
                     <div className="flex gap-2 mb-5">
                         <div className="flex gap-2">
@@ -104,7 +104,7 @@ const Footer = () => {
                     </div>
                 </div>
                 {/*  */}
-                <div className="grid grid-cols-4 gap-x-10 gap-y-3">
+                <div className="grid grid-cols-4 gap-y-3">
                     <div className="hidden md:flex">
                         <div>
                             <header className="footer-title">Home</header>

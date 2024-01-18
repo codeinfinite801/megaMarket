@@ -36,7 +36,7 @@ const SuperStore = () => {
 
 
     return (
-        <div className="my-5 rounded bg-white">
+        <div className="my-5 rounded bg-white shadow-xl">
             <div>
                 <div className="flex items-center justify-between p-5">
                     <h1>Super Store</h1>
