@@ -4,7 +4,10 @@ import { Link } from "react-router-dom";
 import { AuthContext } from "../../provider/AuthProvider";
 
 const Navbar = () => {
-    const { user } = useContext(AuthContext)
+    const { user,logOut } = useContext(AuthContext);
+    const signOut=()=>{
+        logOut()
+    }
     return (
         <div>
             {/* Desktop Navbar */}
@@ -40,11 +43,10 @@ const Navbar = () => {
                             <li>
                                 <a className="justify-between">
                                     Profile
-                                    <span className="badge">New</span>
                                 </a>
                             </li>
                             <li><a>Settings</a></li>
-                            <li><a>Logout</a></li>
+                            <li onClick={()=>signOut()}><a>Logout</a></li>
                         </ul>
                     </div> : <Link to='/signIn'><button className="text-black border px-4 py-2 rounded text-xl">Sign In</button></Link>}
                 </div>
@@ -57,16 +59,15 @@ const Navbar = () => {
                     <div className="flex items-center space-x-4">
                         <span><FaShoppingCart className="text-3xl font-bold"></FaShoppingCart></span>
                         {user && user?.email ? <div className="dropdown dropdown-end">
-                            <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
+                            <div tabIndex={1} role="button" className="btn btn-ghost btn-circle avatar">
                                 <div className="w-10 rounded-full">
                                     <img alt="Tailwind CSS Navbar component" src={user?.photoURL} />
                                 </div>
                             </div>
-                            <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
+                            <ul tabIndex={1} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
                                 <li>
                                     <a className="justify-between">
-                                        Profile
-                                        <span className="badge">New</span>
+                                        Profil
                                     </a>
                                 </li>
                                 <li><a>Settings</a></li>
