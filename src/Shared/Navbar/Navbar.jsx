@@ -51,7 +51,7 @@ const Navbar = () => {
             </div>
 
             {/* Mobile Navbar */}
-            <div className="md:hidden mt-4 px-5">
+            <div className="md:hidden mt-4 px-5 mb-5">
                 <div className="flex items-center justify-between">
                     <img src="https://i.postimg.cc/JnQjXLgB/417533939-1451020992427951-1786153557459718164-n-removebg-preview.png" alt="Logo" className="h-24 w-28" />
                     <div className="flex items-center space-x-4">
