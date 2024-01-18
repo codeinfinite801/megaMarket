@@ -5,25 +5,9 @@ import { AuthContext } from "../../provider/AuthProvider";
 import swal from "sweetalert";
 
 const Navbar = () => {
-    const { user ,logOut } = useContext(AuthContext)
-    const handleLogOut = ()=>{
-        swal({
-            title: `Are you sure you want to log out?`,
-            icon: "warning",
-            buttons: true,
-            dangerMode: true,
-        })
-            .then((willDelete) => {
-                if (willDelete) {
-                    logOut()
-                        .then(() => {
-                            swal("Log Out", "successful", "success")
-                        })
-                        .catch(error => {
-                            console.log(error);
-                        })
-                }
-            });
+    const { user,logOut } = useContext(AuthContext);
+    const signOut=()=>{
+        logOut()
     }
     return (
         <div>
@@ -56,11 +40,10 @@ const Navbar = () => {
                                 <img alt="Tailwind CSS Navbar component" src={user?.photoURL} />
                             </div>
                         </div>
-                        <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
+                        <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[2] p-2 shadow bg-base-100 rounded-box w-52">
                             <li>
                                 <a className="justify-between">
                                     Profile
-                                    <span className="badge">New</span>
                                 </a>
                             </li>
                             <li><a>Settings</a></li>
@@ -82,11 +65,10 @@ const Navbar = () => {
                                     <img alt="Tailwind CSS Navbar component" src={user?.photoURL} />
                                 </div>
                             </div>
-                            <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
+                            <ul tabIndex={1} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
                                 <li>
                                     <a className="justify-between">
-                                        Profile
-                                        <span className="badge">New</span>
+                                        Profil
                                     </a>
                                 </li>
                                 <li><a>Settings</a></li>

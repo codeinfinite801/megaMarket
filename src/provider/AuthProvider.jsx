@@ -5,6 +5,7 @@ import {
     signOut,
     GoogleAuthProvider,
     signInWithPopup,
+    updateProfile,
   } from "firebase/auth";
   import { createContext, useEffect, useState } from "react";
   import PropTypes from "prop-types";
@@ -29,7 +30,12 @@ import auth from "../Provider";
       setLoading(true);
       return signInWithEmailAndPassword(auth, email, password);
     };
-  
+    const updateUser = (name, photo) => {
+      setLoading(true)
+      return updateProfile(auth.currentUser, {
+          displayName: name, photoURL: photo
+      })
+  }
     const signInWithGoogle = () => {
       setLoading(true);
       return signInWithPopup(auth, googleProvider);
@@ -58,6 +64,7 @@ import auth from "../Provider";
       userSignIn,
       logOut,
       signInWithGoogle,
+      updateUser
     };
   
     return <AuthContext.Provider value={info}>{children}</AuthContext.Provider>;

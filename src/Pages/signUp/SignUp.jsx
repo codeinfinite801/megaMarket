@@ -3,10 +3,9 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import Swal from "sweetalert2";
 import { AuthContext } from "../../provider/AuthProvider";
-import { AiFillGoogleCircle } from "react-icons/ai";
 
 const SignUp = () => {
-    const { createUser, signInWithGoogle } = useContext(AuthContext);
+    const { createUser,signInWithGoogle } = useContext(AuthContext);
     const navigate = useNavigate();
     const location = useLocation();
 
@@ -15,6 +14,7 @@ const SignUp = () => {
         const name = e.target.name.value;
         const email = e.target.email.value;
         const password = e.target.password.value;
+        const photo=e.target.photo.value;
         console.log(name, email, password);
 
         if (password.length < 6) {
@@ -80,6 +80,7 @@ const SignUp = () => {
 
         createUser(email, password)
             .then((result) => {
+                updateUser(name, photo)
                 if (result) {
                     return Swal.fire({
                         position: 'center',
@@ -131,6 +132,13 @@ const SignUp = () => {
                         <form onSubmit={handelSignUp} >
                             <div className="form-control">
                                 <label className="label">
+                                    <span className="label-text">Name</span>
+                                </label>
+                                <input type="text" placeholder="Name"
+                                name="name" className="input input-bordered" required />
+                            </div>
+                            <div className="form-control">
+                                <label className="label">
                                     <span className="label-text">Email</span>
                                 </label>
                                 <input type="email" placeholder="email"
@@ -142,6 +150,13 @@ const SignUp = () => {
                                 </label>
                                 <input type="password" placeholder="password"
                                     name="password" className="input  input-bordered" required />
+                            </div>
+                            <div className="form-control">
+                                <label className="label">
+                                    <span className="label-text">Photo Url</span>
+                                </label>
+                                <input type="text" placeholder="Photo url"
+                                name="photo" className="input  input-bordered" required />
                             </div>
                             <div className="form-control mt-6">
                                 <button className="btn btn-primary">Sign Up</button>
