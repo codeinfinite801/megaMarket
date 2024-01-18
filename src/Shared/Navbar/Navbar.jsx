@@ -31,7 +31,7 @@ const Navbar = () => {
                 <div className="flex items-center justify-center  space-x-4 w-2/12">
                     <span><FaShoppingCart className="text-3xl font-bold"></FaShoppingCart></span>
                     {user && user?.email ? <div className="dropdown dropdown-end">
-                        <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
+                       <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
                             <div className="w-10 rounded-full">
                                 <img alt="Mega Market Navar" src={user?.photoURL} />
                             </div>
