@@ -5,57 +5,57 @@ import { Navigation } from 'swiper/modules';
 const AuthorCategory = () => {
     const categories = [
         {
-            image: "https://ds.rokomari.store/rokomari110/people/2222ed505a94_1.jpg",
-            name: "হুমায়ূন আহমেদ"
+            "image": "https://ds.rokomari.store/rokomari110/people/2222ed505a94_1.jpg",
+            "name": "হুমায়ূন আহমেদ"
         },
         {
-            image: "https://ds.rokomari.store/rokomari110/people/ed4943e549d4_25.jpg",
-            name: "ইমদাদুল হক মিলন"
+            "image": "https://ds.rokomari.store/rokomari110/people/ed4943e549d4_25.jpg",
+            "name": "ইমদাদুল হক মিলন"
         },
         {
-            image: "https://ds.rokomari.store/rokomari110/people/6dcf2594df14_50.jpg",
-            name: "আনিসুল হক"
+            "image": "https://ds.rokomari.store/rokomari110/people/6dcf2594df14_50.jpg",
+            "name": "আনিসুল হক"
         },
         {
-            image: "https://ds.rokomari.store/rokomari110/people/1323bb4c3d84_93.jpg",
-            name: "মুহম্মদ জাফর ইকবাল"
+            "image": "https://ds.rokomari.store/rokomari110/people/1323bb4c3d84_93.jpg",
+            "name": "মুহম্মদ জাফর ইকবাল"
         },
         {
-            image: "https://ds.rokomari.store/rokomari110/people/fb6c4210c5c4_124.JPG",
-            name: "আলী ইমাম"
+            "image": "https://ds.rokomari.store/rokomari110/people/fb6c4210c5c4_124.JPG",
+            "name": "আলী ইমাম"
         },
         {
-            image: "https://ds.rokomari.store/rokomari110/people/0ee263848dc4_163.jpg",
-            name: "হাসনাত আবদুল হাই"
+            "image": "https://ds.rokomari.store/rokomari110/people/0ee263848dc4_163.jpg",
+            "name": "হাসনাত আবদুল হাই"
         },
         {
-            image: "https://ds.rokomari.store/rokomari110/people/ee6cbc815d64_171.jpg",
-            name: "সুমন্ত আসলাম"
+            "image": "https://ds.rokomari.store/rokomari110/people/ee6cbc815d64_171.jpg",
+            "name": "সুমন্ত আসলাম"
         },
         {
-            image: "https://ds.rokomari.store/rokomari110/people/1e7f33735024_318.jpg",
-            name: "সেলিনা হোসেন"
+            "image": "https://ds.rokomari.store/rokomari110/people/1e7f33735024_318.jpg",
+            "name": "সেলিনা হোসেন"
         },
         {
-            image: "https://ds.rokomari.store/rokomari110/people/8c00f2f53_340.jpg",
-            name : "ড. তারেক শামসুর রেহমান"
+            "image": "https://ds.rokomari.store/rokomari110/people/8c00f2f53_340.jpg",
+            "name" : "ড. তারেক শামসুর রেহমান"
         },
         {
-            image: "https://ds.rokomari.store/rokomari110/people/3101034fa054_846.jpg",
-            name : "সুনীল গঙ্গোপাধ্যায় (নীললোহিত)"
+            "image": "https://ds.rokomari.store/rokomari110/people/3101034fa054_846.jpg",
+            "name" : "সুনীল গঙ্গোপাধ্যায় (নীললোহিত)"
         },
         {
-            image: "https://ds.rokomari.store/rokomari110/people/b3ab3aa8d394_2187.jpg",
-            name : "আইজ্যাক আসিমভ"
+            "image": "https://ds.rokomari.store/rokomari110/people/b3ab3aa8d394_2187.jpg",
+            "name" : "আইজ্যাক আসিমভ"
         },
         {
-            image: "https://ds.rokomari.store/rokomari110/people/f27061e6a394_2210.jpg",
-            name : "পাওলো কোয়েলহো"
+            "image": "https://ds.rokomari.store/rokomari110/people/f27061e6a394_2210.jpg",
+            "name" : "পাওলো কোয়েলহো"
         },
         {
-            image: "https://ds.rokomari.store/rokomari110/people/b60f5c1bd_2254.jpg",
-            name : "পাওলো কোয়েলহো"
-        },
+            "image": "https://ds.rokomari.store/rokomari110/people/b60f5c1bd_2254.jpg",
+            "name" : "পাওলো কোয়েলহো"
+        }
     ]
 
     return (
