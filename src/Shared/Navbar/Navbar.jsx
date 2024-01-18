@@ -64,11 +64,11 @@ const Navbar = () => {
                             <ul tabIndex={1} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
                                 <li>
                                     <a className="justify-between">
-                                        Profil 2211
+                                        Profil
                                     </a>
                                 </li>
                                 <li><a>Settings</a></li>
-                                <li><a>Logout naann</a></li>
+                                <li><a>Logout</a></li>
                             </ul>
                         </div> : <Link to='/signIn'><button className="text-black border px-4 py-2 rounded text-xl">Sign In</button></Link>}
                     </div>
