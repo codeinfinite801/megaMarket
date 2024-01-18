@@ -3,7 +3,6 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import Swal from "sweetalert2";
 import { AuthContext } from "../../provider/AuthProvider";
-import { AiFillGoogleCircle } from "react-icons/ai";
 
 const SignUp = () => {
     const { createUser,signInWithGoogle } = useContext(AuthContext);
@@ -15,6 +14,7 @@ const SignUp = () => {
         const name = e.target.name.value;
         const email = e.target.email.value;
         const password = e.target.password.value;
+        const photo=e.target.photo.value;
         console.log(name, email, password);
 
         if (password.length < 6) {
@@ -80,6 +80,7 @@ const SignUp = () => {
 
         createUser(email, password)
             .then((result) => {
+                updateUser(name, photo)
                 if (result) {
                     return Swal.fire({
                         position: 'center',
@@ -118,7 +119,7 @@ const SignUp = () => {
                         <h1 className=" text-6xl font-bold  pt-36">Welcome to</h1>
                         <div className="divider w-[30%] mx-auto"></div>
                         <p className="text-xl font-normal">
-                             Mega Market! 🌟 Explore, connect, and enjoy a seamless experience. Your journey with us begins now. For assistance, contact our support team. Thrilled to have you on board!!</p>
+                            Mega Market! 🌟 Explore, connect, and enjoy a seamless experience. Your journey with us begins now. For assistance, contact our support team. Thrilled to have you on board!!</p>
                     </div>
                 </div>
                 <div className="flex-1 w-full">
@@ -131,35 +132,48 @@ const SignUp = () => {
                         <form onSubmit={handelSignUp} >
                             <div className="form-control">
                                 <label className="label">
+                                    <span className="label-text">Name</span>
+                                </label>
+                                <input type="text" placeholder="Name"
+                                name="name" className="input input-bordered" required />
+                            </div>
+                            <div className="form-control">
+                                <label className="label">
                                     <span className="label-text">Email</span>
                                 </label>
                                 <input type="email" placeholder="email"
-                                name="email" className="input input-bordered" required />
+                                    name="email" className="input input-bordered" required />
                             </div>
                             <div className="form-control">
                                 <label className="label">
                                     <span className="label-text">Password</span>
                                 </label>
                                 <input type="password" placeholder="password"
-                                name="password" className="input  input-bordered" required />
+                                    name="password" className="input  input-bordered" required />
+                            </div>
+                            <div className="form-control">
+                                <label className="label">
+                                    <span className="label-text">Photo Url</span>
+                                </label>
+                                <input type="text" placeholder="Photo url"
+                                name="photo" className="input  input-bordered" required />
                             </div>
                             <div className="form-control mt-6">
                                 <button className="btn btn-primary">Sign Up</button>
                             </div>
                         </form>
                         <div className="divider text-black">OR</div>
-                            <div className="flex gap-2 items-center justify-center">
-                                <button onClick={handelWithGoogle}>
-                                    {" "}
-                                    <AiFillGoogleCircle className="text-3xl text-red-400">
-                                        google
-                                    </AiFillGoogleCircle>
-                                </button>
-                            </div>
+                        <div className="flex gap-2 items-center justify-center">
+                            <button onClick={handelWithGoogle}>
+                                <div className="border p-2 rounded-lg hover:bg-gray-100 flex items-center gap-2">
+                                    <img className="w-[30px]" src="https://www.pngall.com/wp-content/uploads/13/Google-Logo-PNG-Image.png" alt="" />
+                                    <h4 className="text-xl font-medium">Google</h4>
+                                </div>
+                            </button>
+                        </div>
                         <p className="text-center pt-6">
-                        Already have account?please {""} {""}
-                            <Link to="/signIn" className=" text-rose-400 font-bold">
-                                SignIn
+                            Already have account? please <Link to="/signIn" className=" text-rose-400 font-bold underline">
+                                Sign In
                             </Link>
                         </p>
                     </div>
