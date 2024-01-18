@@ -1,45 +1,42 @@
-import {  FaFacebookSquare, FaHome, FaInstagramSquare, FaLinkedinIn, FaTwitterSquare, FaWhatsapp, FaYoutubeSquare } from "react-icons/fa";
+import {  FaDollarSign, FaFacebookSquare, FaHome, FaInstagramSquare, FaLinkedinIn, FaTwitterSquare, FaWhatsapp, FaYoutubeSquare } from "react-icons/fa";
 import { FaHandshakeSimple } from "react-icons/fa6";
-import { MdEmail } from "react-icons/md";
-// import { TbBus } from "react-icons/tb";
-// import { AiOutlineLoading3Quarters } from "react-icons/ai";
+import { MdAssignmentReturn, MdEmail } from "react-icons/md";
+import { TbBus } from "react-icons/tb";
+import { AiOutlineLoading3Quarters } from "react-icons/ai";
 
 const Footer = () => {
     return (
         <div className="mt-10">
-            <div className="md:flex mx-auto w-10/12 justify-evenly gap-10 mt-32 mb-16 space-y-4">
-                <div className="flex gap-2 items-center">
-                    <div>
-                        {/* <h2><FaDollarSign className="text-3xl"></FaDollarSign></h2> */}
-                        <img className="w-[60px]" src="https://cdn-icons-png.flaticon.com/512/5163/5163782.png" alt="" />
+            <div className="md:flex hidden mx-auto w-10/12 justify-center gap-10">
+                <div className="flex gap-2">
+                    <div className="flex justify-center items-center">
+                        <h2><FaDollarSign className="text-3xl text-green-500"></FaDollarSign></h2>
                     </div>
                     <div>
-                        <h3 className="text-xl font-medium">Cash on delivery</h3>
-                        <p>Pay cash at your doorstep service</p>
-                    </div>
-                </div>
-                <div className="flex gap-2 items-center">
-                    <div>
-                        {/* <h2><TbBus className="text-3xl"></TbBus></h2> */}
-                        
-                        <img className="w-[70px]" src="https://cdn-icons-png.flaticon.com/512/9561/9561692.png" alt="" />
-                    </div>
-                    <div>
-                        <h3 className="text-xl font-medium">Delivery</h3>
-                        <p>All over Bangladesh</p>
+                        <h1 className="font-semibold text-lg">Cash on delivery</h1>
+                        <p className="text-gray-600">Pay cash at your doorstep service</p>
                     </div>
                 </div>
-                <div className="flex gap-2 items-center">
-                    <div>
-                        {/* <h2><AiOutlineLoading3Quarters className="text-3xl"></AiOutlineLoading3Quarters></h2> */}
-                        <img className="w-[60px]" src="https://rb.gy/bohtuf" alt="" />
+                <div className="flex gap-2">
+                    <div className="flex justify-center items-center">
+                        <h2><TbBus className="text-3xl text-blue-500"></TbBus></h2>
                     </div>
                     <div>
-                        <h3 className="text-xl font-medium">Happy return</h3>
-                        <p>7 days return facility</p>
+                        <h1 className="font-semibold text-lg">Delivery</h1>
+                        <p className="text-gray-600">All over Bangladesh</p>
+                    </div>
+                </div>
+                <div className="flex gap-2">
+                    <div className="flex justify-center items-center">
+                        <h2><MdAssignmentReturn className="text-3xl text-red-500 animate-spin"></MdAssignmentReturn></h2>
+                    </div>
+                    <div>
+                        <h1 className="font-semibold text-lg">Happy return</h1>
+                        <p className="text-gray-600">7 days return facility</p>
                     </div>
                 </div>
             </div>
+
             {/* footer */}
             <div className="bg-white flex mt-10 gap-8 px-4">
                 {/* nav */}

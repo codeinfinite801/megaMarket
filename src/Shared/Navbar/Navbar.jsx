@@ -45,7 +45,7 @@ const Navbar = () => {
                                 </a>
                             </li>
                             <li><a>Settings</a></li>
-                            <li><button onClick={handleLogOut}>Logout</button></li>
+                            <li><button onClick={signOut}>Logout</button></li>
                         </ul>
                     </div> : <Link to='/signIn'><button className="text-black border px-4 py-2 rounded text-xl">Sign In</button></Link>}
                 </div>
@@ -70,7 +70,7 @@ const Navbar = () => {
                                     </a>
                                 </li>
                                 <li><a>Settings</a></li>
-                                <li><button onClick={handleLogOut}>Logout</button></li>
+                                <li><button onClick={signOut}>Logout</button></li>
                             </ul>
                         </div> : <Link to='/signIn'><button className="text-black border px-4 py-2 rounded text-xl">Sign In</button></Link>}
                     </div>
