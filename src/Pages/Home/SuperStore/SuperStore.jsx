@@ -5,33 +5,33 @@ import { Navigation } from 'swiper/modules';
 const SuperStore = () => {
     const categories = [
         {
-            image: "https://www.rokomari.com/static/200/images/icons/home-popular-category/Serial7.png",
-            name: "Comforters, Quilts & Duvets"
+            "image": "https://www.rokomari.com/static/200/images/icons/home-popular-category/Serial7.png",
+            "name": "Comforters, Quilts & Duvets"
         },
         {
-            image: "https://www.rokomari.com/static/200/images/icons/home-popular-category/Serial2.png",
-            name: "Electric Kettle"
+            "image": "https://www.rokomari.com/static/200/images/icons/home-popular-category/Serial2.png",
+            "name": "Electric Kettle"
         },
         {
-            image: "https://www.rokomari.com/static/200/images/icons/home-popular-category/Serial5.png",
-            name: "Room Heaters"
+            "image": "https://www.rokomari.com/static/200/images/icons/home-popular-category/Serial5.png",
+            "name": "Room Heaters"
         },
         {
-            image: "https://www.rokomari.com/static/200/images/icons/home-popular-category/Serial4.png",
-            name: "Shaving & Grooming"
+            "image": "https://www.rokomari.com/static/200/images/icons/home-popular-category/Serial4.png",
+            "name": "Shaving & Grooming"
         },
         {
-            image: "https://www.rokomari.com/static/200/images/icons/home-popular-category/Serial3.png",
-            name: "Stationery"
+            "image": "https://www.rokomari.com/static/200/images/icons/home-popular-category/Serial3.png",
+            "name": "Stationery"
         },
         {
-            image: "https://www.rokomari.com/static/200/images/icons/home-popular-category/Serial2.png",
-            name: "Calculator"
+            "image": "https://www.rokomari.com/static/200/images/icons/home-popular-category/Serial2.png",
+            "name": "Calculator"
         },
         {
-            image: "https://www.rokomari.com/static/200/images/icons/home-popular-category/Serial7.png",
-            name: "Diary and Notebook"
-        },
+            "image": "https://www.rokomari.com/static/200/images/icons/home-popular-category/Serial7.png",
+            "name": "Diary and Notebook"
+        }
     ]
 
 
@@ -48,7 +48,7 @@ const SuperStore = () => {
                         watchSlidesProgress={true}
                         modules={[Navigation]}
                         slidesPerView={4}
-                        
+
                         navigation={{
                             nextEl: '.swiper-button-next',
                             prevEl: '.swiper-button-prev',
