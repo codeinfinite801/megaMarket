@@ -4,6 +4,7 @@ import { AuthContext } from "../../provider/AuthProvider";
 import { toast } from "react-toastify";
 import Swal from "sweetalert2";
 import { AiFillGoogleCircle } from "react-icons/ai";
+import swal from "sweetalert";
 
 
 const SignIn = () => {
