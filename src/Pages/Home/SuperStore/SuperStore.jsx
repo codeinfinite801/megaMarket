@@ -2,38 +2,14 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/navigation";
 import { Navigation } from 'swiper/modules';
+import { useEffect, useState } from "react";
 const SuperStore = () => {
-    const categories = [
-        {
-            "image": "https://www.rokomari.com/static/200/images/icons/home-popular-category/Serial7.png",
-            "name": "Comforters, Quilts & Duvets"
-        },
-        {
-            "image": "https://www.rokomari.com/static/200/images/icons/home-popular-category/Serial2.png",
-            "name": "Electric Kettle"
-        },
-        {
-            "image": "https://www.rokomari.com/static/200/images/icons/home-popular-category/Serial5.png",
-            "name": "Room Heaters"
-        },
-        {
-            "image": "https://www.rokomari.com/static/200/images/icons/home-popular-category/Serial4.png",
-            "name": "Shaving & Grooming"
-        },
-        {
-            "image": "https://www.rokomari.com/static/200/images/icons/home-popular-category/Serial3.png",
-            "name": "Stationery"
-        },
-        {
-            "image": "https://www.rokomari.com/static/200/images/icons/home-popular-category/Serial2.png",
-            "name": "Calculator"
-        },
-        {
-            "image": "https://www.rokomari.com/static/200/images/icons/home-popular-category/Serial7.png",
-            "name": "Diary and Notebook"
-        }
-    ]
-
+    const [categories, setCategories] = useState([])
+    useEffect(() => {
+        fetch('http://localhost:5000/superstore')
+            .then(res => res.json())
+            .then(data => setCategories(data))
+    }, [])
 
     return (
         <div className="my-5 rounded bg-white shadow-xl">
