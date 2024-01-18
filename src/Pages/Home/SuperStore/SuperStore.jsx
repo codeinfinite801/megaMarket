@@ -38,9 +38,10 @@ const SuperStore = () => {
     return (
         <div className="my-5 rounded bg-white shadow-xl">
             <div>
+                {/* Super store */}
                 <div className="flex items-center justify-between p-5">
-                    <h1>Super Store</h1>
-                    <button className="border text-blue-500 px-6 py-2 border-blue-300 rounded">View All</button>
+                    <h1>Super Store Product</h1>
+                    <button className="border text-blue-500 px-6 py-2 border-blue-300 rounded">View All </button>
                 </div>
                 <div>
                     <Swiper
