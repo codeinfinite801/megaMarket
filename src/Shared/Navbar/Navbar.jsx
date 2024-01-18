@@ -4,7 +4,10 @@ import { Link } from "react-router-dom";
 import { AuthContext } from "../../provider/AuthProvider";
 
 const Navbar = () => {
-    const { user } = useContext(AuthContext)
+    const { user,logOut } = useContext(AuthContext);
+    const signOut=()=>{
+        logOut()
+    }
     return (
         <div>
             {/* Desktop Navbar */}
@@ -43,7 +46,7 @@ const Navbar = () => {
                                 </a>
                             </li>
                             <li><a>Settings</a></li>
-                            <li><a>Logout</a></li>
+                            <li onClick={()=>signOut()}><a>Logout</a></li>
                         </ul>
                     </div> : <Link to='/signIn'><button className="text-black border px-4 py-2 rounded text-xl">Sign In</button></Link>}
                 </div>
