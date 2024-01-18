@@ -2,8 +2,6 @@ import { useContext } from "react";
 import { FaSearch, FaShoppingCart } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../provider/AuthProvider";
-import swal from "sweetalert";
-
 const Navbar = () => {
     const { user,logOut } = useContext(AuthContext);
     const signOut=()=>{
