@@ -4,6 +4,7 @@ import { AuthContext } from "../../provider/AuthProvider";
 import { toast } from "react-toastify";
 import Swal from "sweetalert2";
 import { AiFillGoogleCircle } from "react-icons/ai";
+import swal from "sweetalert";
 
 const SignIn = () => {
     const navigate = useNavigate();
@@ -100,6 +101,7 @@ const SignIn = () => {
         signInWithGoogle()
             .then((result) => {
                 console.log(result.user);
+                swal("Sign In", "successful", "success")
                 navigate(location?.state ? location.state : "/");
             })
             .catch((error) => {
@@ -150,16 +152,15 @@ const SignIn = () => {
                         <div className="divider text-black">OR</div>
                             <div className="flex gap-2 items-center justify-center">
                                 <button onClick={handelWithGoogle}>
-                                    {" "}
-                                    <AiFillGoogleCircle className="text-3xl text-red-400">
-                                        google
-                                    </AiFillGoogleCircle>
+                                <div className="border p-2 rounded-lg hover:bg-gray-100 flex items-center gap-2">
+                                    <img className="w-[30px]" src="https://www.pngall.com/wp-content/uploads/13/Google-Logo-PNG-Image.png" alt="" />
+                                    <h4 className="text-xl font-medium">Google</h4>
+                                </div>
                                 </button>
                             </div>
                         <p className="text-center pt-6">
-                                New here?please {""}
-                                <Link to="/signUp" className=" text-rose-400 font-bold">
-                                    SignUp
+                                New here? please <Link to="/signUp" className=" text-rose-400 font-bold underline">
+                                    Sign Up
                                 </Link>
                             </p>
                     </div>
