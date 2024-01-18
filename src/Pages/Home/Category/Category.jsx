@@ -3,10 +3,13 @@ import "swiper/css";
 import "swiper/css/navigation";
 import { Navigation } from 'swiper/modules';
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import useBooks from "../../../Hooks/useBooks";
 const Category = () => {
+
     const [categories, setCategories] = useState([])
     useEffect(() => {
-        fetch('https://mega-merket-project-server-site.vercel.app/category')
+        fetch('http://localhost:5000/category')
             .then(res => res.json())
             .then(data => setCategories(data))
     }, [])
@@ -41,10 +44,12 @@ const Category = () => {
                             categories.map((item, index) => {
                                 return (
                                     <SwiperSlide key={index}>
-                                        <div>
-                                            <img className='bg-gray-200 rounded-xl p-2 mx-auto' src={item?.image} alt={item?.name} />
-                                            <h1 className="text-sm mt-5 text-center">{item?.category}</h1>
-                                        </div>
+                                        <Link to={`/allBooks/${item?.category}`}>
+                                            <div>
+                                                <img className='bg-gray-200 rounded-xl p-2 mx-auto' src={item?.image} alt={item?.name} />
+                                                <h1 className="text-sm mt-5 text-center">{item?.category}</h1>
+                                            </div>
+                                        </Link>
                                     </SwiperSlide>
                                 );
                             })
