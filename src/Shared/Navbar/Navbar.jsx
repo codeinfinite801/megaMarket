@@ -2,6 +2,7 @@ import { useContext } from "react";
 import { FaSearch, FaShoppingCart } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../provider/AuthProvider";
+import swal from "sweetalert";
 
 const Navbar = () => {
     const { user,logOut } = useContext(AuthContext);
@@ -13,7 +14,7 @@ const Navbar = () => {
             {/* Desktop Navbar */}
             <div className="hidden md:flex items-center justify-between">
                 <div className="flex items-center w-2/12">
-                    <img className="h-24 w-28" src="https://i.postimg.cc/JnQjXLgB/417533939-1451020992427951-1786153557459718164-n-removebg-preview.png" alt="Logo" />
+                    <Link to="/"><img className="h-24 w-28" src="https://i.postimg.cc/JnQjXLgB/417533939-1451020992427951-1786153557459718164-n-removebg-preview.png" alt="Logo" /></Link>
                 </div>
                 <div className="w-8/12">
                     <div className="flex items-center">
@@ -33,10 +34,10 @@ const Navbar = () => {
                 {/* Cart Icon */}
                 <div className="flex items-center justify-center  space-x-4 w-2/12">
                     <span><FaShoppingCart className="text-3xl font-bold"></FaShoppingCart></span>
-                    {user && user?.email ? <div className="dropdown dropdown-end">
-                       <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
+                    {user && user?.email ? <div className="dropdown dropdown-end z-10">
+                        <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
                             <div className="w-10 rounded-full">
-                                <img alt="Mega Market Navar" src={user?.photoURL} />
+                                <img alt="Tailwind CSS Navbar component" src={user?.photoURL} />
                             </div>
                         </div>
                         <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[2] p-2 shadow bg-base-100 rounded-box w-52">
@@ -46,7 +47,7 @@ const Navbar = () => {
                                 </a>
                             </li>
                             <li><a>Settings</a></li>
-                            <li onClick={()=>signOut()}><a>Logout</a></li>
+                            <li><button onClick={handleLogOut}>Logout</button></li>
                         </ul>
                     </div> : <Link to='/signIn'><button className="text-black border px-4 py-2 rounded text-xl">Sign In</button></Link>}
                 </div>
@@ -55,11 +56,11 @@ const Navbar = () => {
             {/* Mobile Navbar */}
             <div className="md:hidden mt-4 px-5 mb-5">
                 <div className="flex items-center justify-between">
-                    <img src="https://i.postimg.cc/JnQjXLgB/417533939-1451020992427951-1786153557459718164-n-removebg-preview.png" alt="Logo" className="h-24 w-28" />
+                    <Link to="/"><img src="https://i.postimg.cc/JnQjXLgB/417533939-1451020992427951-1786153557459718164-n-removebg-preview.png" alt="Logo" className="h-24 w-28" /></Link>
                     <div className="flex items-center space-x-4">
                         <span><FaShoppingCart className="text-3xl font-bold"></FaShoppingCart></span>
-                        {user && user?.email ? <div className="dropdown dropdown-end">
-                            <div tabIndex={1} role="button" className="btn btn-ghost btn-circle avatar">
+                        {user && user?.email ? <div className="dropdown dropdown-end z-10">
+                            <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
                                 <div className="w-10 rounded-full">
                                     <img alt="Tailwind CSS Navbar component" src={user?.photoURL} />
                                 </div>
@@ -67,11 +68,11 @@ const Navbar = () => {
                             <ul tabIndex={1} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
                                 <li>
                                     <a className="justify-between">
-                                        Profil
+                                        Profile
                                     </a>
                                 </li>
                                 <li><a>Settings</a></li>
-                                <li><a>Logout</a></li>
+                                <li><button onClick={handleLogOut}>Logout</button></li>
                             </ul>
                         </div> : <Link to='/signIn'><button className="text-black border px-4 py-2 rounded text-xl">Sign In</button></Link>}
                     </div>

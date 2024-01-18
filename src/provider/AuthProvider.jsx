@@ -21,13 +21,13 @@ import auth from "../Provider";
     console.log(user);
   
     const createUser = (email, password) => {
-        setLoading();
+        setLoading(true);
       return createUserWithEmailAndPassword(auth, email, password);
       
     };
   
     const userSignIn = (email, password) => {
-      setLoading();
+      setLoading(true);
       return signInWithEmailAndPassword(auth, email, password);
     };
     const updateUser = (name, photo) => {
@@ -37,19 +37,19 @@ import auth from "../Provider";
       })
   }
     const signInWithGoogle = () => {
-      setLoading();
+      setLoading(true);
       return signInWithPopup(auth, googleProvider);
     };
   
     const logOut = () => {
-      setLoading();
+      setLoading(true);
       return signOut(auth);
     };
   
     useEffect(() => {
       const unSubscribe = onAuthStateChanged(auth, (courantUser) => {
         setUser(courantUser);
-        setLoading();
+        setLoading(false);
   
       });
       return () => {

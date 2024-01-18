@@ -1,47 +1,51 @@
-import { FaDollarSign, FaFacebookSquare, FaHome, FaInstagramSquare, FaLinkedinIn, FaTwitterSquare, FaWhatsapp, FaYoutubeSquare } from "react-icons/fa";
+import {  FaFacebookSquare, FaHome, FaInstagramSquare, FaLinkedinIn, FaTwitterSquare, FaWhatsapp, FaYoutubeSquare } from "react-icons/fa";
 import { FaHandshakeSimple } from "react-icons/fa6";
 import { MdEmail } from "react-icons/md";
-import { TbBus } from "react-icons/tb";
-import { AiOutlineLoading3Quarters } from "react-icons/ai";
+// import { TbBus } from "react-icons/tb";
+// import { AiOutlineLoading3Quarters } from "react-icons/ai";
 
 const Footer = () => {
     return (
         <div className="mt-10">
-            <div className="md:flex hidden mx-auto w-10/12 justify-center gap-10">
-                <div className="flex gap-2">
-                    <div className="flex justify-center items-center">
-                        <h2><FaDollarSign className="text-3xl"></FaDollarSign></h2>
+            <div className="md:flex mx-auto w-10/12 justify-evenly gap-10 mt-32 mb-16 space-y-4">
+                <div className="flex gap-2 items-center">
+                    <div>
+                        {/* <h2><FaDollarSign className="text-3xl"></FaDollarSign></h2> */}
+                        <img className="w-[60px]" src="https://cdn-icons-png.flaticon.com/512/5163/5163782.png" alt="" />
                     </div>
                     <div>
-                        <h1>Cash on delivery</h1>
+                        <h3 className="text-xl font-medium">Cash on delivery</h3>
                         <p>Pay cash at your doorstep service</p>
                     </div>
                 </div>
-                <div className="flex gap-2">
-                    <div className="flex justify-center items-center">
-                        <h2><TbBus className="text-3xl"></TbBus></h2>
+                <div className="flex gap-2 items-center">
+                    <div>
+                        {/* <h2><TbBus className="text-3xl"></TbBus></h2> */}
+                        
+                        <img className="w-[70px]" src="https://cdn-icons-png.flaticon.com/512/9561/9561692.png" alt="" />
                     </div>
                     <div>
-                        <h1>Delivery</h1>
+                        <h3 className="text-xl font-medium">Delivery</h3>
                         <p>All over Bangladesh</p>
                     </div>
                 </div>
-                <div className="flex gap-2">
-                    <div className="flex justify-center items-center">
-                        <h2><AiOutlineLoading3Quarters className="text-3xl"></AiOutlineLoading3Quarters></h2>
+                <div className="flex gap-2 items-center">
+                    <div>
+                        {/* <h2><AiOutlineLoading3Quarters className="text-3xl"></AiOutlineLoading3Quarters></h2> */}
+                        <img className="w-[60px]" src="https://rb.gy/bohtuf" alt="" />
                     </div>
                     <div>
-                        <h1>Happy return</h1>
+                        <h3 className="text-xl font-medium">Happy return</h3>
                         <p>7 days return facility</p>
                     </div>
                 </div>
             </div>
             {/* footer */}
-            <div className="bg-white flex mt-10 gap-8">
+            <div className="bg-white flex mt-10 gap-8 px-4">
                 {/* nav */}
                 <div>
-                    <div className="flex md:justify-start justify-center">
-                        <img className="w-[150px] h-[70px] mb-5" src="https://i.postimg.cc/Bn1xYC9C/417533939-1451020992427951-1786153557459718164-n-removebg-preview-1-removebg-preview.png" alt="" />
+                    <div className="flex justify-center">
+                        <img className="w-[150px] h-[100px] mb-5" src="https://i.postimg.cc/Bn1xYC9C/417533939-1451020992427951-1786153557459718164-n-removebg-preview-1-removebg-preview.png" alt="" />
                     </div>
                     <div className="flex gap-2 mb-5">
                         <div className="flex gap-2">
@@ -103,7 +107,7 @@ const Footer = () => {
                     </div>
                 </div>
                 {/*  */}
-                <div className="grid grid-cols-4 gap-x-10 gap-y-3">
+                <div className="grid grid-cols-4 gap-y-3">
                     <div className="hidden md:flex">
                         <div>
                             <header className="footer-title">Home</header>
