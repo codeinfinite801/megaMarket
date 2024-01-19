@@ -23,24 +23,27 @@ const ChildrenBook = () => {
                     >
                         ০-৪ বছর
                     </button></Link>
+                    <Link to={`/childrenAllBooks/${'বয়স যখন ৪-৮'}`}>
                 <button
-                    className={`btn btn-outline btn-primary ${selectedAgeRange === '4-8' ? 'btn-active' : ''}`}
-                    onClick={() => handleButtonClick('4-8')}
+                    className={`btn btn-outline w-full btn-primary ${selectedAgeRange === '4-8' ? 'btn-active' : ''}`}
                 >
                     ৪-৮ বছর
                 </button>
+                </Link>
+                <Link to={`/childrenAllBooks/${'বয়স যখন ৮-১২'}`}>
                 <button
-                    className={`btn btn-outline btn-secondary ${selectedAgeRange === '8-12' ? 'btn-active' : ''}`}
-                    onClick={() => handleButtonClick('8-12')}
+                    className={`btn btn-outline w-full btn-secondary ${selectedAgeRange === '8-12' ? 'btn-active' : ''}`}
                 >
                     ৮-১২ বছর
                 </button>
+                </Link>
+                <Link to={`/childrenAllBooks/${'বয়স যখন ১২-১৭'}`}>
                 <button
-                    className={`btn btn-outline btn-accent ${selectedAgeRange === '12-17' ? 'btn-active' : ''}`}
-                    onClick={() => handleButtonClick('12-17')}
+                    className={`btn btn-outline w-full btn-accent ${selectedAgeRange === '12-17' ? 'btn-active' : ''}`}
                 >
                     ১২-১৭ বছর
                 </button>
+                </Link>
             </div>
         </div>
     );
