@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 const SuperStore = () => {
     const [categories, setCategories] = useState([])
     useEffect(() => {
-        fetch('http://localhost:5000/superstore')
+        fetch('https://maga-market-server-eta.vercel.app/superstore')
             .then(res => res.json())
             .then(data => setCategories(data))
     }, [])
