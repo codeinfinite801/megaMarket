@@ -2,8 +2,8 @@ import axios from "axios";
 import { Navigate } from "react-router-dom";
 
 const axiosSecure = axios.create({
-    baseURL: "http://localhost:5000",
-    // baseURL: "https://parcel-pulse-server.vercel.app"
+    // baseURL: "http://localhost:5000",
+    baseURL: "https://mega-merket-project-server-site.vercel.app"
 });
 
 const useAxiosSecure = () => {

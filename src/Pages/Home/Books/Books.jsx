@@ -8,7 +8,7 @@ const Books = () => {
     const { category } = useParams();
     const { data, refetch } = useBooks({ category })
     const [author,setAuthor] = useState([])
-    console.log(author);
+    console.log(data);
     useEffect(() => {
         if (data) {
             const authorList = data.reduce((acc, book) => {
