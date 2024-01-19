@@ -9,7 +9,7 @@ const Category = () => {
 
     const [categories, setCategories] = useState([])
     useEffect(() => {
-        fetch('https://mega-merket-project-server-site.vercel.app/category')
+        fetch('https://maga-market-server-eta.vercel.app/category')
             .then(res => res.json())
             .then(data => setCategories(data))
     }, [])
