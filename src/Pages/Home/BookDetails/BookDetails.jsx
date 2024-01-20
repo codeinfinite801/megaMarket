@@ -3,9 +3,7 @@ import { FaShoppingCart } from "react-icons/fa";
 import { useParams } from "react-router";
 import useBooks from "../../../Hooks/useBooks";
 import { Link } from "react-router-dom";
-import React, {Component} from 'react';
-import ReactDOM from 'react-dom';
-import {Tabs, TabList, Tab, PanelList, Panel} from 'react-tabtab';
+import React from 'react';
 
 const BookDetails = () => {
     const { id } = useParams();
