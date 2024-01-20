@@ -8,6 +8,7 @@ const Book = ({ book }) => {
     return (
         <div>
             <div>
+                {/* This is book details page */}
                 <Link to={`/bookDetails/${_id}`}>
                     <div className="hover:shadow-lg hover:scale-105 transition-transform duration-300 hover:border-gray-400 rounded-md p-8 bg-white">
                         <div className="relative flex justify-center">
@@ -41,7 +42,6 @@ const Book = ({ book }) => {
                             <p className="font-bold text-lg">TK.{discountedPrice}</p>
                         </div>
                     </div>
-
                 </Link>
             </div>
         </div>
