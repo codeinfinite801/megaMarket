@@ -14,7 +14,7 @@ const BookDetails = () => {
     const { data, refetch } = useBooks({ category })
 
     useEffect(() => {
-        fetch(`http://localhost:5000/allBooks/${id}`)
+        fetch(`https://maga-market-server-eta.vercel.app/allBooks/${id}`)
             .then(res => res.json())
             .then(data => setBook(data))
     })
@@ -62,7 +62,7 @@ const BookDetails = () => {
             <div className="col-span-3">
                 <div>
                     {
-                        data?.slice(0,4).map((book, index) => {
+                        data?.slice(0,5).map((book, index) => {
                             return <div key={index}>
                                 <Link to={`/bookDetails/${book?._id}`}>
                                     <div className="flex mb-2">
