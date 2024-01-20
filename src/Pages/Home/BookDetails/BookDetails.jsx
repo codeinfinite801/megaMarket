@@ -97,7 +97,7 @@ const BookDetails = () => {
             </div>
         </div>
         
-    );
+    )
 };
 
 export default BookDetails;
