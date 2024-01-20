@@ -9,39 +9,47 @@ const Book = ({ book }) => {
         <div>
             <div>
                 <Link to={`/bookDetails/${_id}`}>
-                    <div className="hover:shadow-lg hover:scale-105 transition-transform duration-300 hover:border-gray-400 rounded-md p-8 bg-white">
-                        <div className="relative flex justify-center">
-                            <img className="w-1/2 hover:opacity-90 transition-opacity duration-300" src={image} alt="" />
-                            <div className="absolute -top-7 left-5">
-                                {
-                                    discount > 0 && <div className="bg-red-500 text-white px-2 py-1 rounded-full">
-                                        <h3>{discount}% Off</h3>
-                                    </div>
-                                }
+                    <div className="hover:shadow-lg hover:scale-105 transition-transform duration-300 hover:border-gray-400 rounded-md p-8 bg-white flex flex-col h-full">
+                        <div className="flex-1 flex flex-col justify-between">
+                            <div>
+                                {/* Image and Discount Badge */}
+                                <div className="relative w-full flex justify-center mb-4">
+                                    <img className="w-4/6 hover:opacity-90 transition-opacity duration-300" src={image} alt="" />
+                                    {discount > 0 &&
+                                        <div className="absolute -top-3 -right-3 bg-red-500 text-white px-2 py-1 rounded-full">
+                                            <h3>{discount}% Off</h3>
+                                        </div>
+                                    }
+                                </div>
+
+                                {/* Book Title and New Badge */}
+                                <div className="text-center">
+                                    <h2 className="text-sm font-semibold mb-1">{name}</h2>
+                                    {isNew === true &&
+                                        <p className="text-[12px] font-bold py-1 px-2 rounded-full bg-purple-500 text-white inline-block">New</p>
+                                    }
+                                </div>
+
+                                {/* Author and Rating */}
+                                <h3 className="text-center text-gray-600 text-sm">{author_name}</h3>
+                                <div className="flex items-center justify-center text-gray-600 mt-2">
+                                    <img className="w-24" src="https://t4.ftcdn.net/jpg/03/52/11/77/360_F_352117727_d5h8yi1Smn7mxzYKte15ThuDlHzRuGkN.jpg" alt="" />
+                                    <span>({rating})</span>
+                                </div>
                             </div>
-                        </div>
-                        <div className="flex gap-2 w-full items-center justify-center">
-                            <h2 className="text-center text-sm font-semibold mb-2 mt-4">{name}</h2>
-                            {
-                                isNew === true && <p className="text-[12px] font-bold py-1 px-2 rounded-full bg-purple-500 text-white">New</p>
+
+                            {/* Stock Status */}
+                            {quantity > 0 &&
+                                <p className="text-green-600 text-sm font-semibold text-center">In Stock</p>
                             }
                         </div>
-                        <h3 className="text-center text-gray-600 text-sm">{author_name}</h3>
-                        <p className="text-center flex items-center justify-center text-gray-600">
-                            <img className="w-24" src="https://t4.ftcdn.net/jpg/03/52/11/77/360_F_352117727_d5h8yi1Smn7mxzYKte15ThuDlHzRuGkN.jpg" alt="" />
-                            <span>({rating})</span>
-                        </p>
-                        <div className="text-center">
-                            {
-                                quantity > 0 && <p className="text-green-600 text-sm font-semibold">In Stock</p>
-                            }
-                        </div>
-                        <div className="flex items-center justify-center gap-3 mt-1">
+
+                        {/* Price Section */}
+                        <div className="flex items-center justify-center gap-3 mt-1 w-full">
                             <p className="text-gray-500"><span className="line-through">TK{price}</span></p>
                             <p className="font-bold text-lg">TK.{discountedPrice}</p>
                         </div>
                     </div>
-
                 </Link>
             </div>
         </div>

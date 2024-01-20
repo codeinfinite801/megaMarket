@@ -24,7 +24,7 @@ const Books = () => {
     return (
         <div className="px-5 my-16">
             <div className="grid grid-cols-12 gap-2">
-                <div className="col-span-2">
+                <div className="col-span-2 static">
                     <div className="bg-white shadow-xl rounded-lg p-3 border">
                         <div className="py-2 px-2 border-b-2">
                             <p className="font-bold">Sort</p>
@@ -50,7 +50,7 @@ const Books = () => {
                     <div>
                         <div className="flex items-center justify-center gap-4 shadow-xl border-2 px-2 py-4 my-2">
                             <input type="radio" name="sort" id="inStock" className="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300" />
-                            <label htmlFor="discount" className="ml-2 block text-sm font-medium text-gray-700 flex-1">In Stock</label>
+                            <label htmlFor="inStock" className="ml-2 block text-sm font-medium text-gray-700 flex-1">In Stock</label>
                         </div>
                     </div>
                     {/* Filter By Author */}
@@ -62,8 +62,8 @@ const Books = () => {
                             author?.map((author, index) => {
                                 return <div key={index}>
                                     <div className="flex items-center justify-center gap-4 my-2">
-                                        <input type="checkbox" name="sort" id="best-seller" className="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300" />
-                                        <label htmlFor="best-seller" className="ml-2 block text-sm font-medium text-gray-700 flex-1">{author}</label>
+                                        <input type="checkbox" name="sort" id={author} className="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300" />
+                                        <label htmlFor={author} className="ml-2 block text-sm font-medium text-gray-700 flex-1">{author}</label>
                                     </div>
                                 </div>
                             })
