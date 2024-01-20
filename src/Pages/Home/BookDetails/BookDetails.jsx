@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
 import {Tabs, TabList, Tab, PanelList, Panel} from 'react-tabtab';
+import advertiseImg from '../../../assets/advertiseimg.webp';
 
 const BookDetails = () => {
     const { id } = useParams();
@@ -21,7 +22,8 @@ const BookDetails = () => {
             .then(data => setBook(data))
     })
     return (
-        <div className="grid grid-cols-12 gap-14 mx-14">
+        <div>
+            <div className="grid grid-cols-12 gap-14 mx-14">
             <div className="col-span-9">
                 <div className="max-w-[1000px] mx-auto">
                     <div className="flex justify-between gap-8">
@@ -90,6 +92,11 @@ const BookDetails = () => {
 
             </div>
         </div>
+            <div className="max-w-full">
+                <a target="_blank" href="https://mega-market-6295e.web.app/"><img src={advertiseImg} alt="" /></a>
+            </div>
+        </div>
+        
     );
 };
 
