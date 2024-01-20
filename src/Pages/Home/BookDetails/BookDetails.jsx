@@ -6,7 +6,6 @@ import { Link } from "react-router-dom";
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import { Tabs, TabList, Tab, PanelList, Panel } from 'react-tabtab';
-import advertiseImg from '../../../assets/advertiseimg.webp';
 
 const BookDetails = () => {
     const { id } = useParams();
