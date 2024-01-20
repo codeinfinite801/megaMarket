@@ -134,7 +134,7 @@ const ChildrenAllBook = () => {
                     <div className="text-white text-center">
                         <div className="flex flex-col items-center space-y-40">
                             <button className="btn btn-primary">Add to Cart</button>
-                            
+                            {/* book details link */}
                             <Link to={`/bookDetails/${book?._id}`}><button className="btn btn-secondary">View Details</button></Link>
                         </div>
                     </div>
