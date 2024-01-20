@@ -34,7 +34,7 @@ const BookDetails = () => {
                         <div className="w-[60%]">
                             <h2 className="text-2xl font-bold">{name}</h2>
                             <p className="text-md mt-1">By <span className="font-semibold text-blue-400">{author_name}</span></p>
-                            <p className="text-sm text-gray-600 text-blue-400 mt-1">{category}</p>
+                            <p className="text-sm  text-blue-400 mt-1">{category}</p>
                             <div className="flex items-center  text-gray-600 mt-2">
                                 <img className="w-24" src="https://t4.ftcdn.net/jpg/03/52/11/77/360_F_352117727_d5h8yi1Smn7mxzYKte15ThuDlHzRuGkN.jpg" alt="" />
                                 <span className="ml-2">({rating}) Ratings</span>
