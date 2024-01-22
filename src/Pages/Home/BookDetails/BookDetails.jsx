@@ -1,21 +1,28 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { FaShoppingCart } from "react-icons/fa";
 import { useParams } from "react-router";
 import useBooks from "../../../Hooks/useBooks";
 import { Link } from "react-router-dom";
+import axios from "axios";
+import useAxiosSecure from "../../../Hooks/AxiosSecure/useAxiosSecure";
+import { AuthContext } from "../../../provider/AuthProvider";
+import Swal from "sweetalert2";
 
 const BookDetails = () => {
+    const CallAxios = useAxiosSecure()
     const { id } = useParams();
     const [book, setBook] = useState({})
     const [activeTab, setActiveTab] = useState("tab1")
-    console.log(book);
+    const {user} = useContext(AuthContext)
     const handleTab = (tab) => {
         setActiveTab(tab)
     }
 
+    const { _id, name, image, price, author_name, author_image, author_details, category, discount, rating, quantity, read_book, publisher, country, language, isNew, edition_date, total_pages, summary } = book;
+    
+    const productData = {productid: _id , email : user?.email, name, image, price, author_name, author_image, author_details, category, discount, rating, quantity, read_book, publisher, country, language, isNew, edition_date, total_pages, summary}
 
-
-    const { name, image, price, author_name, author_image, author_details, category, discount, rating, quantity, read_book, publisher, country, language, isNew, edition_date, total_pages, summary } = book;
+    console.log(productData);
 
     const discountedPrice = (price - (price * discount) / 100).toFixed(2);
     const { data, refetch } = useBooks({ category })
@@ -25,6 +32,22 @@ const BookDetails = () => {
             .then(res => res.json())
             .then(data => setBook(data))
     }, [])
+    const addToCart = (id) => {
+        console.log(id);
+        CallAxios.post(`/addProducts/${_id}`, productData)
+            .then(res => {
+                console.log(res.data);
+                if (res?.data?.insertedId) {
+                    return Swal.fire({
+                        position: 'center',
+                        icon: 'success',
+                        title: 'Book Added to Cart Successfully',
+                        showConfirmButton: false,
+                        timer: 1500
+                    })
+                }
+            })
+    }
     return (
         <>
             <div className="grid grid-cols-12 gap-14 mx-14">
@@ -59,7 +82,7 @@ const BookDetails = () => {
                                     <button className="border border-green-600 text-green-600 px-6 py-3 rounded hover:bg-green-600 hover:text-white transition duration-300">একটু পড়ে দেখুন </button>
                                     <button className="flex items-center justify-center gap-4 bg-yellow-500 text-white px-6 py-3 rounded hover:bg-yellow-600 transition duration-300">
                                         <FaShoppingCart></FaShoppingCart>
-                                        <span>Add To Cart</span>
+                                        <button onClick={() => addToCart(_id)}>Add To Cart</button>
                                     </button>
                                 </div>
                             </div>
@@ -104,9 +127,9 @@ const BookDetails = () => {
                 <h1>Product Specification & Summary</h1>
                 <div className="my-3">
                     <div className="flex w-2/6 items-center justify-between">
-                        <button onClick={() => handleTab("tab1")} className="btn">Summery</button>
-                        <button onClick={() => handleTab("tab2")} className="btn">Specifications</button>
-                        <button onClick={() => handleTab("tab3")} className="btn">Author</button>
+                        <button onClick={() => handleTab("tab1")} className={activeTab === "tab1" ? "btn border border-green-600" : 'btn'}>Summery</button>
+                        <button onClick={() => handleTab("tab2")} className={activeTab === "tab2" ? "btn border border-green-600" : 'btn'}>Specifications</button>
+                        <button onClick={() => handleTab("tab3")} className={activeTab === "tab3" ? "btn border border-green-600" : 'btn'}>Author</button>
                     </div>
                     <div>
                         {
@@ -150,12 +173,16 @@ const BookDetails = () => {
                                     <h1 className="font-bold">Language</h1>
                                     <p>{language}</p>
                                 </div>
+                                <div className="flex justify-between mx-4 px-3 py-1 rounded gap-10 w-2/6 items-center">
+                                    <h1 className="font-bold">New Book</h1>
+                                    <p>{isNew}</p>
+                                </div>
 
                             </div>
                         }
                         {
                             activeTab === "tab1" && <div>
-                                <p className="my-5 ">{book?.summary}</p>
+                                <p className="my-5 ">{summary}</p>
                             </div>
                         }
                     </div>
