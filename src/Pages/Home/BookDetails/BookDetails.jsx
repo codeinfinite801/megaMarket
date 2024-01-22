@@ -38,6 +38,9 @@ const BookDetails = () => {
             .then(res => {
                 console.log(res.data);
                 if (res?.data?.insertedId) {
+                    // 
+                    refetch()
+                    // 
                     return Swal.fire({
                         position: 'center',
                         icon: 'success',
