@@ -6,6 +6,7 @@ import SignIn from "../Pages/signIn/SignIn";
 import SignUp from "../Pages/signUp/SignUp";
 import Books from "../Pages/Home/Books/Books";
 import BookDetails from "../Pages/Home/BookDetails/BookDetails";
+import ChildrenAllBook from "../Pages/Home/ChildrenBook/ChildrenAllBook";
 
 const router = createBrowserRouter([
     {
@@ -32,6 +33,10 @@ const router = createBrowserRouter([
             {
                 path : "/bookDetails/:id",
                 element : <BookDetails></BookDetails>
+            },
+            {
+                path : "/childrenAllBooks/:ageRange",
+                element : <ChildrenAllBook></ChildrenAllBook>,
             }
         ]
     },
