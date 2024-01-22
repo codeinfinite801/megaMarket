@@ -2,11 +2,18 @@ import { useContext } from "react";
 import { FaSearch, FaShoppingCart } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../provider/AuthProvider";
+import useCarts from "../../Hooks/useCarts";
+
+
 const Navbar = () => {
-    const { user,logOut } = useContext(AuthContext);
-    const signOut=()=>{
+    const { user, logOut } = useContext(AuthContext);
+    const signOut = () => {
         logOut()
     }
+
+    // 
+    const [cart] = useCarts();
+
     return (
         <div>
             {/* Desktop Navbar */}
@@ -31,7 +38,15 @@ const Navbar = () => {
                 </div>
                 {/* Cart Icon */}
                 <div className="flex items-center justify-center  space-x-4 w-2/12">
-                    <span><FaShoppingCart className="text-3xl font-bold"></FaShoppingCart></span>
+                    <Link to={'/placeOrder'}>
+                        <span>
+                            {/*  */}
+                            <div className="flex items-start justify-center">
+                                <span className="w-[25px] h-[25px] text-center bg-sky-500 text-white rounded-full px-1 py-1">{cart.length}</span>
+                            </div>
+                            {/*  */}
+                            <FaShoppingCart className="text-3xl font-bold"></FaShoppingCart></span>
+                    </Link>
                     {user && user?.email ? <div className="dropdown dropdown-end z-10">
                         <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
                             <div className="w-10 rounded-full">
