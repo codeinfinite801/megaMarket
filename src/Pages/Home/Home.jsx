@@ -19,10 +19,10 @@ const Home = () => {
                 <SuperStore></SuperStore>
                 <AuthorCategory></AuthorCategory>
                 <ChildrenBook></ChildrenBook>
+                <TeenCategoryBook></TeenCategoryBook>
                 <OfferBanner/>
                 <NewBooks/>
                 <FiftyPercentBooks/>
-                <TeenCategoryBook></TeenCategoryBook>
             </div>
         </div>
     );
