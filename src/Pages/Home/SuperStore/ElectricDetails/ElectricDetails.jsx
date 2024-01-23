@@ -1,14 +1,15 @@
 import { Link } from "react-router-dom";
 
 
-const Book = ({ book }) => {
-    const { _id, image, author_name, discount, isNew, name, rating, quantity, price } = book;
+const ElectricDetails = ({ electric }) => {
+    
+    const {features ,model ,isNew, country, color,warranty, discount, rating, quantity, price, main_category, category, brand_logo, name, image, _id} = electric
     const discountedPrice = (price - (price * discount) / 100).toFixed(2);
 
     return (
         <div>
             <div>
-                <Link to={`/bookDetails/${_id}`}>
+                <Link to={`/electricdetails/${_id}`}>
                     <div className="hover:shadow-lg hover:scale-105 transition-transform duration-300 hover:border-gray-400 rounded-md p-8 bg-white flex flex-col h-full">
                         <div className="flex-1 flex flex-col justify-between">
                             <div>
@@ -31,7 +32,7 @@ const Book = ({ book }) => {
                                 </div>
 
                                 {/* Author and Rating */}
-                                <h3 className="text-center text-gray-600 text-sm">{author_name}</h3>
+                                <h3 className="text-center text-gray-600 text-sm"></h3>
                                 <div className="flex items-center justify-center text-gray-600 mt-2">
                                     <img className="w-24" src="https://t4.ftcdn.net/jpg/03/52/11/77/360_F_352117727_d5h8yi1Smn7mxzYKte15ThuDlHzRuGkN.jpg" alt="" />
                                     <span>({rating})</span>
@@ -56,4 +57,4 @@ const Book = ({ book }) => {
     );
 };
 
-export default Book;
+export default ElectricDetails;
