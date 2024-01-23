@@ -10,7 +10,6 @@ import { Link } from "react-router-dom";
 
 const NewBooks = () => {
   const [newBooks, setNewBooks] = useState([]);
-  //   const [allBooks,setAllBooks] = useState([]);
   useEffect(() => {
     axios
       .get("https://maga-market-server-eta.vercel.app/allBooks")

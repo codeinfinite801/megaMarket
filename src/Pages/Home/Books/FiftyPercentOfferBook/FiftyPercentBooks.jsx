@@ -9,7 +9,15 @@ import { IoIosArrowForward } from "react-icons/io";
 import { Link } from "react-router-dom";
 const FiftyPercentBooks = () => {
   const [fiftyPercentBook, setFiftyPercentBook] = useState([]);
-  const disCountIds = ["65a7719bd3f8cc66804c3054","65a7719bd3f8cc66804c3067","65a771d3d3f8cc66804cc0cf","65a7719bd3f8cc66804c3053","65a7719bd3f8cc66804c3052"]
+
+  //   some id which item are 50% discount
+  const disCountIds = [
+    "65a7719bd3f8cc66804c3054",
+    "65a7719bd3f8cc66804c3067",
+    "65a771d3d3f8cc66804cc0cf",
+    "65a7719bd3f8cc66804c3053",
+    "65a7719bd3f8cc66804c3052",
+  ];
 
   console.log(fiftyPercentBook);
 
@@ -19,16 +27,21 @@ const FiftyPercentBooks = () => {
         "https://maga-market-server-eta.vercel.app/allBooks"
       );
       const jsonData = response?.data;
-      const filteredData = jsonData.filter(item=>disCountIds.includes(item._id))
-      setFiftyPercentBook(filteredData)
-  
+      const filteredData = jsonData.filter((item) =>
+        disCountIds.includes(item._id)
+      );
+      setFiftyPercentBook(filteredData);
     };
     fetchData();
   }, []);
   return (
     <div className="max-w-7xl mx-auto bg-white shadow-lg p-5 h-fit my-5">
       <div className="flex justify-between">
-        <h2 className="text-3xl">সকল বইয়ে <span className="text-red-500 text-4xl align-super">Up To 50% </span> ছাড়</h2>
+        <h2 className="text-3xl">
+          সকল বইয়ে{" "}
+          <span className="text-red-500 text-4xl align-super">Up To 50% </span>{" "}
+          ছাড়
+        </h2>
         <button className="btn btn-outline text-blue-400">
           View All <IoIosArrowForward className="text-2xl" />{" "}
         </button>
