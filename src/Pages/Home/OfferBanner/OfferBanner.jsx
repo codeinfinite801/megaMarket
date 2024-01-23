@@ -1,3 +1,4 @@
+// This is a Offer Details Page where are 3 banner images inly
 const OfferBanner = () => {
   return (
     <div className="flex justify-around mb-5 max-w-7xl mx-auto">
