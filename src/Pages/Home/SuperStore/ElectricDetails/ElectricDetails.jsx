@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 
 const ElectricDetails = ({ electric }) => {
-    
+
     const {features ,model ,isNew, country, color,warranty, discount, rating, quantity, price, main_category, category, brand_logo, name, image, _id} = electric
     const discountedPrice = (price - (price * discount) / 100).toFixed(2);
 
@@ -15,7 +15,7 @@ const ElectricDetails = ({ electric }) => {
                             <div>
                                 {/* Image and Discount Badge */}
                                 <div className="relative w-full flex justify-center mb-4">
-                                    <img className="w-4/6 hover:opacity-90 transition-opacity duration-300" src={image} alt="" />
+                                    <img className="w-4/6 hover:opacity-90 transition-opacity duration-300" src={image[0]} alt="" />
                                     {discount > 0 &&
                                         <div className="absolute -top-3 -right-3 bg-red-500 text-white px-2 py-1 rounded-full">
                                             <h3>{discount}% Off</h3>

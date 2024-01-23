@@ -1,3 +1,4 @@
+import TeenCategoryBook from "../../teenCategoryBook/TeenCategoryBook";
 import AuthorCategory from "./AuthorCategory/AuthorCategory";
 import Banner from "./Banner/Banner";
 import FiftyPercentBooks from "./Books/FiftyPercentOfferBook/FiftyPercentBooks";
@@ -21,6 +22,7 @@ const Home = () => {
                 <OfferBanner/>
                 <NewBooks/>
                 <FiftyPercentBooks/>
+                <TeenCategoryBook></TeenCategoryBook>
             </div>
         </div>
     );
