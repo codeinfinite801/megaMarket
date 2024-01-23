@@ -2,6 +2,7 @@ import AuthorCategory from "./AuthorCategory/AuthorCategory";
 import Banner from "./Banner/Banner";
 import Category from "./Category/Category";
 import ChildrenBook from "./ChildrenBook/ChildrenBook";
+import KidsProduct from "./KidsProduct/KidsProduct";
 import SuperStore from "./SuperStore/SuperStore";
 
 
@@ -15,6 +16,7 @@ const Home = () => {
                 <SuperStore></SuperStore>
                 <AuthorCategory></AuthorCategory>
                 <ChildrenBook></ChildrenBook>
+                <KidsProduct></KidsProduct>
             </div>
         </div>
     );

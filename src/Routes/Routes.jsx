@@ -7,6 +7,8 @@ import SignUp from "../Pages/signUp/SignUp";
 import Books from "../Pages/Home/Books/Books";
 import BookDetails from "../Pages/Home/BookDetails/BookDetails";
 import ChildrenAllBook from "../Pages/Home/ChildrenBook/ChildrenAllBook";
+import KidsZones from "../Pages/Home/KidsZones/KidsZones";
+import KidsDetails from "../Pages/Home/KidsDetails/KidsDetails";
 
 const router = createBrowserRouter([
     {
@@ -37,6 +39,14 @@ const router = createBrowserRouter([
             {
                 path : "/childrenAllBooks/:ageRange",
                 element : <ChildrenAllBook></ChildrenAllBook>,
+            },
+            {
+                path : "/allkids/:category",
+                element : <KidsZones></KidsZones>,
+            },
+            {
+                path : "/kidsDetails/:id",
+                element : <KidsDetails></KidsDetails>,
             }
         ]
     },

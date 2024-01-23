@@ -4,8 +4,9 @@ import { Link } from "react-router-dom";
 
 const BookCategory = () => {
     const [categories, setCategories] = useState([])
+    // console.log(categories);
     useEffect(() => {
-        fetch('http://localhost:5000/category')
+        fetch('https://maga-market-server-eta.vercel.app/category')
             .then(res => res.json())
             .then(data => setCategories(data))
     }, [])
