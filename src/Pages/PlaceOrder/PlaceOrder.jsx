@@ -6,6 +6,7 @@ import Swal from "sweetalert2";
 import useAxiosSecure from "../../Hooks/AxiosSecure/useAxiosSecure";
 import { FaPlus, FaMinus, FaArrowRight } from "react-icons/fa";
 import Popular from "./Popular";
+import { Link } from "react-router-dom";
 
 
 const PlaceOrder = () => {
@@ -22,7 +23,6 @@ const PlaceOrder = () => {
         const updatedData = cart.map((product) => {
             if (product._id === id) {
                 setCount(count + 1)
-
             }
         })
     };
@@ -119,7 +119,11 @@ const PlaceOrder = () => {
                                 <p>Apply Promo Code or Voucher Code on the Shipping Page</p>
                                 <div className="flex gap-5 justify-end mt-5">
                                     <button className="btn btn-outline btn-accent">Order As a Gift</button>
-                                    <button className="btn btn-warning">Place Order <span><FaArrowRight></FaArrowRight></span></button>
+                                    {/* placed order button start */}
+                                    <Link to={'/order'}>
+                                        <button className="btn btn-warning">Place Order <span><FaArrowRight></FaArrowRight></span></button>
+                                    </Link>
+                                    {/* placed order end */}
                                 </div>
                             </div>
                         </div>
