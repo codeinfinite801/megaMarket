@@ -3,7 +3,6 @@ import { FaShoppingCart } from "react-icons/fa";
 import { useParams } from "react-router";
 import useBooks from "../../../Hooks/useBooks";
 import { Link } from "react-router-dom";
-import axios from "axios";
 import useAxiosSecure from "../../../Hooks/AxiosSecure/useAxiosSecure";
 import { AuthContext } from "../../../provider/AuthProvider";
 import Swal from "sweetalert2";
