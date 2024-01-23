@@ -9,8 +9,7 @@ const useBooks = ({ category }) => {
     const axiosSecure = useAxiosSecure();
 
     const { data, error, isError, isLoading, refetch } = useQuery({
-        queryKey: ["books", user?.email, category],
-        enabled: !!user?.email,
+        queryKey: ["books", category],
         queryFn: async () => {
             try {
                 const response = await axiosSecure.get(`/allBooks?category=${category}`);
