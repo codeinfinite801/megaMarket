@@ -7,6 +7,9 @@ import SignUp from "../Pages/signUp/SignUp";
 import Books from "../Pages/Home/Books/Books";
 import BookDetails from "../Pages/Home/BookDetails/BookDetails";
 import ChildrenAllBook from "../Pages/Home/ChildrenBook/ChildrenAllBook";
+import SuperStoreCategory from "../Pages/Home/SuperStore/SuperStoreCategory";
+import ElectricDetails from "../Pages/Home/SuperStore/ElectricDetails/ElectricDetails";
+import ElectroDetails from "../Pages/Home/SuperStore/ElectricDetails/ElectroDetails";
 
 const router = createBrowserRouter([
     {
@@ -29,6 +32,14 @@ const router = createBrowserRouter([
             {
                 path : "/allBooks/:category",
                 element : <Books></Books>
+            },
+            {
+                path : "/superstore/:category",
+                element : <SuperStoreCategory></SuperStoreCategory>
+            },
+            {
+                path : "/electricdetails/:id",
+                element :<ElectroDetails></ElectroDetails>
             },
             {
                 path : "/bookDetails/:id",
