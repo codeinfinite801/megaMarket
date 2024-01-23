@@ -20,7 +20,7 @@ const BookDetails = () => {
 
     const { _id, name, image, price, author_name, author_image, author_details, category, discount, rating, quantity, read_book, publisher, country, language, isNew, edition_date, total_pages, summary } = book;
 
-    const productData = { productid: _id, email: user?.email, name, image, price, author_name, author_image, author_details, category, discount, rating, quantity, read_book, publisher, country, language, isNew, edition_date, total_pages, summary }
+    const productData = { productid: _id, email: user?.email, name, image, price, author_name, author_image, author_details, category, discount, rating, quantity, read_book, publisher, country, language, isNew, edition_date, total_pages, summary, amount : 1 }
 
 
     const discountedPrice = (price - (price * discount) / 100).toFixed(2);
