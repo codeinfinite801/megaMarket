@@ -49,6 +49,7 @@ const router = createBrowserRouter([
                 path : "/bookDetails/:id",
                 element : <BookDetails></BookDetails>
             },
+            
             {
                 path: "/childrenAllBooks/:ageRange",
                 element: <ChildrenAllBook></ChildrenAllBook>,
