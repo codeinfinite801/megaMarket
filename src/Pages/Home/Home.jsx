@@ -21,10 +21,10 @@ const Home = () => {
                 <AuthorCategory></AuthorCategory>
                 <ChildrenBook></ChildrenBook>
                 <KidsProduct></KidsProduct>
+                <TeenCategoryBook></TeenCategoryBook>
                 <OfferBanner/>
                 <NewBooks/>
                 <FiftyPercentBooks/>
-                <TeenCategoryBook></TeenCategoryBook>
             </div>
         </div>
     );
