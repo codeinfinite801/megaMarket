@@ -11,6 +11,8 @@ import SuperStoreCategory from "../Pages/Home/SuperStore/SuperStoreCategory";
 import ElectroDetails from "../Pages/Home/SuperStore/ElectricDetails/ElectroDetails";
 import PlaceOrder from "../Pages/PlaceOrder/PlaceOrder";
 import Order from "../Pages/Order/Order"
+import KidsZones from "../Pages/Home/KidsZones/KidsZones";
+import KidsDetails from "../Pages/Home/KidsDetails/KidsDetails";
 
 const router = createBrowserRouter([
     {
@@ -50,6 +52,14 @@ const router = createBrowserRouter([
             {
                 path: "/childrenAllBooks/:ageRange",
                 element: <ChildrenAllBook></ChildrenAllBook>,
+            },
+            {
+                path : "/allkids/:category",
+                element : <KidsZones></KidsZones>,
+            },
+            {
+                path : "/kidsDetails/:id",
+                element : <KidsDetails></KidsDetails>,
             },
             {
                 path: '/placeOrder',

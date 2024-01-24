@@ -4,6 +4,7 @@ import Banner from "./Banner/Banner";
 import FiftyPercentBooks from "./Books/FiftyPercentOfferBook/FiftyPercentBooks";
 import Category from "./Category/Category";
 import ChildrenBook from "./ChildrenBook/ChildrenBook";
+import KidsProduct from "./KidsProduct/KidsProduct";
 import NewBooks from "./NewPublisherBooks/NewBooks";
 import OfferBanner from "./OfferBanner/OfferBanner";
 import SuperStore from "./SuperStore/SuperStore";
@@ -19,6 +20,7 @@ const Home = () => {
                 <SuperStore></SuperStore>
                 <AuthorCategory></AuthorCategory>
                 <ChildrenBook></ChildrenBook>
+                <KidsProduct></KidsProduct>
                 <TeenCategoryBook></TeenCategoryBook>
                 <OfferBanner/>
                 <NewBooks/>
