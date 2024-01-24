@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { FaShoppingCart } from "react-icons/fa";
 import { useParams } from "react-router-dom";
-import useBooks from "../../../Hooks/useBooks";
+import useKids from "../../../Hooks/useKids";
 
 
 const KidsDetails = () => {
@@ -10,14 +10,17 @@ const KidsDetails = () => {
 
     const { _id, image, category, brand, brand_logo, discount, isNew, name, rating, quantity, price, features,summary, } = kid;
     const discountedPrice = (price - (price * discount) / 100).toFixed(2);
-    // console.log(kid);
-    const { kids, refetch } = useBooks({ category })
+    
+    const { data, refetch } = useKids({ category })
+    console.log(category);
 
+console.log(data)
     useEffect(() => {
         fetch(`https://maga-market-server-eta.vercel.app/kidsZone/${id}`)
             .then(res => res.json())
             .then(data => setKid(data))
     },[])
+    
     return (
         <div className="grid grid-cols-12 gap-14 mx-14">
         <div className="col-span-9">
@@ -25,6 +28,7 @@ const KidsDetails = () => {
                 <div className="flex justify-between gap-8">
                     <div className="p-5 w-2/6 border shadow-md rounded-lg">
                         <h2 className="mb-2 text-right text-lg font-semibold"> একটু পড়ে দেখুন</h2>
+                        <h2>{image?.length}</h2>
                         <img className="w-full rounded-md" src={image} alt="" />
                     </div>
                     <div className="w-[60%]">
@@ -62,12 +66,11 @@ const KidsDetails = () => {
         <div className="col-span-3">
             <div>
                 {
-                    kids?.slice(0, 5).map((kids, index) => {
-                        return <div key={index}>
-                            <Link to={`/kidsDetails/${kids?._id}`}>
+                    data?.slice(0, 5).map((kids, index) => 
+                            <div key={kids?._id}>
                                 <div className="flex mb-2">
                                     <div className="w-1/2 ">
-                                        <img className="w-[70px] h-[100px]" src={kids?.image} alt="" />
+                                        <img className="w-[70px] h-[100px]" src={kids?.image[0]} alt="" />
                                     </div>
                                     <div className="text-left flex-1">
                                         <h2 className=" text-sm font-semibold mb-2 mt-4">{kids?.name}</h2>
@@ -78,9 +81,9 @@ const KidsDetails = () => {
                                         </p>
                                     </div>
                                 </div>
-                            </Link>
-                        </div>
-                    })
+                            </div>
+                        
+                    )
                 }
             </div>
         </div>

@@ -19,7 +19,7 @@ const BookDetails = () => {
 
     const { _id, name, image, price, author_name, author_image, author_details, category, discount, rating, quantity, read_book, publisher, country, language, isNew, edition_date, total_pages, summary } = book;
 
-    const productData = { productid: _id, email: user?.email, name, image, price, author_name, author_image, author_details, category, discount, rating, quantity, read_book, publisher, country, language, isNew, edition_date, total_pages, summary, amount : 1 }
+    const productData = { productid: _id, email: user?.email, name, image, price, author_name, author_image, author_details, category, discount, rating, quantity, read_book, publisher, country, language, isNew, edition_date, total_pages, summary, amount: 1 }
 
 
     const discountedPrice = (price - (price * discount) / 100).toFixed(2);
@@ -84,7 +84,7 @@ const BookDetails = () => {
                                     <button onClick={() => document.getElementById('my_modal_3').showModal()} className="border border-green-600 text-green-600 px-6 py-3 rounded hover:bg-green-600 hover:text-white transition duration-300">একটু পড়ে দেখুন </button>
                                     <button className="flex items-center justify-center gap-4 bg-yellow-500 text-white px-6 py-3 rounded hover:bg-yellow-600 transition duration-300">
                                         <FaShoppingCart></FaShoppingCart>
-                                        <button  onClick={() => addToCart(_id)}>Add To Cart</button>
+                                        <button onClick={() => addToCart(_id)}>Add To Cart</button>
                                     </button>
                                 </div>
                             </div>
@@ -203,7 +203,7 @@ const BookDetails = () => {
                                 }
                             </div>
                         </form>
-                        
+
                     </div>
                 </dialog>
             </div>
