@@ -8,7 +8,7 @@ const KidsDetails = () => {
     const { id } = useParams();
     const [kid, setKid] = useState({})
 
-    const { _id, image, category, brand, brand_logo, discount, isNew, name, rating, quantity, price, features,summary, country } = kid;
+    const { _id, image, category, brand, brand_logo, discount, isNew, name, rating, quantity, price, features,summary, } = kid;
     const discountedPrice = (price - (price * discount) / 100).toFixed(2);
     // console.log(kid);
     const { kids, refetch } = useBooks({ category })
@@ -59,7 +59,7 @@ const KidsDetails = () => {
             </div>
 
         </div>
-        {/* <div className="col-span-3">
+        <div className="col-span-3">
             <div>
                 {
                     kids?.slice(0, 5).map((kids, index) => {
@@ -83,7 +83,7 @@ const KidsDetails = () => {
                     })
                 }
             </div>
-        </div> */}
+        </div>
         
     </div>
     );

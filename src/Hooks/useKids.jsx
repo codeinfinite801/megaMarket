@@ -7,11 +7,11 @@ const useKids = () => {
     const axiosSecure = useAxiosSecure();
 
     const { data, error, isError, isLoading, refetch } = useQuery({
-        queryKey: ["books", user?.email, category],
+        queryKey: ["kids", user?.email, category],
         enabled: !!user?.email,
         queryFn: async () => {
             try {
-                const response = await axiosSecure.get(`/allBooks?category=${category}`);
+                const response = await axiosSecure.get(`/kidsZone?category=${category}`);
                 return response.data;
             } catch (error) {
                 // Log the error or handle it as needed
