@@ -17,13 +17,13 @@
     "match-sorter": "^6.3.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-hook-form": "^7.49.3",
     "react-icons": "^5.0.1",
     "react-router-dom": "^6.21.2",
-    "react-tabtab": "^2.0.0",
     "react-toastify": "^10.0.3",
-    "sort-by": "^1.2.0",
+    "sort-by": "^0.0.2",
     "sweetalert": "^2.1.2",
-    "sweetalert2": "^11.10.3",
+    "sweetalert2": "^11.6.13",
     "swiper": "^11.0.5"
   },
   "devDependencies": {

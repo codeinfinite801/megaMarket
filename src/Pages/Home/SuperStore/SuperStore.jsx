@@ -3,6 +3,7 @@ import "swiper/css";
 import "swiper/css/navigation";
 import { Navigation } from 'swiper/modules';
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 const SuperStore = () => {
     const [categories, setCategories] = useState([])
     useEffect(() => {
@@ -43,10 +44,12 @@ const SuperStore = () => {
                             categories.map((item, index) => {
                                 return (
                                     <SwiperSlide key={index} className="py-6">
-                                        <div className="mr-5">
-                                            <img className='bg-gray-200 rounded-xl p-2 mx-auto' src={item?.image} alt={item?.name} />
-                                            <h1 className="text-sm mt-5 text-center">{item?.name}</h1>
-                                        </div>
+                                        <Link to={`/superstore/${item?.name}`}>
+                                            <div className="mr-5">
+                                                <img className='bg-gray-200 rounded-xl p-2 mx-auto' src={item?.image} alt={item?.name} />
+                                                <h1 className="text-sm mt-5 text-center">{item?.name}</h1>
+                                            </div>
+                                        </Link>
                                     </SwiperSlide>
                                 );
                             })

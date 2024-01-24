@@ -1,4 +1,3 @@
-import { Link } from 'react-router-dom';
 
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
@@ -7,7 +6,6 @@ import { useParams } from 'react-router-dom';
 const ChildrenAllBook = () => {
     const { ageRange } = useParams()
     console.log(ageRange);
-   
     const [childrensBooks, setChildrensBooks] = useState([]);
     console.log(childrensBooks);
     useEffect(() => {
@@ -86,33 +84,36 @@ const ChildrenAllBook = () => {
         </div>
             </div>
 
-           
             {/* All book show here */}
-<div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 col-span-3 justify-center items-center mx-auto text-center'>
-    {childrensBooks?.map(book => 
-        <div key={book?._id} className='flex items-center justify-center'>
-            <div className="card w-72 h-96 bg-base-100 shadow-xl relative group">
-                <figure className="p-2">
-                    <img src={book?.image} alt="Book" className="rounded-xl" />
-                </figure>
-                <div className="card-body items-center text-center">
-                    <h2 className="text-xl">{book?.name}</h2>
-                    <p>{book?.author_name}</p>
-                </div>
-                
-                <div className="card-overlay absolute inset-0 bg-black bg-opacity-50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                    <div className="text-white text-center">
-                        <div className="flex flex-col items-center space-y-40">
-                            <button className="btn btn-primary">Add to Cart</button>
-                            {/* book details link */}
-                            <Link to={`/bookDetails/${book?._id}`}><button className="btn btn-secondary">View Details</button></Link>
+            <div className=' grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 col-span-3 justify-center items-center mx-auto text-center'>
+                {childrensBooks?.map((book) => (
+                    <div key={book._id} className='flex items-center justify-center'>
+                        <div className="card w-72 h-96 bg-base-100 shadow-xl relative group">
+                            <figure className="p-2">
+                                <img src={book.image} alt="Book" className="rounded-xl" />
+                            </figure>
+                            <div className="card-body items-center text-center">
+                                <h2 className="text-xl">{book.name}</h2>
+                                <p>{book.author_name}</p>
+                            </div>
+                            <div className="card-overlay absolute inset-0 bg-black bg-opacity-50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                                <div className="text-white text-center">
+                                    <div className="flex flex-col items-center  space-y-40">
+                                        <button className="btn btn-primary">Add to Cart</button>
+                                        <button className="btn btn-secondary">View Details</button>
+                                       
+                                    </div>
+
+                                </div>
+                            </div>
+                          
                         </div>
+
+
                     </div>
-                </div>
+
+                ))}
             </div>
-        </div>
-    )}
-</div>
         </div>
     );
 };

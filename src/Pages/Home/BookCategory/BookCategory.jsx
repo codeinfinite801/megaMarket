@@ -1,12 +1,11 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 
 const BookCategory = () => {
     const [categories, setCategories] = useState([])
-    // console.log(categories);
     useEffect(() => {
-        fetch('https://maga-market-server-eta.vercel.app/category')
+        fetch('http://localhost:5000/category')
             .then(res => res.json())
             .then(data => setCategories(data))
     }, [])
