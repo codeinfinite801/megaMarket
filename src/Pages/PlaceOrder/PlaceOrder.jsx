@@ -12,26 +12,44 @@ import { Link } from "react-router-dom";
 const PlaceOrder = () => {
     const { user } = useContext(AuthContext);
     const [cart, refetch] = useCarts()
-    // console.log(cart);
+    console.log(cart);
+
     const axiosSecure = useAxiosSecure()
     // state
     const [count, setCount] = useState(1);
+    const [prices, setPrices] = useState(0);
 
 
-
+    // 
     const handleIncrease = (id) => {
         const updatedData = cart.map((product) => {
             if (product._id === id) {
+                // If the product is found, increment the amount
+                console.log(product.amount);
                 setCount(count + 1)
+                return {
+                    ...product,
+                    amount: product.amount + 1,
+                };
             }
-        })
+        });
     };
+
 
     const setDecrease = () => {
         count > 1 ? setCount(count - 1) : setCount(1)
 
     }
 
+    const handleCheckout = (price) => {
+        setPrices(price * count);
+
+    }
+
+    const handleCheckoutAll = () => {
+        const revenue = cart.reduce((total, payment) => total + payment.price, 0)
+        setPrices(revenue * count)
+    }
 
 
     // delete product
@@ -65,82 +83,123 @@ const PlaceOrder = () => {
     };
 
 
+
+
     return (
-        <div>
-            <div className="flex gap-5 bg-[#c6d0da] px-10">
-                <div className="w-8/12 mt-5">
-                    {/* div-1 */}
-                    <div className="bg-[#fff] px-5 py-5 flex justify-between">
-                        <div className="flex gap-3">
-                            <input type="checkbox" name="" id="" />
-                            <p>Select All ({cart.length})</p>
-                        </div>
-                        <div className="flex gap-2">
-                            <h2>{user?.email}</h2>
-                            <p>your total:</p>
-                        </div>
-                    </div>
-                    {/* div-2 */}
-                    <div className="bg-[#fff] mt-5 mb-5">
-                        {
-                            cart.map(item => <div className="flex mb-5" key={item._id}>
-                                <div className="w-1/12 flex justify-center items-center text-center">
-                                    <input type="checkbox" name="" id="" />
+        <div className="bg-gray-200">
+            {
+                cart?.length > 0 ?
+                    <div className="md:flex flex-row gap-5 bg-[#c6d0da] md:px-10">
+                        <div className="md:w-8/12 w-full mt-5">
+                            {/* div-1 */}
+                            <div className="bg-[#fff] md:px-5 px-2 py-2 md:py-5 flex justify-between">
+                                <div className="flex gap-3">
+                                    <input onClick={handleCheckoutAll} type="checkbox" name="" id="" />
+                                    <p className="md:text-lg text-sm">Select All ({cart.length})</p>
                                 </div>
-                                <div className="px-3 py-3 w-3/12">
-                                    <img src={item.image} alt="" />
-                                </div>
-                                <div className="w-3/12">
-                                    <div className="mt-[50px]">
-                                        <h1 className="text-xl">{item.name}</h1>
-                                        <h2 className="text-xl mt-2">{item.author_name}</h2>
-                                        <div className="flex gap-3 mt-3">
-                                            <button onClick={() => handleDelete(item._id)}><img src="https://www.rokomari.com/static/200/images/icon_trash.png" alt="" /></button>
-                                            <button className="flex gap-2"><img src="https://www.rokomari.com/static/200/images/icon_wishlist.png" alt="" /><span>WishList</span></button>
-                                        </div>
-                                        <h2 className="text-red-800 mt-3">Only {item.quantity} copies available</h2>
-                                    </div>
-                                </div>
-                                <div className="w-3/12 flex justify-center items-center">
-                                    <div className="flex justify-center items-center">
-                                        <button onClick={setDecrease} className="px-3 py-2 text-lg bg-gray-200"><FaMinus></FaMinus></button>
-                                        <input className="w-[30px] text-center text-black" placeholder={count} type="text" name="" id="" />
-                                        <button onClick={() => handleIncrease(item._id)} className="px-3 py-2 bg-gray-200"><FaPlus></FaPlus></button>
-                                    </div>
-                                </div>
-                                <div className="w-2/12 flex justify-center items-center">
-                                    <h2>{item.price * count}</h2>
-                                </div>
-                            </div>)
-                        }
-                        <hr className="mt-5 mb-5" />
-                        <div className="py-5">
-                            <div className="text-end px-5">
-                                <p>Apply Promo Code or Voucher Code on the Shipping Page</p>
-                                <div className="flex gap-5 justify-end mt-5">
-                                    <button className="btn btn-outline btn-accent">Order As a Gift</button>
-                                    {/* placed order button start */}
-                                    <Link to={'/order'}>
-                                        <button className="btn btn-warning">Place Order <span><FaArrowRight></FaArrowRight></span></button>
-                                    </Link>
-                                    {/* placed order end */}
+                                <div className="flex justify-center items-center gap-2">
+                                    <h2 className="md:text-lg text-sm">{user?.email.slice(1, 12)}</h2>
+                                    <p className="md:text-lg text-sm">your total: <span className="text-xl text-sky-500">{prices} TK</span></p>
                                 </div>
                             </div>
+                            {/* div-2 */}
+                            <div className="bg-[#fff] mt-5 mb-5 px-3">
+                                {
+                                    cart.map(item => <div className="flex mb-5" key={item._id}>
+                                        <div className="lg:w-1/12 flex justify-center items-center text-center">
+                                            <input onClick={() => handleCheckout(item.price)} type="checkbox" name="" id="" />
+                                        </div>
+                                        {/* image */}
+                                        <div className="px-3 flex justify-center items-center py-3 lg:w-3/12 w-8/12">
+                                            <img src={item.image} alt="" />
+                                        </div>
+                                        {/* name and others */}
+                                        <div className="lg:w-3/12 w-full py-2">
+                                            <div className="md:mt-[50px]">
+                                                <h1 className="md:text-xl text-sm font-medium">{item.name}</h1>
+                                                <h2 className="md:text-xl text-sm mt-2">{item.author_name}</h2>
+                                                {/* small device start*/}
+                                                <div className="w-2/12 flex gap-2 lg:hidden justify-start items-center">
+                                                    <h2>{(item.price - item?.discount) * count}</h2>
+                                                    {
+                                                        item.discount ? <h2 className="text-red-700 block"><del>{item.price}</del></h2> : ''
+                                                    }
+                                                </div>
+                                                {/* end */}
+                                                <div className="flex gap-3 mt-3">
+                                                    <button onClick={() => handleDelete(item._id)}><img src="https://www.rokomari.com/static/200/images/icon_trash.png" alt="" /></button>
+                                                    <button className="flex gap-2"><img src="https://www.rokomari.com/static/200/images/icon_wishlist.png" alt="" /><span>WishList</span></button>
+                                                </div>
+                                                <h2 className="text-red-800 mt-3 md:text-lg text-sm">Only {item.quantity} copies available</h2>
+                                            </div>
+                                        </div>
+                                        {/*  */}
+                                        <div className="lg:w-3/12 w-full justify-end md:px-0 px-10 flex lg:justify-center items-center">
+                                            <div className="md:flex flex-row justify-center items-center">
+                                                <button onClick={setDecrease} className="px-3 py-2 text-lg bg-gray-200"><FaMinus></FaMinus></button>
+                                                <p className="text-center px-2">{count}</p>
+                                                <button onClick={() => handleIncrease(item._id)}
+                                                    className="px-3 py-2 bg-gray-200"
+                                                >
+                                                    <FaPlus></FaPlus>
+                                                </button>
+                                            </div>
+                                        </div>
+                                        {/* price */}
+                                        <div className="w-2/12 lg:flex hidden justify-center items-center gap-2">
+                                            <h2>{(item.price - item?.discount) * count}</h2>
+                                            {
+                                                item.discount ? <h2 className="text-red-700 block"><del>{item.price}</del></h2> : ''
+                                            }
+                                        </div>
+                                    </div>)
+                                }
+                                <hr className="mt-5 mb-5" />
+                                <div className="py-5">
+                                    <div className="text-end px-5">
+                                        <p>Apply Promo Code or Voucher Code on the Shipping Page</p>
+                                        <div className="flex gap-5 justify-end mt-5">
+                                            <button className="btn btn-outline btn-accent">Order As a Gift</button>
+                                            {/* placed order button start */}
+                                            <Link to={'/order'}>
+                                                <button className="btn btn-warning">Place Order <span><FaArrowRight></FaArrowRight></span></button>
+                                            </Link>
+                                            {/* placed order end */}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div className="md:w-4/12 w-full mt-5 mb-5">
+                            <SidePart></SidePart>
                         </div>
                     </div>
-
-                </div>
-                <div className="w-4/12 mt-5 mb-5">
-                    <SidePart></SidePart>
-                </div>
+                    :
+                    <div className="text-center mt-10 mb-10">
+                        <div className="flex justify-center items-center">
+                            <img className="h-[200px]" src="https://www.rokomari.com/static/200/images/icon_empty_cart.png" alt="" />
+                        </div>
+                        <h2 className="text-3xl font-semibold mt-5">Your Cart is Empty!</h2>
+                        <p className="text-lg mt-3">Looks like you haven't made order yet.</p>
+                        <Link to={'/'}>
+                            <button className="mt-3 text-xl font-bold text-sky-600">Continue to shopping</button>
+                        </Link>
+                    </div>
+            }
+            <div className="mt-5">
+                <Popular></Popular>
             </div>
-            <Popular></Popular>
-            {/* mohiuddin */}
+
         </div>
     );
 };
 
 export default PlaceOrder;
+
+
+
+
 
 
 
