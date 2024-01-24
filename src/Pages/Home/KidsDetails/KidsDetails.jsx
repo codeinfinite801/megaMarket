@@ -23,7 +23,7 @@ const KidsDetails = () => {
                 <div className="flex justify-between gap-8">
                     <div className="p-5 w-2/6 border shadow-md rounded-lg">
                         <h2 className="mb-2 text-right text-lg font-semibold"> একটু পড়ে দেখুন</h2>
-                        <img className="w-full rounded-md" src={image[0]} alt="" />
+                        <img className="w-full rounded-md" src={image} alt="" />
                     </div>
                     <div className="w-[60%]">
                         <h2 className="text-2xl font-bold">{name}</h2>
