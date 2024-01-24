@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { FaShoppingCart } from "react-icons/fa";
 import { useParams } from "react-router-dom";
+import useBooks from "../../../Hooks/useBooks";
 
 
 const KidsDetails = () => {
@@ -9,7 +10,8 @@ const KidsDetails = () => {
 
     const { _id, image, category, brand, brand_logo, discount, isNew, name, rating, quantity, price, features,summary, country } = kid;
     const discountedPrice = (price - (price * discount) / 100).toFixed(2);
-    console.log(kid);
+    // console.log(kid);
+    const { kids, refetch } = useBooks({ category })
 
     useEffect(() => {
         fetch(`https://maga-market-server-eta.vercel.app/kidsZone/${id}`)
@@ -60,19 +62,19 @@ const KidsDetails = () => {
         {/* <div className="col-span-3">
             <div>
                 {
-                    data?.slice(0, 5).map((book, index) => {
+                    kids?.slice(0, 5).map((kids, index) => {
                         return <div key={index}>
-                            <Link to={`/bookDetails/${book?._id}`}>
+                            <Link to={`/kidsDetails/${kids?._id}`}>
                                 <div className="flex mb-2">
                                     <div className="w-1/2 ">
-                                        <img className="w-[70px] h-[100px]" src={book?.image} alt="" />
+                                        <img className="w-[70px] h-[100px]" src={kids?.image} alt="" />
                                     </div>
                                     <div className="text-left flex-1">
-                                        <h2 className=" text-sm font-semibold mb-2 mt-4">{book?.name}</h2>
-                                        <h3 className=" text-gray-600 text-sm">{book?.author_name}</h3>
+                                        <h2 className=" text-sm font-semibold mb-2 mt-4">{kids?.name}</h2>
+                                        <h3 className=" text-gray-600 text-sm">{kids?.brand}</h3>
                                         <p className=" flex items-center text-gray-600">
                                             <img className="w-24" src="https://t4.ftcdn.net/jpg/03/52/11/77/360_F_352117727_d5h8yi1Smn7mxzYKte15ThuDlHzRuGkN.jpg" alt="" />
-                                            <span>({book?.rating})</span>
+                                            <span>({kids?.rating})</span>
                                         </p>
                                     </div>
                                 </div>
