@@ -47,14 +47,14 @@ const PlaceOrder = () => {
 
 
     const handleIncrease = (id) => {
-        axios.put(`http://localhost:5000/addProducts/${id}/increment`)
+        axios.put(`https://maga-market-server-eta.vercel.app/addProducts/${id}/increment`)
             .then(res => {
                 console.log(res.data);
                 refetch()
             })
     };
     const handleDecrease = (id) => {
-        axios.put(`http://localhost:5000/addProducts/${id}/decrement`)
+        axios.put(`https://maga-market-server-eta.vercel.app/addProducts/${id}/decrement`)
             .then(res => {
                 console.log(res.data);
                 refetch();
