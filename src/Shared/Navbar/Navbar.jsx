@@ -75,7 +75,7 @@ const Navbar = () => {
                             <span>
                                 {/*  */}
                                 <div className="flex items-start justify-center">
-                                    <span className="w-[25px] h-[25px] text-center bg-sky-500 text-white rounded-full px-1 py-1">{cart.length}</span>
+                                    <span className="w-[25px] h-[25px] text-center bg-sky-500 text-white rounded-full px-1 py-1">{cart?.length}</span>
                                 </div>
                                 {/*  */}
                                 <FaShoppingCart className="text-3xl font-bold"></FaShoppingCart></span>
