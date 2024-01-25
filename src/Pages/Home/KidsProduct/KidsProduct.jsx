@@ -46,8 +46,8 @@ const KidsProduct = () => {
                                 <SwiperSlide key={index}>
                                     <Link to={`/allkids/${item?.category}`}>
                                         <div>
-                                            <img className='bg-gray-200 rounded-xl p-2 mx-auto' src={item?.image} alt={item?.name} />
-                                            <h1 className="text-sm mt-5 text-center">{item?.category}</h1>
+                                            <img className='bg-gray-200 h-[150px] rounded-xl p-2 mx-auto' src={item?.image} alt={item?.name} />
+                                            <h1 className="text-sm mt-5 mb-2 text-center">{item?.category}</h1>
                                         </div>
                                     </Link>
                                 </SwiperSlide>

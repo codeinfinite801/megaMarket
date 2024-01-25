@@ -31,7 +31,7 @@ console.log(kids);
     return (
         <div className="px-5 my-16">
         <div className="grid grid-cols-12 gap-2">
-            <div className="col-span-2">
+            <div className="lg:col-span-2 md:col-span-4 col-span-12">
                 <div className="bg-white shadow-xl rounded-lg p-3 border">
                     <div className="py-2 px-2 border-b-2">
                         <p className="font-bold">Sort</p>
@@ -79,9 +79,9 @@ console.log(kids);
                 </div>
 
             </div>
-            <div className="col-span-10">
+            <div className="lg:col-span-10 md:col-span-8 col-span-12">
                 <h2 className="text-2xl mb-5">{category} {kids?.length}</h2>
-                <div className="grid lg:grid-cols-5 md:grid-cols-3 grid-cols-2  gap-3">
+                <div className="grid lg:grid-cols-4 md:grid-cols-3 grid-cols-2  gap-3">
                     {
                         kids?.map(kid => <KidZone key={kid?._id} kid={kid}></KidZone>)
                     }

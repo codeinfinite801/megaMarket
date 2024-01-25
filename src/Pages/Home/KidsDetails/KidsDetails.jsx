@@ -23,7 +23,7 @@ console.log(data)
     
     return (
         <div className="grid grid-cols-12 gap-14 mx-14">
-        <div className="col-span-9">
+        <div className="lg:col-span-9 md:col-span-8 col-span-6">
             <div className="max-w-[1000px] mx-auto">
                 <div className="flex justify-between gap-8">
                     <div className="p-5 w-2/6 border shadow-md rounded-lg">
@@ -63,7 +63,7 @@ console.log(data)
             </div>
 
         </div>
-        <div className="col-span-3">
+        <div className="lg:col-span-3 md:col-span-4">
             <div>
                 {
                     data?.slice(0, 5).map((kids, index) => 
