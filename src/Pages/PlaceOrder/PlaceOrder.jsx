@@ -7,48 +7,69 @@ import useAxiosSecure from "../../Hooks/AxiosSecure/useAxiosSecure";
 import { FaPlus, FaMinus, FaArrowRight } from "react-icons/fa";
 import Popular from "./Popular";
 import { Link } from "react-router-dom";
+import axios from "axios";
 
 
 const PlaceOrder = () => {
     const { user } = useContext(AuthContext);
     const [cart, refetch] = useCarts()
-    console.log(cart);
+    // console.log(cart);
 
     const axiosSecure = useAxiosSecure()
     // state
-    const [count, setCount] = useState(1);
     const [prices, setPrices] = useState(0);
 
 
-    // 
+    // // 
+    // const handleIncrease = (id) => {
+    //     console.log(id);
+    //     const updatedData = cart.map((product) => {
+    //         if (product._id === id) {
+    //             // If the product is found, increment the amount
+    //             console.log(product.amount);
+    //             setCount(count + 1)
+    //             return {
+    //                 ...product,
+    //                 amount: product.amount + 1,
+    //             };
+    //         }
+    //     });
+    // };
+
+
+    // const setDecrease = () => {
+    //     count > 1 ? setCount(count - 1) : setCount(1)
+
+    // }
+
+    // const [selectedProduct , setSelectedProduct] = useState(0)
+    // const [count, setCount] = useState(0);
+
+
     const handleIncrease = (id) => {
-        const updatedData = cart.map((product) => {
-            if (product._id === id) {
-                // If the product is found, increment the amount
-                console.log(product.amount);
-                setCount(count + 1)
-                return {
-                    ...product,
-                    amount: product.amount + 1,
-                };
-            }
-        });
+        axios.put(`http://localhost:5000/addProducts/${id}/increment`)
+            .then(res => {
+                console.log(res.data);
+                refetch()
+            })
+    };
+    const handleDecrease = (id) => {
+        axios.put(`http://localhost:5000/addProducts/${id}/decrement`)
+            .then(res => {
+                console.log(res.data);
+                refetch();
+            })
     };
 
-
-    const setDecrease = () => {
-        count > 1 ? setCount(count - 1) : setCount(1)
-
-    }
-
     const handleCheckout = (price) => {
-        setPrices(price * count);
+        setPrices(price);
 
     }
 
     const handleCheckoutAll = () => {
-        const revenue = cart.reduce((total, payment) => total + payment.price, 0)
-        setPrices(revenue * count)
+        const revenue = cart.reduce((total, payment) => total + payment.priceWithDiscount, 0)
+        setPrices(revenue)
+        refetch();
     }
 
 
@@ -98,7 +119,7 @@ const PlaceOrder = () => {
                                     <p className="md:text-lg text-sm">Select All ({cart.length})</p>
                                 </div>
                                 <div className="flex justify-center items-center gap-2">
-                                    <h2 className="md:text-lg text-sm">{user?.email.slice(1, 12)}</h2>
+                                    <h2 className="md:text-lg text-sm">{user?.email.slice(0, 12)}</h2>
                                     <p className="md:text-lg text-sm">your total: <span className="text-xl text-sky-500">{prices} TK</span></p>
                                 </div>
                             </div>
@@ -107,7 +128,7 @@ const PlaceOrder = () => {
                                 {
                                     cart.map(item => <div className="flex mb-5" key={item._id}>
                                         <div className="lg:w-1/12 flex justify-center items-center text-center">
-                                            <input onClick={() => handleCheckout(item.price)} type="checkbox" name="" id="" />
+                                            <input onClick={() => handleCheckout(item?.priceWithDiscount)} type="checkbox" name="" id="" />
                                         </div>
                                         {/* image */}
                                         <div className="px-3 flex justify-center items-center py-3 lg:w-3/12 w-8/12">
@@ -120,26 +141,34 @@ const PlaceOrder = () => {
                                                 <h2 className="md:text-xl text-sm mt-2">{item.author_name}</h2>
                                                 {/* small device start*/}
                                                 <div className="w-2/12 flex gap-2 lg:hidden justify-start items-center">
-                                                    <h2>{(item.price - item?.discount) * count}</h2>
+                                                    {/* <h2>{(item.price - item?.discount) * count}</h2> */}
                                                     {
                                                         item.discount ? <h2 className="text-red-700 block"><del>{item.price}</del></h2> : ''
                                                     }
                                                 </div>
+                                                <p>Price: {item?.price}</p>
+                                                <p>Discount : {item?.discount}%</p>
                                                 {/* end */}
                                                 <div className="flex gap-3 mt-3">
                                                     <button onClick={() => handleDelete(item._id)}><img src="https://www.rokomari.com/static/200/images/icon_trash.png" alt="" /></button>
                                                     <button className="flex gap-2"><img src="https://www.rokomari.com/static/200/images/icon_wishlist.png" alt="" /><span>WishList</span></button>
                                                 </div>
-                                                <h2 className="text-red-800 mt-3 md:text-lg text-sm">Only {item.quantity} copies available</h2>
+                                                <h2 className="text-red-800 mt-3 md:text-lg text-sm">Only {item?.quantity} copies available</h2>
                                             </div>
                                         </div>
                                         {/*  */}
                                         <div className="lg:w-3/12 w-full justify-end md:px-0 px-10 flex lg:justify-center items-center">
                                             <div className="md:flex flex-row justify-center items-center">
-                                                <button onClick={setDecrease} className="px-3 py-2 text-lg bg-gray-200"><FaMinus></FaMinus></button>
-                                                <p className="text-center px-2">{count}</p>
-                                                <button onClick={() => handleIncrease(item._id)}
-                                                    className="px-3 py-2 bg-gray-200"
+                                                <button
+                                                    onClick={() => handleDecrease(item?._id)}
+                                                    className="px-3 rounded-[3px] py-2 text-lg bg-gray-200 hover:text-blue-600 hover:border hover:border-blue-500"
+                                                    disabled={item?.count <= 1}
+                                                >
+                                                    <FaMinus></FaMinus>
+                                                </button>
+                                                <p className="text-center px-2 font-bold">{item?.count}</p>
+                                                <button onClick={() => handleIncrease(item?._id)}
+                                                    className="px-3 py-2 bg-gray-200 hover:text-blue-600 hover:border hover:border-blue-500 rounded-[3px]" disabled={item?.count >= 10}
                                                 >
                                                     <FaPlus></FaPlus>
                                                 </button>
@@ -147,9 +176,9 @@ const PlaceOrder = () => {
                                         </div>
                                         {/* price */}
                                         <div className="w-2/12 lg:flex hidden justify-center items-center gap-2">
-                                            <h2>{(item.price - item?.discount) * count}</h2>
+                                            <h2>{item?.priceWithDiscount}</h2>
                                             {
-                                                item.discount ? <h2 className="text-red-700 block"><del>{item.price}</del></h2> : ''
+                                                item.discount ? <h2 className="text-red-700 block"><del>{item?.price * item?.count}</del></h2> : ''
                                             }
                                         </div>
                                     </div>)

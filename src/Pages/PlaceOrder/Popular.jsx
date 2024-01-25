@@ -10,14 +10,14 @@ const Popular = () => {
             .then(res => res.json())
             .then(data => setCategories(data))
     }, [])
-    console.log('from popular', categories);
+    // console.log('from popular', categories);
     
     return (
         <div>
             <h2 className="px-5 text-3xl font-medium mb-5">Recently Sold Products</h2>
             <div className="grid md:grid-cols-3 lg:grid-cols-5 grid-cols-2 gap-3 mt-5 mb-5">
                 {
-                    categories.slice(5, 10).map((category) => <Link to={`/bookDetails/${category._id}`}>
+                    categories.slice(5, 10).map((category) => <Link to={`/bookDetails/${category._id}`} key={category?._id}>
                         <div className="hover:shadow-lg hover:scale-105 transition-transform duration-300 hover:border-gray-400 rounded-md p-8 bg-white flex flex-col h-full">
                             <div className="flex-1 flex flex-col justify-between">
                                 <div>
