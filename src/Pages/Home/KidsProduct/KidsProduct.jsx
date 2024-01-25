@@ -40,13 +40,14 @@ const KidsProduct = () => {
                     }}
                     className="mySwiper"
                 >
-                    {
+                   {/* <div className="grid lg:grid-cols-6 md:grid-cols-3 grid-cols-2 gap-2 px-4"> */}
+                   {
                         categories.map((item, index) => {
                             return (
                                 <SwiperSlide key={index}>
                                     <Link to={`/allkids/${item?.category}`}>
                                         <div>
-                                            <img className='bg-gray-200 h-[150px] rounded-xl p-2 mx-auto' src={item?.image} alt={item?.name} />
+                                            <img className='bg-gray-200 w-[170px] h-[150px] rounded-xl p-2' src={item?.image} alt={item?.name} />
                                             <h1 className="text-sm mt-5 mb-2 text-center">{item?.category}</h1>
                                         </div>
                                     </Link>
@@ -54,8 +55,9 @@ const KidsProduct = () => {
                             );
                         })
                     }
-                    {/* <div className="swiper-button-prev"></div>
-                    <div className="swiper-button-next"></div> */}
+                   {/* </div> */}
+                    <div className="swiper-button-prev"></div>
+                    <div className="swiper-button-next"></div>
                 </Swiper>
 
             </div>

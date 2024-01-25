@@ -6,7 +6,7 @@ import KidZone from "../KidZone/KidZone";
 const KidsZones = () => {
     const {category} = useParams();
     const [kids, setKids] = useState([]);
-console.log(kids);
+
     useEffect(()=>{
         fetch(`https://maga-market-server-eta.vercel.app/kidsZone?category=${category}`)
         .then(res => res.json())
@@ -15,7 +15,7 @@ console.log(kids);
 
     // const { data, refetch } = useBooks({ category })
     const [brand, setBrand] = useState([])
-    // console.log(data);
+    
     useEffect(() => {
         if (kids) {
             const brandList = kids.reduce((acc, kid) => {
