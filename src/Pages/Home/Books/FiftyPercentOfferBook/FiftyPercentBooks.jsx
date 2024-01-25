@@ -36,27 +36,37 @@ const FiftyPercentBooks = () => {
   }, []);
   return (
     <div className="max-w-7xl mx-auto bg-white shadow-lg p-5 h-fit my-5">
-      <div className="flex justify-between">
+      <div className="flex justify-between md:flex-row flex-col gap-5">
         <h2 className="text-3xl">
           সকল বইয়ে{" "}
           <span className="text-red-500 text-4xl align-super">Up To 50% </span>{" "}
           ছাড়
         </h2>
-        <button className="btn btn-outline text-blue-400">
+        <button className="btn btn-outline text-blue-400 hidden md:flex">
           View All <IoIosArrowForward className="text-2xl" />{" "}
         </button>
       </div>
       <div>
         <Swiper
-          slidesPerView={5}
-          spaceBetween={20}
-          loop={true}
-          //   pagination={{
-          //     clickable: true,
-          //   }}
-          //   navigation={true}
-          modules={[Pagination, Navigation]}
-          className="mySwiper"
+           spaceBetween={20}
+           slidesPerView={2}
+           loop={true}
+           modules={[Pagination, Navigation]}
+           className="mySwiper"
+           breakpoints={{
+             640: {
+               slidesPerView: 2,
+               spaceBetween: 20,
+             },
+             768: {
+               slidesPerView: 4,
+               spaceBetween: 20,
+             },
+             1024: {
+               slidesPerView: 5,
+               spaceBetween: 20,
+             },
+           }}
         >
           <div className="">
             {fiftyPercentBook?.slice(0, 5).map((book) => (
