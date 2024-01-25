@@ -7,7 +7,7 @@ import useBooks from "../../../Hooks/useBooks";
 const Books = () => {
     const { category } = useParams();
     const { data, refetch } = useBooks({ category })
-    const [author,setAuthor] = useState([])
+    const [author, setAuthor] = useState([])
 
     useEffect(() => {
         if (data) {
