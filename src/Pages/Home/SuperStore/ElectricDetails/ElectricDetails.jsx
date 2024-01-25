@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 const ElectricDetails = ({ electric }) => {
 
     const {features ,model ,isNew, country, color,warranty, discount, rating, quantity, price, main_category, category, brand_logo, name, image, _id} = electric
-    const discountedPrice = (price - (price * discount) / 100).toFixed(2);
+    const discountedPrice = parseFloat((price - (price * discount) / 100).toFixed(2))
 
     return (
         <div>
