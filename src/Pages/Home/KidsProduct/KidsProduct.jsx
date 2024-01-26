@@ -21,10 +21,26 @@ const KidsProduct = () => {
                 
             </div>
             <div>
-                <Swiper
+            <div className="grid lg:grid-cols-6 md:grid-cols-3 grid-cols-2 gap-4 px-4">
+                   {
+                        categories.map((item, index) => {
+                            return (
+                                <div key={index}>
+                                    <Link to={`/allkids/${item?.category}`}>
+                                        <div>
+                                            <img className='bg-gray-200 w-full  h-[150px] rounded-xl p-2' src={item?.image} alt={item?.name} />
+                                            <h1 className="text-sm mt-5 mb-2 text-center">{item?.category}</h1>
+                                        </div>
+                                    </Link>
+                                </div>
+                            );
+                        })
+                    }
+                   </div>
+                {/* <Swiper
                     watchSlidesProgress={true}
                     modules={[Navigation]}
-                    slidesPerView={4}
+                    slidesPerView={2}
 
                     navigation={{
                         nextEl: '.swiper-button-next',
@@ -32,7 +48,7 @@ const KidsProduct = () => {
                     }}
                     breakpoints={{
                         768: {
-                            slidesPerView: 5
+                            slidesPerView: 3
                         },
                         1280: {
                             slidesPerView: 6
@@ -40,25 +56,10 @@ const KidsProduct = () => {
                     }}
                     className="mySwiper"
                 >
-                   {/* <div className="grid lg:grid-cols-6 md:grid-cols-3 grid-cols-2 gap-2 px-4"> */}
-                   {
-                        categories.map((item, index) => {
-                            return (
-                                <SwiperSlide key={index}>
-                                    <Link to={`/allkids/${item?.category}`}>
-                                        <div>
-                                            <img className='bg-gray-200 w-[170px] h-[150px] rounded-xl p-2' src={item?.image} alt={item?.name} />
-                                            <h1 className="text-sm mt-5 mb-2 text-center">{item?.category}</h1>
-                                        </div>
-                                    </Link>
-                                </SwiperSlide>
-                            );
-                        })
-                    }
-                   {/* </div> */}
+                   
                     <div className="swiper-button-prev"></div>
                     <div className="swiper-button-next"></div>
-                </Swiper>
+                </Swiper> */}
 
             </div>
         </div>

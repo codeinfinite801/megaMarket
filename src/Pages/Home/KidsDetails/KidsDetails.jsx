@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { FaShoppingCart } from "react-icons/fa";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import useKids from "../../../Hooks/useKids";
 
 
@@ -32,32 +32,32 @@ const KidsDetails = () => {
     }
 
     return (
-        <div className="md:grid grid-cols-12 gap-14 mx-14">
+        <div className="md:grid grid-cols-12 gap-14 md:mx-14 mx-4">
             <div className="lg:col-span-9 md:col-span-12">
                 <div className="max-w-[1000px] mx-auto">
                     <div className="md:flex justify-between gap-8">
-                            <div className="p-5 md:w-3/6 border shadow-md rounded-lg">
-                                <div className="flex flex-col">
-                                    <div className="w-full">
-                                        <img className="w-full rounded-md" src={img} alt="" />
-                                    </div>
-                                    <div className="flex items-center border-t-2 pt-2 justify-evenly my-5 gap-4">
-                                        {
-                                            image?.map((item, index) => {
-                                                return (
-                                                    <img
-                                                        onMouseEnter={() => handleIndex(index)}
-                                                        className="w-14"
-                                                        key={index}
-                                                        src={item}
-                                                    />
-                                                );
-                                            })
-                                        }
-                                    </div>
+                        <div className="p-5 md:w-3/6 border shadow-md rounded-lg">
+                            <div className="flex flex-col">
+                                <div className="w-full">
+                                    <img className="w-full rounded-md" src={img} alt="" />
+                                </div>
+                                <div className="flex items-center border-t-2 pt-2 justify-evenly my-5 gap-4">
+                                    {
+                                        image?.map((item, index) => {
+                                            return (
+                                                <img
+                                                    onMouseEnter={() => handleIndex(index)}
+                                                    className="w-14"
+                                                    key={index}
+                                                    src={item}
+                                                />
+                                            );
+                                        })
+                                    }
                                 </div>
                             </div>
-                        
+                        </div>
+
                         <div className="md:w-[60%]">
                             <h2 className="text-2xl font-bold">{name}</h2>
                             <p className="text-md mt-1">By <span className="font-semibold text-blue-400">{brand}</span></p>
@@ -79,7 +79,6 @@ const KidsDetails = () => {
                             </div>
                             <p className="text-sm mt-2 italic">স্টক আউট হওয়ার আগেই অর্ডার করুন</p>
                             <div className="flex items-center md:justify-normal justify-between md:gap-10 gap-3 mt-4">
-                                {/* <button className="border border-green-600 text-green-600 md:px-6 md:py-3 py-2 px-2 text-[10px] md:text-[16px] rounded hover:bg-green-600 hover:text-white transition duration-300">একটু পড়ে দেখুন </button> */}
                                 <button className="flex items-center justify-center gap-1 md:gap-4 bg-yellow-500 text-[10px] md:text-[16px] text-white md:px-6 md:py-3 py-2 px-2 rounded hover:bg-yellow-600 transition duration-300">
                                     <FaShoppingCart></FaShoppingCart>
                                     <span>Add To Cart</span>
@@ -90,19 +89,19 @@ const KidsDetails = () => {
                 </div>
 
                 {/* Product details */}
-                <div className="mx-5 mt-12">
+                <div className=" mt-12">
                     <h1>Product Specification & Summary</h1>
                     <div className="my-3">
-                        <div className="md:flex items-center gap-10">
-                            <button onClick={() => handleTab("tab1")} className={activeTab === "tab1" ? "btn border border-green-600" : 'btn'}>Summery</button>
-                            <button onClick={() => handleTab("tab2")} className={activeTab === "tab2" ? "btn border border-green-600" : 'btn'}>Specifications</button>
-                            <button onClick={() => handleTab("tab3")} className={activeTab === "tab3" ? "btn border border-green-600" : 'btn'}>Brand</button>
+                        <div className="flex items-center md:gap-10 gap-1">
+                            <button onClick={() => handleTab("tab1")} className={activeTab === "tab1" ? "btn border btn-sm md:btn-md  border-green-600" : 'btn md:btn-md btn-sm'}>Summery</button>
+                            <button onClick={() => handleTab("tab2")} className={activeTab === "tab2" ? "btn border btn-sm md:btn-md  border-green-600" : 'btn md:btn-md btn-sm'}>Specifications</button>
+                            <button onClick={() => handleTab("tab3")} className={activeTab === "tab3" ? "btn border  btn-sm md:btn-md border-green-600" : 'btn md:btn-md btn-sm'}>Brand</button>
                         </div>
                         <div>
                             {
                                 activeTab === "tab3" && <div>
-                                    <div className="flex gap-10">
-                                        <img className="rounded-full mt-5" src={brand_logo} alt="brand logo" />
+                                    <div className="md:flex items-center md:gap-10 gap-5">
+                                            <img className="w-[150px] h-[150px] rounded-full mt-5" src={brand_logo} alt="brand logo" />
                                         <div className="mt-10">
                                             <h1 className="font-bold text-2xl mb-5">{brand}</h1>
                                             <p>{brand_details}</p>
@@ -117,25 +116,25 @@ const KidsDetails = () => {
 
                                     <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
                                         <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-                                            
+
                                             <tbody>
                                                 <tr class="border-b border-gray-200 dark:border-gray-700">
                                                     <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap bg-gray-50 dark:text-white dark:bg-gray-800">
-                                                    Title
+                                                        Title
                                                     </th>
                                                     <td class="px-6 py-4">
                                                         {name}
                                                     </td>
-                                                    
+
                                                 </tr>
                                                 <tr class="border-b border-gray-200 dark:border-gray-700">
                                                     <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap bg-gray-50 dark:text-white dark:bg-gray-800">
-                                                    Category
+                                                        Category
                                                     </th>
                                                     <td class="px-6 py-4">
                                                         {category}
                                                     </td>
-                                                    
+
                                                 </tr>
                                                 <tr class="border-b border-gray-200 dark:border-gray-700">
                                                     <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap bg-gray-50 dark:text-white dark:bg-gray-800">
@@ -144,7 +143,7 @@ const KidsDetails = () => {
                                                     <td class="px-6 py-4">
                                                         {brand}
                                                     </td>
-                                                    
+
                                                 </tr>
                                                 <tr class="border-b border-gray-200 dark:border-gray-700">
                                                     <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap bg-gray-50 dark:text-white dark:bg-gray-800">
@@ -153,7 +152,7 @@ const KidsDetails = () => {
                                                     <td class="px-6 py-4">
                                                         {country}
                                                     </td>
-                                                    
+
                                                 </tr>
                                                 <tr class="border-b border-gray-200 dark:border-gray-700">
                                                     <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap bg-gray-50 dark:text-white dark:bg-gray-800">
@@ -162,7 +161,7 @@ const KidsDetails = () => {
                                                     <td class="px-6 py-4">
                                                         {volume}
                                                     </td>
-                                                   
+
                                                 </tr>
                                                 <tr>
                                                     <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap bg-gray-50 dark:text-white dark:bg-gray-800">
@@ -171,7 +170,7 @@ const KidsDetails = () => {
                                                     <td class="px-6 py-4">
                                                         {age}
                                                     </td>
-                                                    
+
                                                 </tr>
                                                 <tr>
                                                     <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap bg-gray-50 dark:text-white dark:bg-gray-800">
@@ -180,7 +179,7 @@ const KidsDetails = () => {
                                                     <td class="px-6 py-4">
                                                         {features}
                                                     </td>
-                                                    
+
                                                 </tr>
                                                 <tr>
                                                     <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap bg-gray-50 dark:text-white dark:bg-gray-800">
@@ -189,9 +188,9 @@ const KidsDetails = () => {
                                                     <td class="px-6 py-4">
                                                         {product_code}
                                                     </td>
-                                                    
+
                                                 </tr>
-                                               
+
                                             </tbody>
                                         </table>
                                     </div>
@@ -213,7 +212,8 @@ const KidsDetails = () => {
                     {
                         data?.slice(0, 5).map((kids, index) =>
                             <div key={kids?._id}>
-                                <div className="flex mb-2 mt-4">
+                               <Link to={`/kidsDetails/${kids?._id}`}>
+                               <div className="flex mb-2 mt-4">
                                     <div className="w-1/2 ">
                                         <img className="w-[70px] h-[100px]" src={kids?.image[0]} alt="" />
                                     </div>
@@ -226,6 +226,7 @@ const KidsDetails = () => {
                                         </p>
                                     </div>
                                 </div>
+                               </Link>
                             </div>
 
                         )
