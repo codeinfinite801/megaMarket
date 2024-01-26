@@ -1,7 +1,10 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { FaShoppingCart } from "react-icons/fa";
 import { Link, useParams } from "react-router-dom";
 import useKids from "../../../Hooks/useKids";
+import Swal from "sweetalert2";
+import useAxiosSecure from "../../../Hooks/AxiosSecure/useAxiosSecure";
+import { AuthContext } from "../../../provider/AuthProvider";
 
 
 const KidsDetails = () => {
@@ -9,17 +12,20 @@ const KidsDetails = () => {
     const [kid, setKid] = useState({})
     const [activeTab, setActiveTab] = useState("tab1")
     const [imageIn, setIndex] = useState(0)
+    const {user} = useContext(AuthContext);
     // const { user } = useContext(AuthContext)
     const handleTab = (tab) => {
         setActiveTab(tab)
     }
 
     const { _id, image, category, brand, brand_logo, discount, isNew, name, rating, quantity, price, features, summary, volume, age, country, product_code, brand_details } = kid;
-    const discountedPrice = (price - (price * discount) / 100).toFixed(2);
+    const discountedPrice = parseFloat((price - (price * discount) / 100).toFixed(2))
+    const productData = { productId: _id, email: user?.email ,image, category, brand, brand_logo, discount, isNew, name, rating, quantity, price, features, summary, volume, age, country, product_code, brand_details, count : 1 , priceWithDiscount : discountedPrice , discountedPrice : discountedPrice }
+
     const img = image?.length > 0 ? image[imageIn] : '';
     const { data, refetch } = useKids({ category })
     // console.log(category);
-
+    const CallAxios = useAxiosSecure()
     // console.log(data)
     useEffect(() => {
         fetch(`https://maga-market-server-eta.vercel.app/kidsZone/${id}`)
@@ -29,6 +35,24 @@ const KidsDetails = () => {
 
     const handleIndex = (i) => {
         setIndex(i)
+    }
+
+    const addToCart = (id) => {
+        console.log(id);
+        CallAxios.post(`/addProducts/${_id}`, productData)
+            .then(res => {
+                console.log(res.data);
+                if (res?.data?.insertedId) {
+                    return Swal.fire({
+                        position: 'center',
+                        icon: 'success',
+                        title: 'Book Added to Cart Successfully',
+                        showConfirmButton: false,
+                        timer: 1500
+                    })
+                }
+            })
+
     }
 
     return (
@@ -81,7 +105,7 @@ const KidsDetails = () => {
                             <div className="flex items-center md:justify-normal justify-between md:gap-10 gap-3 mt-4">
                                 <button className="flex items-center justify-center gap-1 md:gap-4 bg-yellow-500 text-[10px] md:text-[16px] text-white md:px-6 md:py-3 py-2 px-2 rounded hover:bg-yellow-600 transition duration-300">
                                     <FaShoppingCart></FaShoppingCart>
-                                    <span>Add To Cart</span>
+                                    <button onClick={() => addToCart(_id)}>Add To Cart</button>
                                 </button>
                             </div>
                         </div>
