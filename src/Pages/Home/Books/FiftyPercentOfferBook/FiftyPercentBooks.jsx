@@ -104,9 +104,9 @@ const FiftyPercentBooks = () => {
                     </p>
                     <div className="flex items-center gap-3 mt-3 justify-center">
                       <p className="text-gray-500">
-                        <span className="line-through">TK{book?.price}</span>
+                        <span className="line-through text-sm md:text-normal">TK{book?.price}</span>
                       </p>
-                      <p className="font-bold text-lg text-red-500">
+                      <p className="font-bold text-sm md:text-lg text-red-500">
                         TK.
                         {(
                           book?.price -
