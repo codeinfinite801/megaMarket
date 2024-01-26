@@ -13,6 +13,7 @@ const KidsProduct = () => {
             .then(res => res.json())
             .then(data => setCategories(data))
     }, [])
+
     return (
         <div className="my-5 bg-white">
         <div>
