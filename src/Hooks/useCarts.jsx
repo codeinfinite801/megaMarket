@@ -5,7 +5,7 @@ import { useQuery } from "@tanstack/react-query";
 
 
 const useCarts = () => {
-    // tenstack Qurey
+    // tenStack Query
     const axiosSecure = useAxiosSecure()
     const {user} = useContext(AuthContext)
     const {refetch, data: cart=[]} = useQuery({
