@@ -16,34 +16,12 @@ const PlaceOrder = () => {
     // console.log(cart);
 
     const axiosSecure = useAxiosSecure()
-    // state
-    const [prices, setPrices] = useState(0);
+    const totalPrice = cart?.reduce((previousPrice, current) => previousPrice + current?.priceWithDiscount, 0)
+
+    
 
 
-    // // 
-    // const handleIncrease = (id) => {
-    //     console.log(id);
-    //     const updatedData = cart.map((product) => {
-    //         if (product._id === id) {
-    //             // If the product is found, increment the amount
-    //             console.log(product.amount);
-    //             setCount(count + 1)
-    //             return {
-    //                 ...product,
-    //                 amount: product.amount + 1,
-    //             };
-    //         }
-    //     });
-    // };
 
-
-    // const setDecrease = () => {
-    //     count > 1 ? setCount(count - 1) : setCount(1)
-
-    // }
-
-    // const [selectedProduct , setSelectedProduct] = useState(0)
-    // const [count, setCount] = useState(0);
 
 
     const handleIncrease = (id) => {
@@ -61,16 +39,6 @@ const PlaceOrder = () => {
             })
     };
 
-    const handleCheckout = (price) => {
-        setPrices(price);
-
-    }
-
-    const handleCheckoutAll = () => {
-        const revenue = cart.reduce((total, payment) => total + payment.priceWithDiscount, 0)
-        setPrices(revenue)
-        refetch();
-    }
 
 
     // delete product
@@ -114,22 +82,18 @@ const PlaceOrder = () => {
                         <div className="md:w-8/12 w-full mt-5">
                             {/* div-1 */}
                             <div className="bg-[#fff] md:px-5 px-2 py-2 md:py-5 flex justify-between">
-                                <div className="flex gap-3">
-                                    <input onClick={handleCheckoutAll} type="checkbox" name="" id="" />
-                                    <p className="md:text-lg text-sm">Select All ({cart.length})</p>
+                                <div >
+                                    <p className="md:text-lg text-sm font-bold text-sky-600">{user?.displayName}</p>
                                 </div>
                                 <div className="flex justify-center items-center gap-2">
                                     <h2 className="md:text-lg text-sm">{user?.email.slice(0, 12)}</h2>
-                                    <p className="md:text-lg text-sm">your total: <span className="text-xl text-sky-500">{prices} TK</span></p>
+                                    <p className="md:text-lg text-sm">your total: <span className="text-xl text-sky-500">{totalPrice} TK</span></p>
                                 </div>
                             </div>
                             {/* div-2 */}
                             <div className="bg-[#fff] mt-5 mb-5 px-3">
                                 {
                                     cart.map(item => <div className="flex mb-5" key={item._id}>
-                                        <div className="lg:w-1/12 flex justify-center items-center text-center">
-                                            <input onClick={() => handleCheckout(item?.priceWithDiscount)} type="checkbox" name="" id="" />
-                                        </div>
                                         {/* image */}
                                         <div className="px-3 flex justify-center items-center py-3 lg:w-3/12 w-8/12">
                                             <img src={item.image} alt="" />

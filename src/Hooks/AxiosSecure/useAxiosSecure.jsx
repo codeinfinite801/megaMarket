@@ -1,8 +1,6 @@
 import axios from "axios";
-import { Navigate } from "react-router-dom";
 
 const axiosSecure = axios.create({
-    // baseURL: "http://localhost:5000",
     baseURL: "https://maga-market-server-eta.vercel.app"
 });
 
