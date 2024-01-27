@@ -53,12 +53,15 @@ const Navbar = () => {
                                 <img alt="Tailwind CSS Navbar component" src={user?.photoURL} />
                             </div>
                         </div>
-                        <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[2] p-2 shadow bg-base-100 rounded-box w-52">
+                        <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[2] p-2 shadow bg-base-100 rounded-box w-52 space-y-1">
                             <li>
                                 <a className="justify-between">
                                     Profile
                                 </a>
                             </li>
+                            <Link to='/paymentHistory'>
+                                <li><a>Payment History</a></li>
+                            </Link>
                             <li><a>Settings</a></li>
                             <li><button onClick={signOut}>Logout</button></li>
                         </ul>
@@ -87,13 +90,17 @@ const Navbar = () => {
                                     <img alt="Tailwind CSS Navbar component" src={user?.photoURL} />
                                 </div>
                             </div>
-                            <ul tabIndex={1} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
+                            <ul tabIndex={1} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52 space-y-1">
                                 <li>
                                     <a className="justify-between">
                                         Profile
                                     </a>
                                 </li>
+                                <Link to='/paymentHistory'>
+                                    <li>Payment History</li>
+                                </Link>
                                 <li><a>Settings</a></li>
+
                                 <li><button onClick={signOut}>Logout</button></li>
                             </ul>
                         </div> : <Link to='/signIn'><button className="text-black border px-4 py-2 rounded text-xl">Sign In</button></Link>}

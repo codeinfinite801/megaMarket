@@ -13,6 +13,8 @@ import PlaceOrder from "../Pages/PlaceOrder/PlaceOrder";
 import Order from "../Pages/Order/Order"
 import KidsZones from "../Pages/Home/KidsZones/KidsZones";
 import KidsDetails from "../Pages/Home/KidsDetails/KidsDetails";
+import Payment from "../Pages/Home/Payment/Payment";
+import PaymentHistory from "../Pages/Home/PaymentHistory/PaymentHistory";
 
 const router = createBrowserRouter([
     {
@@ -68,6 +70,14 @@ const router = createBrowserRouter([
             {
                 path: '/order',
                 element: <Order></Order>
+            },
+            {
+                path : "/payment",
+                element: <Payment></Payment>
+            },
+            {
+                path : "/paymentHistory",
+                element : <PaymentHistory></PaymentHistory>
             }
            
         ]
