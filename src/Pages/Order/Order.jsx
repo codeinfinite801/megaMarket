@@ -27,11 +27,11 @@ const Order = () => {
             location: selectedLocation,
             selectedPayment : selectedPayment
         };
-
+        console.log(paymentFormInfo);
         // Navigate to the payment page with form data
-        navigate("/payment", {
-            state: { paymentFormInfo },
-        });
+        // navigate("/payment", {
+        //     state: { paymentFormInfo },
+        // });
     };
 
     const handleRadioChange = (location) => {
@@ -194,7 +194,7 @@ const Order = () => {
                                             type="radio"
                                             name="payment-method"
                                             className="radio radio-accent"
-                                            defaultChecked
+                                            required
                                             onChange={() => handlePaymentChange('card')}
                                         />
                                     </div>
