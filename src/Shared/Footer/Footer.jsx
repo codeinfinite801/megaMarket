@@ -6,7 +6,7 @@ import { AiOutlineLoading3Quarters } from "react-icons/ai";
 
 const Footer = () => {
     return (
-        <div className="mt-10">
+        <div className="mt-16">
             <div className="md:flex hidden mx-auto w-10/12 justify-center gap-10">
                 <div className="flex gap-2">
                     <div className="flex justify-center items-center">

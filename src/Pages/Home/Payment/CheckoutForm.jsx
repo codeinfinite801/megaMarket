@@ -8,7 +8,7 @@ import { useNavigate } from "react-router-dom";
 
 
 const CheckoutForm = ({paymentFormInfo}) => {
-    const {phone,alternative_Phone,country,address,location,paymentMethod} = paymentFormInfo;
+    const {phone,alternative_Phone,country,address,location,selectedPayment } = paymentFormInfo;
     const [error, setError] = useState('')
     const [transactionId, setTransactionId] = useState('')
     const [clientSecret, setClientSecret] = useState('')
@@ -91,7 +91,7 @@ const CheckoutForm = ({paymentFormInfo}) => {
                     productIds: cart?.map(item => item?.productId),
                     price: totalPriceWithDiscount,
                     date: formattedDate,
-                    phone,alternative_Phone,country,address,location,paymentMethod,
+                    phone,alternative_Phone,country,address,location,paymentMethod : selectedPayment,
                     status: "pending"
                 }
                 const res = await axios.post('https://maga-market-server-eta.vercel.app/payments', paymentInfo)

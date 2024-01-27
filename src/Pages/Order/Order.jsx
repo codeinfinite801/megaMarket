@@ -10,6 +10,7 @@ const Order = () => {
     const [selectedLocation, setSelectedLocation] = useState(null);
     const [selectedPayment, setSelectedPayment] = useState('');
     const navigate = useNavigate();
+    console.log(selectedPayment);
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -24,7 +25,7 @@ const Order = () => {
             country,
             address,
             location: selectedLocation,
-            paymentMethod: selectedPayment,
+            selectedPayment : selectedPayment
         };
 
         // Navigate to the payment page with form data
