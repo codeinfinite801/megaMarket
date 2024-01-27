@@ -150,7 +150,7 @@ const CheckoutForm = ({paymentFormInfo}) => {
                     </button>
                     <p className="text-red-600 mt-2">{error}</p>
                     {
-                        transactionId && <p className="text-green-400">{transactionId}</p>
+                        transactionId && <p className="text-green-400">Your transaction Id : {transactionId}</p>
                     }
                 </form>
             </div>

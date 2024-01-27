@@ -75,7 +75,7 @@ const PlaceOrder = () => {
 
 
     return (
-        <div className="bg-gray-200">
+        <div className="bg-gray-200 p-4">
             {
                 cart?.length > 0 ?
                     <div className="md:flex flex-row gap-5 bg-[#c6d0da] md:px-10">
@@ -180,7 +180,7 @@ const PlaceOrder = () => {
                         </Link>
                     </div>
             }
-            <div className="mt-5">
+            <div className="my-8">
                 <Popular></Popular>
             </div>
 
