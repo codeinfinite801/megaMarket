@@ -1,6 +1,7 @@
 import { Link, Outlet } from "react-router-dom";
 import useAuth from "../Hooks/useAuth";
-import { FaHome } from "react-icons/fa";
+import { FaArrowRight, FaHome } from "react-icons/fa";
+import { GiLoveHowl } from "react-icons/gi";
 
 const Dashboard = () => {
   const { user } = useAuth();
@@ -16,18 +17,26 @@ const Dashboard = () => {
             <img alt="Tailwind CSS Navbar component" src={user?.photoURL} />
           </div>
         </div>
-        <ul>
+        <ul className="">
+          <li>
+            {/* <FaArrowRight className="text-xl" /> */}
+            <Link to={"/dashboard/order-history"} className="flex items-center gap-2 mb-3"> <FaArrowRight/>Your Order</Link>
+          </li>
+          <li >
+            {/* <GiLoveHowl className="text-xl" /> */}
+            <Link to={"/dashboard/order-history"}className="flex items-center gap-2 mb-3"><GiLoveHowl className="text-red-600 text-xl"/> Wish List</Link>
+          </li>
           <div className="divider"></div>
-          <li className="flex items-center gap-3 justify-center">
+          <li className="flex items-center gap-2 justify-center">
             <FaHome />
-            <Link>Home</Link>
+            <Link to={"/"}>Home</Link>
           </li>
         </ul>
       </div>
       {/* sidebar ends here */}
 
       {/* Content session start here */}
-      <div>
+      <div className="text-center flex-1 pt-4">
         <Outlet />
       </div>
       {/* Content session ends here */}
