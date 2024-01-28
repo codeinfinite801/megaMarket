@@ -15,6 +15,7 @@ import KidsZones from "../Pages/Home/KidsZones/KidsZones";
 import KidsDetails from "../Pages/Home/KidsDetails/KidsDetails";
 import Payment from "../Pages/Home/Payment/Payment";
 import PaymentHistory from "../Pages/Home/PaymentHistory/PaymentHistory";
+import Dashboard from "../Layout/Dashboard";
 
 const router = createBrowserRouter([
     {
@@ -82,6 +83,15 @@ const router = createBrowserRouter([
            
         ]
     },
+    {
+        path:'dashboard',
+        element:<Dashboard/>,
+        children:[
+            {
+                
+            }
+        ]
+    }
 ]);
 
 
