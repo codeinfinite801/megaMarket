@@ -25,12 +25,17 @@ const SuperStore = () => {
                         watchSlidesProgress={true}
                         modules={[Navigation]}
                         slidesPerView={4}
-
                         navigation={{
                             nextEl: '.swiper-button-next',
                             prevEl: '.swiper-button-prev',
                         }}
                         breakpoints={{
+                            0: {
+                                slidesPerView: 3
+                            },
+                            640: {
+                                slidesPerView: 3
+                            },
                             768: {
                                 slidesPerView: 5
                             },
@@ -40,25 +45,21 @@ const SuperStore = () => {
                         }}
                         className="mySwiper"
                     >
-                        {
-                            categories.map((item, index) => {
-                                return (
-                                    <SwiperSlide key={index} className="py-6">
-                                        <Link to={`/superstore/${item?.name}`}>
-                                            <div className="mr-5">
-                                                <img className='bg-gray-200 rounded-xl p-2 mx-auto' src={item?.image} alt={item?.name} />
-                                                <h1 className="text-sm mt-5 text-center">{item?.name}</h1>
-                                            </div>
-                                        </Link>
-                                    </SwiperSlide>
-                                );
-                            })
-                        }
-                        <div className="swiper-button-prev"></div>
-                        <div className="swiper-button-next"></div>
+                        {categories.map((item, index) => (
+                            <SwiperSlide key={index} className="py-6">
+                                <Link to={`/superstore/${item?.name}`} className="block">
+                                    <div className="mr-5">
+                                        <img className='bg-gray-200 rounded-xl p-2 mx-auto' src={item?.image} alt={item?.name} />
+                                        <h1 className="text-sm mt-5 text-center">{item?.name}</h1>
+                                    </div>
+                                </Link>
+                            </SwiperSlide>
+                        ))}
+                        <div className="swiper-button-prev invisible lg:visible"></div>
+                        <div className="swiper-button-next invisible lg:visible"></div>
                     </Swiper>
-
                 </div>
+
             </div>
         </div>
     );
