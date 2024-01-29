@@ -15,6 +15,7 @@ import KidsZones from "../Pages/Home/KidsZones/KidsZones";
 import KidsDetails from "../Pages/Home/KidsDetails/KidsDetails";
 import Payment from "../Pages/Home/Payment/Payment";
 import PaymentHistory from "../Pages/Home/PaymentHistory/PaymentHistory";
+import AuthorBooks from "../Pages/Home/AuthorCategory/AuthorBooks";
 
 const router = createBrowserRouter([
     {
@@ -37,6 +38,10 @@ const router = createBrowserRouter([
             {
                 path: "/allBooks/:category",
                 element: <Books></Books>
+            },
+            {
+                path: "/authorbooks/:author",
+                element: <AuthorBooks></AuthorBooks>
             },
             {
                 path : "/superstore/:category",

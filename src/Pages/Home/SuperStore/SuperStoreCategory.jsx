@@ -17,8 +17,9 @@ const SuperStoreCategory = () => {
         axiosSecure.get('/allElectronics')
             .then(item => {
                 console.log(item.data);
-                const allData = item?.data.filter(fillItem => fillItem?.category === category)
+                const allData = item?.data.filter(fillItem => fillItem?.category.toLowerCase() === category.toLowerCase())
                 setData(allData)
+                console.log(allData);
             })
     }, []);
     return (
@@ -53,23 +54,7 @@ const SuperStoreCategory = () => {
                             <label htmlFor="inStock" className="ml-2 block text-sm font-medium text-gray-700 flex-1">In Stock</label>
                         </div>
                     </div>
-                    {/* Filter By Author
-                    <div className="bg-white shadow-xl rounded-lg p-3 border">
-                        <div className="py-2 px-2 border-b-2">
-                            <p className="font-bold">Filter By Author</p>
-                        </div>
-                        {
-                            author?.map((author, index) => {
-                                return <div key={index}>
-                                    <div className="flex items-center justify-center gap-4 my-2">
-                                        <input type="checkbox" name="sort" id={author} className="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300" />
-                                        <label htmlFor={author} className="ml-2 block text-sm font-medium text-gray-700 flex-1">{author}</label>
-                                    </div>
-                                </div>
-                            })
-                        }
 
-                    </div> */}
 
                 </div>
                 <div className="col-span-10">
