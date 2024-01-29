@@ -9,9 +9,8 @@ const Payment = () => {
     const { state } = useLocation();
     const paymentFormInfo = state ? state.paymentFormInfo : null;
     const stripePromise = loadStripe(import.meta.env.VITE_PAYMENT_GETWAY_KEY);
-    console.log(paymentFormInfo);
     return (
-            <div className="bg-[#c6d0da] p-10">
+            <div className=" md:p-10 px-4 pt-8 pb-16">
                 <Elements stripe={stripePromise}>
                     <CheckoutForm paymentFormInfo={paymentFormInfo}></CheckoutForm>
                 </Elements>

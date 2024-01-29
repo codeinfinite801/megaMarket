@@ -10,7 +10,6 @@ const Order = () => {
     const [selectedLocation, setSelectedLocation] = useState(null);
     const [selectedPayment, setSelectedPayment] = useState('');
     const navigate = useNavigate();
-    console.log(selectedPayment);
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -25,13 +24,12 @@ const Order = () => {
             country,
             address,
             location: selectedLocation,
-            selectedPayment : selectedPayment
+            selectedPayment: selectedPayment
         };
-        console.log(paymentFormInfo);
         // Navigate to the payment page with form data
-        // navigate("/payment", {
-        //     state: { paymentFormInfo },
-        // });
+        navigate("/payment", {
+            state: { paymentFormInfo },
+        });
     };
 
     const handleRadioChange = (location) => {
@@ -44,17 +42,20 @@ const Order = () => {
     };
     return (
         <div>
-            <div className="flex gap-5 bg-[#c6d0da] px-10">
-                <div className="w-8/12 mb-5 mt-5">
+            <div className="lg:flex flex-row-reverse gap-5 bg-[#c6d0da] md:px-10 px-4 py-6">
+                <div className="lg:w-4/12 mb-5 mt-5">
+                    <CheckOut></CheckOut>
+                </div>
+                <div className="lg:w-8/12 mb-5 mt-5">
 
                     <form onSubmit={handleSubmit}>
                         <div className="bg-white border-2 border-sky-300 rounded-md">
                             <div className="card-body">
                                 <h2 className="text-xl font-semibold">Shipping Address <span className="text-sm text-gray-700">(Please Fill Out Your Information)</span></h2>
                                 <hr className="mt-3 mb-3" />
-                                <div className="flex">
-                                    <h2 className="mr-10">Pick Up Your Parcel From:</h2>
-                                    <div className="flex gap-5">
+                                <div className="md:flex">
+                                    <h2 className="mr-10 md:mb-0 mb-2">Pick Up Your Parcel From:</h2>
+                                    <div className="flex md:justify-start justify-center gap-5">
                                         <button className="flex justify-center items-center gap-2">
                                             <input
                                                 type="radio"
@@ -85,7 +86,7 @@ const Order = () => {
                                     <input type="text" value={user?.displayName} className="input input-bordered" required />
                                 </div>
                                 {/* phone no */}
-                                <div className="flex gap-5">
+                                <div className="md:flex md:space-y-0 space-y-3 gap-5">
                                     <div className="form-control flex-1">
                                         <label className="label">
                                             <span className="label-text">Phone No:</span>
@@ -100,7 +101,7 @@ const Order = () => {
                                     </div>
                                 </div>
                                 {/* place */}
-                                <div className="flex gap-5 mt-5">
+                                <div className="md:flex md:space-y-0 space-y-3 gap-5 mt-5">
                                     <div className="form-control flex-1">
                                         <input type="text" name="country" defaultValue={'Bangladesh'} className="input input-bordered" required />
                                     </div>
@@ -118,14 +119,14 @@ const Order = () => {
 
 
                         {/* ----------- */}
-                        <div className="flex gap-5 mt-5">
+                        <div className="md:flex gap-5 mt-5">
                             <div className="bg-white flex-1 py-4 rounded-md px-8 border-2 border-sky-300">
                                 <div className="flex justify-start items-center gap-2">
                                     <img src="https://www.rokomari.com/static/200/images/happy-return-new.png" alt="" />
                                     <h2 className="text-xl font-semibold">7 Days Happy Return</h2>
                                 </div>
                             </div>
-                            <div className="bg-white flex-1 py-4 rounded-md  px-8 border-2 border-sky-300">
+                            <div className="bg-white flex-1 py-4 rounded-md md:mt-0 mt-2  px-8 border-2 border-sky-300">
                                 <div className="flex justify-start items-center gap-2">
                                     <img src="https://www.rokomari.com/static/200/images/earn-points.png" alt="" />
                                     <h2 className="text-xl font-semibold">Purchase and Earn Point</h2>
@@ -138,9 +139,9 @@ const Order = () => {
                                 <h2 className="text-xl font-semibold">Payment Method <span className="text-sm text-gray-700">(Please select only one! payment method)</span></h2>
                             </div>
                             {/* payment image box */}
-                            <div className="grid grid-cols-2 gap-5 px-6 bg-white">
+                            <div className="grid md:grid-cols-2 md:gap-5 md:px-6 px-4 bg-white">
                                 {/* 1st div */}
-                                <div className="flex rounded-md py-3 px-3 bg-[hsl(206,10%,86%)] mt-5">
+                                <div className="flex rounded-md py-3 px-3 bg-[hsl(206,10%,86%)] mt-5 gap-2">
                                     <div className="w-3/12 flex justify-center items-center">
                                         <input
                                             type="radio"
@@ -158,7 +159,7 @@ const Order = () => {
                                     </div>
                                 </div>
                                 {/* 2nd div */}
-                                <div className="flex rounded-md py-3 px-3 bg-[hsl(206,10%,86%)] mt-5">
+                                <div className="flex rounded-md py-3 px-3 bg-[hsl(206,10%,86%)] mt-5 gap-2">
                                     <div className="w-3/12 flex justify-center items-center">
                                         <input
                                             type="radio"
@@ -173,7 +174,7 @@ const Order = () => {
                                     </div>
                                 </div>
                                 {/* 3rd div */}
-                                <div className="flex rounded-md py-3 px-3 bg-[hsl(206,10%,86%)] mt-5">
+                                <div className="flex rounded-md py-3 px-3 bg-[hsl(206,10%,86%)] mt-5 gap-2">
                                     <div className="w-3/12 flex justify-center items-center">
                                         <input
                                             type="radio"
@@ -188,7 +189,7 @@ const Order = () => {
                                     </div>
                                 </div>
                                 {/* 4rth div */}
-                                <div className="flex rounded-md py-3 px-3 bg-[hsl(206,10%,86%)] mt-5">
+                                <div className="flex rounded-md py-3 px-3 bg-[hsl(206,10%,86%)] mt-5 gap-2">
                                     <div className="w-3/12 flex justify-center items-center">
                                         <input
                                             type="radio"
@@ -245,9 +246,7 @@ const Order = () => {
                         </div>
                     </form>
                 </div>
-                <div className="w-4/12 mb-5 mt-5">
-                    <CheckOut></CheckOut>
-                </div>
+
             </div>
         </div>
     );
