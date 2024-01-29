@@ -1,29 +1,23 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Book from "../Book/Book";
-import useBooks from "../../../Hooks/useBooks";
 
 
-const Books = () => {
-    const { category } = useParams();
-    const { data, refetch } = useBooks({ category })
-    const [author, setAuthor] = useState([])
-    const [dataIndex, setDataIndex] = useState(10)
+
+const AuthorBooks = () => {
+    const { author } = useParams();
+    const [data, setData] = useState([]);
+    console.log(data);
+    
     useEffect(() => {
-        if (data) {
-            const authorList = data.reduce((acc, book) => {
-                if (book?.author_name && !acc.includes(book.author_name)) {
-                    return [...acc, book.author_name];
-                }
-                return acc;
-            }, []);
-
-            setAuthor(authorList);
-        }
-    }, [data]);
-    const handleData = () => {
-        setDataIndex(data?.length)
-    }
+        fetch('https://maga-market-server-eta.vercel.app/allbooks')
+            .then(res => res.json())
+            .then(data => {
+                const filteredCategories = data.filter(item => item.author_name === author);
+                setData(filteredCategories);
+            })
+    }, [author]);
+    
     return (
         <div>
             <div className="px-5 my-16 hidden lg:block">
@@ -57,28 +51,10 @@ const Books = () => {
                                 <label htmlFor="inStock" className="ml-2 block text-sm font-medium text-gray-700 flex-1">In Stock</label>
                             </div>
                         </div>
-                        {/* Filter By Author */}
-                        <div className="bg-white shadow-xl rounded-lg p-3 border">
-                            <div className="py-2 px-2 border-b-2">
-                                <p className="font-bold">Filter By Author</p>
-                            </div>
-                            {
-                                author?.map((author, index) => {
-                                    return <div key={index}>
-                                        <div className="flex items-center justify-center gap-4 my-2">
-                                            <input type="checkbox" name="sort" id={author} className="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300" />
-                                            <label htmlFor={author} className="ml-2 block text-sm font-medium text-gray-700 flex-1">{author}</label>
-                                        </div>
-                                    </div>
-                                })
-                            }
-
-                        </div>
-
 
                     </div>
                     <div className="col-span-10">
-                        <h2 className="text-2xl mb-5">{category} {data?.length}</h2>
+                        <h2 className="text-2xl mb-5">{author}</h2>
                         <div className="grid lg:grid-cols-5 md:grid-cols-3 grid-cols-2  gap-3">
                             {
                                 data?.map(book => <Book key={book?._id} book={book}></Book>)
@@ -91,54 +67,27 @@ const Books = () => {
             <div className="lg:hidden">
                 <div>
                     <div>
-                        <div className="bg-white flex items-center justify-between shadow-xl rounded-lg p-3 border">
-                            <div className="py-2 px-2 border-b-2">
+                        <div className="bg-white border-b-2 flex items-center justify-between shadow-xl rounded-lg p-3 border">
+                            <div className="py-2 px-2 ">
                                 <p className="font-bold">Sort</p>
                             </div>
                             <div className="my-2">
                                 <select name="sort" id="sort-select" className="focus:ring-indigo-500 h-10 text-indigo-600 border-gray-300 w-full">
-                                    <option value="best-seller">Best Seller</option>
                                     <option value="low-to-high">Price Low to High</option>
                                     <option value="high-to-low">Price High to Low</option>
                                     <option value="discount">Discount</option>
                                 </select>
                             </div>
                         </div>
-                        <div>
-                            <div class="bg-white flex items-center justify-between shadow-xl rounded-lg p-3 border">
-                                <div class="py-2 px-2 border-b-2">
-                                    <p class="font-bold">Filter</p>
-                                </div>
-                                <div class="relative my-2">
-                                    <select name="author" id="author-select" class="focus:ring-indigo-500 h-10 text-indigo-600 border-gray-300 w-full">
-                                        <option value="">Select Author</option>
-                                        {
-                                            author?.map((author, index) => (
-                                                <option key={index} value={author}>
-                                                    <label class="inline-flex items-center">
-                                                        <input type="checkbox" name="selectedAuthors" value={author} class="form-checkbox h-4 w-4 text-indigo-600 border-gray-300" />
-                                                        <span class="ml-2">{author}</span>
-                                                    </label>
-                                                </option>
-                                            ))
-                                        }
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
                     </div>
                     <div>
                         <div className="mt-5 mx-3">
-                            <h2 className="text-2xl mb-5">{category} {data?.length}</h2>
+                            <h2 className="text-2xl mb-5">{author} </h2>
                             <div className="grid lg:grid-cols-5 md:grid-cols-3 grid-cols-2  gap-3">
                                 {
-                                    data?.slice(0, dataIndex).map(book => <Book key={book?._id} book={book}></Book>)
+                                    data?.map(book => <Book key={book?._id} book={book}></Book>)
                                 }
                             </div>
-                            <div className={dataIndex === data?.length ? 'hidden' : 'flex'}>
-                                <button onClick={() => handleData()} className="border-green-600 px-6 py-2 border rounded-lg  mx-auto">See All</button>
-                            </div>
-
                         </div>
                     </div>
                 </div>
@@ -147,4 +96,4 @@ const Books = () => {
     );
 };
 
-export default Books;
+export default AuthorBooks;
