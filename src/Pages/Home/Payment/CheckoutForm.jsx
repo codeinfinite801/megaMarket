@@ -4,11 +4,11 @@ import { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import Swal from "sweetalert2";
 import { AuthContext } from "../../../provider/AuthProvider";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 
-const CheckoutForm = ({paymentFormInfo}) => {
-    const {phone,alternative_Phone,country,address,location,selectedPayment } = paymentFormInfo;
+const CheckoutForm = ({ paymentFormInfo }) => {
+    const { phone, alternative_Phone, country, address, location, selectedPayment } = paymentFormInfo;
     const [error, setError] = useState('')
     const [transactionId, setTransactionId] = useState('')
     const [clientSecret, setClientSecret] = useState('')
@@ -17,7 +17,27 @@ const CheckoutForm = ({paymentFormInfo}) => {
     const navigate = useNavigate();
     const { user } = useContext(AuthContext)
     const [cart, refetch] = useCarts()
-    const totalPriceWithDiscount = cart?.reduce((previousPrice, current) => previousPrice + current?.priceWithDiscount, 0)
+    const totalPrice = cart?.reduce((previousPrice, current) => previousPrice + (current?.price * current?.count), 0)
+    const totalDiscount = cart?.reduce((previousPrice, current) => previousPrice + current?.discount, 0)
+    const totalPriceWithDiscount = parseFloat((totalPrice - (totalPrice * totalDiscount) / 100).toFixed(2))
+
+    const [codeDiscountPrice, setCodeDiscountPrice] = useState(0)
+    const retrieveDiscountedPriceFromLocalStorage = () => {
+        if (user) {
+            const storedDiscountedPrice = localStorage.getItem('discountedPrice');
+            if (storedDiscountedPrice) {
+                const discountedPrice = parseFloat(storedDiscountedPrice);
+                setCodeDiscountPrice(discountedPrice);
+            } 
+        }
+    }
+
+    useEffect(() => {
+        if (user) {
+            retrieveDiscountedPriceFromLocalStorage();
+        }
+    }, [user]);
+    const totalPayablePrice = parseFloat(((totalPriceWithDiscount - codeDiscountPrice).toFixed(2)))
 
     const formattedDate = new Date().toLocaleString('en-US', {
         month: 'long',
@@ -26,17 +46,16 @@ const CheckoutForm = ({paymentFormInfo}) => {
         hour: 'numeric',
         minute: 'numeric',
         hour12: true,
-      });
+    });
 
     useEffect(() => {
-        if (totalPriceWithDiscount > 0) {
-            axios.post('https://maga-market-server-eta.vercel.app/create-payment-intent', { price: totalPriceWithDiscount })
+        if (totalPayablePrice > 0) {
+            axios.post('https://maga-market-server-eta.vercel.app/create-payment-intent', { price: totalPayablePrice })
                 .then(res => {
-                    console.log(res.data.clientSecret);
                     setClientSecret(res.data.clientSecret)
                 })
         }
-    }, [totalPriceWithDiscount])
+    }, [totalPayablePrice])
 
     const handleSubmit = async (event) => {
         event.preventDefault();
@@ -57,10 +76,8 @@ const CheckoutForm = ({paymentFormInfo}) => {
         });
 
         if (error) {
-            console.log('payment error', error);
             setError(error.message);
         } else {
-            console.log('PaymentMethod', paymentMethod);
             setError('')
         }
         const { paymentIntent, error: confirmError } = await stripe.confirmCardPayment(
@@ -80,7 +97,6 @@ const CheckoutForm = ({paymentFormInfo}) => {
             setError(confirmError.message)
         }
         if (paymentIntent) {
-            console.log(paymentIntent);
             if (paymentIntent.status === 'succeeded') {
                 setTransactionId(paymentIntent.id)
                 const paymentInfo = {
@@ -89,9 +105,9 @@ const CheckoutForm = ({paymentFormInfo}) => {
                     transactionId: paymentIntent.id,
                     cartIds: cart?.map(item => item?._id),
                     productIds: cart?.map(item => item?.productId),
-                    price: totalPriceWithDiscount,
+                    price: totalPayablePrice,
                     date: formattedDate,
-                    phone,alternative_Phone,country,address,location,paymentMethod : selectedPayment,
+                    phone, alternative_Phone, country, address, location, paymentMethod: selectedPayment,
                     status: "pending"
                 }
                 const res = await axios.post('https://maga-market-server-eta.vercel.app/payments', paymentInfo)
@@ -113,6 +129,15 @@ const CheckoutForm = ({paymentFormInfo}) => {
 
                 }
             }
+            else{
+                Swal.fire({
+                    position: 'center',
+                    icon: 'error',
+                    title: 'payment fail . Please try again!',
+                    showConfirmButton: false,
+                    timer: 1500
+                })
+            }
         }
 
 
@@ -123,13 +148,23 @@ const CheckoutForm = ({paymentFormInfo}) => {
 
     return (
         <div>
-            <h2 className="md:text-4xl text-2xl font-bold relative text-center mb-16"> Please
-                <span className="text-color"> Pay {totalPriceWithDiscount}tk </span>
+            <h2 className="md:text-4xl text-2xl font-bold relative text-center md:mb-16 mb-8">
+                {
+                    totalPriceWithDiscount > 1 ?  <span className="text-color"> Please Pay {totalPayablePrice}tk </span> : <Link to="/"><button className="underline text-sky-500">Continue to shopping</button></Link>
+                }
+                {
+                    transactionId && <span className="text-color">Pay Successful 🤑</span>
+                }
             </h2>
-            <div className="md:p-16 bg-white border-2 border-sky-300 rounded-lg shadow-lg">
+            <div className="lg:w-2/4 md:w-3/4 mx-auto p-4 bg-white border-2 border-sky-300 rounded-lg shadow-2xl">
+                <div className="flex justify-between items-center px-4 mb-2">
+                    <h2 className="font-medium text-[18px]">Credit or debit card:</h2>
+                    <h2 className="text-3xl">💳</h2>
+                </div>
 
                 <form onSubmit={handleSubmit}>
                     <CardElement
+                        className="border p-2 rounded border-sky-300"
                         options={{
                             style: {
                                 base: {
@@ -145,8 +180,8 @@ const CheckoutForm = ({paymentFormInfo}) => {
                             },
                         }}
                     />
-                    <button className="btn btn-primary btn-sm mt-4" type="submit" disabled={!stripe || !clientSecret}>
-                        Pay
+                    <button className="btn btn-primary btn-block btn-sm mt-4" type="submit" disabled={!stripe || !clientSecret}>
+                        Pay {totalPayablePrice}tk
                     </button>
                     <p className="text-red-600 mt-2">{error}</p>
                     {
