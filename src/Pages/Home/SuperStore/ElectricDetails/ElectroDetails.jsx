@@ -121,8 +121,8 @@ const ElectroDetails = () => {
                 <div className="my-4">
                     <h1 className="my-2 font-semibold">Specification:</h1>
                     <div>
-                        <div>
-                            <div className="flex gap-60 mx-4 px-3 py-1 rounded items-center">
+                        <div className="flex flex-col gap-5 justify-evenly"> 
+                            <div className="flex gap-10 mx-4 w-6/6 px-3 py-1 rounded items-center">
                                 <h1 className="font-bold">Title</h1>
                                 <p className="text-right">{name}</p>
                             </div>
