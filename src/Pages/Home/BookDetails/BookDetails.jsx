@@ -21,7 +21,7 @@ const BookDetails = () => {
     const discountedPrice = parseFloat((price - (price * discount) / 100).toFixed(2));
     console.log(discountedPrice);
 
-    const productData = { productId: _id, email: user?.email, name, image, price, author_name, author_image, author_details, category, discount, rating, quantity, read_book, publisher, country, language, isNew, edition_date, total_pages, summary, amount: 1 , count : 1 , priceWithDiscount : discountedPrice , discountedPrice : discountedPrice }
+    const productData = { productId: _id, email: user?.email, name, image, price, author_name, author_image, author_details, category, discount, rating, quantity, read_book, publisher, country, language, isNew, edition_date, total_pages, summary, amount: 1, count: 1, priceWithDiscount: discountedPrice, discountedPrice: discountedPrice }
 
 
     const { data, refetch } = useBooks({ category })
@@ -51,35 +51,35 @@ const BookDetails = () => {
     console.log(read_book);
     return (
         <>
-            <div className="grid grid-cols-12 gap-14 mx-14">
-                <div className="col-span-9">
-                    <div className="max-w-[1000px] mx-auto">
-                        <div className="flex items-center justify-between gap-8">
-                            <div onClick={() => document.getElementById('my_modal_3').showModal()} className="p-5 w-2/6 border shadow-md rounded-lg">
+            <div className="grid grid-cols-12 gap-10 lg:mx-14 mx-5">
+                <div className="lg:col-span-9 col-span-12">
+                    <div className="mx-auto">
+                        <div className="lg:flex items-center justify-between gap-8">
+                            <div onClick={() => document.getElementById('my_modal_3').showModal()} className="p-5 lg:w-2/6 border shadow-md rounded-lg">
                                 <h2 className="mb-2 text-right text-lg font-semibold"> একটু পড়ে দেখুন</h2>
-                                <img className="w-full rounded-md" src={image} alt="" />
+                                <img className="w-5/6 mx-auto rounded-md" src={image} alt="" />
                             </div>
-                            <div className="w-[60%]">
-                                <h2 className="text-2xl font-bold">{name}</h2>
-                                <p className="text-md mt-1">By <span className="font-semibold text-blue-400">{author_name}</span></p>
-                                <p className="text-sm text-blue-400 mt-1">{category}</p>
-                                <div className="flex items-center  text-gray-600 mt-2">
+                            <div className="lg:w-[60%] w-full pb-4">
+                                <h2 className="text-2xl py-4 lg:pb-0 lg:text-left text-center font-bold">{name}</h2>
+                                <p className="text-md lg:text-left text-center mt-1">By <span className="font-semibold text-blue-400">{author_name}</span></p>
+                                <p className="text-sm lg:text-left text-center  text-blue-400 mt-1">{category}</p>
+                                <div className="flex justify-center lg:justify-start items-center  text-gray-600 mt-2">
                                     <img className="w-24" src="https://t4.ftcdn.net/jpg/03/52/11/77/360_F_352117727_d5h8yi1Smn7mxzYKte15ThuDlHzRuGkN.jpg" alt="" />
                                     <span className="ml-2">({rating}) Ratings</span>
                                 </div>
-                                <div className="flex items-center gap-3 mt-3">
+                                <div className="flex justify-center lg:justify-start items-center gap-3 mt-3">
                                     <p className="text-gray-500"><span className="line-through">TK{price}</span></p>
                                     <p className="font-bold text-lg text-red-500">TK.{discountedPrice}</p>
                                 </div>
-                                <div className="flex items-center gap-2 mt-2">
+                                <div className="flex justify-center lg:justify-start items-center gap-2 mt-2">
                                     <img src="https://www.rokomari.com/static/200/images/svg/in-stock(mini).svg" alt="" />
                                     <span className="text-sm">In Stock </span>
                                     <span className="text-sm">
                                         ( {quantity} Copies Available)
                                     </span>
                                 </div>
-                                <p className="text-sm mt-2 italic">স্টক আউট হওয়ার আগেই অর্ডার করুন</p>
-                                <div className="flex items-center gap-10 mt-4">
+                                <p className="text-sm text-center lg:text-left mt-2 italic">স্টক আউট হওয়ার আগেই অর্ডার করুন</p>
+                                <div className="flex justify-center lg:justify-start items-center gap-10 mt-4">
                                     <button onClick={() => document.getElementById('my_modal_3').showModal()} className="border border-green-600 text-green-600 px-6 py-3 rounded hover:bg-green-600 hover:text-white transition duration-300">একটু পড়ে দেখুন </button>
                                     <button className="flex items-center justify-center gap-4 bg-yellow-500 text-white px-6 py-3 rounded hover:bg-yellow-600 transition duration-300">
                                         <FaShoppingCart></FaShoppingCart>
@@ -91,7 +91,7 @@ const BookDetails = () => {
                     </div>
 
                 </div>
-                <div className="col-span-3">
+                <div className="col-span-3 hidden lg:block">
                     <div>
                         <h1>Related Products</h1>
                         <div className="divider"></div>
@@ -119,73 +119,73 @@ const BookDetails = () => {
                         }
                     </div>
                 </div>
-                <div>
-
-                </div>
-            </div>
-            {/* Product specification and summer=y */}
-            <div className="mx-14">
-                <h1>Product Specification & Summary</h1>
-                <div className="my-3">
-                    <div className="flex w-2/6 items-center justify-between">
-                        <button onClick={() => handleTab("tab1")} className={activeTab === "tab1" ? "btn border border-green-600" : 'btn'}>Summery</button>
-                        <button onClick={() => handleTab("tab2")} className={activeTab === "tab2" ? "btn border border-green-600" : 'btn'}>Specifications</button>
-                        <button onClick={() => handleTab("tab3")} className={activeTab === "tab3" ? "btn border border-green-600" : 'btn'}>Author</button>
-                    </div>
-                    <div>
-                        {
-                            activeTab === "tab3" && <div>
-                                <div className="flex gap-10">
-                                    <img className="w-full h-full rounded-full mt-5" src={author_image} alt="" />
-                                    <div className="mt-10">
-                                        <h1 className="font-bold text-2xl mb-5">{author_name}</h1>
-                                        <p>{author_details}</p>
+                {/* Product specification and summer=y */}
+                <div className="lg:mx-14 mx-5 col-span-12">
+                    <h1 className="font-bold">Product Specification & Summary : </h1>
+                    <div className="my-3">
+                        <div className="flex items-center lg:justify-start justify-center lg:w-full mx-auto">
+                            <div className="flex w-full lg:w-2/6 items-center justify-between">
+                                <button onClick={() => handleTab("tab1")} className={activeTab === "tab1" ? "btn border border-green-600" : 'btn'}>Summery</button>
+                                <button onClick={() => handleTab("tab2")} className={activeTab === "tab2" ? "btn border border-green-600" : 'btn'}>Specifications</button>
+                                <button onClick={() => handleTab("tab3")} className={activeTab === "tab3" ? "btn border border-green-600" : 'btn'}>Author</button>
+                            </div>
+                        </div>
+                        <div>
+                            {
+                                activeTab === "tab3" && <div>
+                                    <div className="lg:flex gap-10">
+                                        <img className="lg:w-full mx-auto h-full rounded-full mt-5" src={author_image} alt="" />
+                                        <div className="mt-10">
+                                            <h1 className="font-bold text-center lg:text-left text-2xl mb-5">{author_name}</h1>
+                                            <p className="text-cetnter lg:text-left">{author_details}</p>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        }
-                        {
-                            activeTab === "tab2" && <div>
-                                <div className="flex justify-between mx-4 px-3 py-1 rounded gap-10 w-2/6 items-center">
-                                    <h1 className="font-bold">Title</h1>
-                                    <p>{name}</p>
-                                </div>
-                                <div className="flex justify-between mx-4 px-3 py-1 rounded gap-10 w-2/6 items-center">
-                                    <h1 className="font-bold">Author</h1>
-                                    <p>{author_name}</p>
-                                </div>
-                                <div className="flex justify-between mx-4 px-3 py-1 rounded gap-10 w-2/6 items-center">
-                                    <h1 className="font-bold">Publisher</h1>
-                                    <p>{publisher}</p>
-                                </div>
-                                <div className="flex justify-between mx-4 px-3 py-1 rounded gap-10 w-2/6 items-center">
-                                    <h1 className="font-bold">Edition</h1>
-                                    <p>{edition_date}</p>
-                                </div>
-                                <div className="flex justify-between mx-4 px-3 py-1 rounded gap-10 w-2/6 items-center">
-                                    <h1 className="font-bold">Number Of Page</h1>
-                                    <p>{total_pages}</p>
-                                </div>
-                                <div className="flex justify-between mx-4 px-3 py-1 rounded gap-10 w-2/6 items-center">
-                                    <h1 className="font-bold">Country</h1>
-                                    <p>{country}</p>
-                                </div>
-                                <div className="flex justify-between mx-4 px-3 py-1 rounded gap-10 w-2/6 items-center">
-                                    <h1 className="font-bold">Language</h1>
-                                    <p>{language}</p>
-                                </div>
+                            }
+                            {
+                                activeTab === "tab2" && <div>
+                                    <div className="flex justify-between mx-4 px-3 py-1 rounded w-full lg:gap-10 lg:w-2/6 items-center">
+                                        <h1 className="font-bold">Title</h1>
+                                        <p>{name}</p>
+                                    </div>
+                                    <div className="flex justify-between mx-4 px-3 py-1 rounded w-full lg:gap-10 lg:w-2/6 items-center">
+                                        <h1 className="font-bold">Author</h1>
+                                        <p>{author_name}</p>
+                                    </div>
+                                    <div className="flex justify-between mx-4 px-3 py-1 rounded w-full lg:gap-10 lg:w-2/6 items-center">
+                                        <h1 className="font-bold">Publisher</h1>
+                                        <p>{publisher}</p>
+                                    </div>
+                                    <div className="flex justify-between mx-4 px-3 py-1 rounded w-full lg:gap-10 lg:w-2/6 items-center">
+                                        <h1 className="font-bold">Edition</h1>
+                                        <p>{edition_date}</p>
+                                    </div>
+                                    <div className="flex justify-between mx-4 px-3 py-1 rounded w-full lg:gap-10 lg:w-2/6 items-center">
+                                        <h1 className="font-bold">Number Of Page</h1>
+                                        <p>{total_pages}</p>
+                                    </div>
+                                    <div className="flex justify-between mx-4 px-3 py-1 rounded w-full lg:gap-10 lg:w-2/6 items-center">
+                                        <h1 className="font-bold">Country</h1>
+                                        <p>{country}</p>
+                                    </div>
+                                    <div className="flex justify-between mx-4 px-3 py-1 rounded w-full lg:gap-10 lg:w-2/6 items-center">
+                                        <h1 className="font-bold">Language</h1>
+                                        <p>{language}</p>
+                                    </div>
 
-                            </div>
-                        }
-                        {
-                            activeTab === "tab1" && <div>
-                                <p className="my-5 ">{summary}</p>
-                            </div>
-                        }
+                                </div>
+                            }
+                            {
+                                activeTab === "tab1" && <div>
+                                    <p className="my-5 ">{summary}</p>
+                                </div>
+                            }
+                        </div>
                     </div>
-                </div>
 
+                </div>
             </div>
+
             <div>
 
                 <dialog id="my_modal_3" className="modal">
