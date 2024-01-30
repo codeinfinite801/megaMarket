@@ -1,8 +1,29 @@
 import { FaTrash } from "react-icons/fa";
 import useCarts from "../../../Hooks/useCarts";
+import Swal from "sweetalert2";
 
 const OrderHistory = () => {
   const [cart] = useCarts();
+  const handleDeleteOrder = id =>{
+    Swal.fire({
+        title: "Are you sure?",
+        text: "You won't be able to revert this!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, delete it!"
+      }).then((result) => {
+        if (result.isConfirmed) {
+            console.log(id)
+        //   Swal.fire({
+        //     title: "Deleted!",
+        //     text: "Your file has been deleted.",
+        //     icon: "success"
+        //   });
+        }
+      });
+  }
   return (
     <div className="flex justify-center items-center">
       {cart.length > 0 ? (
@@ -33,7 +54,7 @@ const OrderHistory = () => {
                   <td>{item?.publisher}</td>
                   <td>Pending</td>
                   <td>
-                    <button className="btn btn-ghost">
+                    <button className="btn btn-ghost" onClick={()=>handleDeleteOrder(item?._id)}>
                       <FaTrash className="text-red-500 text-xl" />
                     </button>
                   </td>

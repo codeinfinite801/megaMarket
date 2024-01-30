@@ -77,10 +77,6 @@ const router = createBrowserRouter([
         path: "/payment",
         element: <Payment></Payment>,
       },
-      {
-        path: "/paymentHistory",
-        element: <PaymentHistory></PaymentHistory>,
-      },
     ],
   },
   {
@@ -90,6 +86,10 @@ const router = createBrowserRouter([
       {
         path: "order-history",
         element: <OrderHistory />,
+      },
+      {
+        path: "paymentHistory",
+        element: <PaymentHistory></PaymentHistory>,
       },
     ],
   },

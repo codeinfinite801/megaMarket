@@ -2,6 +2,7 @@ import { Link, Outlet } from "react-router-dom";
 import useAuth from "../Hooks/useAuth";
 import { FaArrowRight, FaHome } from "react-icons/fa";
 import { GiLoveHowl } from "react-icons/gi";
+import { MdPayments } from "react-icons/md";
 
 const Dashboard = () => {
   const { user } = useAuth();
@@ -20,11 +21,34 @@ const Dashboard = () => {
         <ul className="">
           <li>
             {/* <FaArrowRight className="text-xl" /> */}
-            <Link to={"/dashboard/order-history"} className="flex items-center gap-2 mb-3"> <FaArrowRight/>Your Order</Link>
+            <Link
+              to={"/dashboard/order-history"}
+              className="flex items-center gap-2 mb-3"
+            >
+              {" "}
+              <FaArrowRight />
+              Your Order
+            </Link>
           </li>
-          <li >
+          <li>
+            {/* <FaArrowRight className="text-xl" /> */}
+            <Link
+              to={"/dashboard/paymentHistory"}
+              className="flex items-center gap-2 mb-3"
+            >
+              {" "}
+              <MdPayments />
+              Payment History
+            </Link>
+          </li>
+          <li>
             {/* <GiLoveHowl className="text-xl" /> */}
-            <Link to={"/dashboard/order-history"}className="flex items-center gap-2 mb-3"><GiLoveHowl className="text-red-600 text-xl"/> Wish List</Link>
+            <Link
+              to={"/dashboard/order-history"}
+              className="flex items-center gap-2 mb-3"
+            >
+              <GiLoveHowl className="text-red-600 text-xl" /> Wish List
+            </Link>
           </li>
           <div className="divider"></div>
           <li className="flex items-center gap-2 justify-center">

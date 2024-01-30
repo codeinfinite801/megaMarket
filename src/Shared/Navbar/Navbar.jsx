@@ -78,11 +78,6 @@ const Navbar = () => {
                 <li>
                   {user && <Link to={'dashboard'} className="justify-between font-bold">Dashboard</Link>}
                 </li>
-                <Link to="/paymentHistory">
-                  <li>
-                    <a>Payment History</a>
-                  </li>
-                </Link>
                 <li>
                   <button onClick={signOut}>Logout</button>
                 </li>
