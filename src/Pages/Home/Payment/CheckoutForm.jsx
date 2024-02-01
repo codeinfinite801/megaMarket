@@ -126,7 +126,7 @@ const CheckoutForm = ({ paymentFormInfo }) => {
                         confirmButtonText: "Yes, Sure"
                     }).then((result) => {
                         if (result.isConfirmed) {
-                            navigate('/paymentHistory')
+                            navigate('dashboard/paymentHistory')
                         }
                     });
                     refetch();
