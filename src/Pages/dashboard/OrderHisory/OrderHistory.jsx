@@ -58,8 +58,8 @@ const OrderHistory = () => {
                   </td>
                   <td>
                     {item?.count?.map((item) => (
-                      <li key={item} className="text-left">
-                        {item}
+                      <li key={item} className="text-left list-none">
+                        {item} pcs
                       </li>
                     ))}
                   </td>
