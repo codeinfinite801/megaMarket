@@ -20,6 +20,7 @@ const CheckoutForm = ({ paymentFormInfo }) => {
     const totalPrice = cart?.reduce((previousPrice, current) => previousPrice + (current?.price * current?.count), 0)
     const totalDiscount = cart?.reduce((previousPrice, current) => previousPrice + current?.discount, 0)
     const totalPriceWithDiscount = parseFloat((totalPrice - (totalPrice * totalDiscount) / 100).toFixed(2))
+    console.log(cart)
 
     const [codeDiscountPrice, setCodeDiscountPrice] = useState(0)
     const retrieveDiscountedPriceFromLocalStorage = () => {
@@ -70,7 +71,7 @@ const CheckoutForm = ({ paymentFormInfo }) => {
             return;
         }
 
-        const { error, paymentMethod } = await stripe.createPaymentMethod({
+        const { error,} = await stripe.createPaymentMethod({
             type: 'card',
             card,
         });
@@ -108,6 +109,7 @@ const CheckoutForm = ({ paymentFormInfo }) => {
                     names: cart?.map(item => item?.name),
                     prices: cart?.map(item => item?.price),
                     categories: cart?.map(item => item?.category),
+                    count:cart?.map(item=>item?.count),
                     discounts: cart?.map(item => item?.discount),
                     price: totalPayablePrice,
                     date: formattedDate,

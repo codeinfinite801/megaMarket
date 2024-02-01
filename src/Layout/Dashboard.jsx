@@ -9,11 +9,11 @@ const Dashboard = () => {
   return (
     <div className="flex gap-5">
       {/* sidebar start here */}
-      <div className="w-72 min-h-screen bg-[#38BDF8] text-center p-4 text-white">
-        <p className="text-xl font-bold">
+      <div className="w-72 min-h-screen bg-[#F2F2F2] text-center p-4 ">
+        <p className="text-xl font-bold p-3">
           Welcome <sup className="italic">{user && user?.displayName}</sup>
         </p>
-        <div tabIndex={0} className=" avatar">
+        <div tabIndex={0} className=" avatar mb-5">
           <div className="w-24 rounded-full">
             <img alt="Tailwind CSS Navbar component" src={user?.photoURL} />
           </div>
