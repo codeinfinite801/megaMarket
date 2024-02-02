@@ -24,13 +24,13 @@ const BookDetails = () => {
     const productData = { productId: _id, email: user?.email, name, image, price, author_name, author_image, author_details, category, discount, rating, quantity, read_book, publisher, country, language, isNew, edition_date, total_pages, summary, amount: 1, count: 1, priceWithDiscount: discountedPrice, discountedPrice: discountedPrice }
 
 
-    const { data, refetch } = useBooks({ category })
+    const { data } = useBooks({ category })
 
     useEffect(() => {
         fetch(`https://maga-market-server-eta.vercel.app/allBooks/${id}`)
             .then(res => res.json())
             .then(data => setBook(data))
-    }, [])
+    }, [id])
     const addToCart = (id) => {
         console.log(id);
         CallAxios.post(`/addProducts/${_id}`, productData)
