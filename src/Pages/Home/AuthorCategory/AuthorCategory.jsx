@@ -2,14 +2,26 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/navigation";
 import { Navigation } from 'swiper/modules';
-import { useState, useEffect} from "react";
+import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 const AuthorCategory = () => {
-    const [categories, setCategories] = useState([])
+    const [categories, setCategories] = useState([]);
+
     useEffect(() => {
-        fetch('https://maga-market-server-eta.vercel.app/author')
+        fetch('https://maga-market-server-eta.vercel.app/allbooks')
             .then(res => res.json())
-            .then(data => setCategories(data))
-    }, [])
+            .then(data => {
+                const uniqueAuthors = data.reduce((acc, curr) => {
+                    if (!acc.some(item => item.author_name === curr.author_name)) {
+                        acc.push(curr);
+                    }
+                    return acc;
+                }, []);
+
+                setCategories(uniqueAuthors);
+            })
+    }, []);
+
 
     return (
         <div className="my-5 bg-white">
@@ -23,12 +35,17 @@ const AuthorCategory = () => {
                         watchSlidesProgress={true}
                         modules={[Navigation]}
                         slidesPerView={4}
-                        
                         navigation={{
                             nextEl: '.swiper-button-next',
                             prevEl: '.swiper-button-prev',
                         }}
                         breakpoints={{
+                            0: {
+                                slidesPerView: 3
+                            },
+                            640: {
+                                slidesPerView: 3
+                            },
                             768: {
                                 slidesPerView: 5
                             },
@@ -41,20 +58,22 @@ const AuthorCategory = () => {
                         {
                             categories.map((item, index) => {
                                 return (
-                                    <SwiperSlide key={index}>
-                                        <div>
-                                            <img className='w-1/2 border rounded-full mx-auto' src={item?.image} alt={item?.name} />
-                                            <h1 className="text-sm mt-5 text-center">{item?.name}</h1>
-                                        </div>
+                                    <SwiperSlide >
+                                        <Link key={index} to={`/authorbooks/${item?.author_name}`} className="block"><></>
+                                            <div>
+                                                <img className='w-1/2 h-24 border rounded-full mx-auto' src={item?.author_image} alt={item?.author_name} />
+                                                <h1 className="text-sm mt-5 text-center">{item?.author_name}</h1>
+                                            </div>
+                                        </Link>
                                     </SwiperSlide>
                                 );
                             })
                         }
-                        <div className="swiper-button-prev"></div>
-                        <div className="swiper-button-next"></div>
+                        <div className="swiper-button-prev invisible lg:visible"></div>
+                        <div className="swiper-button-next invisible lg:visible"></div>
                     </Swiper>
-
                 </div>
+
             </div>
         </div>
     );

@@ -1,14 +1,14 @@
-import { FaDollarSign, FaFacebookSquare, FaHome, FaInstagramSquare, FaLinkedinIn, FaTwitterSquare, FaWhatsapp, FaYoutubeSquare } from "react-icons/fa";
+import { FaDollarSign, FaFacebookSquare, FaInstagramSquare, FaLinkedinIn, FaTwitterSquare, FaWhatsapp, FaYoutubeSquare } from "react-icons/fa";
 import { FaHandshakeSimple } from "react-icons/fa6";
-import { MdAssignmentReturn, MdEmail } from "react-icons/md";
+import { MdAssignmentReturn } from "react-icons/md";
 import { TbBus } from "react-icons/tb";
-import { AiOutlineLoading3Quarters } from "react-icons/ai";
+
 import { Link } from "react-router-dom";
 
 const Footer = () => {
     return (
-        <div className="mt-10">
-            <div className="md:flex hidden mx-auto justify-center bg-[#f1f2f4] py-8 gap-10">
+        <div className="mt-16">
+            <div className="md:flex hidden mx-auto w-10/12 justify-center gap-10">
                 <div className="flex gap-2">
                     <div className="flex justify-center items-center">
                         <h2><FaDollarSign className="text-3xl text-green-500"></FaDollarSign></h2>
