@@ -23,7 +23,7 @@ const KidsDetails = () => {
     const productData = { productId: _id, email: user?.email, image, category, brand, brand_logo, discount, isNew, name, rating, quantity, price, features, summary, volume, age, country, product_code, brand_details, count: 1, priceWithDiscount: discountedPrice, discountedPrice: discountedPrice }
 
     const img = image?.length > 0 ? image[imageIn] : '';
-    const { data, refetch } = useKids({ category })
+    const { data } = useKids({ category })
     // console.log(category);
     const CallAxios = useAxiosSecure()
     // console.log(data)
@@ -138,78 +138,78 @@ const KidsDetails = () => {
                                 activeTab === "tab2" && <div className="my-8">
 
 
-                                    <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
-                                        <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                                    <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
+                                        <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
 
                                             <tbody>
-                                                <tr class="border-b border-gray-200 dark:border-gray-700">
-                                                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap bg-gray-50 dark:text-white dark:bg-gray-800">
+                                                <tr className="border-b border-gray-200 dark:border-gray-700">
+                                                    <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap bg-gray-50 dark:text-white dark:bg-gray-800">
                                                         Title
                                                     </th>
-                                                    <td class="px-6 py-4">
+                                                    <td className="px-6 py-4">
                                                         {name}
                                                     </td>
 
                                                 </tr>
-                                                <tr class="border-b border-gray-200 dark:border-gray-700">
-                                                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap bg-gray-50 dark:text-white dark:bg-gray-800">
+                                                <tr className="border-b border-gray-200 dark:border-gray-700">
+                                                    <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap bg-gray-50 dark:text-white dark:bg-gray-800">
                                                         Category
                                                     </th>
-                                                    <td class="px-6 py-4">
+                                                    <td className="px-6 py-4">
                                                         {category}
                                                     </td>
 
                                                 </tr>
-                                                <tr class="border-b border-gray-200 dark:border-gray-700">
-                                                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap bg-gray-50 dark:text-white dark:bg-gray-800">
+                                                <tr className="border-b border-gray-200 dark:border-gray-700">
+                                                    <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap bg-gray-50 dark:text-white dark:bg-gray-800">
                                                         Brand
                                                     </th>
-                                                    <td class="px-6 py-4">
+                                                    <td className="px-6 py-4">
                                                         {brand}
                                                     </td>
 
                                                 </tr>
-                                                <tr class="border-b border-gray-200 dark:border-gray-700">
-                                                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap bg-gray-50 dark:text-white dark:bg-gray-800">
+                                                <tr className="border-b border-gray-200 dark:border-gray-700">
+                                                    <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap bg-gray-50 dark:text-white dark:bg-gray-800">
                                                         Country
                                                     </th>
-                                                    <td class="px-6 py-4">
+                                                    <td className="px-6 py-4">
                                                         {country}
                                                     </td>
 
                                                 </tr>
-                                                <tr class="border-b border-gray-200 dark:border-gray-700">
-                                                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap bg-gray-50 dark:text-white dark:bg-gray-800">
+                                                <tr className="border-b border-gray-200 dark:border-gray-700">
+                                                    <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap bg-gray-50 dark:text-white dark:bg-gray-800">
                                                         Volume
                                                     </th>
-                                                    <td class="px-6 py-4">
+                                                    <td className="px-6 py-4">
                                                         {volume}
                                                     </td>
 
                                                 </tr>
                                                 <tr>
-                                                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap bg-gray-50 dark:text-white dark:bg-gray-800">
+                                                    <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap bg-gray-50 dark:text-white dark:bg-gray-800">
                                                         Age
                                                     </th>
-                                                    <td class="px-6 py-4">
+                                                    <td className="px-6 py-4">
                                                         {age}
                                                     </td>
 
                                                 </tr>
                                                 <tr>
-                                                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap bg-gray-50 dark:text-white dark:bg-gray-800">
+                                                    <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap bg-gray-50 dark:text-white dark:bg-gray-800">
                                                         Feature
                                                     </th>
-                                                    <td class="px-6 py-4">
+                                                    <td className="px-6 py-4">
                                                         {features}
                                                     </td>
 
                                                 </tr>
                                                 <tr>
-                                                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap bg-gray-50 dark:text-white dark:bg-gray-800">
+                                                    <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap bg-gray-50 dark:text-white dark:bg-gray-800">
                                                         Product Code
                                                     </th>
-                                                    <td class="px-6 py-4">
+                                                    <td className="px-6 py-4">
                                                         {product_code}
                                                     </td>
 
@@ -234,7 +234,7 @@ const KidsDetails = () => {
             <div className="lg:col-span-3 md:col-span-12">
                 <div>
                     {
-                        data?.slice(0, 5).map((kids, index) =>
+                        data?.slice(0, 5).map((kids) =>
                             <div key={kids?._id}>
                                 <Link to={`/kidsDetails/${kids?._id}`}>
                                     <div className="flex mb-2 mt-4">
