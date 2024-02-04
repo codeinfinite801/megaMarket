@@ -16,7 +16,7 @@ const OrderHistory = () => {
 
   return (
     <div className="flex justify-center items-center flex-col">
-      <div className="p-3">
+      <div className="md:p-3">
         <h2 className="text-2xl font-bold">Your order history</h2>
         <p className="text-sm p-2">
           **Here you can see your all purchase history with Status**
@@ -24,9 +24,9 @@ const OrderHistory = () => {
       </div>
       {paymentData.length > 0 ? (
         <div className="overflow-x-auto">
-          <table className="table text-center">
+          <table className="table text-center w-full md:w-auto">
             {/* head */}
-            <thead>
+            <thead className="hidden md:table-header-group">
               <tr className="bg-base-200 text-lg">
                 <th>Tnx.No</th>
                 <th>Name</th>
@@ -37,7 +37,7 @@ const OrderHistory = () => {
                 <th>Status</th>
               </tr>
             </thead>
-            <tbody>
+            <tbody className="block md:table-row-group">
               {/* row 1 */}
               {paymentData.map((item, index) => (
                 <tr key={item._id}>
@@ -51,20 +51,20 @@ const OrderHistory = () => {
                   </td>
                   <td>
                     {item?.categories?.map((item) => (
-                      <li key={item} className="text-left">
+                      <li key={item} className="text-left hidden md:block">
                         {item}
                       </li>
                     ))}
                   </td>
                   <td>
                     {item?.count?.map((item) => (
-                      <li key={item} className="text-left list-none">
+                      <li key={item} className="text-left list-none hidden md:block">
                         {item} pcs
                       </li>
                     ))}
                   </td>
                   <td>{item?.price}</td>
-                  <td>{item?.phone}</td>
+                  <td className="hidden md:table-cell">{item?.phone}</td>
                   <td className="text-xl">{item?.status}</td>
                 </tr>
               ))}
