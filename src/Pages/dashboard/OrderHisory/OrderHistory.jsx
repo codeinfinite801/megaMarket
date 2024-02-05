@@ -23,49 +23,49 @@ const OrderHistory = () => {
         </p>
       </div>
       {paymentData.length > 0 ? (
-        <div className="overflow-x-auto">
-          <table className="table text-center w-full md:w-auto">
+        <div className="overflow-x-auto w-auto">
+          <table className="text-center text-sm ">
             {/* head */}
-            <thead className="hidden md:table-header-group">
-              <tr className="bg-base-200 text-lg">
-                <th>Tnx.No</th>
-                <th>Name</th>
-                <th>Category</th>
-                <th>Order Qty</th>
-                <th>Total Amount</th>
-                <th>Contact Num</th>
-                <th>Status</th>
+            <thead className="">
+              <tr className="bg-base-200 md:text-lg">
+                <th className="md:p-2 mr-2">Tnx.No</th>
+                <th className="md:p-2 mr-2">Name</th>
+                <th className="md:p-2 mr-2">Category</th>
+                <th className="md:p-2 mr-2">Order Qty</th>
+                <th className="md:p-2 mr-2">Total Amount</th>
+                <th className="md:p-2 mr-2">Contact Num</th>
+                <th className="md:p-2 mr-2">Status</th>
               </tr>
             </thead>
-            <tbody className="block md:table-row-group">
+            <tbody>
               {/* row 1 */}
               {paymentData.map((item, index) => (
                 <tr key={item._id}>
                   <td>{index + 1}</td>
                   <td>
                     {item?.names?.map((item) => (
-                      <li key={item} className="text-left">
+                      <li key={item} className="text-left list-none">
                         {item}
                       </li>
                     ))}
                   </td>
                   <td>
                     {item?.categories?.map((item) => (
-                      <li key={item} className="text-left hidden md:block">
+                      <li key={item} className="list-none">
                         {item}
                       </li>
                     ))}
                   </td>
                   <td>
                     {item?.count?.map((item) => (
-                      <li key={item} className="text-left list-none hidden md:block">
+                      <li key={item} className="list-none">
                         {item} pcs
                       </li>
                     ))}
                   </td>
                   <td>{item?.price}</td>
-                  <td className="hidden md:table-cell">{item?.phone}</td>
-                  <td className="text-xl">{item?.status}</td>
+                  <td>{item?.phone}</td>
+                  <td className="text-xl p-2">{item?.status}</td>
                 </tr>
               ))}
             </tbody>
