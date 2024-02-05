@@ -18,6 +18,7 @@ import PaymentHistory from "../Pages/Home/PaymentHistory/PaymentHistory";
 import Dashboard from "../Layout/Dashboard";
 import OrderHistory from "../Pages/dashboard/OrderHisory/OrderHistory";
 
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -67,7 +68,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/placeOrder",
-        element: <PlaceOrder></PlaceOrder>,
+        element: <PlaceOrder></PlaceOrder>
       },
       {
         path: "/order",

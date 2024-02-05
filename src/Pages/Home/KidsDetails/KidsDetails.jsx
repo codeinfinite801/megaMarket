@@ -12,7 +12,7 @@ const KidsDetails = () => {
     const [kid, setKid] = useState({})
     const [activeTab, setActiveTab] = useState("tab1")
     const [imageIn, setIndex] = useState(0)
-    const {user} = useContext(AuthContext);
+    const { user } = useContext(AuthContext);
     // const { user } = useContext(AuthContext)
     const handleTab = (tab) => {
         setActiveTab(tab)
@@ -20,10 +20,10 @@ const KidsDetails = () => {
 
     const { _id, image, category, brand, brand_logo, discount, isNew, name, rating, quantity, price, features, summary, volume, age, country, product_code, brand_details } = kid;
     const discountedPrice = parseFloat((price - (price * discount) / 100).toFixed(2))
-    const productData = { productId: _id, email: user?.email ,image, category, brand, brand_logo, discount, isNew, name, rating, quantity, price, features, summary, volume, age, country, product_code, brand_details, count : 1 , priceWithDiscount : discountedPrice , discountedPrice : discountedPrice }
+    const productData = { productId: _id, email: user?.email, image, category, brand, brand_logo, discount, isNew, name, rating, quantity, price, features, summary, volume, age, country, product_code, brand_details, count: 1, priceWithDiscount: discountedPrice, discountedPrice: discountedPrice }
 
     const img = image?.length > 0 ? image[imageIn] : '';
-    const { data, refetch } = useKids({ category })
+    const { data } = useKids({ category })
     // console.log(category);
     const CallAxios = useAxiosSecure()
     // console.log(data)
@@ -125,7 +125,7 @@ const KidsDetails = () => {
                             {
                                 activeTab === "tab3" && <div>
                                     <div className="md:flex items-center md:gap-10 gap-5">
-                                            <img className="w-[150px] h-[150px] rounded-full mt-5" src={brand_logo} alt="brand logo" />
+                                        <img className="w-[150px] h-[150px] rounded-full mt-5" src={brand_logo} alt="brand logo" />
                                         <div className="mt-10">
                                             <h1 className="font-bold text-2xl mb-5">{brand}</h1>
                                             <p>{brand_details}</p>
@@ -138,78 +138,78 @@ const KidsDetails = () => {
                                 activeTab === "tab2" && <div className="my-8">
 
 
-                                    <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
-                                        <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                                    <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
+                                        <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
 
                                             <tbody>
-                                                <tr class="border-b border-gray-200 dark:border-gray-700">
-                                                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap bg-gray-50 dark:text-white dark:bg-gray-800">
+                                                <tr className="border-b border-gray-200 dark:border-gray-700">
+                                                    <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap bg-gray-50 dark:text-white dark:bg-gray-800">
                                                         Title
                                                     </th>
-                                                    <td class="px-6 py-4">
+                                                    <td className="px-6 py-4">
                                                         {name}
                                                     </td>
 
                                                 </tr>
-                                                <tr class="border-b border-gray-200 dark:border-gray-700">
-                                                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap bg-gray-50 dark:text-white dark:bg-gray-800">
+                                                <tr className="border-b border-gray-200 dark:border-gray-700">
+                                                    <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap bg-gray-50 dark:text-white dark:bg-gray-800">
                                                         Category
                                                     </th>
-                                                    <td class="px-6 py-4">
+                                                    <td className="px-6 py-4">
                                                         {category}
                                                     </td>
 
                                                 </tr>
-                                                <tr class="border-b border-gray-200 dark:border-gray-700">
-                                                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap bg-gray-50 dark:text-white dark:bg-gray-800">
+                                                <tr className="border-b border-gray-200 dark:border-gray-700">
+                                                    <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap bg-gray-50 dark:text-white dark:bg-gray-800">
                                                         Brand
                                                     </th>
-                                                    <td class="px-6 py-4">
+                                                    <td className="px-6 py-4">
                                                         {brand}
                                                     </td>
 
                                                 </tr>
-                                                <tr class="border-b border-gray-200 dark:border-gray-700">
-                                                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap bg-gray-50 dark:text-white dark:bg-gray-800">
+                                                <tr className="border-b border-gray-200 dark:border-gray-700">
+                                                    <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap bg-gray-50 dark:text-white dark:bg-gray-800">
                                                         Country
                                                     </th>
-                                                    <td class="px-6 py-4">
+                                                    <td className="px-6 py-4">
                                                         {country}
                                                     </td>
 
                                                 </tr>
-                                                <tr class="border-b border-gray-200 dark:border-gray-700">
-                                                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap bg-gray-50 dark:text-white dark:bg-gray-800">
+                                                <tr className="border-b border-gray-200 dark:border-gray-700">
+                                                    <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap bg-gray-50 dark:text-white dark:bg-gray-800">
                                                         Volume
                                                     </th>
-                                                    <td class="px-6 py-4">
+                                                    <td className="px-6 py-4">
                                                         {volume}
                                                     </td>
 
                                                 </tr>
                                                 <tr>
-                                                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap bg-gray-50 dark:text-white dark:bg-gray-800">
+                                                    <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap bg-gray-50 dark:text-white dark:bg-gray-800">
                                                         Age
                                                     </th>
-                                                    <td class="px-6 py-4">
+                                                    <td className="px-6 py-4">
                                                         {age}
                                                     </td>
 
                                                 </tr>
                                                 <tr>
-                                                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap bg-gray-50 dark:text-white dark:bg-gray-800">
+                                                    <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap bg-gray-50 dark:text-white dark:bg-gray-800">
                                                         Feature
                                                     </th>
-                                                    <td class="px-6 py-4">
+                                                    <td className="px-6 py-4">
                                                         {features}
                                                     </td>
 
                                                 </tr>
                                                 <tr>
-                                                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap bg-gray-50 dark:text-white dark:bg-gray-800">
+                                                    <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap bg-gray-50 dark:text-white dark:bg-gray-800">
                                                         Product Code
                                                     </th>
-                                                    <td class="px-6 py-4">
+                                                    <td className="px-6 py-4">
                                                         {product_code}
                                                     </td>
 
@@ -234,23 +234,23 @@ const KidsDetails = () => {
             <div className="lg:col-span-3 md:col-span-12">
                 <div>
                     {
-                        data?.slice(0, 5).map((kids, index) =>
+                        data?.slice(0, 5).map((kids) =>
                             <div key={kids?._id}>
-                               <Link to={`/kidsDetails/${kids?._id}`}>
-                               <div className="flex mb-2 mt-4">
-                                    <div className="w-1/2 ">
-                                        <img className="w-[70px] h-[100px]" src={kids?.image[0]} alt="" />
+                                <Link to={`/kidsDetails/${kids?._id}`}>
+                                    <div className="flex mb-2 mt-4">
+                                        <div className="w-1/2 ">
+                                            <img className="w-[70px] h-[100px]" src={kids?.image[0]} alt="" />
+                                        </div>
+                                        <div className="text-left flex-1">
+                                            <h2 className=" text-sm font-semibold mb-2 mt-4">{kids?.name}</h2>
+                                            <h3 className=" text-gray-600 text-sm">{kids?.brand}</h3>
+                                            <p className=" flex items-center text-gray-600">
+                                                <img className="w-24" src="https://t4.ftcdn.net/jpg/03/52/11/77/360_F_352117727_d5h8yi1Smn7mxzYKte15ThuDlHzRuGkN.jpg" alt="" />
+                                                <span>({kids?.rating})</span>
+                                            </p>
+                                        </div>
                                     </div>
-                                    <div className="text-left flex-1">
-                                        <h2 className=" text-sm font-semibold mb-2 mt-4">{kids?.name}</h2>
-                                        <h3 className=" text-gray-600 text-sm">{kids?.brand}</h3>
-                                        <p className=" flex items-center text-gray-600">
-                                            <img className="w-24" src="https://t4.ftcdn.net/jpg/03/52/11/77/360_F_352117727_d5h8yi1Smn7mxzYKte15ThuDlHzRuGkN.jpg" alt="" />
-                                            <span>({kids?.rating})</span>
-                                        </p>
-                                    </div>
-                                </div>
-                               </Link>
+                                </Link>
                             </div>
 
                         )

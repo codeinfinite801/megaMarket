@@ -29,13 +29,13 @@ const Banner = () => {
                     className="mySwiper"
                 >
                     <SwiperSlide>
-                        <img src="https://i.postimg.cc/Vk7R3PB8/Your-paragraph-text-1.png" alt="" />
+                        <img className='lg:h-[550px] w-full md:h-[400px] h-[200px]' src="https://i.postimg.cc/Vk7R3PB8/Your-paragraph-text-1.png" alt="" />
                     </SwiperSlide>
                     <SwiperSlide>
-                        <img src="https://i.postimg.cc/25mPMspz/Enjoy-Up-to.png" alt="" />
+                        <img className='lg:h-[550px] w-full md:h-[400px] h-[200px]' src="https://i.postimg.cc/25mPMspz/Enjoy-Up-to.png" alt="" />
                     </SwiperSlide>
                     <SwiperSlide>
-                        <img src="https://i.postimg.cc/zX0GN5Dd/418592057-2618324061660390-6319980139185750532-n.jpg" alt="" />
+                        <img className='lg:h-[550px] w-full md:h-[400px] h-[200px]' src="https://i.postimg.cc/zX0GN5Dd/418592057-2618324061660390-6319980139185750532-n.jpg" alt="" />
                     </SwiperSlide>
 
                     {/* <SwiperSlide>
