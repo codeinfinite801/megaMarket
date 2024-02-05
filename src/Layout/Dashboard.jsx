@@ -1,14 +1,41 @@
-import { Link, Outlet } from "react-router-dom";
+import { Link, Outlet, useNavigate } from "react-router-dom";
 import useAuth from "../Hooks/useAuth";
 import { FaArrowRight, FaHome } from "react-icons/fa";
 import { GiLoveHowl } from "react-icons/gi";
 import { MdPayments } from "react-icons/md";
+import { IoMdLogOut } from "react-icons/io";
 import { useState } from "react";
+import Swal from "sweetalert2";
 
 const Dashboard = () => {
-  const { user } = useAuth();
+  const { user, logOut } = useAuth();
   const [open, setOpen] = useState(false);
-  
+  const navigate = useNavigate();
+
+  // logout function
+
+  const handleLogOut = () => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to logout this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, Logout!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        logOut();
+        Swal.fire({
+          title: "Success!",
+          text: "You successfully logout this website ",
+          icon: "success",
+        });
+        navigate("/");
+      }
+    });
+  };
+
   return (
     <div className="drawer">
       <input id="my-drawer-3" type="checkbox" className="drawer-toggle" />
@@ -26,7 +53,7 @@ const Dashboard = () => {
                 fill="none"
                 viewBox="0 0 24 24"
                 className="inline-block w-6 h-6 stroke-current"
-                onClick={()=>setOpen(!false)}
+                onClick={() => setOpen(!false)}
               >
                 <path
                   strokeLinecap="round"
@@ -89,6 +116,12 @@ const Dashboard = () => {
                 <FaHome />
                 <Link to={"/"}>Home</Link>
               </li>
+              <li className="flex items-center justify-center">
+                <button className="flex text-red-400" onClick={handleLogOut}>
+                  <IoMdLogOut className="text-2xl" />
+                  Logout
+                </button>
+              </li>
             </ul>
             {/* routes end */}
           </div>
@@ -111,7 +144,7 @@ const Dashboard = () => {
               <Link
                 to={"/dashboard/order-history"}
                 className="flex items-center gap-2 mb-3"
-                onClick={()=>setOpen(!true)}
+                onClick={() => setOpen(!true)}
               >
                 {" "}
                 <FaArrowRight />
@@ -123,7 +156,7 @@ const Dashboard = () => {
               <Link
                 to={"/dashboard/paymentHistory"}
                 className="flex items-center gap-2 mb-3"
-                onClick={()=>setOpen(!true)}
+                onClick={() => setOpen(!true)}
               >
                 {" "}
                 <MdPayments />
@@ -135,16 +168,24 @@ const Dashboard = () => {
               <Link
                 to={"/dashboard/order-history"}
                 className="flex items-center gap-2 mb-3"
-                onClick={()=>setOpen(!true)}
+                onClick={() => setOpen(!true)}
               >
                 <GiLoveHowl className="text-red-600 text-xl" /> Wish List
               </Link>
             </li>
             <div className="divider"></div>
-            <li className="flex items-center gap-2 justify-center">
-              <FaHome />
-              <Link to={"/"}>Home</Link>
-            </li>
+            <ul>
+              <li className="flex items-center justify-center">
+                <FaHome />
+                <Link to={"/"}>Home</Link>
+              </li>
+              <li className="flex items-center justify-center">
+                <button className="flex text-red-400">
+                  <IoMdLogOut className="text-2xl" />
+                  Logout
+                </button>
+              </li>
+            </ul>
           </ul>
         </div>
       )}
