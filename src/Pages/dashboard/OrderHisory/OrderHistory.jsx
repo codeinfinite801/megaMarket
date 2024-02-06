@@ -16,25 +16,25 @@ const OrderHistory = () => {
 
   return (
     <div className="flex justify-center items-center flex-col">
-      <div className="p-3">
+      <div className="md:p-3">
         <h2 className="text-2xl font-bold">Your order history</h2>
         <p className="text-sm p-2">
           **Here you can see your all purchase history with Status**
         </p>
       </div>
       {paymentData.length > 0 ? (
-        <div className="overflow-x-auto">
-          <table className="table text-center">
+        <div className="overflow-x-auto w-auto">
+          <table className="text-center text-sm ">
             {/* head */}
-            <thead>
-              <tr className="bg-base-200 text-lg">
-                <th>Tnx.No</th>
-                <th>Name</th>
-                <th>Category</th>
-                <th>Order Qty</th>
-                <th>Total Amount</th>
-                <th>Contact Num</th>
-                <th>Status</th>
+            <thead className="">
+              <tr className="bg-base-200 md:text-lg">
+                <th className="md:p-2 mr-2">Tnx.No</th>
+                <th className="md:p-2 mr-2">Name</th>
+                <th className="md:p-2 mr-2">Category</th>
+                <th className="md:p-2 mr-2">Order Qty</th>
+                <th className="md:p-2 mr-2">Total Amount</th>
+                <th className="md:p-2 mr-2">Contact Num</th>
+                <th className="md:p-2 mr-2">Status</th>
               </tr>
             </thead>
             <tbody>
@@ -44,28 +44,28 @@ const OrderHistory = () => {
                   <td>{index + 1}</td>
                   <td>
                     {item?.names?.map((item) => (
-                      <li key={item} className="text-left">
+                      <li key={item} className="text-left list-none">
                         {item}
                       </li>
                     ))}
                   </td>
                   <td>
                     {item?.categories?.map((item) => (
-                      <li key={item} className="text-left">
+                      <li key={item} className="list-none">
                         {item}
                       </li>
                     ))}
                   </td>
                   <td>
                     {item?.count?.map((item) => (
-                      <li key={item} className="text-left">
-                        {item}
+                      <li key={item} className="list-none">
+                        {item} pcs
                       </li>
                     ))}
                   </td>
                   <td>{item?.price}</td>
                   <td>{item?.phone}</td>
-                  <td className="text-xl">{item?.status}</td>
+                  <td className="text-xl p-2">{item?.status}</td>
                 </tr>
               ))}
             </tbody>

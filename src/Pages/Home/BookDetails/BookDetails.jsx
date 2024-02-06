@@ -23,14 +23,13 @@ const BookDetails = () => {
 
     const productData = { productId: _id, email: user?.email, name, image, price, author_name, author_image, author_details, category, discount, rating, quantity, read_book, publisher, country, language, isNew, edition_date, total_pages, summary, amount: 1, count: 1, priceWithDiscount: discountedPrice, discountedPrice: discountedPrice }
 
-
-    const { data, refetch } = useBooks({ category })
+    const { data } = useBooks({ category })
 
     useEffect(() => {
         fetch(`https://maga-market-server-eta.vercel.app/allBooks/${id}`)
             .then(res => res.json())
             .then(data => setBook(data))
-    }, [])
+    }, [id])
     const addToCart = (id) => {
         console.log(id);
         CallAxios.post(`/addProducts/${_id}`, productData)
@@ -62,7 +61,7 @@ const BookDetails = () => {
                             <div className="lg:w-[60%] w-full pb-4">
                                 <h2 className="text-2xl py-4 lg:pb-0 lg:text-left text-center font-bold">{name}</h2>
                                 <p className="text-md lg:text-left text-center mt-1">By <span className="font-semibold text-blue-400">{author_name}</span></p>
-                                <p className="text-sm lg:text-left text-center text-gray-600 text-blue-400 mt-1">{category}</p>
+                                <p className="text-sm lg:text-left text-center text-gray-600 mt-1">{category}</p>
                                 <div className="flex justify-center lg:justify-start items-center  text-gray-600 mt-2">
                                     <img className="w-24" src="https://t4.ftcdn.net/jpg/03/52/11/77/360_F_352117727_d5h8yi1Smn7mxzYKte15ThuDlHzRuGkN.jpg" alt="" />
                                     <span className="ml-2">({rating}) Ratings</span>

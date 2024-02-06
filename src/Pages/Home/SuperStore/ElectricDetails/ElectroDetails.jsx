@@ -21,7 +21,7 @@ const ElectroDetails = () => {
 
         CallAxios.get(`allElectronics/${id}`)
             .then(item => setItem(item?.data))
-    }, [])
+    }, [CallAxios,id])
     if (!item) return <h1>Loading ....</h1>
     const addToCart = (id) => {
         console.log(id);
@@ -72,7 +72,7 @@ const ElectroDetails = () => {
                             <div className="w-[60%]">
                                 <h2 className="text-2xl font-bold">{name}</h2>
                                 <p className="text-md my-2">Brand : <span className="font-semibold text-blue-400">{brand}</span></p>
-                                <p className="text-sm  text-gray-600 text-blue-400 my-2">Category :  {category}</p>
+                                <p className="text-sm  text-blue-400 my-2">Category :  {category}</p>
                                 <div className="flex items-center  text-gray-600 my-2">
                                     <img className="w-24" src="https://t4.ftcdn.net/jpg/03/52/11/77/360_F_352117727_d5h8yi1Smn7mxzYKte15ThuDlHzRuGkN.jpg" alt="" />
                                     <span className="ml-2">({rating}) Ratings</span>
@@ -121,7 +121,7 @@ const ElectroDetails = () => {
                 <div className="my-4">
                     <h1 className="my-2 font-semibold">Specification:</h1>
                     <div>
-                        <div className="flex flex-col gap-5 justify-evenly"> 
+                        <div className="flex flex-col gap-5 justify-evenly">
                             <div className="flex gap-10 mx-4 w-6/6 px-3 py-1 rounded items-center">
                                 <h1 className="font-bold">Title</h1>
                                 <p className="text-right">{name}</p>
