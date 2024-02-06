@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { AuthContext } from "../../provider/AuthProvider";
 import SidePart from "./SidePart";
 import useCarts from "../../Hooks/useCarts";
@@ -18,7 +18,7 @@ const PlaceOrder = () => {
     const axiosSecure = useAxiosSecure()
     const totalPrice = cart?.reduce((previousPrice, current) => previousPrice + current?.priceWithDiscount, 0)
 
-    
+
 
 
 
@@ -154,9 +154,13 @@ const PlaceOrder = () => {
                                         <div className="flex gap-5 justify-end mt-5">
                                             <button className="btn btn-outline btn-accent">Order As a Gift</button>
                                             {/* placed order button start */}
-                                            <Link to={'/order'}>
-                                                <button className="btn btn-warning">Place Order <span><FaArrowRight></FaArrowRight></span></button>
-                                            </Link>
+                                            {
+                                                user && user?.email ? <Link to={'/order'}>
+                                                    <button className="btn btn-warning">Place Order <span><FaArrowRight></FaArrowRight></span></button>
+                                                </Link> : <Link to={'/signIn'}>
+                                                    <button className="btn btn-warning">Place Order <span><FaArrowRight></FaArrowRight></span></button>
+                                                </Link>
+                                            }
                                             {/* placed order end */}
                                         </div>
                                     </div>
@@ -174,7 +178,7 @@ const PlaceOrder = () => {
                             <img className="h-[200px]" src="https://www.rokomari.com/static/200/images/icon_empty_cart.png" alt="" />
                         </div>
                         <h2 className="text-3xl font-semibold mt-5">Your Cart is Empty!</h2>
-                        <p className="text-lg mt-3">Looks like you haven't made order yet.</p>
+                        <p className="text-lg mt-3">Looks like you haven not made order yet.</p>
                         <Link to={'/'}>
                             <button className="mt-3 text-xl font-bold text-sky-600">Continue to shopping</button>
                         </Link>

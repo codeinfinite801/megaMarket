@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import { FaShoppingCart } from "react-icons/fa";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import useKids from "../../../Hooks/useKids";
 import Swal from "sweetalert2";
 import useAxiosSecure from "../../../Hooks/AxiosSecure/useAxiosSecure";
@@ -17,6 +17,7 @@ const KidsDetails = () => {
     const handleTab = (tab) => {
         setActiveTab(tab)
     }
+    const navigate = useNavigate();
 
     const { _id, image, category, brand, brand_logo, discount, isNew, name, rating, quantity, price, features, summary, volume, age, country, product_code, brand_details } = kid;
     const discountedPrice = parseFloat((price - (price * discount) / 100).toFixed(2))
@@ -52,9 +53,11 @@ const KidsDetails = () => {
                     })
                 }
             })
-
     }
 
+    const handleLogin = () => {
+        navigate('/signIn')
+    }
     return (
         <div className="md:grid grid-cols-12 gap-14 md:mx-14 mx-4">
             <div className="lg:col-span-9 md:col-span-12">
@@ -103,10 +106,15 @@ const KidsDetails = () => {
                             </div>
                             <p className="text-sm mt-2 italic">স্টক আউট হওয়ার আগেই অর্ডার করুন</p>
                             <div className="flex items-center md:justify-normal justify-between md:gap-10 gap-3 mt-4">
-                                <button className="flex items-center justify-center gap-1 md:gap-4 bg-yellow-500 text-[10px] md:text-[16px] text-white md:px-6 md:py-3 py-2 px-2 rounded hover:bg-yellow-600 transition duration-300">
-                                    <FaShoppingCart></FaShoppingCart>
-                                    <button onClick={() => addToCart(_id)}>Add To Cart</button>
-                                </button>
+                                {
+                                    user && user?.email ? <button className="flex items-center justify-center gap-1 md:gap-4 bg-yellow-500 text-[10px] md:text-[16px] text-white md:px-6 md:py-3 py-2 px-2 rounded hover:bg-yellow-600 transition duration-300">
+                                        <FaShoppingCart></FaShoppingCart>
+                                        <button onClick={() => addToCart(_id)}>Add To Cart</button>
+                                    </button> : <button className="flex items-center justify-center gap-1 md:gap-4 bg-yellow-500 text-[10px] md:text-[16px] text-white md:px-6 md:py-3 py-2 px-2 rounded hover:bg-yellow-600 transition duration-300">
+                                        <FaShoppingCart></FaShoppingCart>
+                                        <button onClick={handleLogin}>Add To Cart</button>
+                                    </button>
+                                }
                             </div>
                         </div>
                     </div>
