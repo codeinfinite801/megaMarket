@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import useAxiosSecure from "../../../Hooks/AxiosSecure/useAxiosSecure";
 import { AuthContext } from "../../../provider/AuthProvider";
 import Swal from "sweetalert2";
+import Reviews from "../../Reviews/Reviews";
 
 const BookDetails = () => {
     const CallAxios = useAxiosSecure()
@@ -30,7 +31,7 @@ const BookDetails = () => {
         fetch(`https://maga-market-server-eta.vercel.app/allBooks/${id}`)
             .then(res => res.json())
             .then(data => setBook(data))
-    }, [])
+    }, [id])
     const addToCart = (id) => {
         console.log(id);
         CallAxios.post(`/addProducts/${_id}`, productData)
@@ -120,7 +121,7 @@ const BookDetails = () => {
                     </div>
                 </div>
                 {/* Product specification and summer=y */}
-                <div className="lg:mx-14 mx-5 col-span-12">
+                <div className=" mx-5 col-span-12">
                     <h1 className="font-bold">Product Specification & Summary : </h1>
                     <div className="my-3">
                         <div className="flex items-center lg:justify-start justify-center lg:w-full mx-auto">
@@ -185,7 +186,10 @@ const BookDetails = () => {
 
                 </div>
             </div>
-
+            {/* Reviews */}
+            <div>
+                <Reviews image={image} name={name} rating={rating} productId={_id}></Reviews>
+            </div>
             <div>
 
                 <dialog id="my_modal_3" className="modal">

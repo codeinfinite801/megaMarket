@@ -61,7 +61,7 @@ const AuthorCategory = () => {
                                     <SwiperSlide >
                                         <Link key={index} to={`/authorbooks/${item?.author_name}`} className="block"><></>
                                             <div>
-                                                <img className='w-1/2 h-24 border rounded-full mx-auto' src={item?.author_image} alt={item?.author_name} />
+                                                <img className='w-1/2 lg:h-24 border rounded-full mx-auto' src={item?.author_image} alt={item?.author_name} />
                                                 <h1 className="text-sm mt-5 text-center">{item?.author_name}</h1>
                                             </div>
                                         </Link>
