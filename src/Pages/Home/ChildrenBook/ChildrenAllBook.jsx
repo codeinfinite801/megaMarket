@@ -1,13 +1,27 @@
 
-import React, { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
-
 
 const ChildrenAllBook = () => {
     const { ageRange } = useParams()
-    console.log(ageRange);
+    const [sorting, setSorting] = useState("");
+    const [authors, setAuthors] = useState("");
     const [childrensBooks, setChildrensBooks] = useState([]);
+    console.log(sorting);
+    console.log(authors);
     console.log(childrensBooks);
+    const handleInputChange = (sortType) => {
+        setSorting(sortType);
+    };
+    const handleAuthorChange = (name) => {
+        setAuthors(name);
+    };
+
+    const uniqueAuthors = new Set();
+
+    childrensBooks?.forEach((author) => {
+        uniqueAuthors.add(author.author_name);
+    });
 
     useEffect(() => {
         let cancelRequest = false;
@@ -15,18 +29,45 @@ const ChildrenAllBook = () => {
             .then((response) => response.json())
             .then((data) => {
                 if (!cancelRequest) {
-                    console.log(data);
                     const childBooks = data?.filter(
                         (books) => books?.category === ageRange
                     );
                     setChildrensBooks(childBooks);
                 }
             });
-
+    
         return () => {
             cancelRequest = true;
         };
     }, [ageRange]);
+    
+    useEffect(() => {
+        if (authors) {
+            const filterByAuthor = childrensBooks?.filter(
+                (books) => books?.author_name === authors
+            );
+            setChildrensBooks(filterByAuthor);
+        }
+    }, [authors, childrensBooks]);
+    
+    useEffect(() => {
+        if (sorting) {
+            const sortedBooks = [...childrensBooks];
+            sortedBooks.sort((bookA, bookB) => {
+                const priceA = bookA.price;
+                const priceB = bookB.price;
+    
+                if (sorting === 'asc') {
+                    return priceA - priceB;
+                } else if (sorting === 'desc') {
+                    return priceB - priceA;
+                }
+    
+                return 0;
+            });
+            setChildrensBooks(sortedBooks);
+        }
+    }, [sorting, childrensBooks]);
 
 
 
@@ -42,12 +83,31 @@ const ChildrenAllBook = () => {
                         <label htmlFor="best-seller" className="ml-2 block text-sm font-medium text-gray-700 flex-1">Best Seller</label>
                     </div>
                     <div className="flex items-center justify-center gap-4 my-2">
-                        <input type="radio" name="sort" id="low-to-high" className="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300" />
-                        <label htmlFor="low-to-high" className="ml-2 block text-sm font-medium text-gray-700 flex-1">Price Low to High</label>
+                        <input
+                            type="radio"
+                            name="sort"
+                            id="low-to-high"
+                            className="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
+                            onChange={() => handleInputChange("asc")}
+                            checked={sorting === "asc"}
+                        />
+                        <label htmlFor="low-to-high" className="ml-2 block text-sm font-medium text-gray-700 flex-1">
+                            Price Low to High
+                        </label>
                     </div>
+
                     <div className="flex items-center justify-center gap-4 my-2">
-                        <input type="radio" name="sort" id="high-to-low" className="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300" />
-                        <label htmlFor="high-to-low" className="ml-2 block text-sm font-medium text-gray-700 flex-1">Price High to Low</label>
+                        <input
+                            type="radio"
+                            name="sort"
+                            id="high-to-low"
+                            className="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
+                            onChange={() => handleInputChange("desc")}
+                            checked={sorting === "desc"}
+                        />
+                        <label htmlFor="high-to-low" className="ml-2 block text-sm font-medium text-gray-700 flex-1">
+                            Price High to Low
+                        </label>
                     </div>
                     <div className="flex items-center justify-center gap-4 my-2">
                         <input type="radio" name="sort" id="discount" className="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300" />
@@ -72,15 +132,24 @@ const ChildrenAllBook = () => {
                     <div className="py-2 px-2 border-b-2">
                         <p className="font-bold">Filter By Author</p>
                     </div>
+                    
                     {
-                        childrensBooks?.map((author, index) => {
-                            return <div key={index}>
-                                <div className="flex items-center justify-center gap-4 my-2">
-                                    <input type="radio" name="sort" id={author._id} className="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300" />
-                                    <label htmlFor={author._id} className="ml-2 block text-sm font-medium text-gray-700 flex-1">{author.author_name}</label>
-                                </div>
-                            </div>
-                        })
+                        
+                       Array.from(uniqueAuthors).map((uniqueAuthor, index) => (
+                        <div key={index} className="flex items-center justify-center gap-4 my-2">
+                            <input
+                                type="radio"
+                                name="sort"
+                                id={`author-${index}`}
+                                onChange={() => handleAuthorChange(uniqueAuthor)}
+                                checked={authors === uniqueAuthor}
+                                className="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
+                            />
+                            <label htmlFor={`author-${index}`} className="ml-2 block text-sm font-medium text-gray-700 flex-1">
+                                {uniqueAuthor}
+                            </label>
+                        </div>
+                    ))
                     }
 
                 </div>
