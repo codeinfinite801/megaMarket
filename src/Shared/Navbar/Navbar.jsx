@@ -36,7 +36,7 @@ const Navbar = () => {
             <input
               type="text"
               placeholder="Search..."
-              className="border p-2 rounded w-full"
+              className="border p-2 rounded w-full ml-4"
             />
             <span className="bg-sky-400 p-3 rounded-r-sm">
               <FaSearch className="text-white"></FaSearch>
