@@ -17,6 +17,8 @@ import Payment from "../Pages/Home/Payment/Payment";
 import PaymentHistory from "../Pages/Home/PaymentHistory/PaymentHistory";
 import Dashboard from "../Layout/Dashboard";
 import OrderHistory from "../Pages/dashboard/OrderHisory/OrderHistory";
+import ManageUser from "../Pages/dashboard/ManageUser/ManageUser";
+import ManageOrder from "../Pages/dashboard/ManageOrder/ManageOrder";
 
 
 const router = createBrowserRouter([
@@ -91,6 +93,14 @@ const router = createBrowserRouter([
       {
         path: "paymentHistory",
         element: <PaymentHistory></PaymentHistory>,
+      },
+      {
+        path: "manage-order",
+        element: <ManageOrder />,
+      },
+      {
+        path: "manage-user",
+        element: <ManageUser />,
       },
     ],
   },

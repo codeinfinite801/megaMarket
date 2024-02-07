@@ -4,7 +4,7 @@ import axios from "axios";
 
 const usePaymentData = () => {
   const { user } = useAuth();
-  const { data: paymentData = [] } = useQuery({
+  const { data: paymentData = [],refetch } = useQuery({
     queryKey: ["paymentHistory", user?.email],
     queryFn: async () => {
       const res = await axios.get(
@@ -14,7 +14,7 @@ const usePaymentData = () => {
     },
   });
 
-  return [paymentData];
+  return [paymentData,refetch];
 };
 
 export default usePaymentData;
