@@ -2,7 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import { FaShoppingCart } from "react-icons/fa";
 import { useParams } from "react-router";
 import useBooks from "../../../Hooks/useBooks";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import useAxiosSecure from "../../../Hooks/AxiosSecure/useAxiosSecure";
 import { AuthContext } from "../../../provider/AuthProvider";
 import Swal from "sweetalert2";
@@ -16,7 +16,7 @@ const BookDetails = () => {
     const handleTab = (tab) => {
         setActiveTab(tab)
     }
-
+    const navigate = useNavigate();
     const { _id, name, image, price, author_name, author_image, author_details, category, discount, rating, quantity, read_book, publisher, country, language, isNew, edition_date, total_pages, summary } = book;
     const discountedPrice = parseFloat((price - (price * discount) / 100).toFixed(2));
     console.log(discountedPrice);
@@ -47,7 +47,10 @@ const BookDetails = () => {
             })
 
     }
-    console.log(read_book);
+    // console.log(read_book);
+    const handleLogin = () => {
+        navigate('/signIn')
+    }
     return (
         <>
             <div className="grid grid-cols-12 gap-10 lg:mx-14 mx-5">
@@ -80,10 +83,19 @@ const BookDetails = () => {
                                 <p className="text-sm text-center lg:text-left mt-2 italic">স্টক আউট হওয়ার আগেই অর্ডার করুন</p>
                                 <div className="flex justify-center lg:justify-start items-center gap-10 mt-4">
                                     <button onClick={() => document.getElementById('my_modal_3').showModal()} className="border border-green-600 text-green-600 px-6 py-3 rounded hover:bg-green-600 hover:text-white transition duration-300">একটু পড়ে দেখুন </button>
-                                    <button className="flex items-center justify-center gap-4 bg-yellow-500 text-white px-6 py-3 rounded hover:bg-yellow-600 transition duration-300">
+                                    {
+                                        user && user?.email ? <button className="flex items-center justify-center gap-4 bg-yellow-500 text-white px-6 py-3 rounded hover:bg-yellow-600 transition duration-300">
+                                            <FaShoppingCart></FaShoppingCart>
+                                            <button onClick={() => addToCart(_id)}>Add To Cart</button>
+                                        </button> : <button className="flex items-center justify-center gap-4 bg-yellow-500 text-white px-6 py-3 rounded hover:bg-yellow-600 transition duration-300">
+                                            <FaShoppingCart></FaShoppingCart>
+                                            <button onClick={handleLogin}>Add To Cart</button>
+                                        </button>
+                                    }
+                                    {/* <button className="flex items-center justify-center gap-4 bg-yellow-500 text-white px-6 py-3 rounded hover:bg-yellow-600 transition duration-300">
                                         <FaShoppingCart></FaShoppingCart>
                                         <button onClick={() => addToCart(_id)}>Add To Cart</button>
-                                    </button>
+                                    </button> */}
                                 </div>
                             </div>
                         </div>
