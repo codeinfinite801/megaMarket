@@ -1,16 +1,20 @@
 import { Link, Outlet, useNavigate } from "react-router-dom";
 import useAuth from "../Hooks/useAuth";
-import { FaArrowRight, FaHome } from "react-icons/fa";
+import { FaArrowRight, FaHome, FaUser } from "react-icons/fa";
+import { MdPostAdd } from "react-icons/md";
 import { GiLoveHowl } from "react-icons/gi";
 import { MdPayments } from "react-icons/md";
 import { IoMdLogOut } from "react-icons/io";
 import { useState } from "react";
 import Swal from "sweetalert2";
+import manageOderIcon from "../../src/assets/manageOrder.png";
 
 const Dashboard = () => {
   const { user, logOut } = useAuth();
   const [open, setOpen] = useState(false);
   const navigate = useNavigate();
+
+  const isAdmin = true;
 
   // logout function
 
@@ -79,50 +83,93 @@ const Dashboard = () => {
           </div>
           {/* Routes start here */}
           <div className="flex-none hidden lg:block">
-            <ul className="">
-              <li>
-                {/* <FaArrowRight className="text-xl" /> */}
-                <Link
-                  to={"/dashboard/order-history"}
-                  className="flex items-center gap-2 mb-3"
-                >
-                  {" "}
-                  <FaArrowRight />
-                  Your Order
-                </Link>
-              </li>
-              <li>
-                {/* <FaArrowRight className="text-xl" /> */}
-                <Link
-                  to={"/dashboard/paymentHistory"}
-                  className="flex items-center gap-2 mb-3"
-                >
-                  {" "}
-                  <MdPayments />
-                  Payment History
-                </Link>
-              </li>
-              <li>
-                {/* <GiLoveHowl className="text-xl" /> */}
-                <Link
-                  to={"/dashboard/order-history"}
-                  className="flex items-center gap-2 mb-3"
-                >
-                  <GiLoveHowl className="text-red-600 text-xl" /> Wish List
-                </Link>
-              </li>
-              <div className="divider"></div>
-              <li className="flex items-center gap-2 justify-center">
-                <FaHome />
-                <Link to={"/"}>Home</Link>
-              </li>
-              <li className="flex items-center justify-center">
-                <button className="flex text-red-400" onClick={handleLogOut}>
-                  <IoMdLogOut className="text-2xl" />
-                  Logout
-                </button>
-              </li>
-            </ul>
+            {isAdmin ? (
+              <ul className="">
+                <li>
+                  {/* <FaArrowRight className="text-xl" /> */}
+                  <Link
+                    to={"/dashboard/manage-order"}
+                    className="flex items-center gap-2 mb-3"
+                  >
+                    <img className="w-5 h-5" src={manageOderIcon} alt="" />
+                    Manage Order
+                  </Link>
+                </li>
+                <li>
+                  {/* <FaArrowRight className="text-xl" /> */}
+                  <Link
+                    to={"/dashboard/paymentHistory"}
+                    className="flex items-center gap-2 mb-3"
+                  >
+                    <MdPostAdd className="text-2xl" />
+                    Add Product
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    to={"/dashboard/manage-user"}
+                    className="flex items-center gap-2 mb-3"
+                  >
+                    <FaUser className="text-xl" />
+                    Manage User
+                  </Link>
+                </li>
+                <div className="divider"></div>
+                <li className="flex items-center gap-2 justify-center">
+                  <FaHome />
+                  <Link to={"/"}>Home</Link>
+                </li>
+                <li className="flex items-center justify-center">
+                  <button className="flex text-red-400" onClick={handleLogOut}>
+                    <IoMdLogOut className="text-2xl" />
+                    Logout
+                  </button>
+                </li>
+              </ul>
+            ) : (
+              <ul className="">
+                <li>
+                  {/* <FaArrowRight className="text-xl" /> */}
+                  <Link
+                    to={"/dashboard/order-history"}
+                    className="flex items-center gap-2 mb-3"
+                  >
+                    <FaArrowRight />
+                    Your Order
+                  </Link>
+                </li>
+                <li>
+                  {/* <FaArrowRight className="text-xl" /> */}
+                  <Link
+                    to={"/dashboard/paymentHistory"}
+                    className="flex items-center gap-2 mb-3"
+                  >
+                    <MdPayments />
+                    Payment History
+                  </Link>
+                </li>
+                <li>
+                  {/* <GiLoveHowl className="text-xl" /> */}
+                  <Link
+                    to={"/dashboard/order-history"}
+                    className="flex items-center gap-2 mb-3"
+                  >
+                    <GiLoveHowl className="text-red-600 text-xl" /> Wish List
+                  </Link>
+                </li>
+                <div className="divider"></div>
+                <li className="flex items-center gap-2 justify-center">
+                  <FaHome />
+                  <Link to={"/"}>Home</Link>
+                </li>
+                <li className="flex items-center justify-center">
+                  <button className="flex text-red-400" onClick={handleLogOut}>
+                    <IoMdLogOut className="text-2xl" />
+                    Logout
+                  </button>
+                </li>
+              </ul>
+            )}
             {/* routes end */}
           </div>
         </div>
@@ -138,55 +185,85 @@ const Dashboard = () => {
             aria-label="close sidebar"
             className="drawer-overlay"
           ></label>
-          <ul className="menu p-4 w-80 min-h-full bg-base-200">
-            <li>
-              {/* <FaArrowRight className="text-xl" /> */}
-              <Link
-                to={"/dashboard/order-history"}
-                className="flex items-center gap-2 mb-3"
-                onClick={() => setOpen(!true)}
-              >
-                {" "}
-                <FaArrowRight />
-                Your Order
-              </Link>
-            </li>
-            <li>
-              {/* <FaArrowRight className="text-xl" /> */}
-              <Link
-                to={"/dashboard/paymentHistory"}
-                className="flex items-center gap-2 mb-3"
-                onClick={() => setOpen(!true)}
-              >
-                {" "}
-                <MdPayments />
-                Payment History
-              </Link>
-            </li>
-            <li>
-              {/* <GiLoveHowl className="text-xl" /> */}
-              <Link
-                to={"/dashboard/order-history"}
-                className="flex items-center gap-2 mb-3"
-                onClick={() => setOpen(!true)}
-              >
-                <GiLoveHowl className="text-red-600 text-xl" /> Wish List
-              </Link>
-            </li>
-            <div className="divider"></div>
-            <ul>
-              <li className="flex items-center justify-center">
-                <FaHome />
-                <Link to={"/"}>Home</Link>
+          {isAdmin ? (
+            <ul className="menu p-4 w-80 min-h-full bg-base-200">
+              <li>
+                {/* <FaArrowRight className="text-xl" /> */}
+                <Link
+                  to={"/dashboard/manage-order"}
+                  className="flex items-center gap-2 mb-3"
+                >
+                  <img className="w-5 h-5" src={manageOderIcon} alt="" />
+                  Manage Order
+                </Link>
               </li>
-              <li className="flex items-center justify-center">
-                <button className="flex text-red-400">
-                  <IoMdLogOut className="text-2xl" />
-                  Logout
-                </button>
+              <li>
+                {/* <FaArrowRight className="text-xl" /> */}
+                <Link
+                  to={"/dashboard/paymentHistory"}
+                  className="flex items-center gap-2 mb-3"
+                >
+                  <MdPostAdd className="text-2xl" />
+                  Add Product
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to={"/dashboard/manage-user"}
+                  className="flex items-center gap-2 mb-3"
+                >
+                  <FaUser className="text-xl" />
+                  Manage User
+                </Link>
               </li>
             </ul>
-          </ul>
+          ) : (
+            <ul className="menu p-4 w-80 min-h-full bg-base-200">
+              <li>
+                <Link
+                  to={"/dashboard/order-history"}
+                  className="flex items-center gap-2 mb-3"
+                  onClick={() => setOpen(!true)}
+                >
+                  <FaArrowRight />
+                  Your Order
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to={"/dashboard/paymentHistory"}
+                  className="flex items-center gap-2 mb-3"
+                  onClick={() => setOpen(!true)}
+                >
+                  {" "}
+                  <MdPayments />
+                  Payment History
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to={"/dashboard/order-history"}
+                  className="flex items-center gap-2 mb-3"
+                  onClick={() => setOpen(!true)}
+                >
+                  <GiLoveHowl className="text-red-600 text-xl" /> Wish List
+                </Link>
+              </li>
+              <div className="divider"></div>
+              <ul>
+                <li className="flex items-center justify-center">
+                  <FaHome />
+                  <Link to={"/"}>Home</Link>
+                </li>
+                <li className="flex items-center justify-center">
+                  <button className="flex text-red-400" onClick={handleLogOut}>
+                    <IoMdLogOut className="text-2xl" />
+                    Logout
+                  </button>
+                </li>
+              </ul>
+            </ul>
+          )}
         </div>
       )}
     </div>
