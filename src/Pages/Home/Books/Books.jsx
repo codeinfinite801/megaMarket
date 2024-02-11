@@ -6,7 +6,7 @@ import useBooks from "../../../Hooks/useBooks";
 
 const Books = () => {
     const { category } = useParams();
-    const { data, refetch } = useBooks({ category })
+    const { data} = useBooks({ category })
     const [author, setAuthor] = useState([])
     const [dataIndex, setDataIndex] = useState(10)
     useEffect(() => {
@@ -105,19 +105,19 @@ const Books = () => {
                             </div>
                         </div>
                         <div>
-                            <div class="bg-white flex items-center justify-between shadow-xl rounded-lg p-3 border">
-                                <div class="py-2 px-2 border-b-2">
-                                    <p class="font-bold">Filter</p>
+                            <div className="bg-white flex items-center justify-between shadow-xl rounded-lg p-3 border">
+                                <div className="py-2 px-2 border-b-2">
+                                    <p className="font-bold">Filter</p>
                                 </div>
-                                <div class="relative my-2">
-                                    <select name="author" id="author-select" class="focus:ring-indigo-500 h-10 text-indigo-600 border-gray-300 w-full">
+                                <div className="relative my-2">
+                                    <select name="author" id="author-select" className="focus:ring-indigo-500 h-10 text-indigo-600 border-gray-300 w-full">
                                         <option value="">Select Author</option>
                                         {
                                             author?.map((author, index) => (
                                                 <option key={index} value={author}>
-                                                    <label class="inline-flex items-center">
-                                                        <input type="checkbox" name="selectedAuthors" value={author} class="form-checkbox h-4 w-4 text-indigo-600 border-gray-300" />
-                                                        <span class="ml-2">{author}</span>
+                                                    <label className="inline-flex items-center">
+                                                        <input type="checkbox" name="selectedAuthors" value={author} className="form-checkbox h-4 w-4 text-indigo-600 border-gray-300" />
+                                                        <span className="ml-2">{author}</span>
                                                     </label>
                                                 </option>
                                             ))

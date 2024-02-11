@@ -12,10 +12,6 @@ const Reviews = ({ image, name, productId, rating }) => {
     const { data, refetch } = useReviews()
     const filter = data?.filter(review => review.productId === id)
 
-    const totalRating = filter.reduce((acc, review) => acc + (review?.userRating || 0), 0);
-    const averageRating = filter.length > 0 ? (totalRating / (filter.length * 5)) * 100 : 0;
-
-    console.log(averageRating);
     const { user } = useContext(AuthContext)
     const [reviewText, setReviewText] = useState('');
     const [userRating, setUserRating] = useState(0);
@@ -43,7 +39,7 @@ const Reviews = ({ image, name, productId, rating }) => {
         axios.post(`https://maga-market-server-eta.vercel.app/review`, dataInfo)
             .then(res => {
                 console.log(res.data);
-                if (res?.data.InsertedId) {
+                if (res?.data.insertedId) {
                     refetch()
                     return Swal.fire({
                         icon: "success",

@@ -17,6 +17,9 @@ import Payment from "../Pages/Home/Payment/Payment";
 import PaymentHistory from "../Pages/Home/PaymentHistory/PaymentHistory";
 import Dashboard from "../Layout/Dashboard";
 import OrderHistory from "../Pages/dashboard/OrderHisory/OrderHistory";
+import OnlineCategory from "../OnlineBook/OnlineCategory";
+import OnlineBook from "../OnlineBook/OnlineBook";
+
 
 const router = createBrowserRouter([
   {
@@ -67,7 +70,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/placeOrder",
-        element: <PlaceOrder></PlaceOrder>,
+        element: <PlaceOrder></PlaceOrder>
       },
       {
         path: "/order",
@@ -77,6 +80,14 @@ const router = createBrowserRouter([
         path: "/payment",
         element: <Payment></Payment>,
       },
+      {
+        path: '/onlineBooks',
+        element: <OnlineCategory></OnlineCategory>
+      },
+      {
+        path: '/onlineBook/:id',
+        element: <OnlineBook></OnlineBook>
+      }
     ],
   },
   {
