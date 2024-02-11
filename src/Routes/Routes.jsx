@@ -19,6 +19,8 @@ import Dashboard from "../Layout/Dashboard";
 import OrderHistory from "../Pages/dashboard/OrderHisory/OrderHistory";
 import ManageUser from "../Pages/dashboard/ManageUser/ManageUser";
 import ManageOrder from "../Pages/dashboard/ManageOrder/ManageOrder";
+import OnlineCategory from "../OnlineBook/OnlineCategory";
+import OnlineBook from "../OnlineBook/OnlineBook";
 
 
 const router = createBrowserRouter([
@@ -80,6 +82,14 @@ const router = createBrowserRouter([
         path: "/payment",
         element: <Payment></Payment>,
       },
+      {
+        path: '/onlineBooks',
+        element: <OnlineCategory></OnlineCategory>
+      },
+      {
+        path: '/onlineBook/:id',
+        element: <OnlineBook></OnlineBook>
+      }
     ],
   },
   {
