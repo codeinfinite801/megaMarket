@@ -102,6 +102,14 @@ const router = createBrowserRouter([
         path: "paymentHistory",
         element: <PaymentHistory></PaymentHistory>,
       },
+      // {
+      //   path: "manage-order",
+      //   element: <ManageOrder />,
+      // },
+      // {
+      //   path: "manage-user",
+      //   element: <ManageUser />,
+      // },
     ],
   },
 ]);
