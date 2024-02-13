@@ -19,6 +19,8 @@ import Dashboard from "../Layout/Dashboard";
 import OrderHistory from "../Pages/dashboard/OrderHisory/OrderHistory";
 import OnlineCategory from "../OnlineBook/OnlineCategory";
 import OnlineBook from "../OnlineBook/OnlineBook";
+import ManageOrder from "../Pages/dashboard/ManageOrder/ManageOrder";
+import ManageUser from "../Pages/dashboard/ManageUser/ManageUser";
 
 
 const router = createBrowserRouter([
@@ -87,6 +89,9 @@ const router = createBrowserRouter([
       {
         path: '/onlineBook/:id',
         element: <OnlineBook></OnlineBook>
+      },
+      {
+        
       }
     ],
   },
@@ -102,14 +107,14 @@ const router = createBrowserRouter([
         path: "paymentHistory",
         element: <PaymentHistory></PaymentHistory>,
       },
-      // {
-      //   path: "manage-order",
-      //   element: <ManageOrder />,
-      // },
-      // {
-      //   path: "manage-user",
-      //   element: <ManageUser />,
-      // },
+      {
+        path: "manage-order",
+        element: <ManageOrder />,
+      },
+      {
+        path: "manage-user",
+        element: <ManageUser />,
+      },
     ],
   },
 ]);

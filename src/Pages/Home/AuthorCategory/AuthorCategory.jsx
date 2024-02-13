@@ -58,7 +58,7 @@ const AuthorCategory = () => {
                         {
                             categories.map((item, index) => {
                                 return (
-                                    <SwiperSlide >
+                                    <SwiperSlide key={index}>
                                         <Link key={index} to={`/authorbooks/${item?.author_name}`} className="block"><></>
                                             <div>
                                                 <img className='w-1/2 lg:h-24 border rounded-full mx-auto' src={item?.author_image} alt={item?.author_name} />

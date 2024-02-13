@@ -1,3 +1,5 @@
+import HomeOnline from "../../OnlineBook/HomeOnline";
+import OnlineCategory from "../../OnlineBook/OnlineCategory";
 import TeenCategoryBook from "../../teenCategoryBook/TeenCategoryBook";
 import AuthorCategory from "./AuthorCategory/AuthorCategory";
 import Banner from "./Banner/Banner";
@@ -19,6 +21,7 @@ const Home = () => {
                 <Category></Category>
                 <SuperStore></SuperStore>
                 <AuthorCategory></AuthorCategory>
+                <HomeOnline></HomeOnline>
                 <ChildrenBook></ChildrenBook>
                 <KidsProduct></KidsProduct>
                 <TeenCategoryBook></TeenCategoryBook>
