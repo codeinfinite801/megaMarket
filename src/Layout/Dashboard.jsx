@@ -8,13 +8,16 @@ import { IoMdLogOut } from "react-icons/io";
 import { useState } from "react";
 import Swal from "sweetalert2";
 import manageOderIcon from "../../src/assets/manageOrder.png";
+import useAdmin from "../Hooks/useAdmin";
 
 const Dashboard = () => {
   const { user, logOut } = useAuth();
   const [open, setOpen] = useState(false);
   const navigate = useNavigate();
+  const [isAdmin] = useAdmin();
+  console.log(isAdmin)
 
-  const isAdmin = true;
+  // const isAdmin = true;
 
   // logout function
 
