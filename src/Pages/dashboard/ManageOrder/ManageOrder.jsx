@@ -1,8 +1,6 @@
 import Swal from "sweetalert2";
-import axios from "axios";
 import { useQuery } from "@tanstack/react-query";
 import useAxiosPublic from "../../../Hooks/useAxiosPublic";
-
 
 const ManageOrder = () => {
   const axiosPublic = useAxiosPublic();
@@ -40,26 +38,22 @@ const ManageOrder = () => {
       confirmButtonText: "Yes, Update it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        axiosPublic
-          .patch(
-            `/update-status?id=${id}`
-          )
-          .then((result) => {
-            console.log(result);
-            if (result.data?.modifiedCount > 0) {
-              refetch();
-              Swal.fire({
-                title: "Updated!",
-                text: "Your file has been Updated.",
-                icon: "success",
-              });
-            }
-          });
+        axiosPublic.patch(`/update-status?id=${id}`).then((result) => {
+          console.log(result);
+          if (result.data?.modifiedCount > 0) {
+            refetch();
+            Swal.fire({
+              title: "Updated!",
+              text: "Your file has been Updated.",
+              icon: "success",
+            });
+          }
+        });
       }
     });
   };
   // delete form payment collection
-  const handleDeleteItem =(id) =>{
+  const handleDeleteItem = (id) => {
     Swal.fire({
       title: "Are you sure?",
       text: "You won't be delete this!",
@@ -70,25 +64,19 @@ const ManageOrder = () => {
       confirmButtonText: "Yes, Delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        axiosPublic
-          .delete(
-            `/paymentData/delete?id=${id}`
-          )
-          .then((result) => {
-            console.log(result);
-
-            if (result.data?.deletedCount > 0) {
-              refetch();
-              Swal.fire({
-                title: "Deleted!",
-                text: "Your file has been Deleted.",
-                icon: "success",
-              });
-            }
-          });
+        axiosPublic.delete(`/paymentData/delete?id=${id}`).then((result) => {
+          if (result.data?.deletedCount > 0) {
+            refetch();
+            Swal.fire({
+              title: "Deleted!",
+              text: "Your file has been Deleted.",
+              icon: "success",
+            });
+          }
+        });
       }
     });
-  }
+  };
   return (
     <div className="overflow-x-auto md:w-11/12 mx-auto w-auto">
       {paymentData.length > 0 ? (
@@ -134,7 +122,12 @@ const ManageOrder = () => {
                     {item?.status}
                   </button>
                 </td>
-                <td onClick={()=>handleDeleteItem(item?._id)} className="text-red-500 btn btn-ghost flex items-center mt-3 text-xl">X</td>
+                <td
+                  onClick={() => handleDeleteItem(item?._id)}
+                  className="text-red-500 btn btn-ghost flex items-center mt-3 text-xl"
+                >
+                  X
+                </td>
               </tr>
             ))}
           </tbody>
