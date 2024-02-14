@@ -1,10 +1,11 @@
 import { Link, Outlet, useNavigate } from "react-router-dom";
 import useAuth from "../Hooks/useAuth";
-import { FaArrowRight, FaHome, FaUser } from "react-icons/fa";
-import { MdPostAdd } from "react-icons/md";
-import { GiLoveHowl } from "react-icons/gi";
+import { FaArrowRight, FaHome, FaUser  } from "react-icons/fa";
+import { MdMenuBook } from "react-icons/md";
+import { GiLoveHowl,GiBabyBottle  } from "react-icons/gi";
 import { MdPayments } from "react-icons/md";
 import { IoMdLogOut } from "react-icons/io";
+import { FcSmartphoneTablet } from "react-icons/fc";
 import { useState } from "react";
 import Swal from "sweetalert2";
 import manageOderIcon from "../../src/assets/manageOrder.png";
@@ -72,14 +73,15 @@ const Dashboard = () => {
             <p className="md:text-xl font-bold p-3 lg:hidden ">
               Welcome to <sup className="italic text-2xl">Dashboard</sup>
             </p>
-            <p className="md:text-xl font-bold p-3 hidden md:inline-block  ">
-              Welcome <sup className="italic">{user && user?.displayName}</sup>
-            </p>
-            <div tabIndex={0} className=" avatar mb-5 hidden md:inline-block">
+            <div tabIndex={0} className=" avatar mb-1 hidden md:inline-block">
               <div className="md:w-24 rounded-full">
                 <img alt="Tailwind CSS Navbar component" src={user?.photoURL} />
               </div>
             </div>
+            <p className="md:text-xl font-bold p-3 hidden md:inline-block mb-4  ">
+              Welcome <span className="italic">{user && user?.displayName}</span>
+            </p>
+            
           </div>
           {/* Routes start here */}
           <div className="flex-none hidden lg:block">
@@ -98,11 +100,31 @@ const Dashboard = () => {
                 <li>
                   {/* <FaArrowRight className="text-xl" /> */}
                   <Link
-                    to={"/dashboard/paymentHistory"}
+                    to={"/dashboard/add-books"}
                     className="flex items-center gap-2 mb-3"
                   >
-                    <MdPostAdd className="text-2xl" />
-                    Add Product
+                    <MdMenuBook className="text-2xl text-red-400"/>
+                    Add Books
+                  </Link>
+                </li>
+                <li>
+                  {/* <FaArrowRight className="text-xl" /> */}
+                  <Link
+                    to={"/dashboard/add-electronic"}
+                    className="flex items-center gap-2 mb-3"
+                  >
+                    <FcSmartphoneTablet className="text-2xl" />
+                    Add Electronic Product
+                  </Link>
+                </li>
+                <li>
+                  {/* <FaArrowRight className="text-xl" /> */}
+                  <Link
+                    to={"/dashboard/add-kisdsProduct"}
+                    className="flex items-center gap-2 mb-3"
+                  >
+                    < GiBabyBottle  className="text-2xl  text-red-400" />
+                  Add Kids product
                   </Link>
                 </li>
                 <li>
@@ -110,13 +132,13 @@ const Dashboard = () => {
                     to={"/dashboard/manage-user"}
                     className="flex items-center gap-2 mb-3"
                   >
-                    <FaUser className="text-xl" />
+                    <FaUser className="text-xl text-blue-500" />
                     Manage User
                   </Link>
                 </li>
                 <div className="divider"></div>
                 <li className="flex items-center gap-2 justify-center">
-                  <FaHome />
+                  <FaHome className="text-xl text-blue-500" />
                   <Link to={"/"}>Home</Link>
                 </li>
                 <li className="flex items-center justify-center">
@@ -198,24 +220,44 @@ const Dashboard = () => {
                 </Link>
               </li>
               <li>
-                {/* <FaArrowRight className="text-xl" /> */}
-                <Link
-                  to={"/dashboard/paymentHistory"}
-                  className="flex items-center gap-2 mb-3"
-                >
-                  <MdPostAdd className="text-2xl" />
-                  Add Product
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to={"/dashboard/manage-user"}
-                  className="flex items-center gap-2 mb-3"
-                >
-                  <FaUser className="text-xl" />
-                  Manage User
-                </Link>
-              </li>
+                  {/* <FaArrowRight className="text-xl" /> */}
+                  <Link
+                    to={"/dashboard/add-books"}
+                    className="flex items-center gap-2 mb-3"
+                  >
+                    <MdMenuBook className="text-2xl text-red-400"/>
+                    Add Books
+                  </Link>
+                </li>
+                <li>
+                  {/* <FaArrowRight className="text-xl" /> */}
+                  <Link
+                    to={"/dashboard/add-electronic"}
+                    className="flex items-center gap-2 mb-3"
+                  >
+                    <FcSmartphoneTablet className="text-2xl" />
+                    Add Electronic Product
+                  </Link>
+                </li>
+                <li>
+                  {/* <FaArrowRight className="text-xl" /> */}
+                  <Link
+                    to={"/dashboard/add-kisdsProduct"}
+                    className="flex items-center gap-2 mb-3"
+                  >
+                    < GiBabyBottle  className="text-2xl  text-red-400" />
+                  Add Kids product
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    to={"/dashboard/manage-user"}
+                    className="flex items-center gap-2 mb-3"
+                  >
+                    <FaUser className="text-xl text-blue-500" />
+                    Manage User
+                  </Link>
+                </li>
             </ul>
           ) : (
             <ul className="menu p-4 w-80 min-h-full bg-base-200">
