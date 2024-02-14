@@ -15,7 +15,6 @@ const Dashboard = () => {
   const [open, setOpen] = useState(false);
   const navigate = useNavigate();
   const [isAdmin] = useAdmin();
-  console.log(isAdmin)
 
   // const isAdmin = true;
 
