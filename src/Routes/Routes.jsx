@@ -22,6 +22,9 @@ import ManageOrder from "../Pages/dashboard/ManageOrder/ManageOrder";
 import AddBooks from "../Pages/dashboard/AddProduct/AddBooks";
 import AddElectronicProduct from "../Pages/dashboard/AddProduct/AddElectronicProduct";
 import AddKidsProduct from "../Pages/dashboard/AddProduct/AddKidsProduct";
+import OnlineCategory from "../OnlineBook/OnlineCategory";
+import OnlineBook from "../OnlineBook/OnlineBook";
+import WishList from "../Pages/WishList/WishList";
 
 
 const router = createBrowserRouter([
@@ -83,6 +86,18 @@ const router = createBrowserRouter([
         path: "/payment",
         element: <Payment></Payment>,
       },
+      {
+        path: '/onlineBooks',
+        element: <OnlineCategory></OnlineCategory>
+      },
+      {
+        path: '/onlineBook/:id',
+        element: <OnlineBook></OnlineBook>
+      },
+      {
+        path:'/wishList',
+        element:<WishList></WishList>
+      }
     ],
   },
   {

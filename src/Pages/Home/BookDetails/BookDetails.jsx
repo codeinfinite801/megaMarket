@@ -1,11 +1,12 @@
 import { useContext, useEffect, useState } from "react";
-import { FaShoppingCart } from "react-icons/fa";
+import { FaShoppingCart,FaRegHeart } from "react-icons/fa";
 import { useParams } from "react-router";
 import useBooks from "../../../Hooks/useBooks";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import useAxiosSecure from "../../../Hooks/AxiosSecure/useAxiosSecure";
 import { AuthContext } from "../../../provider/AuthProvider";
 import Swal from "sweetalert2";
+import Reviews from "../../Reviews/Reviews";
 
 const BookDetails = () => {
     const CallAxios = useAxiosSecure()
@@ -16,10 +17,9 @@ const BookDetails = () => {
     const handleTab = (tab) => {
         setActiveTab(tab)
     }
-
+    const navigate = useNavigate();
     const { _id, name, image, price, author_name, author_image, author_details, category, discount, rating, quantity, read_book, publisher, country, language, isNew, edition_date, total_pages, summary } = book;
     const discountedPrice = parseFloat((price - (price * discount) / 100).toFixed(2));
-    console.log(discountedPrice);
 
     const productData = { productId: _id, email: user?.email, name, image, price, author_name, author_image, author_details, category, discount, rating, quantity, read_book, publisher, country, language, isNew, edition_date, total_pages, summary, amount: 1, count: 1, priceWithDiscount: discountedPrice, discountedPrice: discountedPrice }
 
@@ -30,6 +30,7 @@ const BookDetails = () => {
             .then(res => res.json())
             .then(data => setBook(data))
     }, [id])
+    //add to shoping card  
     const addToCart = (id) => {
         console.log(id);
         CallAxios.post(`/addProducts/${_id}`, productData)
@@ -47,7 +48,29 @@ const BookDetails = () => {
             })
 
     }
-    console.log(read_book);
+
+    // add to wishlist
+    const addOnWishlist=(id)=>{
+        console.log(id);
+        CallAxios.post(`/wishList/${_id}`, productData)
+            .then(res => {
+                console.log(res.data);
+                if (res?.data?.insertedId) {
+                    return Swal.fire({
+                        position: 'center',
+                        icon: 'success',
+                        title: 'Book Added On WishList Successfully',
+                        showConfirmButton: false,
+                        timer: 1500
+                    })
+                }
+            })
+    }
+
+    // console.log(read_book);
+    const handleLogin = () => {
+        navigate('/signIn')
+    }
     return (
         <>
             <div className="grid grid-cols-12 gap-10 lg:mx-14 mx-5">
@@ -78,12 +101,27 @@ const BookDetails = () => {
                                     </span>
                                 </div>
                                 <p className="text-sm text-center lg:text-left mt-2 italic">স্টক আউট হওয়ার আগেই অর্ডার করুন</p>
-                                <div className="flex justify-center lg:justify-start items-center gap-10 mt-4">
-                                    <button onClick={() => document.getElementById('my_modal_3').showModal()} className="border border-green-600 text-green-600 px-6 py-3 rounded hover:bg-green-600 hover:text-white transition duration-300">একটু পড়ে দেখুন </button>
-                                    <button className="flex items-center justify-center gap-4 bg-yellow-500 text-white px-6 py-3 rounded hover:bg-yellow-600 transition duration-300">
-                                        <FaShoppingCart></FaShoppingCart>
-                                        <button onClick={() => addToCart(_id)}>Add To Cart</button>
-                                    </button>
+                                <div className="flex justify-center lg:justify-start items-center gap-5 mt-4">
+                                    <button onClick={() => document.getElementById('my_modal_3').showModal()} className=" relative px-4 py-3 rounded-lg   border-2 text-green-600 border-green-400 bg-transparent transition-colors  before:absolute before:left-0 before:top-0 before:-z-10 before:h-full before:w-full before:origin-top-left  before:scale-x-0  before:bg-green-400 before:transition-transform   before:duration-500  before:contents-[''] hover:text-black  before:hover:scale-x-100">একটু পড়ে দেখুন </button>
+                                    {
+                                        user && user?.email ? <button className="flex gap-2 relative px-4 py-3 rounded-lg  items-center justify-center  border-2 text-black  border-yellow-500 bg-transparent transition-colors  before:absolute before:left-0 before:top-0 before:-z-10 before:h-full before:w-full before:origin-top-left  before:scale-x-0  before:bg-yellow-500 before:transition-transform   before:duration-500  before:contents-[''] hover:text-white  before:hover:scale-x-100">
+                                            <FaShoppingCart className="text-2xl"></FaShoppingCart>
+                                            <button onClick={() => addToCart(_id)}>Add To Cart</button>
+                                        </button> : <button className="flex gap-2 relative px-4 py-3 rounded-lg  items-center justify-center  border-2 text-black  border-yellow-500 bg-transparent transition-colors  before:absolute before:left-0 before:top-0 before:-z-10 before:h-full before:w-full before:origin-top-left  before:scale-x-0  before:bg-yellow-500 before:transition-transform   before:duration-500  before:contents-[''] hover:text-white  before:hover:scale-x-100">
+                                            <FaShoppingCart className="text-2xl"></FaShoppingCart>
+                                            <button onClick={handleLogin}>Add To Cart</button>
+                                        </button>
+                                    }
+                                    {
+                                        user && user?.email ? <button className="flex items-center justify-center gap-2 relative px-4 py-3 rounded-lg w-36  border-2 text-pink-600 border-pink-500 bg-transparent transition-colors  before:absolute before:left-0 before:top-0 before:-z-10 before:h-full before:w-full before:origin-top-left  before:scale-x-0  before:bg-pink-500 before:transition-transform   before:duration-500  before:contents-[''] hover:text-white  before:hover:scale-x-100">
+                                            <FaRegHeart className="text-2xl"></FaRegHeart>
+                                            <button onClick={() => addOnWishlist(_id)}>WishList</button>
+                                        </button> : <button className="flex items-center justify-center gap-2 relative px-4 py-3 rounded-lg w-36  border-2 text-pink-600 border-pink-400 bg-transparent transition-colors  before:absolute before:left-0 before:top-0 before:-z-10 before:h-full before:w-full before:origin-top-left  before:scale-x-0  before:bg-pink-400 before:transition-transform   before:duration-500  before:contents-[''] hover:text-white  before:hover:scale-x-100">
+                                            <FaRegHeart className="text-2xl"></FaRegHeart>
+                                            <button onClick={handleLogin}>WishList</button>
+                                        </button>
+                                    }
+                                    
                                 </div>
                             </div>
                         </div>
@@ -119,7 +157,7 @@ const BookDetails = () => {
                     </div>
                 </div>
                 {/* Product specification and summer=y */}
-                <div className="lg:mx-14 mx-5 col-span-12">
+                <div className=" mx-5 col-span-12">
                     <h1 className="font-bold">Product Specification & Summary : </h1>
                     <div className="my-3">
                         <div className="flex items-center lg:justify-start justify-center lg:w-full mx-auto">
@@ -184,7 +222,10 @@ const BookDetails = () => {
 
                 </div>
             </div>
-
+            {/* Reviews */}
+            <div>
+                <Reviews image={image} name={name} rating={rating} productId={_id}></Reviews>
+            </div>
             <div>
 
                 <dialog id="my_modal_3" className="modal">
