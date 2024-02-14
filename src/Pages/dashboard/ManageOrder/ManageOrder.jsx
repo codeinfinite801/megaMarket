@@ -72,15 +72,16 @@ const ManageOrder = () => {
       if (result.isConfirmed) {
         axiosPublic
           .delete(
-            `/update-status?id=${id}`
+            `/paymentData/delete?id=${id}`
           )
           .then((result) => {
             console.log(result);
-            if (result.data?.modifiedCount > 0) {
+
+            if (result.data?.deletedCount > 0) {
               refetch();
               Swal.fire({
-                title: "Updated!",
-                text: "Your file has been Updated.",
+                title: "Deleted!",
+                text: "Your file has been Deleted.",
                 icon: "success",
               });
             }
