@@ -19,8 +19,12 @@ import Dashboard from "../Layout/Dashboard";
 import OrderHistory from "../Pages/dashboard/OrderHisory/OrderHistory";
 import ManageUser from "../Pages/dashboard/ManageUser/ManageUser";
 import ManageOrder from "../Pages/dashboard/ManageOrder/ManageOrder";
+import AddBooks from "../Pages/dashboard/AddProduct/AddBooks";
+import AddElectronicProduct from "../Pages/dashboard/AddProduct/AddElectronicProduct";
+import AddKidsProduct from "../Pages/dashboard/AddProduct/AddKidsProduct";
 import OnlineCategory from "../OnlineBook/OnlineCategory";
 import OnlineBook from "../OnlineBook/OnlineBook";
+import WishList from "../Pages/WishList/WishList";
 
 
 const router = createBrowserRouter([
@@ -89,6 +93,10 @@ const router = createBrowserRouter([
       {
         path: '/onlineBook/:id',
         element: <OnlineBook></OnlineBook>
+      },
+      {
+        path:'/wishList',
+        element:<WishList></WishList>
       }
     ],
   },
@@ -112,6 +120,18 @@ const router = createBrowserRouter([
         path: "manage-user",
         element: <ManageUser />,
       },
+      {
+        path:"add-books",
+        element:<AddBooks></AddBooks>
+      },
+      {
+        path:"add-electronic",
+        element:<AddElectronicProduct></AddElectronicProduct>
+      },
+      {
+        path:"add-kisdsProduct",
+        element:<AddKidsProduct></AddKidsProduct>
+      }
     ],
   },
 ]);
