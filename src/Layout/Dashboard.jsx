@@ -132,7 +132,6 @@ const Dashboard = () => {
             ) : (
               <ul className="">
                 <li>
-                  {/* <FaArrowRight className="text-xl" /> */}
                   <Link
                     to={"/dashboard/order-history"}
                     className="flex items-center gap-2 mb-3"

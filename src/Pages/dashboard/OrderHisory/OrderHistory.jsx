@@ -65,7 +65,7 @@ const OrderHistory = () => {
                   </td>
                   <td>{item?.price}</td>
                   <td>{item?.phone}</td>
-                  <td className="text-xl p-2">{item?.status}</td>
+                  <td className={item?.status==="Confirm"?"text-xl p-2 text-green-500 font-bold":"text-xl p-2 text-red-500 font-bold"}>{item?.status}</td>
                 </tr>
               ))}
             </tbody>
