@@ -8,6 +8,8 @@ import { FaPlus, FaMinus, FaArrowRight } from "react-icons/fa";
 import Popular from "./Popular";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import { MdDelete } from "react-icons/md";
+import {FaRegHeart} from "react-icons/fa";
 
 
 const PlaceOrder = () => {
@@ -18,7 +20,7 @@ const PlaceOrder = () => {
     const axiosSecure = useAxiosSecure()
     const totalPrice = cart?.reduce((previousPrice, current) => previousPrice + current?.priceWithDiscount, 0)
 
-    
+
 
 
 
@@ -113,9 +115,9 @@ const PlaceOrder = () => {
                                                 <p>Price: {item?.price}</p>
                                                 <p>Discount : {item?.discount}%</p>
                                                 {/* end */}
-                                                <div className="flex gap-3 mt-3">
-                                                    <button onClick={() => handleDelete(item._id)}><img src="https://www.rokomari.com/static/200/images/icon_trash.png" alt="" /></button>
-                                                    <button className="flex gap-2"><img src="https://www.rokomari.com/static/200/images/icon_wishlist.png" alt="" /><span>WishList</span></button>
+                                                <div className="flex items-center  gap-3 mt-3">
+                                                    <button onClick={() => handleDelete(item._id)}><MdDelete className=" text-4xl  text-red-600"/></button>
+                                                    <button className="flex items-center justify-center gap-2"><FaRegHeart className="text-3xl text-pink-500"/><span>WishList</span></button>
                                                 </div>
                                                 <h2 className="text-red-800 mt-3 md:text-lg text-sm">Only {item?.quantity} copies available</h2>
                                             </div>
@@ -154,9 +156,13 @@ const PlaceOrder = () => {
                                         <div className="flex gap-5 justify-end mt-5">
                                             <button className="btn btn-outline btn-accent">Order As a Gift</button>
                                             {/* placed order button start */}
-                                            <Link to={'/order'}>
-                                                <button className="btn btn-warning">Place Order <span><FaArrowRight></FaArrowRight></span></button>
-                                            </Link>
+                                            {
+                                                user && user?.email ? <Link to={'/order'}>
+                                                    <button className="btn btn-warning">Place Order <span><FaArrowRight></FaArrowRight></span></button>
+                                                </Link> : <Link to={'/signIn'}>
+                                                    <button className="btn btn-warning">Place Order <span><FaArrowRight></FaArrowRight></span></button>
+                                                </Link>
+                                            }
                                             {/* placed order end */}
                                         </div>
                                     </div>
@@ -174,9 +180,9 @@ const PlaceOrder = () => {
                             <img className="h-[200px]" src="https://www.rokomari.com/static/200/images/icon_empty_cart.png" alt="" />
                         </div>
                         <h2 className="text-3xl font-semibold mt-5">Your Cart is Empty!</h2>
-                        <p className="text-lg mt-3">Looks like you haven't made order yet.</p>
+                        <p className="text-lg mt-3">There’s nothing in your cart yet. But don’t let that stop you from finding the perfect products for you.<br></br> Browse our categories and order your favorites.<br></br> You’ll also get a 10% off coupon for your next purchase.</p>
                         <Link to={'/'}>
-                            <button className="mt-3 text-xl font-bold text-sky-600">Continue to shopping</button>
+                            <button className="mt-3 text-xl font-bold text-sky-600">Start shopping now and enjoy amazing deals.</button>
                         </Link>
                     </div>
             }
