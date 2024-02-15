@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { AuthContext } from "../../provider/AuthProvider";
 import SidePart from "./SidePart";
 import useCarts from "../../Hooks/useCarts";

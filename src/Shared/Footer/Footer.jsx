@@ -2,7 +2,7 @@ import {  FaDollarSign, FaFacebookSquare, FaHome, FaInstagramSquare, FaLinkedinI
 import { FaHandshakeSimple } from "react-icons/fa6";
 import { MdAssignmentReturn, MdEmail } from "react-icons/md";
 import { TbBus } from "react-icons/tb";
-import { AiOutlineLoading3Quarters } from "react-icons/ai";
+
 
 const Footer = () => {
     return (
@@ -184,6 +184,16 @@ const Footer = () => {
                                 <img src="https://i.postimg.cc/MTKYPQFw/download-4-1-removebg-preview.png" alt="" />
                             </div>
                         </div>
+                    </div>
+                    {/*  */}
+                    <div className="hidden md:flex">
+                        {/* <div>
+                            <header className="footer-title">Download App</header>
+                            <div className="">
+                                <img src="https://i.postimg.cc/NfHsZr11/Download-on-the-App-Store-Badge-svg-removebg-preview.png" alt="" />
+                                <img src="https://i.postimg.cc/MTKYPQFw/download-4-1-removebg-preview.png" alt="" />
+                            </div>
+                        </div> */}
                     </div>
                 </div>
             </div>
