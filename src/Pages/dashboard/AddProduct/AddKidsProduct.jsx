@@ -43,7 +43,7 @@ const AddKidsProduct = () => {
     
         const productData = [name, brand, brand_logo, image, category,main_category, price, discount, quantity, country,age, volume, isNew, rating, product_code,brand_details, features,summary]
         console.log(productData);
-        CallAxios.post('/allElectronics', productData)
+        CallAxios.post('/kidsZone', productData)
         .then(res => {
             console.log(res?.data);
             if (res?.data?.insertedId) {

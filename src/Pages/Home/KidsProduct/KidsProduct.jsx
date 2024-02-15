@@ -1,6 +1,7 @@
-
+// import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/navigation";
+// import { Navigation } from 'swiper/modules';
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
@@ -15,29 +16,29 @@ const KidsProduct = () => {
 
     return (
         <div className="my-5 bg-white">
-        <div>
-            <div className="flex items-center justify-between p-5">
-                <h1>Explore Our Kids' Products</h1>
-                
-            </div>
             <div>
-            <div className="grid lg:grid-cols-6 md:grid-cols-3 grid-cols-2 gap-4 px-4">
-                   {
-                        categories.map((item, index) => {
-                            return (
-                                <div key={index}>
-                                    <Link to={`/allkids/${item?.category}`}>
-                                        <div>
-                                            <img className='bg-gray-200 w-full  h-[150px] rounded-xl p-2' src={item?.image} alt={item?.name} />
-                                            <h1 className="text-sm mt-5 mb-2 text-center">{item?.category}</h1>
-                                        </div>
-                                    </Link>
-                                </div>
-                            );
-                        })
-                    }
-                   </div>
-                {/* <Swiper
+                <div className="flex items-center justify-between p-5">
+                    <h1>Explore Our Kids' Products</h1>
+
+                </div>
+                <div>
+                    <div className="grid lg:grid-cols-6 md:grid-cols-3 grid-cols-2 gap-4 px-4">
+                        {
+                            categories.map((item, index) => {
+                                return (
+                                    <div key={index}>
+                                        <Link to={`/allkids/${item?.category}`}>
+                                            <div>
+                                                <img className='bg-gray-200 w-[95%]  h-[150px] rounded-xl p-2' src={item?.image} alt={item?.name} />
+                                                <h1 className="text-sm mt-5 mb-2 text-center">{item?.category}</h1>
+                                            </div>
+                                        </Link>
+                                    </div>
+                                );
+                            })
+                        }
+                    </div>
+                    {/* <Swiper
                     watchSlidesProgress={true}
                     modules={[Navigation]}
                     slidesPerView={2}
@@ -61,9 +62,9 @@ const KidsProduct = () => {
                     <div className="swiper-button-next"></div>
                 </Swiper> */}
 
+                </div>
             </div>
         </div>
-    </div>
     );
 };
 
