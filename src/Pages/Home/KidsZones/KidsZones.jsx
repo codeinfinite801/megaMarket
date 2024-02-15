@@ -11,7 +11,7 @@ const KidsZones = () => {
         fetch(`https://maga-market-server-eta.vercel.app/kidsZone?category=${category}`)
         .then(res => res.json())
         .then(data =>setKids(data))
-    },[])
+    },[category])
 
     // const { data, refetch } = useBooks({ category })
     const [brand, setBrand] = useState([])
