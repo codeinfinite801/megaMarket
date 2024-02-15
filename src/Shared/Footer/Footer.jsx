@@ -2,7 +2,6 @@ import { FaDollarSign, FaFacebookSquare, FaInstagramSquare, FaLinkedinIn, FaTwit
 import { FaHandshakeSimple } from "react-icons/fa6";
 import { MdAssignmentReturn } from "react-icons/md";
 import { TbBus } from "react-icons/tb";
-
 import { Link } from "react-router-dom";
 
 const Footer = () => {
