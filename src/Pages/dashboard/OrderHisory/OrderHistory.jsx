@@ -4,10 +4,9 @@ import Swal from "sweetalert2";
 import useAxiosPublic from "../../../Hooks/useAxiosPublic";
 
 const OrderHistory = () => {
-  const [paymentData,refetch] = usePaymentData();
+  const [paymentData, refetch] = usePaymentData();
   const [noData, setNoData] = useState(false);
   const axiosPublic = useAxiosPublic();
-  console.log(paymentData)
 
   useEffect(() => {
     const timeoutId = setTimeout(() => {
@@ -18,7 +17,7 @@ const OrderHistory = () => {
     return () => clearTimeout(timeoutId);
   }, [paymentData]);
   // user update his order with DELiVERY Status
-  const handleDelivery = id =>{
+  const handleDelivery = (id) => {
     Swal.fire({
       title: "Are you sure?",
       text: "You Received Your Product!",
@@ -41,7 +40,7 @@ const OrderHistory = () => {
         });
       }
     });
-  }
+  };
 
   return (
     <div className="flex justify-center items-center flex-col">
@@ -98,7 +97,9 @@ const OrderHistory = () => {
                     className={
                       item?.status === "Confirm"
                         ? "md:text-xl p-2 text-green-500 font-bold"
-                        : item?.status === "Delivered"? "md:text-xl p-2 text-orange-400 font-bold" :"md:text-xl p-2 text-red-500 font-bold"
+                        : item?.status === "Delivered"
+                        ? "md:text-xl p-2 text-orange-400 font-bold"
+                        : "md:text-xl p-2 text-red-500 font-bold"
                     }
                   >
                     {item?.status}
@@ -111,15 +112,54 @@ const OrderHistory = () => {
             {paymentData?.map((data) => (
               <>
                 <p className=" my-3  flex flex-col">
-                  <span className="text-md font-semibold">Invoice No: {data?.transactionId}</span>
-                  <h2 className="text-3xl text-orange-400 font-semibold my-2">Order Details</h2>
+                  <span className="text-md font-semibold">
+                    Invoice No: {data?.transactionId}
+                  </span>
+                  <h2 className="text-3xl text-orange-400 font-semibold my-2">
+                    Order Details
+                  </h2>
                 </p>
                 <ul className="steps steps-vertical lg:steps-horizontal opacity-80">
                   <li className="step step-primary">Pending</li>
-                  <li className={data?.status === "Confirm" ?"step step-primary": data?.status === "Delivered"?"step step-primary":"step"}>Confirmed</li>
-                  <li className={data?.status === "Delivered" ?"step step-primary w-24": "step w-24"}>Ready to Dispatch</li>
-                  <li className={data?.status === "Delivered" ?"step step-primary w-24": "step w-fit"}>Dispatched</li>
-                  <li onClick={()=>handleDelivery(data?._id)} className={data?.status === "Delivered" ?"step step-primary w-24": "step w-24"}>Delivered</li>
+                  <li
+                    className={
+                      data?.status === "Confirm"
+                        ? "step step-primary"
+                        : data?.status === "Delivered"
+                        ? "step step-primary"
+                        : "step"
+                    }
+                  >
+                    Confirmed
+                  </li>
+                  <li
+                    className={
+                      data?.status === "Delivered"
+                        ? "step step-primary w-24"
+                        : "step w-24"
+                    }
+                  >
+                    Ready to Dispatch
+                  </li>
+                  <li
+                    className={
+                      data?.status === "Delivered"
+                        ? "step step-primary w-24"
+                        : "step w-fit"
+                    }
+                  >
+                    Dispatched
+                  </li>
+                  <li
+                    onClick={() => handleDelivery(data?._id)}
+                    className={
+                      data?.status === "Delivered"
+                        ? "step step-primary w-24"
+                        : "step w-24"
+                    }
+                  >
+                    Delivered
+                  </li>
                 </ul>
               </>
             ))}
