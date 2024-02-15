@@ -1,8 +1,10 @@
 import { useContext } from "react";
 import { FaSearch, FaShoppingCart } from "react-icons/fa";
+import { GoChecklist } from "react-icons/go";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../provider/AuthProvider";
 import useCarts from "../../Hooks/useCarts";
+import useWishList from "../../Hooks/useWishList";
 
 const Navbar = () => {
   const { user, logOut } = useContext(AuthContext);
@@ -12,6 +14,7 @@ const Navbar = () => {
 
   //
   const [cart] = useCarts();
+  const [wishList]=useWishList();
 
   return (
     <div>
@@ -36,7 +39,7 @@ const Navbar = () => {
             <input
               type="text"
               placeholder="Search..."
-              className="border p-2 rounded w-full"
+              className="border p-2 rounded w-full ml-2"
             />
             <span className="bg-sky-400 p-3 rounded-r-sm">
               <FaSearch className="text-white"></FaSearch>
@@ -44,18 +47,19 @@ const Navbar = () => {
           </div>
         </div>
         {/* Cart Icon */}
-        <div className="flex items-center justify-center  space-x-4 w-2/12">
+        <div className="flex items-center justify-center  space-x-6 w-3/12">
+          <Link to={"/wishList"}>
+          <div className="indicator">
+          <GoChecklist  className="text-4xl  hover:text-pink-500 font-semibold"></GoChecklist >
+          <span className="badge badge-md badge-secondary indicator-item">{wishList.length}</span>
+        </div>
+          </Link>
+
           <Link to={"/placeOrder"}>
-            <span>
-              {/*  */}
-              <div className="flex items-start justify-center">
-                <span className="w-[25px] h-[25px] text-center bg-sky-500 text-white rounded-full px-1 py-1">
-                  {cart.length}
-                </span>
-              </div>
-              {/*  */}
-              <FaShoppingCart className="text-3xl font-bold"></FaShoppingCart>
-            </span>
+          <div className="indicator">
+          <FaShoppingCart className="text-4xl hover:text-blue-500 font-semibold"></FaShoppingCart>
+          <span className="badge badge-md badge-info indicator-item">{cart.length}</span>
+        </div>
           </Link>
           {user && user?.email ? (
             <div className="dropdown dropdown-end z-10">
@@ -85,7 +89,7 @@ const Navbar = () => {
             </div>
           ) : (
             <Link to="/signIn">
-              <button className="text-black border px-4 py-2 rounded text-xl">
+              <button className=" relative px-4 py-2 rounded-lg  w-28 border-2 border-[#b6dde9] bg-transparent transition-colors  before:absolute before:left-0 before:top-0 before:-z-10 before:h-full before:w-full before:origin-top-left  before:scale-x-0  before:bg-[#4da2f1] before:transition-transform   before:duration-500  before:contents-[''] hover:text-white  before:hover:scale-x-100">
                 Sign In
               </button>
             </Link>

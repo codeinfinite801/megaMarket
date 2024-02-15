@@ -1,9 +1,8 @@
 import { Link, Outlet, useNavigate } from "react-router-dom";
 import useAuth from "../Hooks/useAuth";
-import { FaArrowRight, FaHome, FaUser } from "react-icons/fa";
-import { MdPostAdd } from "react-icons/md";
+import { FaArrowRight, FaHome, FaUser  } from "react-icons/fa";
 import { GiLoveHowl } from "react-icons/gi";
-import { MdPayments } from "react-icons/md";
+import { MdPayments, MdPostAdd } from "react-icons/md";
 import { IoMdLogOut } from "react-icons/io";
 import { useState } from "react";
 import Swal from "sweetalert2";
