@@ -1,24 +1,50 @@
 import { useQuery } from "@tanstack/react-query";
 import useAxiosPublic from "../../../Hooks/useAxiosPublic";
 import { FaUser } from "react-icons/fa";
+import Swal from "sweetalert2";
 
 const ManageUser = () => {
   const axiosPublic = useAxiosPublic();
 
-  const { data: users = [] } = useQuery({
+  const { data: users = [],refetch } = useQuery({
     queryKey: ["users"],
     queryFn: async () => {
       const res = await axiosPublic.get("/users");
       return res?.data;
     },
   });
+  const deteledUser = id =>{
+    Swal.fire({
+        title: "Are you sure?",
+        text: "You won't be Update this User!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, Update it!",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          axiosPublic.patch(`/users/update?id=${id}`).then((result) => {
+            if (result.data?.modifiedCount > 0) {
+                console.log(result.data)
+              refetch();
+              Swal.fire({
+                title: "Updated!",
+                text: "Your user has been Admin.",
+                icon: "success",
+              });
+            }
+          });
+        }
+      });
+  }
   return (
     <div className="overflow-x-auto w-11/12 mx-auto">
       {users.length > 0 ? (
         <table className="table">
           {/* head */}
-          <thead>
-            <tr>
+          <thead className="">
+            <tr className="md:text-md font-bold">
               <th>SL.No</th>
               <th>User</th>
               <th>Name/Email</th>
@@ -55,12 +81,15 @@ const ManageUser = () => {
                     {user?.email}
                   </span>
                 </td>
-                <td
-                  className={
-                    user?.role === "admin" ? "font-bold capitalize" : "1"
-                  }
-                >
-                  {user?.role ? user?.role : "Normal"}
+                <td>
+                  <button
+                    className={
+                      user?.role === "admin" ? "font-bold capitalize" : "1"
+                    }
+                    onClick={()=>deteledUser(user?._id)}
+                  >
+                    {user?.role ? user?.role : "Normal"}
+                  </button>
                 </td>
               </tr>
             ))}
