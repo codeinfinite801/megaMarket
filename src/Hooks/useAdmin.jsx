@@ -5,7 +5,7 @@ import useAxiosPublic from "./useAxiosPublic";
 const useAdmin = () => {
     const axiosPublic = useAxiosPublic();
     const {user} = useAuth();
-    const {data:isAdmin} = useQuery({
+    const {data:isAdmin,isLoading} = useQuery({
         enabled:!!user?.email,
         queryKey:['isAdmin',user?.email],
         queryFn: async ()=>{
@@ -13,7 +13,7 @@ const useAdmin = () => {
             return res.data?.admin;
         }
     })
-    return [isAdmin]
+    return [isAdmin,isLoading]
 };
 
 export default useAdmin;

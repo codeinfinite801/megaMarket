@@ -26,7 +26,7 @@ const ManageUser = () => {
         if (result.isConfirmed) {
           axiosPublic.patch(`/users/update?id=${id}`).then((result) => {
             if (result.data?.modifiedCount > 0) {
-                console.log(result.data)
+             
               refetch();
               Swal.fire({
                 title: "Updated!",
