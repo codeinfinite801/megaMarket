@@ -108,18 +108,19 @@ const Navbar = () => {
             />
           </Link>
           <div className="flex items-center space-x-4">
+          <Link to={"/wishList"}>
+          <div className="indicator">
+          <GoChecklist  className="text-4xl  hover:text-pink-500 font-semibold"></GoChecklist >
+          <span className="badge badge-md badge-secondary indicator-item">{wishList.length}</span>
+        </div>
+          </Link>
+
             <Link to={"/placeOrder"}>
-              <span>
-                {/*  */}
-                <div className="flex items-start justify-center">
-                  <span className="w-[25px] h-[25px] text-center bg-sky-500 text-white rounded-full px-1 py-1">
-                    {cart?.length}
-                  </span>
-                </div>
-                {/*  */}
-                <FaShoppingCart className="text-3xl font-bold"></FaShoppingCart>
-              </span>
-            </Link>
+          <div className="indicator">
+          <FaShoppingCart className="text-4xl hover:text-blue-500 font-semibold"></FaShoppingCart>
+          <span className="badge badge-md badge-info indicator-item">{cart.length}</span>
+        </div>
+          </Link>
             {/* <span><FaShoppingCart className="text-3xl font-bold"></FaShoppingCart></span> */}
             {user && user?.email ? (
               <div className="dropdown dropdown-end z-10">

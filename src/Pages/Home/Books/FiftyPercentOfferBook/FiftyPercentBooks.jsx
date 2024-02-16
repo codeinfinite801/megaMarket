@@ -32,7 +32,7 @@ const FiftyPercentBooks = () => {
       setFiftyPercentBook(filteredData);
     };
     fetchData();
-  }, []);
+  }, [disCountIds]);
   return (
     <div className="max-w-7xl mx-auto bg-white shadow-lg p-5 h-fit my-5">
       <div className="flex justify-between md:flex-row flex-col gap-5">

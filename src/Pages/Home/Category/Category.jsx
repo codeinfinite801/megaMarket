@@ -4,7 +4,6 @@ import "swiper/css/navigation";
 import { Navigation } from 'swiper/modules';
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import useBooks from "../../../Hooks/useBooks";
 const Category = () => {
 
     const [categories, setCategories] = useState([])
