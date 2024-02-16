@@ -10,8 +10,6 @@ import OfferBanner from "./OfferBanner/OfferBanner";
 import SuperStore from "./SuperStore/SuperStore";
 import MessengerCustomerChat from 'react-messenger-customer-chat';
 
-
-
 const Home = () => {
     return (
         <div className="bg-[#cc00ff21]">

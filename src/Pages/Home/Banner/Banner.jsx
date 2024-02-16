@@ -35,6 +35,9 @@ const Banner = () => {
                         <img className='lg:h-[550px] w-full md:h-[400px] h-[200px]' src="https://i.postimg.cc/25mPMspz/Enjoy-Up-to.png" alt="" />
                     </SwiperSlide>
                     <SwiperSlide>
+                        <img className='lg:h-[550px] w-full md:h-[400px] h-[200px]' src="https://img.freepik.com/free-vector/realistic-book-lovers-day-horizontal-background-with-composition-text-books-with-lamp-cup-vector-illustration_1284-77302.jpg?w=740&t=st=1708060172~exp=1708060772~hmac=599b48c9f45cfb9f6aec4042364a98939aeb1dd27aa0391a3a525632b4e8ebf5" alt="" />
+                    </SwiperSlide>
+                    <SwiperSlide>
                         <img className='lg:h-[550px] w-full md:h-[400px] h-[200px]' src="https://img.freepik.com/free-photo/photocomposition-horizontal-online-shopping-banner_23-2151201772.jpg?w=826&t=st=1707904242~exp=1707904842~hmac=40abf6b72639d86d48ef04b55ddbb2e14ed47a34bffa1254311988108aa79563" alt="" />
                     </SwiperSlide>
 

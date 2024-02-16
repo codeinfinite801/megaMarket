@@ -29,7 +29,7 @@ const KidsProduct = () => {
                                     <div key={index}>
                                         <Link to={`/allkids/${item?.category}`}>
                                             <div>
-                                                <img className='bg-gray-200 w-[95%]  h-[150px] rounded-xl p-2' src={item?.image} alt={item?.name} />
+                                                <img className='bg-gray-200 w-[95%]  lg:h-[170px] md:h-[195px] h-[150px] rounded-xl p-2' src={item?.image} alt={item?.name} />
                                                 <h1 className="text-sm mt-5 mb-2 text-center">{item?.category}</h1>
                                             </div>
                                         </Link>
