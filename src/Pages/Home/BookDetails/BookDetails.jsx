@@ -52,7 +52,7 @@ const BookDetails = () => {
     // add to wishlist
     const addOnWishlist=(id)=>{
         console.log(id);
-        CallAxios.post(`/wishList/${_id}`, productData)
+        CallAxios.post("/wishList", productData)
             .then(res => {
                 console.log(res.data);
                 if (res?.data?.insertedId) {
@@ -93,7 +93,7 @@ const BookDetails = () => {
                                     <p className="text-gray-500"><span className="line-through">TK{price}</span></p>
                                     <p className="font-bold text-lg text-red-500">TK.{discountedPrice}</p>
                                 </div>
-                                <div className="flex justify-center lg:justify-start items-center gap-2 mt-2">
+                                <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 justify-center lg:justify-start items-center gap-2 mt-2">
                                     <img src="https://www.rokomari.com/static/200/images/svg/in-stock(mini).svg" alt="" />
                                     <span className="text-sm">In Stock </span>
                                     <span className="text-sm">
@@ -101,7 +101,7 @@ const BookDetails = () => {
                                     </span>
                                 </div>
                                 <p className="text-sm text-center lg:text-left mt-2 italic">স্টক আউট হওয়ার আগেই অর্ডার করুন</p>
-                                <div className="flex justify-center lg:justify-start items-center gap-5 mt-4">
+                                <div className="grid sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-3  justify-center lg:justify-start items-center gap-5 mt-4">
                                     <button onClick={() => document.getElementById('my_modal_3').showModal()} className=" relative px-4 py-3 rounded-lg   border-2 text-green-600 border-green-400 bg-transparent transition-colors  before:absolute before:left-0 before:top-0 before:-z-10 before:h-full before:w-full before:origin-top-left  before:scale-x-0  before:bg-green-400 before:transition-transform   before:duration-500  before:contents-[''] hover:text-black  before:hover:scale-x-100">একটু পড়ে দেখুন </button>
                                     {
                                         user && user?.email ? <button className="flex gap-2 relative px-4 py-3 rounded-lg  items-center justify-center  border-2 text-black  border-yellow-500 bg-transparent transition-colors  before:absolute before:left-0 before:top-0 before:-z-10 before:h-full before:w-full before:origin-top-left  before:scale-x-0  before:bg-yellow-500 before:transition-transform   before:duration-500  before:contents-[''] hover:text-white  before:hover:scale-x-100">
@@ -113,8 +113,8 @@ const BookDetails = () => {
                                         </button>
                                     }
                                     {
-                                        user && user?.email ? <button className="flex items-center justify-center gap-2 relative px-4 py-3 rounded-lg w-36  border-2 text-pink-600 border-pink-500 bg-transparent transition-colors  before:absolute before:left-0 before:top-0 before:-z-10 before:h-full before:w-full before:origin-top-left  before:scale-x-0  before:bg-pink-500 before:transition-transform   before:duration-500  before:contents-[''] hover:text-white  before:hover:scale-x-100">
-                                            <FaRegHeart className="text-2xl"></FaRegHeart>
+                                        user && user?.email ? <button className="flex items-center justify-center gap-2 relative px-4 py-3 rounded-lg   border-2 text-pink-600 border-pink-500 bg-transparent transition-colors  before:absolute before:left-0 before:top-0 before:-z-10 before:h-full before:w-full before:origin-top-left  before:scale-x-0  before:bg-pink-500 before:transition-transform   before:duration-500  before:contents-[''] hover:text-white  before:hover:scale-x-100">
+                                            <FaRegHeart className="text-2xl"/>
                                             <button onClick={() => addOnWishlist(_id)}>WishList</button>
                                         </button> : <button className="flex items-center justify-center gap-2 relative px-4 py-3 rounded-lg w-36  border-2 text-pink-600 border-pink-400 bg-transparent transition-colors  before:absolute before:left-0 before:top-0 before:-z-10 before:h-full before:w-full before:origin-top-left  before:scale-x-0  before:bg-pink-400 before:transition-transform   before:duration-500  before:contents-[''] hover:text-white  before:hover:scale-x-100">
                                             <FaRegHeart className="text-2xl"></FaRegHeart>
