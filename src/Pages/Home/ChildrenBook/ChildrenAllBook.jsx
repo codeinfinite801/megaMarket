@@ -64,48 +64,98 @@ const ChildrenAllBook = () => {
     }, [ageRange]);
 
     useEffect(() => {
+        let filteredBooks = childrensBooks;
+      
         if (authors) {
-            const filterByAuthor = childrensBooks?.filter(
-                (books) => books?.author_name === authors
-            );
-            setChildrensBooks(filterByAuthor);
-        }  
-        applySorting(childrensBooks, sorting, (bookA, bookB) => {
-            const priceA = bookA.price;
-            const priceB = bookB.price;
-
-            if (sorting === 'asc') {
-                return priceA - priceB;
-            } else if (sorting === 'desc') {
-                return priceB - priceA;
-            }
-
-            return 0;
+          filteredBooks = childrensBooks?.filter(
+            (books) => books?.author_name === authors
+          );
+        }
+      
+        const sortedBooks = applySorting(filteredBooks, sorting, (bookA, bookB) => {
+          const priceA = bookA.price;
+          const priceB = bookB.price;
+      
+          if (sorting === 'asc') {
+            return priceA - priceB;
+          } else if (sorting === 'desc') {
+            return priceB - priceA;
+          }
+      
+          return 0;
         });
-
-        applySorting(childrensBooks, bestSell, (bookA, bookB) => {
+      
+        const sortedBestSellBooks = applySorting(
+          sortedBooks,
+          bestSell,
+          (bookA, bookB) => {
             const ratingA = bookA.rating;
             const ratingB = bookB.rating;
-
+      
             if (bestSell === 'desc') {
-                return ratingB - ratingA;
+              return ratingB - ratingA;
             }
-
+      
             return 0;
-        });
-
-        applySorting(childrensBooks, discount, (bookA, bookB) => {
+          }
+        );
+      
+        const sortedDiscountBooks = applySorting(
+          sortedBestSellBooks,
+          discount,
+          (bookA, bookB) => {
             const discountA = bookA.discount;
             const discountB = bookB.discount;
-
+      
             if (discount === 'desc') {
-                return discountB - discountA;
+              return discountB - discountA;
             }
-
+      
             return 0;
-        });
+          }
+        );
+      
+        setChildrensBooks(sortedDiscountBooks);
+      }, [sorting, bestSell, discount, childrensBooks, authors]);
+      
+    // useEffect(() => {
+        
+    //     applySorting(childrensBooks, sorting, (bookA, bookB) => {
+    //         const priceA = bookA.price;
+    //         const priceB = bookB.price;
 
-    }, [sorting, bestSell, discount, childrensBooks,authors]);
+    //         if (sorting === 'asc') {
+    //             return priceA - priceB;
+    //         } else if (sorting === 'desc') {
+    //             return priceB - priceA;
+    //         }
+
+    //         return 0;
+    //     });
+
+    //     applySorting(childrensBooks, bestSell, (bookA, bookB) => {
+    //         const ratingA = bookA.rating;
+    //         const ratingB = bookB.rating;
+
+    //         if (bestSell === 'desc') {
+    //             return ratingB - ratingA;
+    //         }
+
+    //         return 0;
+    //     });
+
+    //     applySorting(childrensBooks, discount, (bookA, bookB) => {
+    //         const discountA = bookA.discount;
+    //         const discountB = bookB.discount;
+
+    //         if (discount === 'desc') {
+    //             return discountB - discountA;
+    //         }
+
+    //         return 0;
+    //     });
+
+    // }, [sorting, bestSell, discount, childrensBooks,authors]);
 
     return (
         <div className='w-[100%] grid grid-cols-1 md:grid-cols-1 lg:grid-cols-4 gap-4 p-6'>

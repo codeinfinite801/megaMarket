@@ -114,7 +114,7 @@ const BookDetails = () => {
                                     }
                                     {
                                         user && user?.email ? <button className="flex items-center justify-center gap-2 relative px-4 py-3 rounded-lg   border-2 text-pink-600 border-pink-500 bg-transparent transition-colors  before:absolute before:left-0 before:top-0 before:-z-10 before:h-full before:w-full before:origin-top-left  before:scale-x-0  before:bg-pink-500 before:transition-transform   before:duration-500  before:contents-[''] hover:text-white  before:hover:scale-x-100">
-                                            <FaRegHeart className="text-2xl"></FaRegHeart>
+                                            <FaRegHeart className="text-2xl"/>
                                             <button onClick={() => addOnWishlist(_id)}>WishList</button>
                                         </button> : <button className="flex items-center justify-center gap-2 relative px-4 py-3 rounded-lg w-36  border-2 text-pink-600 border-pink-400 bg-transparent transition-colors  before:absolute before:left-0 before:top-0 before:-z-10 before:h-full before:w-full before:origin-top-left  before:scale-x-0  before:bg-pink-400 before:transition-transform   before:duration-500  before:contents-[''] hover:text-white  before:hover:scale-x-100">
                                             <FaRegHeart className="text-2xl"></FaRegHeart>
