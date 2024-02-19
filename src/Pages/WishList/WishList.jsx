@@ -52,12 +52,15 @@ const WishList = () => {
         {
             name: 'Author Name',
             selector: row => row.author_name
-
-
         },
         {
             name: 'Author Image',
             selector: row => <img className='w-10 h-10 rounded-full' src={row.author_image} />
+        },
+        {
+            name: 'Price',
+            selector: row => row.price,
+            sortable: true,
         },
         {
             name: 'Action',
@@ -68,23 +71,23 @@ const WishList = () => {
 
     return (
         <div className='container w-[95%] justify-center mx-auto'>
-            {wishList?.length > 0? <DataTable
+            {wishList?.length > 0 ? <DataTable
                 title="Wish List"
                 columns={columns}
                 data={wishList}
                 highlightOnHover
                 fixedHeader
                 pagination>
-            </DataTable>:<div className="text-center mt-10 mb-10">
-                        <div className="flex justify-center items-center">
-                            <img className="h-[400px]" src="https://i.ibb.co/7zwbXhL/emty-list.png" alt="" />
-                        </div>
-                        <h2 className="text-3xl font-semibold mt-5">Your wishList is Empty!</h2>
-                        <p className="text-lg mt-3">There’s nothing in your wishlist yet. But don’t let that stop you from finding the perfect products for you.<br></br> Browse our categories and add your favorites to your wishlist.</p>
-                        <Link to={'/'}>
-                            <button className="mt-3 text-xl font-bold text-sky-600">Start shopping now and enjoy amazing deals.</button>
-                        </Link>
-                    </div>}
+            </DataTable> : <div className="text-center mt-10 mb-10">
+                <div className="flex justify-center items-center">
+                    <img className="h-[400px]" src="https://i.ibb.co/7zwbXhL/emty-list.png" alt="" />
+                </div>
+                <h2 className="text-3xl font-semibold mt-5">Your wishList is Empty!</h2>
+                <p className="text-lg mt-3">There’s nothing in your wishlist yet. But don’t let that stop you from finding the perfect products for you.<br></br> Browse our categories and add your favorites to your wishlist.</p>
+                <Link to={'/'}>
+                    <button className="mt-3 text-xl font-bold text-sky-600">Start shopping now and enjoy amazing deals.</button>
+                </Link>
+            </div>}
         </div>
     );
 };
