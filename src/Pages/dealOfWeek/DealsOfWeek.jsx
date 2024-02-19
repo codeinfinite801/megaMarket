@@ -95,26 +95,26 @@ const DealsOfTheWeek = () => {
     return shuffledProducts.slice(0, numberOfDealsToShow);
   };
 
-   //add to shoping card  
-   const addToCart = (id) => {
+  //add to shoping card  
+  const addToCart = (id) => {
     console.log(id);
     const targetProduct = currentDeals.filter((pruduct) => pruduct._id === id);
     const productData = targetProduct[0];
     CallAxios.post('/addProducts', productData)
-        .then(res => {
-            console.log(res.data);
-            if (res?.data?.insertedId) {
-                return Swal.fire({
-                    position: 'center',
-                    icon: 'success',
-                    title: 'Product Added On Your Cart Successfully',
-                    showConfirmButton: false,
-                    timer: 1500
-                })
-            }
-        })
+      .then(res => {
+        console.log(res.data);
+        if (res?.data?.insertedId) {
+          return Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: 'Product Added On Your Cart Successfully',
+            showConfirmButton: false,
+            timer: 1500
+          })
+        }
+      })
 
-}
+  }
 
   const addOnWishlist = (id) => {
     const targetProduct = currentDeals.filter((pruduct) => pruduct._id === id);
@@ -165,7 +165,7 @@ const DealsOfTheWeek = () => {
           </div>
         </div>
       </div>
-      <div className='grid grid-cols-1  md:grid-cols-2 lg:grid-cols-4 gap-5 pt-10'>
+      <div className='grid grid-cols-1  md:grid-cols-2 lg:grid-cols-4 gap-5 pt-10  border-2 rounded-xl border-red-500 '>
         {currentDeals.map((deal) => <div key={deal._id} className='flex items-center justify-center'>
           <div className="card w-80 h-96 bg-base-100 relative group">
             <figure className="px-2 pt-4">
@@ -180,8 +180,8 @@ const DealsOfTheWeek = () => {
             </div>
 
             <div className="card-overlay absolute inset-0 bg-black bg-opacity-50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-              <div  className="card w-72 h-[22rem] grid grid-cols-3">
-                <button onClick={()=>{addToCart(deal._id)}} className="border rounded-l-lg flex items-center justify-center bg-white mt-[20rem] hover:bg-blue-500 hover:text-white text-center">
+              <div className="card w-72 h-[22rem] grid grid-cols-3">
+                <button onClick={() => { addToCart(deal._id) }} className="border rounded-l-lg flex items-center justify-center bg-white mt-[20rem] hover:bg-blue-500 hover:text-white text-center">
                   <FaShoppingCart className='text-xl' />
                 </button>
                 <button onClick={() => addOnWishlist(deal._id)} className=" border border-l-2 border-r-2 flex items-center justify-center bg-white mt-[20rem] text-center hover:bg-pink-500  hover:text-white">
