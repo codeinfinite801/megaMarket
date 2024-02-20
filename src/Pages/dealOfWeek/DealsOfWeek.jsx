@@ -1,15 +1,17 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { TbCurrencyTaka } from "react-icons/tb";
 import { Link } from 'react-router-dom';
 import { FaShoppingCart, FaRegHeart } from "react-icons/fa";
 import { IoEyeOutline } from "react-icons/io5";
 import Swal from 'sweetalert2';
 import useAxiosSecure from '../../Hooks/AxiosSecure/useAxiosSecure';
+import { AuthContext } from '../../provider/AuthProvider';
 
 const DealsOfTheWeek = () => {
   const [currentDeals, setCurrentDeals] = useState([]);
-  const CallAxios = useAxiosSecure()
-
+  const CallAxios = useAxiosSecure();
+  const { user } = useContext(AuthContext);
+  const email = user?.email;
   const getInitialTargetDate = () => {
     const storedTargetDate = localStorage.getItem('targetDate');
     if (storedTargetDate) {
@@ -99,39 +101,65 @@ const DealsOfTheWeek = () => {
   const addToCart = (id) => {
     console.log(id);
     const targetProduct = currentDeals.filter((pruduct) => pruduct._id === id);
-    const productData = targetProduct[0];
-    CallAxios.post('/addProducts', productData)
-      .then(res => {
-        console.log(res.data);
-        if (res?.data?.insertedId) {
-          return Swal.fire({
-            position: 'center',
-            icon: 'success',
-            title: 'Product Added On Your Cart Successfully',
-            showConfirmButton: false,
-            timer: 1500
-          })
-        }
-      })
+    if (targetProduct.length > 0) {
+      const productData = {
+        ...targetProduct[0],
+        email: email,
+      };
+      console.log(productData);
+
+      // Make the Axios POST request on addProducts by id
+      CallAxios.post(`/addProducts/${id}`, productData)
+        .then(res => {
+          console.log(res.data);
+          if (res?.data?.insertedId) {
+            return Swal.fire({
+              position: 'center',
+              icon: 'success',
+              title: 'Product Added On Your card Successfully',
+              showConfirmButton: false,
+              timer: 1500
+            })
+          }
+        })
+        .catch(error => {
+          console.error("Error:", error);
+        });
+    } else {
+      console.log("Product not found");
+    }
 
   }
 
   const addOnWishlist = (id) => {
     const targetProduct = currentDeals.filter((pruduct) => pruduct._id === id);
-    const productData = targetProduct[0];
-    CallAxios.post("/wishList", productData)
-      .then(res => {
-        console.log(res.data);
-        if (res?.data?.insertedId) {
-          return Swal.fire({
-            position: 'center',
-            icon: 'success',
-            title: 'Product Added On Your WishList Successfully',
-            showConfirmButton: false,
-            timer: 1500
-          })
-        }
-      })
+    if (targetProduct.length > 0) {
+      const productData = {
+        ...targetProduct[0],
+        email: email,
+      };
+      console.log(productData);
+
+      // Make the Axios POST request on wishlist
+      CallAxios.post("/wishList", productData)
+        .then(res => {
+          console.log(res.data);
+          if (res?.data?.insertedId) {
+            return Swal.fire({
+              position: 'center',
+              icon: 'success',
+              title: 'Product Added On Your WishList Successfully',
+              showConfirmButton: false,
+              timer: 1500
+            })
+          }
+        })
+        .catch(error => {
+          console.error("Error:", error);
+        });
+    } else {
+      console.log("Product not found");
+    }
   }
 
   return (
