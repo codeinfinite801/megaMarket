@@ -15,7 +15,6 @@ const BestSeller = () => {
     //         .then(data => setBestSell(data))
     // }, [])
 
-    // function Tabs() {
     const [activeTab, setActiveTab] = useState('#styled-profile');
 
     const handleTabClick = (tabId) => {
@@ -95,22 +94,6 @@ const BestSeller = () => {
             </div>
 
 
-
-            {/* <div className="">
-                <div role="tablist" className="tabs tabs-bordered flex justify-center items-center">
-                    <div>
-                        <input type="radio" name="my_tabs_1" role="tab" className="tab text-3xl" aria-label="Best Sellers" />
-                        <div role="tabpanel" className="tab-content p-10">
-                            <Popular></Popular>
-                        </div>
-
-                    </div>
-                    <div>
-                        <input type="radio" name="my_tabs_1" role="tab" className="tab text-3xl" aria-label="Featured Products" checked />
-                        <div role="tabpanel" className="tab-content p-10">Featured Products</div>
-                    </div>
-                </div>
-            </div> */}
             {/* <div className="grid lg:grid-cols-4 md:grid-cols-3 grid-cols-2  gap-3">
                 {
                     bestSell?.slice(5, 10)?.map(sells => <SingleSell key={sells?._id} sells={sells}></SingleSell>)
