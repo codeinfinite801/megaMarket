@@ -6,7 +6,7 @@ import useBooks from "../../../Hooks/useBooks";
 
 const Books = () => {
     const { category } = useParams();
-    const { data} = useBooks({ category })
+    const { data } = useBooks({ category })
     const [author, setAuthor] = useState([])
     const [dataIndex, setDataIndex] = useState(10)
     useEffect(() => {
@@ -24,6 +24,63 @@ const Books = () => {
     const handleData = () => {
         setDataIndex(data?.length)
     }
+
+
+    // ------
+    const [sortOrder, setSortOrder] = useState(null);
+    const [sortByRating, setSortByRating] = useState(false);
+    const [selectedAuthorName, setSelectedAuthorName] = useState(new Set());
+
+    const handlePriceLowToHigh = () => {
+        setSortOrder("asc");
+        setSortByRating(false);
+    };
+
+    const handlePriceHighToLow = () => {
+        setSortOrder("desc");
+        setSortByRating(false);
+    };
+
+    const handleBestRating = () => {
+        setSortByRating(!sortByRating);
+        setSortOrder(null);
+    };
+
+    const handleShortByDiscount = () => {
+        setSortByRating(false);
+        setSortOrder('discount');
+    };
+
+    const handleTypeFilter = (author_name) => {
+        setSelectedAuthorName((prevTypes) => {
+            const newTypes = new Set(prevTypes);
+            if (newTypes.has(author_name)) {
+                newTypes.delete(author_name);
+            } else {
+                newTypes.add(author_name);
+            }
+            return newTypes;
+        });
+    };
+
+    const filteredProducts = data?.filter((product) => {
+        return (
+            (!selectedAuthorName.size || selectedAuthorName.has(product.author_name))
+        );
+    });
+
+    let sortedAndFilteredProducts = filteredProducts;
+
+    if (sortByRating) {
+        sortedAndFilteredProducts = sortedAndFilteredProducts.slice().sort((a, b) => b.rating - a.rating);
+    } else if (sortOrder === "desc") {
+        sortedAndFilteredProducts = sortedAndFilteredProducts.slice().sort((a, b) => b.price - a.price);
+    } else if (sortOrder === "discount") {
+        sortedAndFilteredProducts = sortedAndFilteredProducts.slice().sort((a, b) => b.discount - a.discount);
+    } else if (sortOrder === "asc") {
+        sortedAndFilteredProducts = sortedAndFilteredProducts.slice().sort((a, b) => a.price - b.price);
+    }
+
     return (
         <div>
             <div className="px-5 my-16 hidden lg:block">
@@ -33,21 +90,30 @@ const Books = () => {
                             <div className="py-2 px-2 border-b-2">
                                 <p className="font-bold">Sort</p>
                             </div>
-                            <div className="flex items-center justify-center gap-4 my-2">
-                                <input type="radio" name="sort" id="best-seller" className="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300" />
-                                <label htmlFor="best-seller" className="ml-2 block text-sm font-medium text-gray-700 flex-1">Best Seller</label>
+                            {/* price low to high shorting */}
+                            <div className="form-control flex items-start">
+                                <label className="label cursor-pointer">
+                                    <input type="radio" className="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300" onChange={handlePriceLowToHigh} />
+                                    <span className="label-text ml-5">Price Low - High</span>
+                                </label>
                             </div>
-                            <div className="flex items-center justify-center gap-4 my-2">
-                                <input type="radio" name="sort" id="low-to-high" className="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300" />
-                                <label htmlFor="low-to-high" className="ml-2 block text-sm font-medium text-gray-700 flex-1">Price Low to High</label>
+                            <div className="form-control flex items-start">
+                                <label className="label cursor-pointer">
+                                    <input type="radio" className="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300" onChange={handlePriceHighToLow} />
+                                    <span className="label-text ml-5">Price High - Low</span>
+                                </label>
                             </div>
-                            <div className="flex items-center justify-center gap-4 my-2">
-                                <input type="radio" name="sort" id="high-to-low" className="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300" />
-                                <label htmlFor="high-to-low" className="ml-2 block text-sm font-medium text-gray-700 flex-1">Price High to Low</label>
+                            <div className="form-control flex items-start">
+                                <label className="label cursor-pointer">
+                                    <input type="radio" className="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300" onChange={handleBestRating} />
+                                    <span className="label-text ml-5">Best Rating</span>
+                                </label>
                             </div>
-                            <div className="flex items-center justify-center gap-4 my-2">
-                                <input type="radio" name="sort" id="discount" className="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300" />
-                                <label htmlFor="discount" className="ml-2 block text-sm font-medium text-gray-700 flex-1">Discount</label>
+                            <div className="form-control flex items-start">
+                                <label className="label cursor-pointer">
+                                    <input type="radio" className="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300" onChange={handleShortByDiscount} />
+                                    <span className="label-text ml-5">Discount</span>
+                                </label>
                             </div>
                         </div>
                         {/* sort - 2 */}
@@ -62,7 +128,7 @@ const Books = () => {
                             <div className="py-2 px-2 border-b-2">
                                 <p className="font-bold">Filter By Author</p>
                             </div>
-                            {
+                            {/* {
                                 author?.map((author, index) => {
                                     return <div key={index}>
                                         <div className="flex items-center justify-center gap-4 my-2">
@@ -71,7 +137,20 @@ const Books = () => {
                                         </div>
                                     </div>
                                 })
-                            }
+                            } */}
+                            {Array.from(new Set(data?.map((product) => product.author_name))).map((author_name) => (
+                                <div key={author_name} className="form-control flex items-start">
+                                    <label className="label cursor-pointer">
+                                        <input
+                                            type="checkbox"
+                                            className="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
+                                            onChange={() => handleTypeFilter(author_name)}
+                                            checked={selectedAuthorName.has(author_name)}
+                                        />
+                                        <span className="label-text ml-5">{author_name}</span>
+                                    </label>
+                                </div>
+                            ))}
 
                         </div>
 
@@ -79,10 +158,13 @@ const Books = () => {
                     </div>
                     <div className="col-span-10">
                         <h2 className="text-2xl mb-5">{category} {data?.length}</h2>
+                        <h2>{sortedAndFilteredProducts?.length}</h2>
                         <div className="grid lg:grid-cols-5 md:grid-cols-3 grid-cols-2  gap-3">
-                            {
+                            {/* {
                                 data?.map(book => <Book key={book?._id} book={book}></Book>)
-                            }
+                            } */}
+                            {sortedAndFilteredProducts?.map((book) => <Book key={book?._id} book={book}></Book>
+                            )}
                         </div>
                     </div>
                 </div>
