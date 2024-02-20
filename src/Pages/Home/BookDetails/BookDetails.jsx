@@ -22,7 +22,7 @@ const BookDetails = () => {
     const discountedPrice = parseFloat((price - (price * discount) / 100).toFixed(2));
 
     const productData = { productId: _id, email: user?.email, name, image, price, author_name, author_image, author_details, category, discount, rating, quantity, read_book, publisher, country, language, isNew, edition_date, total_pages, summary, amount: 1, count: 1, priceWithDiscount: discountedPrice, discountedPrice: discountedPrice }
-
+console.log(productData);
     const { data } = useBooks({ category })
 
     useEffect(() => {
