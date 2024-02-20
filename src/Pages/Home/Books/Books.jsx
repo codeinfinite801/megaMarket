@@ -30,6 +30,7 @@ const Books = () => {
     const [sortOrder, setSortOrder] = useState(null);
     const [sortByRating, setSortByRating] = useState(false);
     const [selectedAuthorName, setSelectedAuthorName] = useState(new Set());
+    const [showOnlyAvailable, setShowOnlyAvailable] = useState(false);
 
     const handlePriceLowToHigh = () => {
         setSortOrder("asc");
@@ -51,6 +52,10 @@ const Books = () => {
         setSortOrder('discount');
     };
 
+    const handleShortByStock = (event) => {
+        setShowOnlyAvailable(event.target.checked); // Update state based on checkbox value
+    };
+
     const handleTypeFilter = (author_name) => {
         setSelectedAuthorName((prevTypes) => {
             const newTypes = new Set(prevTypes);
@@ -65,7 +70,8 @@ const Books = () => {
 
     const filteredProducts = data?.filter((product) => {
         return (
-            (!selectedAuthorName.size || selectedAuthorName.has(product.author_name))
+            (!selectedAuthorName.size || selectedAuthorName.has(product.author_name)) &&
+            (!showOnlyAvailable || product.quantity > 0)
         );
     });
 
@@ -93,34 +99,36 @@ const Books = () => {
                             {/* price low to high shorting */}
                             <div className="form-control flex items-start">
                                 <label className="label cursor-pointer">
-                                    <input type="radio" className="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300" onChange={handlePriceLowToHigh} />
+                                    <input type="checkbox" className="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300" onChange={handlePriceLowToHigh} />
                                     <span className="label-text ml-5">Price Low - High</span>
                                 </label>
                             </div>
                             <div className="form-control flex items-start">
                                 <label className="label cursor-pointer">
-                                    <input type="radio" className="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300" onChange={handlePriceHighToLow} />
+                                    <input type="checkbox" className="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300" onChange={handlePriceHighToLow} />
                                     <span className="label-text ml-5">Price High - Low</span>
                                 </label>
                             </div>
                             <div className="form-control flex items-start">
                                 <label className="label cursor-pointer">
-                                    <input type="radio" className="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300" onChange={handleBestRating} />
+                                    <input type="checkbox" className="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300" onChange={handleBestRating} />
                                     <span className="label-text ml-5">Best Rating</span>
                                 </label>
                             </div>
                             <div className="form-control flex items-start">
                                 <label className="label cursor-pointer">
-                                    <input type="radio" className="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300" onChange={handleShortByDiscount} />
+                                    <input type="checkbox" className="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300" onChange={handleShortByDiscount} />
                                     <span className="label-text ml-5">Discount</span>
                                 </label>
                             </div>
                         </div>
                         {/* sort - 2 */}
-                        <div>
-                            <div className="flex items-center justify-center gap-4 shadow-xl border-2 px-2 py-4 my-2">
-                                <input type="radio" name="sort" id="inStock" className="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300" />
-                                <label htmlFor="inStock" className="ml-2 block text-sm font-medium text-gray-700 flex-1">In Stock</label>
+                        <div className="flex gap-4 shadow-xl border-2 px-2 py-4 my-2">
+                            <div className="form-control flex items-start">
+                                <label className="label cursor-pointer">
+                                    <input type="checkbox" className="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300" onChange={handleShortByStock} />
+                                    <span className="label-text ml-5">In Stock</span>
+                                </label>
                             </div>
                         </div>
                         {/* Filter By Author */}
@@ -128,16 +136,6 @@ const Books = () => {
                             <div className="py-2 px-2 border-b-2">
                                 <p className="font-bold">Filter By Author</p>
                             </div>
-                            {/* {
-                                author?.map((author, index) => {
-                                    return <div key={index}>
-                                        <div className="flex items-center justify-center gap-4 my-2">
-                                            <input type="checkbox" name="sort" id={author} className="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300" />
-                                            <label htmlFor={author} className="ml-2 block text-sm font-medium text-gray-700 flex-1">{author}</label>
-                                        </div>
-                                    </div>
-                                })
-                            } */}
                             {Array.from(new Set(data?.map((product) => product.author_name))).map((author_name) => (
                                 <div key={author_name} className="form-control flex items-start">
                                     <label className="label cursor-pointer">
