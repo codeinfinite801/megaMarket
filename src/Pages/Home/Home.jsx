@@ -1,3 +1,4 @@
+import BestSeller from "../../BestSeller/BestSeller";
 import TeenCategoryBook from "../../teenCategoryBook/TeenCategoryBook";
 import DealsOfTheWeek from "../dealOfWeek/DealsOfWeek";
 import AuthorCategory from "./AuthorCategory/AuthorCategory";
@@ -25,7 +26,8 @@ const Home = () => {
                 <OfferBanner />
                 <NewBooks />
                 <FiftyPercentBooks />
-                <DealsOfTheWeek/>
+                <BestSeller />
+                <DealsOfTheWeek />
             </div>
             <MessengerCustomerChat
                 pageId="116564461307986"
