@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 
 const KidZone = ({ kid }) => {
-    const { _id, image, brand, brand_logo, discount, isNew, name, rating, quantity, price, features, summary, country } = kid;
+    const { _id, image, brand, discount, isNew, name, rating, quantity, price } = kid;
     const discountedPrice = (price - (price * discount) / 100).toFixed(2);
     // console.log(kid);
     return (

@@ -18,9 +18,14 @@ import PaymentHistory from "../Pages/Home/PaymentHistory/PaymentHistory";
 import Dashboard from "../Layout/Dashboard";
 import OrderHistory from "../Pages/dashboard/OrderHisory/OrderHistory";
 import OnlineCategory from "../OnlineBook/OnlineCategory";
-import OnlineBook from "../OnlineBook/OnlineBook";
 import ManageOrder from "../Pages/dashboard/ManageOrder/ManageOrder";
 import ManageUser from "../Pages/dashboard/ManageUser/ManageUser";
+import AddBooks from "../Pages/dashboard/AddProduct/AddBooks";
+import AddElectronicProduct from "../Pages/dashboard/AddProduct/AddElectronicProduct";
+import AddKidsProduct from "../Pages/dashboard/AddProduct/AddKidsProduct";
+import OnlineBook from "../OnlineBook/OnlineBook";
+import WishList from "../Pages/WishList/WishList";
+import AllCategoryBook from "../Pages/Home/Books/AllCategoryBook";
 
 
 const router = createBrowserRouter([
@@ -91,7 +96,12 @@ const router = createBrowserRouter([
         element: <OnlineBook></OnlineBook>
       },
       {
-        
+        path: '/bookCategory',
+        element: <AllCategoryBook></AllCategoryBook>
+      },
+      {
+        path:'/wishList',
+        element:<WishList></WishList>
       }
     ],
   },
@@ -115,6 +125,18 @@ const router = createBrowserRouter([
         path: "manage-user",
         element: <ManageUser />,
       },
+      {
+        path:"add-books",
+        element:<AddBooks></AddBooks>
+      },
+      {
+        path:"add-electronic",
+        element:<AddElectronicProduct></AddElectronicProduct>
+      },
+      {
+        path:"add-kisdsProduct",
+        element:<AddKidsProduct></AddKidsProduct>
+      }
     ],
   },
 ]);

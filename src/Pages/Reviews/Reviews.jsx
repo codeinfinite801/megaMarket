@@ -7,6 +7,7 @@ import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import useReviews from '../../Hooks/useReviews';
 
+
 const Reviews = ({ image, name, productId, rating }) => {
     const { id } = useParams()
     const { data, refetch } = useReviews()

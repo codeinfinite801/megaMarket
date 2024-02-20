@@ -10,11 +10,7 @@ const Books = () => {
     console.log(data);
     const [author, setAuthor] = useState([])
     const [dataIndex, setDataIndex] = useState(10)
-    // useEffect(()=> {
-    //     if(data){
-    //         const filte
-    //     }
-    // },[])
+
     useEffect(() => {
         if (data) {
             const authorList = data.reduce((acc, book) => {

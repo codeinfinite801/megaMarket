@@ -19,7 +19,6 @@ const FiftyPercentBooks = () => {
     "65a7719bd3f8cc66804c3052",
   ];
 
-  console.log(fiftyPercentBook);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -70,7 +69,7 @@ const FiftyPercentBooks = () => {
         >
           <div className="">
             {fiftyPercentBook?.slice(0, 5).map((book) => (
-              <SwiperSlide className="mt-5">
+              <SwiperSlide className="mt-5" key={book._id}>
                 <Link to={`/bookDetails/${book?._id}`}>
                   <div className="border">
                     <div className="relative w-full flex justify-center mb-4">

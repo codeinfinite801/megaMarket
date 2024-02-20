@@ -2,41 +2,43 @@ import { FaDollarSign, FaFacebookSquare, FaInstagramSquare, FaLinkedinIn, FaTwit
 import { FaHandshakeSimple } from "react-icons/fa6";
 import { MdAssignmentReturn } from "react-icons/md";
 import { TbBus } from "react-icons/tb";
-
 import { Link } from "react-router-dom";
 
 const Footer = () => {
     return (
-        <div className="mt-16">
-            <div className="md:flex hidden mx-auto w-10/12 justify-center gap-10">
-                <div className="flex gap-2">
-                    <div className="flex justify-center items-center">
-                        <h2><FaDollarSign className="text-3xl text-green-500"></FaDollarSign></h2>
+        <div>
+            <section className="md:bg-[#f1f2f4] md:py-10">
+                <div className="md:flex hidden mx-auto w-10/12 justify-center gap-10">
+                    <div className="flex gap-2">
+                        <div className="flex justify-center items-center">
+                            <h2><FaDollarSign className="text-3xl text-green-500"></FaDollarSign></h2>
+                        </div>
+                        <div>
+                            <h1 className="font-semibold text-lg">Cash on delivery</h1>
+                            <p className="text-gray-600">Pay cash at your doorstep service</p>
+                        </div>
                     </div>
-                    <div>
-                        <h1 className="font-semibold text-lg">Cash on delivery</h1>
-                        <p className="text-gray-600">Pay cash at your doorstep service</p>
+                    <div className="flex gap-2">
+                        <div className="flex justify-center items-center">
+                            <h2><TbBus className="text-3xl text-blue-500"></TbBus></h2>
+                        </div>
+                        <div>
+                            <h1 className="font-semibold text-lg">Delivery</h1>
+                            <p className="text-gray-600">All over Bangladesh</p>
+                        </div>
+                    </div>
+                    <div className="flex gap-2">
+                        <div className="flex justify-center items-center">
+                            <h2><MdAssignmentReturn className="text-3xl text-red-500 animate-spin"></MdAssignmentReturn></h2>
+                        </div>
+                        <div>
+                            <h1 className="font-semibold text-lg">Happy return</h1>
+                            <p className="text-gray-600">7 days return facility</p>
+                        </div>
                     </div>
                 </div>
-                <div className="flex gap-2">
-                    <div className="flex justify-center items-center">
-                        <h2><TbBus className="text-3xl text-blue-500"></TbBus></h2>
-                    </div>
-                    <div>
-                        <h1 className="font-semibold text-lg">Delivery</h1>
-                        <p className="text-gray-600">All over Bangladesh</p>
-                    </div>
-                </div>
-                <div className="flex gap-2">
-                    <div className="flex justify-center items-center">
-                        <h2><MdAssignmentReturn className="text-3xl text-red-500 animate-spin"></MdAssignmentReturn></h2>
-                    </div>
-                    <div>
-                        <h1 className="font-semibold text-lg">Happy return</h1>
-                        <p className="text-gray-600">7 days return facility</p>
-                    </div>
-                </div>
-            </div>
+            </section>
+
 
             {/* footer */}
             <div className="bg-white flex justify-center mt-10 mb-4 px-2">

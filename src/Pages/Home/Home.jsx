@@ -10,8 +10,7 @@ import KidsProduct from "./KidsProduct/KidsProduct";
 import NewBooks from "./NewPublisherBooks/NewBooks";
 import OfferBanner from "./OfferBanner/OfferBanner";
 import SuperStore from "./SuperStore/SuperStore";
-
-
+import MessengerCustomerChat from 'react-messenger-customer-chat';
 
 const Home = () => {
     return (
@@ -25,10 +24,15 @@ const Home = () => {
                 <ChildrenBook></ChildrenBook>
                 <KidsProduct></KidsProduct>
                 <TeenCategoryBook></TeenCategoryBook>
-                <OfferBanner/>
-                <NewBooks/>
-                <FiftyPercentBooks/>
+                <OfferBanner />
+                <NewBooks />
+                <FiftyPercentBooks />
             </div>
+            <MessengerCustomerChat
+                pageId="116564461307986"
+                appId="776261943865528"
+                htmlRef="<REF_STRING>"
+            />
         </div>
     );
 };

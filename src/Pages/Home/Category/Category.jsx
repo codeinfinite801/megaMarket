@@ -4,9 +4,8 @@ import "swiper/css/navigation";
 import { Navigation } from 'swiper/modules';
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import useBooks from "../../../Hooks/useBooks";
-const Category = () => {
 
+const Category = () => {
     const [categories, setCategories] = useState([])
     useEffect(() => {
         fetch('https://maga-market-server-eta.vercel.app/category')
@@ -18,7 +17,9 @@ const Category = () => {
             <div>
                 <div className="flex items-center justify-between p-5">
                     <h1>Shop By Category</h1>
-                    <button className="border text-blue-500 px-6 py-2 border-blue-300 rounded">View All</button>
+                    <Link to={'/bookCategory'}>
+                        <button className="border text-blue-500 px-6 py-2 border-blue-300 rounded">View All</button>
+                    </Link>
                 </div>
                 <div className="w-full">
                     <Swiper
@@ -49,7 +50,7 @@ const Category = () => {
                             <SwiperSlide key={index}>
                                 <Link to={`/allBooks/${item?.category}`} className="block">
                                     <div>
-                                        <img className='bg-gray-200 rounded-xl p-2 mx-auto' src={item?.image} alt={item?.name} />
+                                        <img className='bg-gray-200 rounded-xl w-5/6 py-4 px-5 mx-auto' src={item?.image} alt={item?.name} />
                                         <h1 className="text-sm mt-5 text-center">{item?.category}</h1>
                                     </div>
                                 </Link>
