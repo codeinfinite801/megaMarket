@@ -18,7 +18,6 @@ const Book = ({ book }) => {
                                 </div>
                             }
                         </div>
-                        <h2>{quantity}</h2>
 
                         {/* Book Title and New Badge */}
                         <div className="text-center">
