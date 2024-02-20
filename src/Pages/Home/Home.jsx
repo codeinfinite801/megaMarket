@@ -1,6 +1,11 @@
+<<<<<<< HEAD
 import HomeOnline from "../../OnlineBook/HomeOnline";
 import OnlineCategory from "../../OnlineBook/OnlineCategory";
+=======
+import BestSeller from "../../BestSeller/BestSeller";
+>>>>>>> 66e6c5685a16fe779ea5b8b91a324520da29d317
 import TeenCategoryBook from "../../teenCategoryBook/TeenCategoryBook";
+import DealsOfTheWeek from "../dealOfWeek/DealsOfWeek";
 import AuthorCategory from "./AuthorCategory/AuthorCategory";
 import Banner from "./Banner/Banner";
 import FiftyPercentBooks from "./Books/FiftyPercentOfferBook/FiftyPercentBooks";
@@ -27,6 +32,8 @@ const Home = () => {
                 <OfferBanner />
                 <NewBooks />
                 <FiftyPercentBooks />
+                <BestSeller />
+                <DealsOfTheWeek />
             </div>
             <MessengerCustomerChat
                 pageId="116564461307986"
