@@ -29,6 +29,14 @@ const Reviews = ({ image, name, productId, rating }) => {
     console.log(data);
     const handleSubmit = (event) => {
         event.preventDefault();
+        if(!userRating){
+            return Swal.fire({
+                icon: "error",
+                title: "Please Give Rating",
+                showConfirmButton: false,
+                timer: 1500
+            });
+        }
         if (!reviewText) {
             return Swal.fire({
                 icon: "error",

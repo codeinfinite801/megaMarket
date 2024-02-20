@@ -20,7 +20,7 @@ const SuperStore = () => {
                     <h1>Super Store Product</h1>
                     <button className="border text-blue-500 px-6 py-2 border-blue-300 rounded">View All </button>
                 </div>
-                <div>
+                <div className="mx-2">
                     <Swiper
                         watchSlidesProgress={true}
                         modules={[Navigation]}
