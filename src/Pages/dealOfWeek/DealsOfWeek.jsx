@@ -100,49 +100,152 @@ const DealsOfTheWeek = () => {
   //add to shoping card  
   const addToCart = (id) => {
     console.log(id);
-    const targetProduct = currentDeals.filter((pruduct) => pruduct._id === id);
+    const targetProduct = currentDeals.filter((product) => product._id === id);
+
     if (targetProduct.length > 0) {
-      const productData = {
-        ...targetProduct[0],
-        email: email,
-      };
-      console.log(productData);
+      const { main_category } = targetProduct[0];
+
+      let productData;
+
+      if (main_category === "Electronics") {
+        const {
+          features,
+          model,
+          isNew,
+          country,
+          color,
+          warranty,
+          discount,
+          rating,
+          quantity,
+          price,
+          main_category,
+          category,
+          brand_logo,
+          name,
+          image,
+          _id,
+        } = targetProduct[0];
+
+        productData = {
+          features,
+          model,
+          isNew,
+          country,
+          color,
+          warranty,
+          discount,
+          rating,
+          quantity,
+          price,
+          main_category,
+          category,
+          brand_logo,
+          name,
+          image,
+          productId: _id,
+          email,
+        };
+      } else if (main_category === "Kids") {
+        const {
+          _id,
+          image,
+          category,
+          brand,
+          brand_logo,
+          discount,
+          isNew,
+          name,
+          rating,
+          quantity,
+          price,
+          features,
+          summary,
+          volume,
+          age,
+          country,
+          product_code,
+          brand_details
+        } = targetProduct[0];
+        const discountedPrice = parseFloat((price - (price * discount) / 100).toFixed(2));
+
+        productData = {
+          productId: _id,
+          email,
+          image, category,
+          brand,
+          brand_logo,
+          discount,
+          isNew,
+          name,
+          rating,
+          quantity,
+          price,
+          features,
+          summary,
+          volume,
+          age,
+          country,
+          product_code,
+          brand_details,
+          count: 1,
+          priceWithDiscount: discountedPrice,
+          discountedPrice: discountedPrice
+        }
+
+      } else {
+        const {
+          _id,
+          name,
+          image,
+          price,
+          author_name,
+          author_image,
+          author_details,
+          category,
+          discount,
+          rating,
+          quantity,
+          read_book,
+          publisher,
+          country,
+          language,
+          isNew,
+          edition_date,
+          total_pages,
+          summary,
+        } = targetProduct[0];
+
+        productData = {
+          productId: _id,
+          email,
+          name,
+          image,
+          price,
+          author_name,
+          author_image,
+          author_details,
+          category,
+          discount,
+          rating,
+          quantity,
+          read_book,
+          publisher,
+          country,
+          language,
+          isNew,
+          edition_date,
+          total_pages,
+          summary,
+          amount: 1,
+          count: 1,
+          // Add other fields as needed
+        };
+      }
 
       // Make the Axios POST request on addProducts by id
       CallAxios.post(`/addProducts/${id}`, productData)
-        .then(res => {
-          console.log(res.data);
-          if (res?.data?.insertedId) {
-            return Swal.fire({
-              position: 'center',
-              icon: 'success',
-              title: 'Product Added On Your card Successfully',
-              showConfirmButton: false,
-              timer: 1500
-            })
-          }
-        })
-        .catch(error => {
-          console.error("Error:", error);
-        });
-    } else {
-      console.log("Product not found");
-    }
-
-  }
-
-  const addOnWishlist = (id) => {
-    const targetProduct = currentDeals.filter((pruduct) => pruduct._id === id);
-    if (targetProduct.length > 0) {
-      const productData = {
-        ...targetProduct[0],
-        email: email,
-      };
-      console.log(productData);
-
-      // Make the Axios POST request on wishlist
-      CallAxios.post("/wishList", productData)
-        .then(res => {
+        .then((res) => {
           console.log(res.data);
           if (res?.data?.insertedId) {
             return Swal.fire({
@@ -150,17 +253,214 @@ const DealsOfTheWeek = () => {
               icon: 'success',
               title: 'Product Added On Your WishList Successfully',
               showConfirmButton: false,
-              timer: 1500
-            })
+              timer: 1500,
+            });
           }
         })
-        .catch(error => {
+        .catch((error) => {
           console.error("Error:", error);
         });
     } else {
       console.log("Product not found");
     }
+
   }
+
+  // const addOnWishlist = (id) => {
+  //   const targetProduct = currentDeals.filter((pruduct) => pruduct._id === id);
+  //   if (targetProduct.length > 0) {
+  //     const productData = {
+  //       ...targetProduct[0],
+  //       email: email,
+  //     };
+  //     console.log(productData);
+
+  //     // Make the Axios POST request on wishlist
+  //     CallAxios.post("/wishList", productData)
+  //       .then(res => {
+  //         console.log(res.data);
+  //         if (res?.data?.insertedId) {
+  //           return Swal.fire({
+  //             position: 'center',
+  //             icon: 'success',
+  //             title: 'Product Added On Your WishList Successfully',
+  //             showConfirmButton: false,
+  //             timer: 1500
+  //           })
+  //         }
+  //       })
+  //       .catch(error => {
+  //         console.error("Error:", error);
+  //       });
+  //   } else {
+  //     console.log("Product not found");
+  //   }
+  // }
+  const addOnWishlist = (id) => {
+    const targetProduct = currentDeals.filter((product) => product._id === id);
+
+    if (targetProduct.length > 0) {
+      const { main_category } = targetProduct[0];
+
+      let productData;
+
+      if (main_category === "Electronics") {
+        const {
+          features,
+          model,
+          isNew,
+          country,
+          color,
+          warranty,
+          discount,
+          rating,
+          quantity,
+          price,
+          main_category,
+          category,
+          brand_logo,
+          name,
+          image,
+          _id,
+        } = targetProduct[0];
+
+        productData = {
+          features,
+          model,
+          isNew,
+          country,
+          color,
+          warranty,
+          discount,
+          rating,
+          quantity,
+          price,
+          main_category,
+          category,
+          brand_logo,
+          name,
+          image,
+          productId: _id,
+          email,
+        };
+      } else if (main_category === "Kids") {
+        const {
+          _id,
+          image,
+          category,
+          brand,
+          brand_logo,
+          discount,
+          isNew,
+          name,
+          rating,
+          quantity,
+          price,
+          features,
+          summary,
+          volume,
+          age,
+          country,
+          product_code,
+          brand_details
+        } = targetProduct[0];
+        const discountedPrice = parseFloat((price - (price * discount) / 100).toFixed(2));
+
+        productData = {
+          productId: _id,
+          email,
+          image, category,
+          brand,
+          brand_logo,
+          discount,
+          isNew,
+          name,
+          rating,
+          quantity,
+          price,
+          features,
+          summary,
+          volume,
+          age,
+          country,
+          product_code,
+          brand_details,
+          count: 1,
+          priceWithDiscount: discountedPrice,
+          discountedPrice: discountedPrice
+        }
+
+      } else {
+        const {
+          _id,
+          name,
+          image,
+          price,
+          author_name,
+          author_image,
+          author_details,
+          category,
+          discount,
+          rating,
+          quantity,
+          read_book,
+          publisher,
+          country,
+          language,
+          isNew,
+          edition_date,
+          total_pages,
+          summary,
+        } = targetProduct[0];
+
+        productData = {
+          productId: _id,
+          email,
+          name,
+          image,
+          price,
+          author_name,
+          author_image,
+          author_details,
+          category,
+          discount,
+          rating,
+          quantity,
+          read_book,
+          publisher,
+          country,
+          language,
+          isNew,
+          edition_date,
+          total_pages,
+          summary,
+          amount: 1,
+          count: 1,
+          // Add other fields as needed
+        };
+      }
+
+      // Make the Axios POST request on wishlist
+      CallAxios.post("/wishList", productData)
+        .then((res) => {
+          console.log(res.data);
+          if (res?.data?.insertedId) {
+            return Swal.fire({
+              position: 'center',
+              icon: 'success',
+              title: 'Product Added On Your WishList Successfully',
+              showConfirmButton: false,
+              timer: 1500,
+            });
+          }
+        })
+        .catch((error) => {
+          console.error("Error:", error);
+        });
+    } else {
+      console.log("Product not found");
+    }
+  };
 
   return (
     <div className='pt-5 pb-10'>
@@ -193,7 +493,7 @@ const DealsOfTheWeek = () => {
           </div>
         </div>
       </div>
-      <div className='grid grid-cols-1  md:grid-cols-2 lg:grid-cols-4 gap-5 pt-10  border-2 rounded-xl border-red-500 '>
+      <div className='grid grid-cols-1  md:grid-cols-2 lg:grid-cols-4 gap-5 p-10  border-2 rounded-xl border-red-500 '>
         {currentDeals.map((deal) => <div key={deal._id} className='flex items-center justify-center'>
           <div className="card w-80 h-96 bg-base-100 relative group">
             <figure className="px-2 pt-4">

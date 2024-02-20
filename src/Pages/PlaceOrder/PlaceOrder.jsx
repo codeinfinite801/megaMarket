@@ -15,7 +15,7 @@ import {FaRegHeart} from "react-icons/fa";
 const PlaceOrder = () => {
     const { user } = useContext(AuthContext);
     const [cart, refetch] = useCarts()
-    // console.log(cart);
+     console.log(cart);
 
     const axiosSecure = useAxiosSecure()
     const totalPrice = cart?.reduce((previousPrice, current) => previousPrice + current?.priceWithDiscount, 0)
@@ -45,6 +45,7 @@ const PlaceOrder = () => {
 
     // delete product
     const handleDelete = async (id) => {
+        console.log(id);
         Swal.fire({
             title: "Are you sure?",
             text: "You won't be able to revert this!",
@@ -117,7 +118,8 @@ const PlaceOrder = () => {
                                                 {/* end */}
                                                 <div className="flex items-center  gap-3 mt-3">
                                                     <button onClick={() => handleDelete(item._id)}><MdDelete className=" text-4xl  text-red-600"/></button>
-                                                    <button className="flex items-center justify-center gap-2"><FaRegHeart className="text-3xl text-pink-500"/><span>WishList</span></button>
+                                                    <Link to={"/wishList"}>
+                                                    <button className="flex items-center justify-center gap-2"><FaRegHeart className="text-3xl text-pink-500"/><span>WishList</span></button></Link>
                                                 </div>
                                                 <h2 className="text-red-800 mt-3 md:text-lg text-sm">Only {item?.quantity} copies available</h2>
                                             </div>
