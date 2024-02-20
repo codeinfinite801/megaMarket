@@ -1,9 +1,9 @@
 import useWishList from "../../Hooks/useWishList";
-import DataTable from 'react-data-table-component';
 import { MdDelete } from "react-icons/md";
 import Swal from "sweetalert2";
 import useAxiosSecure from '../../Hooks/AxiosSecure/useAxiosSecure';
 import { Link } from "react-router-dom";
+import DataTable from "react-data-table-component";
 
 const WishList = () => {
     const [wishList, refetch] = useWishList()
