@@ -50,12 +50,20 @@ const WishList = () => {
             selector: row => row.name
         },
         {
-            name: 'Author Name',
-            selector: row => row.author_name
+            name: 'Author Name/Brand Name',
+             selector: row => row.author_name || row.brand
         },
         {
-            name: 'Author Image',
-            selector: row => <img className='w-10 h-10 rounded-full' src={row.author_image} />
+            name: 'Author Image/Brand Logo',
+            selector: row =>(
+                <>
+                    {row.author_image ? (
+                        <img className='w-10 h-10 rounded-full' src={row.author_image} alt="Author Image" />
+                    ) : (
+                        <img className='w-10 h-10 rounded-full' src={row.brand_logo} alt="Brand Logo" />
+                    )}
+                </>
+            ),
         },
         {
             name: 'Price',
