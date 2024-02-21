@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
-const OnlineCategory = () => {
+const AllCategoryBook = () => {
     const [data, setData] = useState()
     useEffect(() => {
-        fetch('https://maga-market-server-eta.vercel.app/onlineBooks')
+        fetch('https://mega-merket-project-server-site.vercel.app/category')
             .then(res => res.json())
             .then(data => {
                 setData(data)
@@ -33,4 +33,4 @@ const OnlineCategory = () => {
     );
 };
 
-export default OnlineCategory;
+export default AllCategoryBook;

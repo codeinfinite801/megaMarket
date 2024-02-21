@@ -17,14 +17,15 @@ import Payment from "../Pages/Home/Payment/Payment";
 import PaymentHistory from "../Pages/Home/PaymentHistory/PaymentHistory";
 import Dashboard from "../Layout/Dashboard";
 import OrderHistory from "../Pages/dashboard/OrderHisory/OrderHistory";
-import ManageUser from "../Pages/dashboard/ManageUser/ManageUser";
+import OnlineCategory from "../OnlineBook/OnlineCategory";
 import ManageOrder from "../Pages/dashboard/ManageOrder/ManageOrder";
+import ManageUser from "../Pages/dashboard/ManageUser/ManageUser";
 import AddBooks from "../Pages/dashboard/AddProduct/AddBooks";
 import AddElectronicProduct from "../Pages/dashboard/AddProduct/AddElectronicProduct";
 import AddKidsProduct from "../Pages/dashboard/AddProduct/AddKidsProduct";
-import OnlineCategory from "../OnlineBook/OnlineCategory";
 import OnlineBook from "../OnlineBook/OnlineBook";
 import WishList from "../Pages/WishList/WishList";
+import AllCategoryBook from "../Pages/Home/Books/AllCategoryBook";
 
 
 const router = createBrowserRouter([
@@ -93,6 +94,10 @@ const router = createBrowserRouter([
       {
         path: '/onlineBook/:id',
         element: <OnlineBook></OnlineBook>
+      },
+      {
+        path: '/bookCategory',
+        element: <AllCategoryBook></AllCategoryBook>
       },
       {
         path:'/wishList',
