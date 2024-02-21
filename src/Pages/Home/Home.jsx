@@ -35,9 +35,8 @@ const Home = () => {
                 <DealsOfTheWeek />
             </div>
             <MessengerCustomerChat
-                pageId="116564461307986"
-                appId="776261943865528"
-                htmlRef="<REF_STRING>"
+                pageId="248828441646086"
+                appId="262374086807254"
             />
         </div>
     );
