@@ -2,7 +2,7 @@ import { Link, Outlet, useNavigate } from "react-router-dom";
 import useAuth from "../Hooks/useAuth";
 import { FaArrowRight, FaHome, FaUser  } from "react-icons/fa";
 import { GiLoveHowl,GiBabyBottle } from "react-icons/gi";
-import { MdPayments, MdPostAdd,MdMenuBook  } from "react-icons/md";
+import { MdPayments,MdMenuBook  } from "react-icons/md";
 import { FcTwoSmartphones } from "react-icons/fc";
 import { IoMdLogOut } from "react-icons/io";
 import { useState } from "react";
@@ -102,7 +102,6 @@ const Dashboard = () => {
               {isAdmin ? (
                 <ul className="">
                   <li>
-                    {/* <FaArrowRight className="text-xl" /> */}
                     <Link
                       to={"/dashboard/manage-order"}
                       className="flex items-center gap-2 mb-3"
@@ -113,7 +112,7 @@ const Dashboard = () => {
                   </li>
 
                   <li>
-                    {/* <FaArrowRight className="text-xl" /> */}
+                 
                     <Link
                       to={"/dashboard/add-books"}
                       className="flex items-center gap-2 mb-3"
@@ -124,7 +123,6 @@ const Dashboard = () => {
                   </li>
 
                   <li>
-                    {/* <FaArrowRight className="text-xl" /> */}
                     <Link
                       to={"/dashboard/add-electronic"}
                       className="flex items-center gap-2 mb-3"
@@ -135,7 +133,6 @@ const Dashboard = () => {
                   </li>
 
                   <li>
-                    {/* <FaArrowRight className="text-xl" /> */}
                     <Link
                       to={"/dashboard/add-kisdsProduct"}
                       className="flex items-center gap-2 mb-3"
@@ -234,7 +231,6 @@ const Dashboard = () => {
             {isAdmin ? (
               <ul className="menu p-4 w-80 min-h-full bg-base-200">
                 <li>
-                  {/* <FaArrowRight className="text-xl" /> */}
                   <Link
                     to={"/dashboard/manage-order"}
                     className="flex items-center gap-2 mb-3"
@@ -244,7 +240,6 @@ const Dashboard = () => {
                   </Link>
                 </li>
                 <li>
-                    {/* <FaArrowRight className="text-xl" /> */}
                     <Link
                       to={"/dashboard/add-books"}
                       className="flex items-center gap-2 mb-3"
@@ -254,7 +249,6 @@ const Dashboard = () => {
                     </Link>
                   </li>
                   <li>
-                    {/* <FaArrowRight className="text-xl" /> */}
                     <Link
                       to={"/dashboard/add-electronic"}
                       className="flex items-center gap-2 mb-3"
@@ -264,7 +258,6 @@ const Dashboard = () => {
                     </Link>
                   </li>
                   <li>
-                    {/* <FaArrowRight className="text-xl" /> */}
                     <Link
                       to={"/dashboard/add-kisdsProduct"}
                       className="flex items-center gap-2 mb-3"

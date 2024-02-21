@@ -32,6 +32,7 @@
     "react-rating-stars-component": "^2.2.0",
     "react-router-dom": "^6.21.2",
     "react-toastify": "^10.0.3",
+    "recharts": "^2.12.1",
     "sort-by": "^0.0.2",
     "stripe": "^14.14.0",
     "sweetalert": "^2.1.2",
