@@ -234,15 +234,18 @@ const Dashboard = () => {
                   <Link
                     to={"/dashboard/manage-order"}
                     className="flex items-center gap-2 mb-3"
+                    onClick={()=>setOpen(!open)}
                   >
                     <img className="w-5 h-5" src={manageOderIcon} alt="" />
                     Manage Order
+                   
                   </Link>
                 </li>
                 <li>
                     <Link
                       to={"/dashboard/add-books"}
                       className="flex items-center gap-2 mb-3"
+                      onClick={()=>setOpen(!open)}
                     >
                       <MdMenuBook  className="text-2xl text-red-400" />
                       Add Books
@@ -255,12 +258,14 @@ const Dashboard = () => {
                     >
                       <FcTwoSmartphones className="text-2xl" />
                      Add Electronic Product
+                     onClick={()=>setOpen(!open)}
                     </Link>
                   </li>
                   <li>
                     <Link
                       to={"/dashboard/add-kisdsProduct"}
                       className="flex items-center gap-2 mb-3"
+                      onClick={()=>setOpen(!open)}
                     >
                       <GiBabyBottle  className="text-2xl text-red-500" />
                       Add kids product
@@ -270,6 +275,7 @@ const Dashboard = () => {
                   <Link
                     to={"/dashboard/manage-user"}
                     className="flex items-center gap-2 mb-3"
+                    onClick={()=>setOpen(!open)}
                   >
                     <FaUser className="text-xl text-blue-500" />
                     Manage User

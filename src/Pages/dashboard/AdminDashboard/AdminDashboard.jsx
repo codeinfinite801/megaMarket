@@ -49,12 +49,12 @@ const AdminDashboard = () => {
   return (
     <div>
         <div className="bg-[#FF5001] w-full h-24 -mt-4 flex items-center justify-center">
-        <p className="flex input input-bordered w-full max-w-2xl items-center gap-3">
+        <p className="flex input input-bordered md:w-full max-w-2xl items-center gap-3">
         <FaSearch/>
         <input type="text" placeholder="Search here" className="" />
         </p>
         </div>
-      <div className="grid grid-cols-2 gap-8 p-5">
+      <div className="grid md:grid-cols-2 gap-8 p-5">
         <div className="shadow-lg">
           <h2 className="mt-3 text-4xl font-bold">
             Total Sales
