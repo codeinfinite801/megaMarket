@@ -57,7 +57,7 @@ const Dashboard = () => {
         <input id="my-drawer-3" type="checkbox" className="drawer-toggle" />
         <div className="drawer-content flex md:flex-row flex-col">
           {/* Navbar */}
-          <div className="md:w-72 p-5 text-center  bg-[#F2F2F2] md:min-h-screen">
+          <div className="md:w-72 p-5 text-center  bg-[#2B3B4A] text-white md:min-h-screen">
             <div className="flex lg:hidden">
               <label
                 htmlFor="my-drawer-3"
