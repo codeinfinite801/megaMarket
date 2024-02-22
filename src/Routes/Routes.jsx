@@ -27,6 +27,10 @@ import OnlineBook from "../OnlineBook/OnlineBook";
 import WishList from "../Pages/WishList/WishList";
 import AllCategoryBook from "../Pages/Home/Books/AllCategoryBook";
 import AdminDashboard from "../Pages/dashboard/AdminDashboard/AdminDashboard";
+import UserHome from "../Pages/dashboard/UserHome/UserHome";
+
+
+
 
 
 const router = createBrowserRouter([
@@ -141,7 +145,11 @@ const router = createBrowserRouter([
       {
         path:'admin',
         element:<AdminDashboard/>
-      }
+      },
+     {
+      path:'user',
+      element:<UserHome/>
+     }
     ],
   },
 ]);

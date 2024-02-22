@@ -100,7 +100,7 @@ const Navbar = () => {
                   <li>
                     {user && (
                       <Link
-                        to={"dashboard"}
+                        to={"dashboard/user"}
                         className="justify-between font-bold"
                       >
                         Dashboard

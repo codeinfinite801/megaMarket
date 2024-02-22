@@ -191,7 +191,7 @@ const Dashboard = () => {
                   <li>
                     {/* <GiLoveHowl className="text-xl" /> */}
                     <Link
-                      to={"/dashboard/order-history"}
+                      to={"/wishList"}
                       className="flex items-center gap-2 mb-3"
                     >
                       <GiLoveHowl className="text-red-600 text-xl" /> Wish List
