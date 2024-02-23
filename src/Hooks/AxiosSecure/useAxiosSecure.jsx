@@ -1,7 +1,8 @@
 import axios from "axios";
 
 const axiosSecure = axios.create({
-    baseURL: "https://maga-market-server-eta.vercel.app"
+    // baseURL: "https://maga-market-server-eta.vercel.app"
+    baseURL: "http://localhost:5000"
 });
 
 const useAxiosSecure = () => {

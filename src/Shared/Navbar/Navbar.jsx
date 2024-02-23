@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { FaSearch, FaShoppingCart } from "react-icons/fa";
 import { GoChecklist } from "react-icons/go";
 import { Link } from "react-router-dom";
@@ -7,15 +7,34 @@ import useCarts from "../../Hooks/useCarts";
 import useWishList from "../../Hooks/useWishList";
 
 const Navbar = () => {
+  const [allBooks, setAllBooks] = useState([]);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [show, setShow] = useState(true)
+  console.log(show);
   const { user, logOut } = useContext(AuthContext);
   const signOut = () => {
     logOut();
   };
 
-  //
-  const [cart] = useCarts();
-  const [wishList]=useWishList();
 
+
+  useEffect(() => {
+    fetch("http://localhost:5000/allbooks")
+      .then((res) => res.json())
+      .then((data) => setAllBooks(data));
+  }, []);
+
+  const [cart] = useCarts();
+  const [wishList] = useWishList();
+
+  // Filter books based on search query
+  const filteredBooks = allBooks.filter((book) =>
+    book.name.toLowerCase().includes(searchQuery.toLowerCase())
+  );
+  console.log(filteredBooks);
+  const handleSearch = (e) => {
+    setSearchQuery(e.target.value)
+  }
   return (
     <div>
       {/* Desktop Navbar */}
@@ -34,32 +53,65 @@ const Navbar = () => {
             <select className="border py-3 px-2 rounded bg-white">
               <option value="category1">All</option>
               <option value="category2">Books</option>
-              <option value="category2">SuperStore</option>
+              <option value="category3">SuperStore</option>
             </select>
             <input
               type="text"
+              onBlur={() => setShow(!show)}
+              onSelect={() => setShow(true)}
               placeholder="Search..."
               className="border p-2 rounded-l w-full ml-2"
+              value={searchQuery}
+
+              onChange={handleSearch}
             />
             <span className="bg-sky-400 p-3 rounded-r">
               <FaSearch className="text-white"></FaSearch>
             </span>
           </div>
+          {
+            show && <div className="relative">
+              <div className={`absolute w-full bg-white z-10 rounded-lg ${searchQuery.length === 0 ? 'hidden' : 'block'}`} style={{ maxHeight: '500px', overflowY: 'auto' }}>
+                <div className="">
+                  <div className="flex flex-col gap-4">
+                    {filteredBooks?.map(book => (
+                      <Link to={`/bookDetails/${book?._id}`} key={book?._id} >
+                        <div className="flex hover:bg-gray-200 px-4 py-2 text-black gap-5 items-center justify-between">
+                          <div className="flex items-center gap-5">
+                            <img className="w-14" src={book?.image} alt="" />
+                            <div>
+                              <h1>{book?.name}</h1>
+                              <p className="text-gray-500">{book?.author_name}</p>
+                            </div>
+                          </div>
+                          <div className="flex items-center gap-5">
+                            <p className="text-red-600">({book?.discount})% Off</p>
+                            <p>{book?.price} TK</p>
+                          </div>
+                        </div>
+                      </Link>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+          }
+
         </div>
         {/* Cart Icon */}
         <div className="flex items-center justify-center  space-x-6 w-3/12">
           <Link to={"/wishList"}>
-          <div className="indicator">
-          <GoChecklist  className="text-4xl  hover:text-pink-500 font-semibold"></GoChecklist >
-          <span className="badge badge-md badge-secondary indicator-item">{wishList.length}</span>
-        </div>
+            <div className="indicator">
+              <GoChecklist className="text-4xl  hover:text-pink-500 font-semibold"></GoChecklist >
+              <span className="badge badge-md badge-secondary indicator-item">{wishList.length}</span>
+            </div>
           </Link>
 
           <Link to={"/placeOrder"}>
-          <div className="indicator">
-          <FaShoppingCart className="text-4xl hover:text-blue-500 font-semibold"></FaShoppingCart>
-          <span className="badge badge-md badge-info indicator-item">{cart.length}</span>
-        </div>
+            <div className="indicator">
+              <FaShoppingCart className="text-4xl hover:text-blue-500 font-semibold"></FaShoppingCart>
+              <span className="badge badge-md badge-info indicator-item">{cart.length}</span>
+            </div>
           </Link>
           {user && user?.email ? (
             <div className="dropdown dropdown-end z-10">
@@ -108,20 +160,19 @@ const Navbar = () => {
             />
           </Link>
           <div className="flex items-center space-x-4">
-          <Link to={"/wishList"}>
-          <div className="indicator">
-          <GoChecklist  className="text-4xl  hover:text-pink-500 font-semibold"></GoChecklist >
-          <span className="badge badge-md badge-secondary indicator-item">{wishList.length}</span>
-        </div>
-          </Link>
+            <Link to={"/wishList"}>
+              <div className="indicator">
+                <GoChecklist className="text-4xl  hover:text-pink-500 font-semibold"></GoChecklist >
+                <span className="badge badge-md badge-secondary indicator-item">{wishList.length}</span>
+              </div>
+            </Link>
 
             <Link to={"/placeOrder"}>
-          <div className="indicator">
-          <FaShoppingCart className="text-4xl hover:text-blue-500 font-semibold"></FaShoppingCart>
-          <span className="badge badge-md badge-info indicator-item">{cart.length}</span>
-        </div>
-          </Link>
-            {/* <span><FaShoppingCart className="text-3xl font-bold"></FaShoppingCart></span> */}
+              <div className="indicator">
+                <FaShoppingCart className="text-4xl hover:text-blue-500 font-semibold"></FaShoppingCart>
+                <span className="badge badge-md badge-info indicator-item">{cart.length}</span>
+              </div>
+            </Link>
             {user && user?.email ? (
               <div className="dropdown dropdown-end z-10">
                 <div
@@ -171,14 +222,46 @@ const Navbar = () => {
             <input
               type="text"
               placeholder="Search..."
-              className="border p-2 rounded w-full"
+              className="border p-2 rounded-l w-full ml-2"
+              value={searchQuery}
+              onBlur={() => setShow(false)}
+              onSelect={() => setShow(true)}
+              onChange={handleSearch}
             />
             <span className="bg-sky-400 p-3 rounded-r-sm">
               <FaSearch className="text-white"></FaSearch>
             </span>
           </div>
+          <div>
+            <div className="relative">
+              <div className={`absolute w-full bg-white z-10 rounded-lg ${searchQuery.length === 0 ? 'hidden' : 'block'}`} style={{ maxHeight: '300px', overflowY: 'auto' }}>
+                <div className="">
+                  <div className="flex flex-col gap-4">
+                    {filteredBooks?.map(book => (
+                      <Link to={`/bookDetails/${book?._id}`} key={book?._id} >
+                        <div className="flex hover:bg-gray-200 px-4 py-2 text-black gap-5 items-center justify-between">
+                          <div className="flex items-center gap-5">
+                            <img className="w-14" src={book?.image} alt="" />
+                            <div>
+                              <h1>{book?.name}</h1>
+                              <p className="text-gray-500">{book?.author_name}</p>
+                            </div>
+                          </div>
+                          <div className="flex items-center gap-5">
+                            <p className="text-red-600">({book?.discount})% Off</p>
+                            <p>{book?.price} TK</p>
+                          </div>
+                        </div>
+                      </Link>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
+
     </div>
   );
 };

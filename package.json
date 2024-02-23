@@ -31,6 +31,8 @@
     "react-query": "^3.39.3",
     "react-rating-stars-component": "^2.2.0",
     "react-router-dom": "^6.21.2",
+    "react-search-bar": "^2.2.0",
+    "react-search-box": "^3.0.0",
     "react-toastify": "^10.0.3",
     "sort-by": "^0.0.2",
     "stripe": "^14.14.0",
