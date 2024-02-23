@@ -1,15 +1,15 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
-export const bookApi = createApi({
-  reducerPath: "bookApi",
+export const categoryApi = createApi({
+  reducerPath: "categoryApi",
   baseQuery: fetchBaseQuery({
     baseUrl: "https://maga-market-server-eta.vercel.app",
   }),
   endpoints: (builder) => ({
-    getBooks: builder.query({
+    getCategory: builder.query({
       query: () => {
         return {
-          url: "/allBooks",
+          url: `/category`,
           method: "GET",
         };
       },
@@ -17,4 +17,4 @@ export const bookApi = createApi({
   }),
 });
 
-export const { useGetBooksQuery } = bookApi;
+export const { useGetCategoryQuery } = categoryApi;

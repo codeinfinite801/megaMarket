@@ -3,7 +3,6 @@ import { useParams } from "react-router-dom";
 import Book from "../Book/Book";
 import useBooks from "../../../Hooks/useBooks";
 
-
 const Books = () => {
     const { category } = useParams();
     const { data } = useBooks({ category })
