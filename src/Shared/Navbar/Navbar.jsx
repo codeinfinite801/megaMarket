@@ -10,7 +10,8 @@ const Navbar = () => {
   const [allBooks, setAllBooks] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
   const [show, setShow] = useState(true)
-  console.log(show);
+  const [search, setSearch] = useState('All')
+  console.log(allBooks);
   const { user, logOut } = useContext(AuthContext);
   const signOut = () => {
     logOut();
@@ -19,10 +20,10 @@ const Navbar = () => {
 
 
   useEffect(() => {
-    fetch("http://localhost:5000/allbooks")
+    fetch(`http://localhost:5000/search?category=${search}`)
       .then((res) => res.json())
       .then((data) => setAllBooks(data));
-  }, []);
+  }, [search]);
 
   const [cart] = useCarts();
   const [wishList] = useWishList();
@@ -35,6 +36,10 @@ const Navbar = () => {
   const handleSearch = (e) => {
     setSearchQuery(e.target.value)
   }
+  const handleValue = (event) => {
+    const selectedCategory = event.target.value;
+    setSearch(selectedCategory)
+  };
   return (
     <div>
       {/* Desktop Navbar */}
@@ -50,10 +55,10 @@ const Navbar = () => {
         </div>
         <div className="w-8/12">
           <div className="flex items-center">
-            <select className="border py-3 px-2 rounded bg-white">
-              <option value="category1">All</option>
-              <option value="category2">Books</option>
-              <option value="category3">SuperStore</option>
+            <select onChange={handleValue} className="border py-3 px-2 rounded bg-white">
+              <option value="All">All</option>
+              <option value="Books">Books</option>
+              <option value="SuperStore">SuperStore</option>
             </select>
             <input
               type="text"
