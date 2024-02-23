@@ -5,16 +5,18 @@ import { Link } from "react-router-dom";
 import { AuthContext } from "../../provider/AuthProvider";
 import useCarts from "../../Hooks/useCarts";
 import useWishList from "../../Hooks/useWishList";
+import useAdmin from "../../Hooks/useAdmin";
 
 const Navbar = () => {
   const { user, logOut } = useContext(AuthContext);
+  const [isAdmin] = useAdmin();
   const signOut = () => {
     logOut();
   };
 
   //
   const [cart] = useCarts();
-  const [wishList]=useWishList();
+  const [wishList] = useWishList();
 
   return (
     <div>
@@ -49,17 +51,21 @@ const Navbar = () => {
         {/* Cart Icon */}
         <div className="flex items-center justify-center  space-x-6 w-3/12">
           <Link to={"/wishList"}>
-          <div className="indicator">
-          <GoChecklist  className="text-4xl  hover:text-pink-500 font-semibold"></GoChecklist >
-          <span className="badge badge-md badge-secondary indicator-item">{wishList.length}</span>
-        </div>
+            <div className="indicator">
+              <GoChecklist className="text-4xl  hover:text-pink-500 font-semibold"></GoChecklist>
+              <span className="badge badge-md badge-secondary indicator-item">
+                {wishList.length}
+              </span>
+            </div>
           </Link>
 
           <Link to={"/placeOrder"}>
-          <div className="indicator">
-          <FaShoppingCart className="text-4xl hover:text-blue-500 font-semibold"></FaShoppingCart>
-          <span className="badge badge-md badge-info indicator-item">{cart.length}</span>
-        </div>
+            <div className="indicator">
+              <FaShoppingCart className="text-4xl hover:text-blue-500 font-semibold"></FaShoppingCart>
+              <span className="badge badge-md badge-info indicator-item">
+                {cart.length}
+              </span>
+            </div>
           </Link>
           {user && user?.email ? (
             <div className="dropdown dropdown-end z-10">
@@ -79,9 +85,29 @@ const Navbar = () => {
                 tabIndex={0}
                 className="menu menu-sm dropdown-content mt-3 z-[2] p-2 shadow bg-base-100 rounded-box w-52 space-y-1"
               >
-                <li>
-                  {user && <Link to={'dashboard'} className="justify-between font-bold">Dashboard</Link>}
-                </li>
+                {user && isAdmin ? (
+                  <li>
+                    {user && (
+                      <Link
+                        to={"dashboard/admin"}
+                        className="justify-between font-bold"
+                      >
+                        Dashboard
+                      </Link>
+                    )}
+                  </li>
+                ) : (
+                  <li>
+                    {user && (
+                      <Link
+                        to={"dashboard/user"}
+                        className="justify-between font-bold"
+                      >
+                        Dashboard
+                      </Link>
+                    )}
+                  </li>
+                )}
                 <li>
                   <button onClick={signOut}>Logout</button>
                 </li>
@@ -108,19 +134,23 @@ const Navbar = () => {
             />
           </Link>
           <div className="flex items-center space-x-4">
-          <Link to={"/wishList"}>
-          <div className="indicator">
-          <GoChecklist  className="text-4xl  hover:text-pink-500 font-semibold"></GoChecklist >
-          <span className="badge badge-md badge-secondary indicator-item">{wishList.length}</span>
-        </div>
-          </Link>
+            <Link to={"/wishList"}>
+              <div className="indicator">
+                <GoChecklist className="text-4xl  hover:text-pink-500 font-semibold"></GoChecklist>
+                <span className="badge badge-md badge-secondary indicator-item">
+                  {wishList.length}
+                </span>
+              </div>
+            </Link>
 
             <Link to={"/placeOrder"}>
-          <div className="indicator">
-          <FaShoppingCart className="text-4xl hover:text-blue-500 font-semibold"></FaShoppingCart>
-          <span className="badge badge-md badge-info indicator-item">{cart.length}</span>
-        </div>
-          </Link>
+              <div className="indicator">
+                <FaShoppingCart className="text-4xl hover:text-blue-500 font-semibold"></FaShoppingCart>
+                <span className="badge badge-md badge-info indicator-item">
+                  {cart.length}
+                </span>
+              </div>
+            </Link>
             {/* <span><FaShoppingCart className="text-3xl font-bold"></FaShoppingCart></span> */}
             {user && user?.email ? (
               <div className="dropdown dropdown-end z-10">
