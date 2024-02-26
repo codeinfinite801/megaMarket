@@ -9,7 +9,7 @@ import { Link } from "react-router-dom";
 const KidsProduct = () => {
     const [categories, setCategories] = useState([])
     useEffect(() => {
-        fetch('https://maga-market-server-eta.vercel.app/kidsCategory')
+        fetch('https://mega-merket-project-server-site.vercel.app/kidsCategory')
             .then(res => res.json())
             .then(data => setCategories(data))
     }, [])
