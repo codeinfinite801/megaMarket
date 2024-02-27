@@ -10,7 +10,7 @@ const AuthorBooks = () => {
     console.log(data);
     
     useEffect(() => {
-        fetch('https://maga-market-server-eta.vercel.app/allbooks')
+        fetch('https://mega-merket-project-server-site.vercel.app/allbooks')
             .then(res => res.json())
             .then(data => {
                 const filteredCategories = data.filter(item => item.author_name === author);

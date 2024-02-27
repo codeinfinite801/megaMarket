@@ -26,7 +26,7 @@ console.log(productData);
     const { data } = useBooks({ category })
 
     useEffect(() => {
-        fetch(`https://maga-market-server-eta.vercel.app/allBooks/${id}`)
+        fetch(`https://mega-merket-project-server-site.vercel.app/allBooks/${id}`)
             .then(res => res.json())
             .then(data => setBook(data))
     }, [id])
