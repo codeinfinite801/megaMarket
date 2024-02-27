@@ -12,7 +12,7 @@ const NewBooks = () => {
   const [newBooks, setNewBooks] = useState([]);
   useEffect(() => {
     axios
-      .get("https://maga-market-server-eta.vercel.app/allBooks")
+      .get("https://mega-merket-project-server-site.vercel.app/allBooks")
       .then((res) => setNewBooks(res?.data));
   }, []);
   return (

@@ -29,7 +29,7 @@ const KidsDetails = () => {
     const CallAxios = useAxiosSecure()
     // console.log(data)
     useEffect(() => {
-        fetch(`https://maga-market-server-eta.vercel.app/kidsZone/${id}`)
+        fetch(`https://mega-merket-project-server-site.vercel.app/kidsZone/${id}`)
             .then(res => res.json())
             .then(data => setKid(data))
     }, [])

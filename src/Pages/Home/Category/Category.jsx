@@ -43,7 +43,7 @@ const Category = () => {
             }}
             className="mySwiper"
           >
-            {categories.map((item, index) => (
+            {categories?.map((item, index) => (
               <SwiperSlide key={index}>
                 <Link to={`/allBooks/${item?.category}`} className="block">
                   <div>
