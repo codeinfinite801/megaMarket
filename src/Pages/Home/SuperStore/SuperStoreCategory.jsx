@@ -21,7 +21,7 @@ const SuperStoreCategory = () => {
                 setData(allData)
                 console.log(allData);
             })
-    }, []);
+    }, [axiosSecure,category]);
     return (
         <div className="px-5 my-16">
             <div className="grid grid-cols-12 gap-2">

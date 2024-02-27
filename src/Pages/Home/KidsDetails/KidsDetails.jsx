@@ -32,7 +32,7 @@ const KidsDetails = () => {
         fetch(`http://localhost:5000/kidsZone/${id}`)
             .then(res => res.json())
             .then(data => setKid(data))
-    }, [])
+    }, [id])
 
     const handleIndex = (i) => {
         setIndex(i)
