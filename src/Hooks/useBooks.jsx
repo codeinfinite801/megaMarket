@@ -4,7 +4,7 @@ import useAxiosSecure from "./AxiosSecure/useAxiosSecure";
 const useBooks = ({ category }) => {
   const axiosSecure = useAxiosSecure();
 
-
+  console.log(category)
   const { data, error, isError, isLoading, refetch } = useQuery({
     queryKey: ["books", category],
     queryFn: async () => {

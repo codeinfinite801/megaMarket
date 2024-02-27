@@ -8,7 +8,7 @@ const KidsZones = () => {
     const [kids, setKids] = useState([]);
 
     useEffect(() => {
-        fetch(`https://mega-merket-project-server-site.vercel.app/kidsZone?category=${category}`)
+        fetch(`http://localhost:5000/kidsZone?category=${category}`)
             .then(res => res.json())
             .then(data => setKids(data))
     }, [category])

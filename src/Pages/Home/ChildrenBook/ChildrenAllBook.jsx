@@ -49,7 +49,7 @@ const ChildrenAllBook = () => {
     useEffect(() => {
         let cancelRequest = false;
 
-        fetch('https://mega-merket-project-server-site.vercel.app/allbooks')
+        fetch('http://localhost:5000/allbooks')
             .then((response) => response.json())
             .then((data) => {
                 if (!cancelRequest) {

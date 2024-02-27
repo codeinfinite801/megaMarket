@@ -6,7 +6,7 @@ const Popular = () => {
 
     const [categories, setCategories] = useState([])
     useEffect(() => {
-        fetch('https://mega-merket-project-server-site.vercel.app/allBooks')
+        fetch('http://localhost:5000/allBooks')
             .then(res => res.json())
             .then(data => setCategories(data))
     }, [])
