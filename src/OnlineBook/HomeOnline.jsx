@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 const HomeOnline = () => {
     const [data, setData] = useState()
     useEffect(() => {
-        fetch('https://maga-market-server-eta.vercel.app/onlineBooks')
+        fetch('http://localhost:5000/onlineBooks')
             .then(res => res.json())
             .then(data => {
                 setData(data)

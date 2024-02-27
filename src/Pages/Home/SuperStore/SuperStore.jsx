@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 const SuperStore = () => {
     const [categories, setCategories] = useState([])
     useEffect(() => {
-        fetch('https://maga-market-server-eta.vercel.app/superstore')
+        fetch('http://localhost:5000/superstore')
             .then(res => res.json())
             .then(data => setCategories(data))
     }, [])

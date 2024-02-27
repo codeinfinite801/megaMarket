@@ -23,7 +23,7 @@ const FiftyPercentBooks = () => {
   useEffect(() => {
     const fetchData = async () => {
       const response = await axios.get(
-        "https://maga-market-server-eta.vercel.app/allBooks"
+        "http://localhost:5000/allBooks"
       );
       const jsonData = response?.data;
       const filteredData = jsonData.filter((item) =>

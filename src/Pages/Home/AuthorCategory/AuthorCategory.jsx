@@ -8,7 +8,7 @@ const AuthorCategory = () => {
     const [categories, setCategories] = useState([]);
 
     useEffect(() => {
-        fetch('https://maga-market-server-eta.vercel.app/allbooks')
+        fetch('http://localhost:5000/allbooks')
             .then(res => res.json())
             .then(data => {
                 const uniqueAuthors = data.reduce((acc, curr) => {

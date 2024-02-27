@@ -12,7 +12,7 @@ const NewBooks = () => {
   const [newBooks, setNewBooks] = useState([]);
   useEffect(() => {
     axios
-      .get("https://maga-market-server-eta.vercel.app/allBooks")
+      .get("http://localhost:5000/allBooks")
       .then((res) => setNewBooks(res?.data));
   }, []);
   return (

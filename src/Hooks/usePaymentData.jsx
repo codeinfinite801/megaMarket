@@ -8,7 +8,7 @@ const usePaymentData = () => {
     queryKey: ["paymentHistory", user?.email],
     queryFn: async () => {
       const res = await axios.get(
-        `https://maga-market-server-eta.vercel.app/payments?email=${user.email}`
+        `http://localhost:5000/payments?email=${user.email}`
       );
       return res.data;
     },

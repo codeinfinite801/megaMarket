@@ -69,7 +69,7 @@ const CheckoutForm = ({ paymentFormInfo }) => {
     if (totalPayablePrice > 0) {
       axios
         .post(
-          "https://maga-market-server-eta.vercel.app/create-payment-intent",
+          "http://localhost:5000/create-payment-intent",
           { price: totalPayablePrice }
         )
         .then((res) => {
@@ -140,7 +140,7 @@ const CheckoutForm = ({ paymentFormInfo }) => {
           status: "pending",
         };
         const res = await axios.post(
-          "https://maga-market-server-eta.vercel.app/payments",
+          "http://localhost:5000/payments",
           paymentInfo
         );
         if (

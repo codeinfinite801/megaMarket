@@ -3,7 +3,7 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 export const categoryApi = createApi({
   reducerPath: "categoryApi",
   baseQuery: fetchBaseQuery({
-    baseUrl: "https://maga-market-server-eta.vercel.app",
+    baseUrl: "http://localhost:5000",
   }),
   endpoints: (builder) => ({
     getCategory: builder.query({
