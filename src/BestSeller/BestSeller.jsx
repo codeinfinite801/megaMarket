@@ -58,7 +58,7 @@ const BestSeller = () => {
                             role="tabpanel"
                             aria-labelledby="dashboard-tab"
                         >
-                            <p className="text-sm text-gray-500 dark:text-gray-400"><NewBooks></NewBooks></p>
+                            <p><NewBooks></NewBooks></p>
                         </div>
                     </div>
                 </div>

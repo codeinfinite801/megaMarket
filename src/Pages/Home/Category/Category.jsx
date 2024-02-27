@@ -7,6 +7,7 @@ import { useGetCategoryQuery } from "../../../redux/api/api";
 
 const Category = () => {
   const { data: categories } = useGetCategoryQuery();
+  // console.log(categories);
   return (
     <div className="my-5 bg-white">
       <div>
