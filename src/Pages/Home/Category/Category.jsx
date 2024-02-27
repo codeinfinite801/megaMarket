@@ -7,6 +7,7 @@ import { useGetCategoryQuery } from "../../../redux/api/api";
 
 const Category = () => {
   const { data: categories } = useGetCategoryQuery();
+  // console.log(categories);
   return (
     <div className="my-5 bg-white">
       <div>
@@ -43,7 +44,7 @@ const Category = () => {
             }}
             className="mySwiper"
           >
-            {categories.map((item, index) => (
+            {categories?.map((item, index) => (
               <SwiperSlide key={index}>
                 <Link to={`/allBooks/${item?.category}`} className="block">
                   <div>

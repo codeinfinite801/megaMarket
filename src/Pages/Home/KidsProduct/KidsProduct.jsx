@@ -38,29 +38,6 @@ const KidsProduct = () => {
                             })
                         }
                     </div>
-                    {/* <Swiper
-                    watchSlidesProgress={true}
-                    modules={[Navigation]}
-                    slidesPerView={2}
-
-                    navigation={{
-                        nextEl: '.swiper-button-next',
-                        prevEl: '.swiper-button-prev',
-                    }}
-                    breakpoints={{
-                        768: {
-                            slidesPerView: 3
-                        },
-                        1280: {
-                            slidesPerView: 6
-                        }
-                    }}
-                    className="mySwiper"
-                >
-                   
-                    <div className="swiper-button-prev"></div>
-                    <div className="swiper-button-next"></div>
-                </Swiper> */}
 
                 </div>
             </div>

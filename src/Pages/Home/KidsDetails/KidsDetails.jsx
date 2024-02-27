@@ -32,7 +32,7 @@ const KidsDetails = () => {
         fetch(`https://maga-market-server-eta.vercel.app/kidsZone/${id}`)
             .then(res => res.json())
             .then(data => setKid(data))
-    }, [])
+    }, [id])
 
     const handleIndex = (i) => {
         setIndex(i)

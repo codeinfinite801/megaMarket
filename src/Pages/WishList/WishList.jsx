@@ -34,7 +34,6 @@ const WishList = () => {
                     }
                 } catch (error) {
                     console.error("Error deleting item:", error.message);
-                    // Handle error state
                 }
             }
         });

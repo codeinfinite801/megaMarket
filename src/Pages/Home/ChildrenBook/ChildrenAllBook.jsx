@@ -10,11 +10,7 @@ const ChildrenAllBook = () => {
     const [bestSell, setBestSell] = useState('');
     const [discount, setDiscount] = useState('');
 
-    console.log(bestSell);
-    console.log(discount);
-    console.log(sorting);
-    console.log(authors);
-    console.log(childrensBooks);
+
 
     const applySorting = (books, sortingType, comparator) => {
         if (sortingType) {
@@ -49,7 +45,7 @@ const ChildrenAllBook = () => {
     useEffect(() => {
         let cancelRequest = false;
 
-        fetch('https://mega-merket-project-server-site.vercel.app/allbooks')
+        fetch('https://maga-market-server-eta.vercel.app/allBooks')
             .then((response) => response.json())
             .then((data) => {
                 if (!cancelRequest) {
@@ -118,45 +114,6 @@ const ChildrenAllBook = () => {
         setChildrensBooks(sortedDiscountBooks);
       }, [sorting, bestSell, discount, childrensBooks, authors]);
       
-    // useEffect(() => {
-        
-    //     applySorting(childrensBooks, sorting, (bookA, bookB) => {
-    //         const priceA = bookA.price;
-    //         const priceB = bookB.price;
-
-    //         if (sorting === 'asc') {
-    //             return priceA - priceB;
-    //         } else if (sorting === 'desc') {
-    //             return priceB - priceA;
-    //         }
-
-    //         return 0;
-    //     });
-
-    //     applySorting(childrensBooks, bestSell, (bookA, bookB) => {
-    //         const ratingA = bookA.rating;
-    //         const ratingB = bookB.rating;
-
-    //         if (bestSell === 'desc') {
-    //             return ratingB - ratingA;
-    //         }
-
-    //         return 0;
-    //     });
-
-    //     applySorting(childrensBooks, discount, (bookA, bookB) => {
-    //         const discountA = bookA.discount;
-    //         const discountB = bookB.discount;
-
-    //         if (discount === 'desc') {
-    //             return discountB - discountA;
-    //         }
-
-    //         return 0;
-    //     });
-
-    // }, [sorting, bestSell, discount, childrensBooks,authors]);
-
     return (
         <div className='w-[100%] grid grid-cols-1 md:grid-cols-1 lg:grid-cols-4 gap-4 p-6'>
             <div className='col-span-1 items-center justify-center text-center'>
