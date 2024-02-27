@@ -69,7 +69,7 @@ const CheckoutForm = ({ paymentFormInfo }) => {
     if (totalPayablePrice > 0) {
       axios
         .post(
-          "http://localhost:5000/create-payment-intent",
+          "https://mega-merket-project-server-site.vercel.app/create-payment-intent",
           { price: totalPayablePrice }
         )
         .then((res) => {
@@ -140,7 +140,7 @@ const CheckoutForm = ({ paymentFormInfo }) => {
           status: "pending",
         };
         const res = await axios.post(
-          "http://localhost:5000/payments",
+          "https://mega-merket-project-server-site.vercel.app/payments",
           paymentInfo
         );
         if (
