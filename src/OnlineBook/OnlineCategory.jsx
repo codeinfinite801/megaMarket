@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 const OnlineCategory = () => {
     const [data, setData] = useState()
     useEffect(() => {
-        fetch('https://mega-merket-project-server-site.vercel.app/onlineBooks')
+        fetch('http://localhost:5000/onlineBooks')
             .then(res => res.json())
             .then(data => {
                 setData(data)

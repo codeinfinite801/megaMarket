@@ -10,7 +10,7 @@ const BooksCategory = () => {
   const [allBooks, setAllBooks] = useState([]);
   useEffect(() => {
     axios
-      .get("https://mega-merket-project-server-site.vercel.app/oneBooksPerCategory")
+      .get("http://localhost:5000/oneBooksPerCategory")
       .then((res) => setAllBooks(res.data));
   }, []);
   const handleAllBooks =(category)=>{
