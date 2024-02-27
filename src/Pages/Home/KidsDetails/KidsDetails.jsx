@@ -32,7 +32,7 @@ const KidsDetails = () => {
         fetch(`https://mega-merket-project-server-site.vercel.app/kidsZone/${id}`)
             .then(res => res.json())
             .then(data => setKid(data))
-    }, [])
+    }, [id])
 
     const handleIndex = (i) => {
         setIndex(i)
