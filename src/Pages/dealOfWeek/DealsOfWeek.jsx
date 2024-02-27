@@ -1,6 +1,6 @@
 import { useState, useEffect, useContext } from 'react';
 import { TbCurrencyTaka } from "react-icons/tb";
-import { Link } from 'react-router-dom';
+import { Link} from 'react-router-dom';
 import { FaShoppingCart, FaRegHeart } from "react-icons/fa";
 import { IoEyeOutline } from "react-icons/io5";
 import Swal from 'sweetalert2';
@@ -12,6 +12,7 @@ const DealsOfTheWeek = () => {
   const CallAxios = useAxiosSecure();
   const { user } = useContext(AuthContext);
   const email = user?.email;
+
   const getInitialTargetDate = () => {
     const storedTargetDate = localStorage.getItem('targetDate');
     if (storedTargetDate) {
@@ -59,6 +60,7 @@ const DealsOfTheWeek = () => {
     return () => clearInterval(timer);
   }, [targetDate]);
 
+  // call rotateDeals after the cunddown end
   useEffect(() => {
     if (currentDeals.length === 0) {
       rotateDeals();
@@ -72,11 +74,12 @@ const DealsOfTheWeek = () => {
     return () => clearInterval(timer);
   }, [currentDeals]);
 
+  // get product frome every api 
   const rotateDeals = async () => {
     try {
-      const allBooks = await fetchProducts('http://localhost:5000/allBooks');
-      const allElectronics = await fetchProducts('http://localhost:5000/allElectronics');
-      const kidsZone = await fetchProducts('http://localhost:5000/kidsZone');
+      const allBooks = await fetchProducts('https://mega-merket-project-server-site.vercel.app/allBooks');
+      const allElectronics = await fetchProducts('https://mega-merket-project-server-site.vercel.app/allElectronics');
+      const kidsZone = await fetchProducts('https://mega-merket-project-server-site.vercel.app/kidsZone');
       const allProducts = [...allBooks, ...allElectronics, ...kidsZone];
       const newDeals = getRandomDeals(allProducts);
       setCurrentDeals(newDeals);
@@ -85,6 +88,7 @@ const DealsOfTheWeek = () => {
     }
   };
 
+  // convart data in json
   const fetchProducts = async (apiEndpoint) => {
     const response = await fetch(apiEndpoint);
     const data = await response.json();
@@ -104,10 +108,9 @@ const DealsOfTheWeek = () => {
 
     if (targetProduct.length > 0) {
       const { main_category } = targetProduct[0];
-
       let productData;
 
-      if (main_category === "Electronics") {
+      if (main_category === "ইলেক্ট্রনিক্স") {
         const {
           features,
           model,
@@ -146,7 +149,7 @@ const DealsOfTheWeek = () => {
           productId: _id,
           email,
         };
-      } else if (main_category === "Kids") {
+      } else if (main_category === "কিডস জোন") {
         const {
           _id,
           image,
@@ -239,7 +242,6 @@ const DealsOfTheWeek = () => {
           summary,
           amount: 1,
           count: 1,
-          // Add other fields as needed
         };
       }
 
@@ -265,37 +267,7 @@ const DealsOfTheWeek = () => {
     }
 
   }
-
-  // const addOnWishlist = (id) => {
-  //   const targetProduct = currentDeals.filter((pruduct) => pruduct._id === id);
-  //   if (targetProduct.length > 0) {
-  //     const productData = {
-  //       ...targetProduct[0],
-  //       email: email,
-  //     };
-  //     console.log(productData);
-
-  //     // Make the Axios POST request on wishlist
-  //     CallAxios.post("/wishList", productData)
-  //       .then(res => {
-  //         console.log(res.data);
-  //         if (res?.data?.insertedId) {
-  //           return Swal.fire({
-  //             position: 'center',
-  //             icon: 'success',
-  //             title: 'Product Added On Your WishList Successfully',
-  //             showConfirmButton: false,
-  //             timer: 1500
-  //           })
-  //         }
-  //       })
-  //       .catch(error => {
-  //         console.error("Error:", error);
-  //       });
-  //   } else {
-  //     console.log("Product not found");
-  //   }
-  // }
+  // add on wushlist 
   const addOnWishlist = (id) => {
     const targetProduct = currentDeals.filter((product) => product._id === id);
 
@@ -304,7 +276,7 @@ const DealsOfTheWeek = () => {
 
       let productData;
 
-      if (main_category === "Electronics") {
+      if (main_category === "ইলেক্ট্রনিক্স") {
         const {
           features,
           model,
@@ -343,7 +315,7 @@ const DealsOfTheWeek = () => {
           productId: _id,
           email,
         };
-      } else if (main_category === "Kids") {
+      } else if (main_category === "কিডস জোন") {
         const {
           _id,
           image,
@@ -436,7 +408,6 @@ const DealsOfTheWeek = () => {
           summary,
           amount: 1,
           count: 1,
-          // Add other fields as needed
         };
       }
 
@@ -515,15 +486,24 @@ const DealsOfTheWeek = () => {
                 <button onClick={() => addOnWishlist(deal._id)} className=" border border-l-2 border-r-2 flex items-center justify-center bg-white mt-[20rem] text-center hover:bg-pink-500  hover:text-white">
                   <FaRegHeart className='text-xl' />
                 </button>
-                <Link to={`/bookDetails/${deal._id}`}>
+                {
+                  deal?.main_category ==='ইলেক্ট্রনিক্স'?<Link to={`/electricdetails/${deal._id}`}>
+                  <button className="border rounded-r-lg w-full py-4 flex items-center justify-center bg-white mt-[20rem] hover:bg-blue-500 hover:text-white text-center">
+                    <IoEyeOutline className='text-xl' />
+                  </button>
+                </Link>: deal?.main_category ==='কিডস জোন'? <Link to={`/kidsDetails/${deal._id}`}>
+                  <button className="border rounded-r-lg w-full py-4 flex items-center justify-center bg-white mt-[20rem] hover:bg-blue-500 hover:text-white text-center">
+                    <IoEyeOutline className='text-xl' />
+                  </button>
+                </Link>:<Link to={`/bookDetails/${deal._id}`}>
                   <button className="border rounded-r-lg w-full py-4 flex items-center justify-center bg-white mt-[20rem] hover:bg-blue-500 hover:text-white text-center">
                     <IoEyeOutline className='text-xl' />
                   </button>
                 </Link>
+                }
+
               </div>
             </div>
-
-
           </div>
         </div>)}
 

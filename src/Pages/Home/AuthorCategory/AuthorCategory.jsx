@@ -8,7 +8,7 @@ const AuthorCategory = () => {
     const [categories, setCategories] = useState([]);
 
     useEffect(() => {
-        fetch('http://localhost:5000/allbooks')
+        fetch('https://mega-merket-project-server-site.vercel.app/allbooks')
             .then(res => res.json())
             .then(data => {
                 const uniqueAuthors = data.reduce((acc, curr) => {

@@ -29,10 +29,10 @@ const KidsDetails = () => {
     const CallAxios = useAxiosSecure()
     // console.log(data)
     useEffect(() => {
-        fetch(`http://localhost:5000/kidsZone/${id}`)
+        fetch(`https://mega-merket-project-server-site.vercel.app/kidsZone/${id}`)
             .then(res => res.json())
             .then(data => setKid(data))
-    }, [])
+    }, [id])
 
     const handleIndex = (i) => {
         setIndex(i)

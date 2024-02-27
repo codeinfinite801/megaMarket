@@ -45,7 +45,7 @@ const Reviews = ({ image, name, productId, rating }) => {
                 timer: 1500
             });
         }
-        axios.post(`http://localhost:5000/review`, dataInfo)
+        axios.post(`https://mega-merket-project-server-site.vercel.app/review`, dataInfo)
             .then(res => {
                 console.log(res.data);
                 if (res?.data.insertedId) {
