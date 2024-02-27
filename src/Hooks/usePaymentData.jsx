@@ -8,7 +8,7 @@ const usePaymentData = () => {
     queryKey: ["paymentHistory", user?.email],
     queryFn: async () => {
       const res = await axios.get(
-        `http://localhost:5000/payments?email=${user.email}`
+        `https://mega-merket-project-server-site.vercel.app/payments?email=${user.email}`
       );
       return res.data;
     },

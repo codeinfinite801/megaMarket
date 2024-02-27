@@ -77,9 +77,9 @@ const DealsOfTheWeek = () => {
   // get product frome every api 
   const rotateDeals = async () => {
     try {
-      const allBooks = await fetchProducts('http://localhost:5000/allBooks');
-      const allElectronics = await fetchProducts('http://localhost:5000/allElectronics');
-      const kidsZone = await fetchProducts('http://localhost:5000/kidsZone');
+      const allBooks = await fetchProducts('https://mega-merket-project-server-site.vercel.app/allBooks');
+      const allElectronics = await fetchProducts('https://mega-merket-project-server-site.vercel.app/allElectronics');
+      const kidsZone = await fetchProducts('https://mega-merket-project-server-site.vercel.app/kidsZone');
       const allProducts = [...allBooks, ...allElectronics, ...kidsZone];
       const newDeals = getRandomDeals(allProducts);
       setCurrentDeals(newDeals);
