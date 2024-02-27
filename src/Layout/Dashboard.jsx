@@ -2,7 +2,7 @@ import { Link, Outlet, useNavigate } from "react-router-dom";
 import useAuth from "../Hooks/useAuth";
 import { FaArrowRight, FaHome, FaUser  } from "react-icons/fa";
 import { GiLoveHowl,GiBabyBottle } from "react-icons/gi";
-import { MdPayments, MdPostAdd,MdMenuBook  } from "react-icons/md";
+import { MdPayments,MdMenuBook  } from "react-icons/md";
 import { FcTwoSmartphones } from "react-icons/fc";
 import { IoMdLogOut } from "react-icons/io";
 import { useState } from "react";
@@ -57,7 +57,7 @@ const Dashboard = () => {
         <input id="my-drawer-3" type="checkbox" className="drawer-toggle" />
         <div className="drawer-content flex md:flex-row flex-col">
           {/* Navbar */}
-          <div className="md:w-72 p-5 text-center  bg-[#F2F2F2] md:min-h-screen">
+          <div className="md:w-72 p-5 text-center  bg-[#2B3B4A] text-white md:min-h-screen">
             <div className="flex lg:hidden">
               <label
                 htmlFor="my-drawer-3"
@@ -102,7 +102,6 @@ const Dashboard = () => {
               {isAdmin ? (
                 <ul className="">
                   <li>
-                    {/* <FaArrowRight className="text-xl" /> */}
                     <Link
                       to={"/dashboard/manage-order"}
                       className="flex items-center gap-2 mb-3"
@@ -113,7 +112,7 @@ const Dashboard = () => {
                   </li>
 
                   <li>
-                    {/* <FaArrowRight className="text-xl" /> */}
+                 
                     <Link
                       to={"/dashboard/add-books"}
                       className="flex items-center gap-2 mb-3"
@@ -124,7 +123,6 @@ const Dashboard = () => {
                   </li>
 
                   <li>
-                    {/* <FaArrowRight className="text-xl" /> */}
                     <Link
                       to={"/dashboard/add-electronic"}
                       className="flex items-center gap-2 mb-3"
@@ -135,7 +133,6 @@ const Dashboard = () => {
                   </li>
 
                   <li>
-                    {/* <FaArrowRight className="text-xl" /> */}
                     <Link
                       to={"/dashboard/add-kisdsProduct"}
                       className="flex items-center gap-2 mb-3"
@@ -194,7 +191,7 @@ const Dashboard = () => {
                   <li>
                     {/* <GiLoveHowl className="text-xl" /> */}
                     <Link
-                      to={"/dashboard/order-history"}
+                      to={"/wishList"}
                       className="flex items-center gap-2 mb-3"
                     >
                       <GiLoveHowl className="text-red-600 text-xl" /> Wish List
@@ -234,40 +231,41 @@ const Dashboard = () => {
             {isAdmin ? (
               <ul className="menu p-4 w-80 min-h-full bg-base-200">
                 <li>
-                  {/* <FaArrowRight className="text-xl" /> */}
                   <Link
                     to={"/dashboard/manage-order"}
                     className="flex items-center gap-2 mb-3"
+                    onClick={()=>setOpen(!open)}
                   >
                     <img className="w-5 h-5" src={manageOderIcon} alt="" />
                     Manage Order
+                   
                   </Link>
                 </li>
                 <li>
-                    {/* <FaArrowRight className="text-xl" /> */}
                     <Link
                       to={"/dashboard/add-books"}
                       className="flex items-center gap-2 mb-3"
+                      onClick={()=>setOpen(!open)}
                     >
                       <MdMenuBook  className="text-2xl text-red-400" />
                       Add Books
                     </Link>
                   </li>
                   <li>
-                    {/* <FaArrowRight className="text-xl" /> */}
                     <Link
                       to={"/dashboard/add-electronic"}
                       className="flex items-center gap-2 mb-3"
                     >
                       <FcTwoSmartphones className="text-2xl" />
                      Add Electronic Product
+                     onClick={()=>setOpen(!open)}
                     </Link>
                   </li>
                   <li>
-                    {/* <FaArrowRight className="text-xl" /> */}
                     <Link
                       to={"/dashboard/add-kisdsProduct"}
                       className="flex items-center gap-2 mb-3"
+                      onClick={()=>setOpen(!open)}
                     >
                       <GiBabyBottle  className="text-2xl text-red-500" />
                       Add kids product
@@ -277,6 +275,7 @@ const Dashboard = () => {
                   <Link
                     to={"/dashboard/manage-user"}
                     className="flex items-center gap-2 mb-3"
+                    onClick={()=>setOpen(!open)}
                   >
                     <FaUser className="text-xl text-blue-500" />
                     Manage User
