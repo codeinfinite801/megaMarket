@@ -1,4 +1,3 @@
-import axios from "axios";
 import { useEffect, useState } from "react";
 import { IoIosArrowForward } from "react-icons/io";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -7,14 +6,16 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 import { Link } from "react-router-dom";
+import useAxiosPublic from "../../../Hooks/useAxiosPublic";
 
 const NewBooks = () => {
   const [newBooks, setNewBooks] = useState([]);
+  const axiosPublic = useAxiosPublic();
   useEffect(() => {
-    axios
-      .get("https://mega-merket-project-server-site.vercel.app/allBooks")
+    axiosPublic
+      .get("http://localhost:5000/newPublish/books")
       .then((res) => setNewBooks(res?.data));
-  }, []);
+  }, [axiosPublic]);
   return (
     <div className="max-w-7xl mx-auto bg-white shadow-lg p-5 h-fit">
       <div className="flex justify-between">
@@ -47,7 +48,7 @@ const NewBooks = () => {
         >
           <div className="">
             {newBooks?.slice(0, 5).map((book) => (
-              <SwiperSlide className="mt-5">
+              <SwiperSlide className="mt-5" key={book}>
                 <Link to={`/bookDetails/${book?._id}`}>
                   <div className="border">
                     <div className="relative w-full flex justify-center mb-4">
