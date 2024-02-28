@@ -45,8 +45,7 @@ const ChildrenAllBook = () => {
     useEffect(() => {
         let cancelRequest = false;
 
-        fetch('https://maga-market-server-eta.vercel.app/allBooks')
-            // fetch('http://localhost:5000/allbooks')
+        fetch('https://mega-merket-project-server-site.vercel.app/allbooks')
             .then((response) => response.json())
             .then((data) => {
                 if (!cancelRequest) {
