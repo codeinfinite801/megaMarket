@@ -4,60 +4,16 @@ import { Link } from 'react-router-dom';
 import { FaShoppingCart, FaRegHeart } from "react-icons/fa";
 import { IoEyeOutline } from "react-icons/io5";
 import Swal from 'sweetalert2';
-import useAxiosSecure from '../../Hooks/AxiosSecure/useAxiosSecure';
-import { AuthContext } from '../../provider/AuthProvider';
+
+import useAxiosSecure from '../Hooks/AxiosSecure/useAxiosSecure';
+import { AuthContext } from '../provider/AuthProvider';
 
 const FeatureProduct = () => {
     const [currentDeals, setCurrentDeals] = useState([]);
     const CallAxios = useAxiosSecure();
     const { user } = useContext(AuthContext);
     const email = user?.email;
-    const getInitialTargetDate = () => {
-        const storedTargetDate = localStorage.getItem('targetDate');
-        if (storedTargetDate) {
-            return parseInt(storedTargetDate, 10);
-        } else {
-            const now = new Date().getTime();
-            const initialTargetDate = now + 7 * 24 * 60 * 60 * 1000;
-            localStorage.setItem('targetDate', initialTargetDate.toString());
-            return initialTargetDate;
-        }
-    };
 
-    const calculateTimeRemaining = (targetDate) => {
-        const now = new Date().getTime();
-        const difference = targetDate - now;
-
-        if (difference <= 0) {
-            // Reset target date to 7 days from now
-            const newTargetDate = now + 7 * 24 * 60 * 60 * 1000;
-            localStorage.setItem('targetDate', newTargetDate.toString());
-            setTargetDate(newTargetDate);
-
-            // Rotate deals when countdown reaches 00
-            rotateDeals();
-        }
-
-        const totalSeconds = Math.floor(difference / 1000);
-        const days = Math.floor(totalSeconds / (24 * 60 * 60));
-        const hours = Math.floor((totalSeconds % (24 * 60 * 60)) / (60 * 60));
-        const minutes = Math.floor((totalSeconds % (60 * 60)) / 60);
-        const seconds = totalSeconds % 60;
-
-        return { days, hours, minutes, seconds };
-    };
-
-    const formatNumber = (number) => (number < 10 ? `0${number}` : number);
-    const [targetDate, setTargetDate] = useState(getInitialTargetDate());
-    const [timeRemaining, setTimeRemaining] = useState(calculateTimeRemaining(targetDate));
-
-    useEffect(() => {
-        const timer = setInterval(() => {
-            setTimeRemaining(calculateTimeRemaining(targetDate));
-        }, 1000);
-
-        return () => clearInterval(timer);
-    }, [targetDate]);
 
     useEffect(() => {
         if (currentDeals.length === 0) {
@@ -74,7 +30,7 @@ const FeatureProduct = () => {
 
     const rotateDeals = async () => {
         try {
-            const allBooks = await fetchProducts('https://maga-market-server-eta.vercel.app/allBooks');
+            const allBooks = await fetchProducts('https://maga-market-server-eta.vercel.app/kidsZone');
             const allElectronics = await fetchProducts('https://maga-market-server-eta.vercel.app/allElectronics');
             const kidsZone = await fetchProducts('https://maga-market-server-eta.vercel.app/kidsZone');
             const allProducts = [...allBooks, ...allElectronics, ...kidsZone];
@@ -266,36 +222,6 @@ const FeatureProduct = () => {
 
     }
 
-    // const addOnWishlist = (id) => {
-    //   const targetProduct = currentDeals.filter((pruduct) => pruduct._id === id);
-    //   if (targetProduct.length > 0) {
-    //     const productData = {
-    //       ...targetProduct[0],
-    //       email: email,
-    //     };
-    //     console.log(productData);
-
-    //     // Make the Axios POST request on wishlist
-    //     CallAxios.post("/wishList", productData)
-    //       .then(res => {
-    //         console.log(res.data);
-    //         if (res?.data?.insertedId) {
-    //           return Swal.fire({
-    //             position: 'center',
-    //             icon: 'success',
-    //             title: 'Product Added On Your WishList Successfully',
-    //             showConfirmButton: false,
-    //             timer: 1500
-    //           })
-    //         }
-    //       })
-    //       .catch(error => {
-    //         console.error("Error:", error);
-    //       });
-    //   } else {
-    //     console.log("Product not found");
-    //   }
-    // }
     const addOnWishlist = (id) => {
         const targetProduct = currentDeals.filter((product) => product._id === id);
 
@@ -464,37 +390,9 @@ const FeatureProduct = () => {
 
     return (
         <div className='pt-5 pb-10'>
-            <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-5 items-center justify-center'>
-                <h2 className='text-5xl text-black font-semibold sm:text-center'>Deals Of The Week</h2>
-                <div className="grid grid-flow-col gap-5 text-center auto-cols-max sm:justify-center">
-                    <div className="flex flex-col">
-                        <span className="countdown font-mono text-5xl text-red-500">
-                            {formatNumber(timeRemaining.days)}
-                        </span>
-                        days
-                    </div>
-                    <div className="flex flex-col">
-                        <span className="countdown font-mono text-5xl text-red-500">
-                            {formatNumber(timeRemaining.hours)}
-                        </span>
-                        hours
-                    </div>
-                    <div className="flex flex-col">
-                        <span className="countdown font-mono text-5xl text-red-500">
-                            {formatNumber(timeRemaining.minutes)}
-                        </span>
-                        min
-                    </div>
-                    <div className="flex flex-col">
-                        <span className="countdown font-mono text-5xl text-red-500">
-                            {formatNumber(timeRemaining.seconds)}
-                        </span>
-                        sec
-                    </div>
-                </div>
-            </div>
-            <div className='grid grid-cols-1  md:grid-cols-2 lg:grid-cols-4 gap-5 p-10  border-2 rounded-xl border-red-500 '>
-                {currentDeals.slice(0, 12).map((deal) => <div key={deal._id} className='flex items-center justify-center'>
+
+            <div className='grid grid-cols-1  md:grid-cols-2 lg:grid-cols-4 gap-5 p-10  border-2 rounded-xl bg-gray-800'>
+                {currentDeals.slice(0, 8).map((deal) => <div key={deal._id} className='flex items-center justify-center'>
                     <div className="card w-80 h-96 bg-base-100 relative group">
                         <figure className="px-2 pt-4">
                             <img src={deal.image} alt="image" className="rounded-xl
