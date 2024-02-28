@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Popular from "../Pages/PlaceOrder/Popular";
 import NewBooks from "../Pages/Home/NewPublisherBooks/NewBooks";
+import FeatureProduct from "./FeatureProduct";
 
 const BestSeller = () => {
 
@@ -58,7 +59,8 @@ const BestSeller = () => {
                             role="tabpanel"
                             aria-labelledby="dashboard-tab"
                         >
-                            <p><NewBooks></NewBooks></p>
+                            <p><FeatureProduct></FeatureProduct></p>
+                            {/* <p><NewBooks></NewBooks></p> */}
                         </div>
                     </div>
                 </div>
