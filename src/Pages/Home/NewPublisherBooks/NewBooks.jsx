@@ -13,7 +13,7 @@ const NewBooks = () => {
   const axiosPublic = useAxiosPublic();
   useEffect(() => {
     axiosPublic
-      .get("http://localhost:5000/newPublish/books")
+      .get("https://mega-merket-project-server-site.vercel.app/newPublish/books")
       .then((res) => setNewBooks(res?.data));
   }, [axiosPublic]);
   return (
