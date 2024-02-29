@@ -26,6 +26,7 @@ import AddKidsProduct from "../Pages/dashboard/AddProduct/AddKidsProduct";
 import OnlineBook from "../OnlineBook/OnlineBook";
 import WishList from "../Pages/WishList/WishList";
 import AllCategoryBook from "../Pages/Home/Books/AllCategoryBook";
+import AuthorBooks from "../Pages/Home/AuthorCategory/AuthorBooks";
 
 
 const router = createBrowserRouter([
@@ -70,6 +71,10 @@ const router = createBrowserRouter([
       {
         path: "/allkids/:category",
         element: <KidsZones></KidsZones>,
+      },
+      {
+        path : '/authorbooks/:author',
+        element : <AuthorBooks></AuthorBooks>
       },
       {
         path: "/kidsDetails/:id",

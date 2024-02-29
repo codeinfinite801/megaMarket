@@ -1,17 +1,17 @@
 import { useContext, useEffect, useState } from "react";
 import { FaSearch, FaShoppingCart } from "react-icons/fa";
 import { GoChecklist } from "react-icons/go";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../provider/AuthProvider";
 import useCarts from "../../Hooks/useCarts";
 import useWishList from "../../Hooks/useWishList";
 
 const Navbar = () => {
+  const navigate = useNavigate()
   const [allBooks, setAllBooks] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
   const [show, setShow] = useState(true)
   const [search, setSearch] = useState('All')
-  console.log(allBooks);
   const { user, logOut } = useContext(AuthContext);
   const signOut = () => {
     logOut();
@@ -20,10 +20,15 @@ const Navbar = () => {
 
 
   useEffect(() => {
-    fetch(`http://localhost:5000/search?category=${search}`)
+    fetch(`https://maga-market-server-eta.vercel.app/search?category=${search}`)
       .then((res) => res.json())
       .then((data) => setAllBooks(data));
   }, [search]);
+  // useEffect(() => {
+  //   fetch(`https://mega-merket-project-server-site.vercel.app /search?category=${search}`)
+  //     .then((res) => res.json())
+  //     .then((data) => setAllBooks(data));
+  // }, [search]);
 
   const [cart] = useCarts();
   const [wishList] = useWishList();
@@ -32,14 +37,30 @@ const Navbar = () => {
   const filteredBooks = allBooks.filter((book) =>
     book.name.toLowerCase().includes(searchQuery.toLowerCase())
   );
-  console.log(filteredBooks);
   const handleSearch = (e) => {
     setSearchQuery(e.target.value)
   }
   const handleValue = (event) => {
-    const selectedCategory = event.target.value;
+    const selectedCategory = event?.target?.value;
     setSearch(selectedCategory)
   };
+  const searchResult = (book) => {
+    if (book?.main_category === "ইলেক্ট্রনিক্স") {
+      navigate(`/electricdetails/${book?._id}`)
+      setShow(false)
+      setSearchQuery('')
+    } 
+    if (book?.main_category === "কিডস জোন") {
+      navigate(`/kidsDetails/${book?._id}`)
+      setShow(false)
+      setSearchQuery('')
+    } 
+    if (book?.read_book) {
+      navigate(`/bookDetails/${book?._id}`)
+      setShow(false)
+      setSearchQuery('')
+    }
+  }
   return (
     <div>
       {/* Desktop Navbar */}
@@ -62,7 +83,7 @@ const Navbar = () => {
             </select>
             <input
               type="text"
-              onBlur={() => setShow(!show)}
+              // onBlur={() => setShow(!show)}
               onSelect={() => setShow(true)}
               placeholder="Search..."
               className="border p-2 rounded-l w-full ml-2"
@@ -80,21 +101,20 @@ const Navbar = () => {
                 <div className="">
                   <div className="flex flex-col gap-4">
                     {filteredBooks?.map(book => (
-                      <Link to={`/bookDetails/${book?._id}`} key={book?._id} >
-                        <div className="flex hover:bg-gray-200 px-4 py-2 text-black gap-5 items-center justify-between">
-                          <div className="flex items-center gap-5">
-                            <img className="w-14" src={book?.image} alt="" />
-                            <div>
-                              <h1>{book?.name}</h1>
-                              <p className="text-gray-500">{book?.author_name}</p>
-                            </div>
-                          </div>
-                          <div className="flex items-center gap-5">
-                            <p className="text-red-600">({book?.discount})% Off</p>
-                            <p>{book?.price} TK</p>
+                      <div key={book?._id} onClick={() => searchResult(book)} className="flex hover:bg-gray-200 px-4 py-2 text-black gap-5 items-center justify-between">
+                        <div className="flex items-center gap-5">
+                          <img className="w-14" src={book?.image[0]} alt="" />
+                          <div>
+                            <h1>{book?.name}</h1>
+                            <p className="text-gray-500">{book?.author_name}</p>
                           </div>
                         </div>
-                      </Link>
+                        <div className="flex items-center gap-5">
+                          <p className="text-red-600">({book?.discount})% Off</p>
+                          <p>{book?.price} TK</p>
+                        </div>
+                      </div>
+
                     ))}
                   </div>
                 </div>
