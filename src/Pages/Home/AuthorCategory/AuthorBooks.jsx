@@ -2,8 +2,6 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Book from "../Book/Book";
 
-
-
 const AuthorBooks = () => {
     const { author } = useParams();
     const [data, setData] = useState([]);

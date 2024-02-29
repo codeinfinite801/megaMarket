@@ -2,6 +2,7 @@ import axios from "axios";
 
 const axiosSecure = axios.create({
     baseURL: "https://mega-merket-project-server-site.vercel.app"
+
 });
 
 const useAxiosSecure = () => {
