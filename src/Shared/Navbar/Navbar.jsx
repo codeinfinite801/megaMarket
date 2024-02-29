@@ -24,11 +24,6 @@ const Navbar = () => {
       .then((res) => res.json())
       .then((data) => setAllBooks(data));
   }, [search]);
-  // useEffect(() => {
-  //   fetch(`https://mega-merket-project-server-site.vercel.app /search?category=${search}`)
-  //     .then((res) => res.json())
-  //     .then((data) => setAllBooks(data));
-  // }, [search]);
 
   const [cart] = useCarts();
   const [wishList] = useWishList();

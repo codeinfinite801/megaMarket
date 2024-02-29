@@ -13,10 +13,10 @@ const BooksCategory = () => {
       .get("https://mega-merket-project-server-site.vercel.app/oneBooksPerCategory")
       .then((res) => setAllBooks(res.data));
   }, []);
-  const handleAllBooks =(category)=>{
+  const handleAllBooks = (category) => {
     console.log(category)
   }
-//   console.log(allBooks);
+  //   console.log(allBooks);
   return (
     <div className="max-w-6xl mx-auto my-5 bg-white shadow-lg p-5 h-fit">
       <div className="flex justify-between">
@@ -30,9 +30,6 @@ const BooksCategory = () => {
           slidesPerView={5}
           spaceBetween={30}
           loop={true}
-          // pagination={{
-          //   clickable: true,
-          // }}
           navigation={true}
           modules={[Pagination, Navigation]}
           className="mySwiper"
