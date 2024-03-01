@@ -29,6 +29,7 @@ import AllCategoryBook from "../Pages/Home/Books/AllCategoryBook";
 import AdminDashboard from "../Pages/dashboard/AdminDashboard/AdminDashboard";
 import UserHome from "../Pages/dashboard/UserHome/UserHome";
 import AuthorBooks from "../Pages/Home/AuthorCategory/AuthorBooks";
+import AllSuperStoreCategory from "../Pages/Home/SuperStore/AllSuperStoreCategory";
 
 
 
@@ -106,6 +107,10 @@ const router = createBrowserRouter([
       {
         path: '/bookCategory',
         element: <AllCategoryBook></AllCategoryBook>
+      },
+      {
+        path: '/electricCategory',
+        element: <AllSuperStoreCategory></AllSuperStoreCategory>
       },
       {
         path:'/wishList',
