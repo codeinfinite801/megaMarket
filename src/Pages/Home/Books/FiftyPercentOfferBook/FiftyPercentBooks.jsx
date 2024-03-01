@@ -12,18 +12,18 @@ const FiftyPercentBooks = () => {
 
   //   some id which item are 50% discount
   const disCountIds = [
-    "65a7719bd3f8cc66804c3054",
-    "65a7719bd3f8cc66804c3067",
-    "65a771d3d3f8cc66804cc0cf",
-    "65a7719bd3f8cc66804c3053",
-    "65a7719bd3f8cc66804c3052",
+    "65def5db1f84c73804d2c8a5",
+    "65def5db1f84c73804d2c8a8",
+    "65def5db1f84c73804d2c8b6",
+    "65def5db1f84c73804d2c8b5",
+    "65def5db1f84c73804d2c8e9",
   ];
 
 
   useEffect(() => {
     const fetchData = async () => {
       const response = await axios.get(
-        "https://maga-market-server-eta.vercel.app/allBooks"
+        "https://mega-merket-project-server-site.vercel.app/allBooks"
       );
       const jsonData = response?.data;
       const filteredData = jsonData.filter((item) =>

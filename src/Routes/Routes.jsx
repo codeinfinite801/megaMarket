@@ -26,7 +26,10 @@ import AddKidsProduct from "../Pages/dashboard/AddProduct/AddKidsProduct";
 import OnlineBook from "../OnlineBook/OnlineBook";
 import WishList from "../Pages/WishList/WishList";
 import AllCategoryBook from "../Pages/Home/Books/AllCategoryBook";
+import AdminDashboard from "../Pages/dashboard/AdminDashboard/AdminDashboard";
+import UserHome from "../Pages/dashboard/UserHome/UserHome";
 import AuthorBooks from "../Pages/Home/AuthorCategory/AuthorBooks";
+
 
 
 const router = createBrowserRouter([
@@ -141,7 +144,15 @@ const router = createBrowserRouter([
       {
         path:"add-kisdsProduct",
         element:<AddKidsProduct></AddKidsProduct>
-      }
+      },
+      {
+        path:'admin',
+        element:<AdminDashboard/>
+      },
+     {
+      path:'user',
+      element:<UserHome/>
+     }
     ],
   },
 ]);

@@ -10,17 +10,13 @@ const ChildrenAllBook = () => {
     const [bestSell, setBestSell] = useState('');
     const [discount, setDiscount] = useState('');
 
-    console.log(bestSell);
-    console.log(discount);
-    console.log(sorting);
-    console.log(authors);
-    console.log(childrensBooks);
+
 
     const applySorting = (books, sortingType, comparator) => {
         if (sortingType) {
             const sortedBooks = [...books];
             sortedBooks.sort(comparator);
-            setChildrensBooks(() => sortedBooks); 
+            setChildrensBooks(() => sortedBooks);
         }
     };
 
@@ -65,97 +61,58 @@ const ChildrenAllBook = () => {
 
     useEffect(() => {
         let filteredBooks = childrensBooks;
-      
+
         if (authors) {
-          filteredBooks = childrensBooks?.filter(
-            (books) => books?.author_name === authors
-          );
+            filteredBooks = childrensBooks?.filter(
+                (books) => books?.author_name === authors
+            );
         }
-      
+
         const sortedBooks = applySorting(filteredBooks, sorting, (bookA, bookB) => {
-          const priceA = bookA.price;
-          const priceB = bookB.price;
-      
-          if (sorting === 'asc') {
-            return priceA - priceB;
-          } else if (sorting === 'desc') {
-            return priceB - priceA;
-          }
-      
-          return 0;
+            const priceA = bookA.price;
+            const priceB = bookB.price;
+
+            if (sorting === 'asc') {
+                return priceA - priceB;
+            } else if (sorting === 'desc') {
+                return priceB - priceA;
+            }
+
+            return 0;
         });
-      
+
         const sortedBestSellBooks = applySorting(
-          sortedBooks,
-          bestSell,
-          (bookA, bookB) => {
-            const ratingA = bookA.rating;
-            const ratingB = bookB.rating;
-      
-            if (bestSell === 'desc') {
-              return ratingB - ratingA;
+            sortedBooks,
+            bestSell,
+            (bookA, bookB) => {
+                const ratingA = bookA.rating;
+                const ratingB = bookB.rating;
+
+                if (bestSell === 'desc') {
+                    return ratingB - ratingA;
+                }
+
+                return 0;
             }
-      
-            return 0;
-          }
         );
-      
+
         const sortedDiscountBooks = applySorting(
-          sortedBestSellBooks,
-          discount,
-          (bookA, bookB) => {
-            const discountA = bookA.discount;
-            const discountB = bookB.discount;
-      
-            if (discount === 'desc') {
-              return discountB - discountA;
+            sortedBestSellBooks,
+            discount,
+            (bookA, bookB) => {
+                const discountA = bookA.discount;
+                const discountB = bookB.discount;
+
+                if (discount === 'desc') {
+                    return discountB - discountA;
+                }
+
+                return 0;
             }
-      
-            return 0;
-          }
         );
-      
+
         setChildrensBooks(sortedDiscountBooks);
-      }, [sorting, bestSell, discount, childrensBooks, authors]);
-      
-    // useEffect(() => {
-        
-    //     applySorting(childrensBooks, sorting, (bookA, bookB) => {
-    //         const priceA = bookA.price;
-    //         const priceB = bookB.price;
-
-    //         if (sorting === 'asc') {
-    //             return priceA - priceB;
-    //         } else if (sorting === 'desc') {
-    //             return priceB - priceA;
-    //         }
-
-    //         return 0;
-    //     });
-
-    //     applySorting(childrensBooks, bestSell, (bookA, bookB) => {
-    //         const ratingA = bookA.rating;
-    //         const ratingB = bookB.rating;
-
-    //         if (bestSell === 'desc') {
-    //             return ratingB - ratingA;
-    //         }
-
-    //         return 0;
-    //     });
-
-    //     applySorting(childrensBooks, discount, (bookA, bookB) => {
-    //         const discountA = bookA.discount;
-    //         const discountB = bookB.discount;
-
-    //         if (discount === 'desc') {
-    //             return discountB - discountA;
-    //         }
-
-    //         return 0;
-    //     });
-
-    // }, [sorting, bestSell, discount, childrensBooks,authors]);
+    }, [sorting, bestSell, discount, childrensBooks, authors]);
 
     return (
         <div className='w-[100%] grid grid-cols-1 md:grid-cols-1 lg:grid-cols-4 gap-4 p-6'>

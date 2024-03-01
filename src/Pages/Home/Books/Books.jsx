@@ -3,7 +3,6 @@ import { useParams } from "react-router-dom";
 import Book from "../Book/Book";
 import useBooks from "../../../Hooks/useBooks";
 
-
 const Books = () => {
     const { category } = useParams();
     const { data } = useBooks({ category })
@@ -211,7 +210,7 @@ const Books = () => {
                     <div>
                         <div className="mt-5 mx-3">
                             <h2 className="text-2xl mb-5">{category} {data?.length}</h2>
-                            <div className="grid lg:grid-cols-5 md:grid-cols-3 grid-cols-2  gap-3">
+                            <div className="grid lg:grid-cols-4 md:grid-cols-3 grid-cols-2  gap-5">
                                 {
                                     data?.slice(0, dataIndex).map(book => <Book key={book?._id} book={book}></Book>)
                                 }

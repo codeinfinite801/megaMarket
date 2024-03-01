@@ -2,9 +2,13 @@ import { useQuery } from "@tanstack/react-query";
 import useAxiosPublic from "../../../Hooks/useAxiosPublic";
 import { FaUser } from "react-icons/fa";
 import Swal from "sweetalert2";
+// import { useGetUsersQuery } from "../../../redux/api/api";
+
 
 const ManageUser = () => {
   const axiosPublic = useAxiosPublic();
+  // const {data: users = [],refetch } = useGetUsersQuery();
+  // // console.log(data)
 
   const { data: users = [],refetch } = useQuery({
     queryKey: ["users"],
