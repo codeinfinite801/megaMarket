@@ -10,6 +10,7 @@ import useAdmin from "../../Hooks/useAdmin";
 const Navbar = () => {
   const navigate = useNavigate()
   const [allBooks, setAllBooks] = useState([]);
+  console.log(allBooks);
   const [searchQuery, setSearchQuery] = useState("");
   const [show, setShow] = useState(true)
   const [search, setSearch] = useState('All')
@@ -26,11 +27,6 @@ const Navbar = () => {
       .then((res) => res.json())
       .then((data) => setAllBooks(data));
   }, [search]);
-  // useEffect(() => {
-  //   fetch(`https://mega-merket-project-server-site.vercel.app /search?category=${search}`)
-  //     .then((res) => res.json())
-  //     .then((data) => setAllBooks(data));
-  // }, [search]);
 
   const [cart] = useCarts();
   const [wishList] = useWishList();
@@ -51,12 +47,12 @@ const Navbar = () => {
       navigate(`/electricdetails/${book?._id}`)
       setShow(false)
       setSearchQuery('')
-    } 
+    }
     if (book?.main_category === "কিডস জোন") {
       navigate(`/kidsDetails/${book?._id}`)
       setShow(false)
       setSearchQuery('')
-    } 
+    }
     if (book?.read_book) {
       navigate(`/bookDetails/${book?._id}`)
       setShow(false)
@@ -105,7 +101,9 @@ const Navbar = () => {
                     {filteredBooks?.map(book => (
                       <div key={book?._id} onClick={() => searchResult(book)} className="flex hover:bg-gray-200 px-4 py-2 text-black gap-5 items-center justify-between">
                         <div className="flex items-center gap-5">
-                          <img className="w-14" src={book?.image[0]} alt="" />
+                          {book.image && ( // Check if book.image exists
+                            <img className="w-14" src={Array.isArray(book?.image) && book?.image?.length ? book?.image[0] : book.image} alt="" />
+                          )}
                           <div>
                             <h1>{book?.name}</h1>
                             <p className="text-gray-500">{book?.author_name}</p>
@@ -116,8 +114,8 @@ const Navbar = () => {
                           <p>{book?.price} TK</p>
                         </div>
                       </div>
-
                     ))}
+
                   </div>
                 </div>
               </div>
@@ -291,6 +289,32 @@ const Navbar = () => {
               <FaSearch className="text-white"></FaSearch>
             </span>
           </div>
+          {
+            show && <div className="relative">
+              <div className={`absolute w-full bg-white z-10 rounded-lg ${searchQuery?.length === 0 ? 'hidden' : 'block'}`} style={{ maxHeight: '500px', overflowY: 'auto' }}>
+                <div className="">
+                  <div className="flex flex-col gap-4">
+                    {filteredBooks?.map(book => (
+                      <div key={book?._id} onClick={() => searchResult(book)} className="flex hover:bg-gray-200 px-4 py-2 text-black gap-5 items-center justify-between">
+                        <div className="flex items-center gap-5">
+                          <img className="w-14" src={book?.image} alt="" />
+                          <div>
+                            <h1>{book?.name}</h1>
+                            <p className="text-gray-500">{book?.author_name}</p>
+                          </div>
+                        </div>
+                        <div className="flex items-center gap-5">
+                          <p className="text-red-600">({book?.discount})% Off</p>
+                          <p>{book?.price} TK</p>
+                        </div>
+                      </div>
+
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+          }
           <div>
             <div className="relative">
               <div className={`absolute w-full bg-white z-10 rounded-lg ${searchQuery.length === 0 ? 'hidden' : 'block'}`} style={{ maxHeight: '300px', overflowY: 'auto' }}>

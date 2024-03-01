@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import Book from "../Book/Book";
 import useAxiosSecure from "../../../Hooks/AxiosSecure/useAxiosSecure";
 import ElectricDetails from "./ElectricDetails/ElectricDetails";
 
@@ -21,7 +20,7 @@ const SuperStoreCategory = () => {
                 setData(allData)
                 console.log(allData);
             })
-    }, [axiosSecure,category]);
+    }, [axiosSecure, category]);
     return (
         <div className="px-5 my-16">
             <div className="grid grid-cols-12 gap-2">
