@@ -2,8 +2,8 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+const AuthorCategory = () => {
 
-const   AuthorCategory = () => {
     const [categories, setCategories] = useState([]);
     useEffect(() => {
         fetch('https://mega-merket-project-server-site.vercel.app/allbooks')
@@ -25,7 +25,9 @@ const   AuthorCategory = () => {
             <div>
                 <div className="flex items-center justify-between p-5">
                     <h1>Shop By Author</h1>
-                    <button className="border text-blue-500 px-6 py-2 hover:bg-blue-600 hover:text-white duration-200 border-blue-300 rounded">View All</button>
+                    <Link to={'/authorcategory'}>
+                        <button className="border text-blue-500 px-6 py-2 hover:bg-blue-600 hover:text-white duration-200 border-blue-300 rounded">View All</button>
+                    </Link>
                 </div>
                 <Swiper
                     slidesPerView={4}

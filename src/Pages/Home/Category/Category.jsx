@@ -1,9 +1,6 @@
-import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/navigation";
-import { Navigation } from "swiper/modules";
 import { Link } from "react-router-dom";
-import { useGetCategoryQuery } from "../../../redux/api/api";
 import { useEffect, useState } from "react";
 
 const Category = () => {
@@ -29,7 +26,7 @@ const Category = () => {
                 {categories.slice(0, 1).map((item, index) => (
                   <div key={index} className="transition-transform duration-300 transform hover:scale-105">
                     <Link to={`/allBooks/${item?.category}`} className="block">
-                      <div className="bg-gray-300 flex lg:flex-col flex-row-reverse items-end lg:items-center justify-center lg:h-[425px] md:h-72 rounded-lg">
+                      <div className="bg-[#cc00ff21] flex lg:flex-col flex-row-reverse items-end lg:items-center justify-center lg:h-[440px] md:h-72 rounded-lg">
                         <img className='rounded-xl lg:w-5/6 md:1/2 py-5 lg:h-62 px-5 mx-auto' src={item?.image} alt={item?.name} />
                         <h1 className="text-base md:text-sm mt-5 p-5">{item?.category}</h1>
                       </div>
@@ -42,7 +39,7 @@ const Category = () => {
                   {categories.slice(1, 5).map((item, index) => (
                     <div key={index} className="transition-transform duration-300 transform hover:scale-105">
                       <Link to={`/allBooks/${item?.category}`} className="block">
-                        <div className="bg-gray-300 rounded-lg flex items-end">
+                        <div className="bg-[#cc00ff21] rounded-lg flex items-end">
                           <h1 className="text-base md:text-sm mt-5 p-5">{item?.category}</h1>
                           <img className='rounded-xl lg:w-3/6 md:w-1/2 py-5 lg:h-48 md:h-32 px-5 mx-auto' src={item?.image} alt={item?.name} />
                         </div>
