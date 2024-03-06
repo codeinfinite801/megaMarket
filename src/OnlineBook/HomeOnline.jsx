@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { FaDownload } from 'react-icons/fa';
+import { FaDownload, FaRegHeart, FaShoppingCart } from 'react-icons/fa';
+import { IoEyeOutline } from "react-icons/io5";
+import { TbCurrencyTaka } from "react-icons/tb";
 
 const HomeOnline = () => {
     const [data, setData] = useState();
@@ -13,36 +15,40 @@ const HomeOnline = () => {
     }, []);
 
     return (
-        <div className="bg-white my-5 px-5">
+        <div className="bg-white my-5 px-4">
             <div className="flex items-center justify-between py-5">
                 <h1>Download Free Book</h1>
-                <Link to={"/onlineBooks"}>
-                    <button className="border hover:bg-blue-500 hover:text-white duration-300 text-blue-500 px-6 py-2 border-blue-300 rounded">View All</button>
-                </Link>
             </div>
-            <div className="grid md:grid-cols-3 grid-cols-1 lg:grid-cols-5 gap-5 items-center justify-center">
-                {data?.slice(0, 5).map(book => (
-                    <div key={book?._id} className="bg-gray-100 py-3 px-2 rounded-lg relative">
-                        <Link>
-                            <div>
-                                <div className="relative">
-                                    <img className="h-72 w-48 rounded mx-auto" src={book?.image} alt="" />
-                                    <h1 className="mt-4 text-center lg:text-left text-lg pb-3">{book?.name}</h1>
+            <div className="lg:grid md:grid grid-cols-12 mb-2 gap-4">
+                <div className="col-span-4 mb-2">
+                    <div className="flex flex-col px-2 items-center justify-center bg-[#cc00ff21] h-full">
+                        <img src="https://i.ibb.co/qYJ9ZkS/Screenshot-1.png" alt="" />
+                        <h1 className="lg:text-3xl md:text-lg">Get Our Free Book Now</h1>
+                        <p className="lg:text-2xl md:text-base"><span className="text-[#ff7272] font-bold">Download</span> It Now !!</p>
+                        <Link className="bg-[#f3a3a3] text-white hover:bg-red-600 duration-200   rounded px-6 py-2 my-4" to={"/onlineBooks"}>View All</Link>
+                    </div>
+                </div>
+                <div className="col-span-8 mb-2">
+                    <div className='grid grid-cols-1  md:grid-cols-3 lg:grid-cols-4 gap-2 '>
+                        {data?.slice(0, 8).map((deal) => <div key={deal?._id} className='flex items-center justify-center'>
+                            <div className="rounded duration-300 bg-gray-100 w-80 border hover:border-black  relative group">
+                                <figure className="px-2 pt-4">
+                                    <img src={deal.image} alt="image" className="w-full lg:h-52 md:h-52 " />
+                                </figure>
+                                <div className=" my-4 text-center">
+                                    <h2 className="">{deal?.name}</h2>
                                 </div>
-                                <div className="text-black hero-overlay bg-opacity-60 top-0 w-full h-full absolute z-20">
-                                    <div className="flex items-end h-full">
-                                        <Link className="w-full flex gap-3 items-center justify-center text-center bg-purple-400 py-3 rounded text-white">
-                                            <FaDownload></FaDownload>
-                                            <button>Download</button>
-                                        </Link>
-                                    </div>
+                                <div className="mx-1 pb-2">
+                                    <Link to={deal?.pdf} className="flex hover:bg-red-600 duration-200  items-center justify-center gap-2 text-center mx-auto w-full bg-[#f3a3a3] py-2 mb-2 text-white">
+                                        <FaDownload></FaDownload>
+                                        <p className="text-base md:text-sm">Download Now</p>
+                                    </Link>
                                 </div>
-
                             </div>
-                        </Link>
+                        </div>)}
 
                     </div>
-                ))}
+                </div>
             </div>
         </div>
     );
