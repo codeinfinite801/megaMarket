@@ -8,11 +8,10 @@ const AuthorBooks = () => {
     console.log(data);
     
     useEffect(() => {
-        fetch('https://mega-merket-project-server-site.vercel.app/allbooks')
+        fetch(`https://maga-market-server-eta.vercel.app/allBooks?author_name=${author}`)
             .then(res => res.json())
             .then(data => {
-                const filteredCategories = data.filter(item => item.author_name === author);
-                setData(filteredCategories);
+                setData(data);
             })
     }, [author]);
     
