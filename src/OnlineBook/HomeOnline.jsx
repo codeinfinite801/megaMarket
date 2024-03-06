@@ -15,11 +15,11 @@ const HomeOnline = () => {
     }, []);
 
     return (
-        <div className="bg-white my-5 px-4">
+        <div className="bg-white my-5  px-4">
             <div className="flex items-center justify-between py-5">
                 <h1>Download Free Book</h1>
             </div>
-            <div className="lg:grid md:grid grid-cols-12 mb-2 gap-4">
+            <div className="lg:grid md:grid grid-cols-12  gap-4">
                 <div className="col-span-4 mb-2">
                     <div className="flex flex-col px-2 items-center justify-center bg-[#cc00ff21] h-full">
                         <img src="https://i.ibb.co/qYJ9ZkS/Screenshot-1.png" alt="" />
