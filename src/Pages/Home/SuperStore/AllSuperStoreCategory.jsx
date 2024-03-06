@@ -10,6 +10,9 @@ const AllSuperStoreCategory = () => {
                 setData(data)
             })
     }, [])
+    if (!data) return <div className="w-full h-screen flex items-center justify-center">
+        <span className="loading loading-spinner loading-lg"></span>
+    </div>
     return (
 
         <div className="bg-white my-5 px-5">

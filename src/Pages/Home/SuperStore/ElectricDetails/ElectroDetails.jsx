@@ -44,11 +44,11 @@ const ElectroDetails = () => {
     }
     return (
         <div>
-            <div className="grid grid-cols-12 gap-14 mx-14">
+            <div className="lg:grid grid-cols-12 gap-14 lg:mx-14">
                 <div className="col-span-10">
-                    <div className="max-w-[1000px] mx-auto">
-                        <div className="flex justify-between gap-8">
-                            <div className="p-5 w-3/6 border shadow-md rounded-lg">
+                    <div className="mx-auto">
+                        <div className="lg:flex mx-3 md:mx-4 md:flex justify-between gap-8">
+                            <div className="p-5 lg:w-3/6 md:w-3/6 w-full border shadow-md rounded-lg">
                                 <div className="flex flex-col">
                                     <div className="w-full">
                                         <img className="w-full h-96 rounded-md" src={img} alt="" />
@@ -69,8 +69,8 @@ const ElectroDetails = () => {
                                     </div>
                                 </div>
                             </div>
-                            <div className="w-[60%]">
-                                <h2 className="text-2xl font-bold">{name}</h2>
+                            <div className="lg:w-[60%] mx-5 md:w-[60%]">
+                                <h2 className="text-2xl mt-4 lg:mt-0 md:mt-0 font-bold">{name}</h2>
                                 <p className="text-md my-2">Brand : <span className="font-semibold text-blue-400">{brand}</span></p>
                                 <p className="text-sm  text-blue-400 my-2">Category :  {category}</p>
                                 <div className="flex items-center  text-gray-600 my-2">
@@ -112,7 +112,7 @@ const ElectroDetails = () => {
 
                 </div>
             </div>
-            <div className="mx-14 my-5">
+            <div className="lg:mx-14 mx-5 my-5">
                 <h1>Product Summary & Specification</h1>
                 <div className="my-4 border-y-2 py-4 font-semibold">
                     <h1 className="my-2">Summary :</h1>
@@ -122,27 +122,27 @@ const ElectroDetails = () => {
                     <h1 className="my-2 font-semibold">Specification:</h1>
                     <div>
                         <div className="flex flex-col gap-5 justify-evenly">
-                            <div className="flex gap-10 mx-4 w-6/6 px-3 py-1 rounded items-center">
+                            <div className="flex gap-10 mx-4 w-6/6 lg:w-6/6 px-3 py-1 rounded items-center">
                                 <h1 className="font-bold">Title</h1>
                                 <p className="text-right">{name}</p>
                             </div>
-                            <div className="flex justify-between mx-4 px-3 py-1 rounded gap-10 w-2/6 items-center">
+                            <div className="flex justify-between mx-4 px-3 py-1 rounded gap-10 w-2/6 lg:w-2/6 items-center">
                                 <h1 className="font-bold">Quantity</h1>
                                 <p className="text-right">{quantity}</p>
                             </div>
-                            <div className="flex justify-between mx-4 px-3 py-1 rounded gap-10 w-2/6 items-center">
+                            <div className="flex justify-between mx-4 px-3 py-1 rounded gap-10 w-2/6 lg:w-2/6 items-center">
                                 <h1 className="font-bold">Warranty</h1>
                                 <p className="text-right">{warranty}</p>
                             </div>
-                            <div className="flex justify-between mx-4 px-3 py-1 rounded gap-10 w-2/6 items-center">
+                            <div className="flex justify-between mx-4 px-3 py-1 rounded gap-10 w-2/6 lg:w-2/6 items-center">
                                 <h1 className="font-bold">Color</h1>
                                 <p className="text-right">{color}</p>
                             </div>
-                            <div className="flex justify-between mx-4 px-3 py-1 rounded gap-10 w-2/6 items-center">
+                            <div className="flex justify-between mx-4 px-3 py-1 rounded gap-10 w-2/6 lg:w-2/6 items-center">
                                 <h1 className="font-bold">Model</h1>
                                 <p className="text-right">{model}</p>
                             </div>
-                            <div className="flex justify-between mx-4 px-3 py-1 rounded gap-10 w-2/6 items-center">
+                            <div className="flex justify-between mx-4 px-3 py-1 rounded gap-10 w-2/6 lg:w-2/6 items-center">
                                 <h1 className="font-bold">Price</h1>
                                 <p className="text-right">{price}</p>
                             </div>

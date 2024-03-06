@@ -25,7 +25,7 @@ const ElectricDetails = ({ electric }) => {
 
                                 {/* Book Title and New Badge */}
                                 <div className="text-center">
-                                    <h2 className="text-sm font-semibold mb-1">{name}</h2>
+                                    <h2 className="text-sm font-semibold mb-1 mt-1">{name}</h2>
                                     {isNew === true &&
                                         <p className="text-[12px] font-bold py-1 px-2 rounded-full bg-purple-500 text-white inline-block">New</p>
                                     }

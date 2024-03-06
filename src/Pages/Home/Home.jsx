@@ -17,7 +17,7 @@ const Home = () => {
     return (
         <div className="bg-[#cc00ff21]">
             <Banner></Banner>
-            <div className="mx-5">
+            <div className="mx-2">
                 <Category></Category>
                 <SuperStore></SuperStore>
                 <AuthorCategory></AuthorCategory>

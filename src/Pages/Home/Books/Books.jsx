@@ -26,7 +26,6 @@ const Books = () => {
     }
 
 
-    // ------
     const [sortOrder, setSortOrder] = useState(null);
     const [sortByRating, setSortByRating] = useState(false);
     const [selectedAuthorName, setSelectedAuthorName] = useState(new Set());
@@ -53,7 +52,7 @@ const Books = () => {
     };
 
     const handleShortByStock = (event) => {
-        setShowOnlyAvailable(event.target.checked); // Update state based on checkbox value
+        setShowOnlyAvailable(event.target.checked); 
     };
 
     const handleTypeFilter = (author_name) => {
@@ -156,11 +155,9 @@ const Books = () => {
                     </div>
                     <div className="col-span-10">
                         <h2 className="text-2xl mb-5">{category} {data?.length}</h2>
-                        <h2>{sortedAndFilteredProducts?.length}</h2>
+
                         <div className="grid lg:grid-cols-5 md:grid-cols-3 grid-cols-2  gap-3">
-                            {/* {
-                                data?.map(book => <Book key={book?._id} book={book}></Book>)
-                            } */}
+                            
                             {sortedAndFilteredProducts?.map((book) => <Book key={book?._id} book={book}></Book>
                             )}
                         </div>
