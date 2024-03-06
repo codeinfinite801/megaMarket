@@ -22,7 +22,7 @@ const Book = ({ book }) => {
 
                         {/* Book Title and New Badge */}
                         <div className="text-center">
-                            <h2 className="text-lg">{book.name}</h2>
+                            <h2 className="text-lg mt-2">{book.name}</h2>
                             {book.isNew === true &&
                                 <p className="text-[12px] font-bold py-1 px-2 rounded-full bg-purple-500 text-white inline-block">New</p>
                             }
