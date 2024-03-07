@@ -5,9 +5,8 @@ import useBooks from "../../../Hooks/useBooks";
 
 const Books = () => {
     const { category } = useParams();
-    const { data } = useBooks({ category });
+    const { data, isLoading } = useBooks({ category });
     const [author, setAuthor] = useState([]);
-    const [dataIndex, setDataIndex] = useState(10);
 
     useEffect(() => {
         if (data) {
@@ -160,12 +159,15 @@ const Books = () => {
                             ))}
                         </div>
                     </div>
-                    <div className="col-span-10">
-                        <h2 className="text-2xl mb-5">{category} {data?.length}</h2>
-                        <div className="grid lg:grid-cols-5 md:grid-cols-3 grid-cols-2  gap-3">
-                            {sortedAndFilteredProducts?.map((book) => <Book key={book?._id} book={book}></Book>)}
+                    {
+                        isLoading ? <div className="flex items-center justify-center w-full col-span-10"><span className="loading loading-spinner loading-lg"></span></div> : <div className="col-span-10">
+                            <h2 className="text-2xl mb-5">{category} {sortedAndFilteredProducts?.length}</h2>
+                            <div className="grid lg:grid-cols-5 md:grid-cols-3 grid-cols-2  gap-3">
+                                {sortedAndFilteredProducts?.map((book) => <Book key={book?._id} book={book}></Book>)}
+                            </div>
                         </div>
-                    </div>
+                    }
+
                 </div>
             </div>
             <div className="lg:hidden">
@@ -205,7 +207,7 @@ const Books = () => {
                     </div>
                     <div>
                         <div className="mt-5 mx-3">
-                            <h2 className="text-2xl mb-5">{category} {data?.length}</h2>
+                            <h2 className="text-2xl mb-5">{category} {sortedAndFilteredProducts?.length}</h2>
                             <div className="grid lg:grid-cols-4 md:grid-cols-3 grid-cols-2  gap-5">
                                 {
                                     sortedAndFilteredProducts?.map(book => <Book key={book?._id} book={book}></Book>)
