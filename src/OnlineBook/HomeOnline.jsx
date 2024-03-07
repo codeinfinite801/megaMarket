@@ -29,11 +29,11 @@ const HomeOnline = () => {
                     </div>
                 </div>
                 <div className="col-span-8 mb-2">
-                    <div className='grid grid-cols-1  md:grid-cols-3 lg:grid-cols-4 gap-2 '>
+                    <div className='grid grid-cols-2  md:grid-cols-3 lg:grid-cols-4 gap-2 '>
                         {data?.slice(0, 8).map((deal) => <div key={deal?._id} className='flex items-center justify-center'>
-                            <div className="rounded duration-300 bg-gray-100 w-80 border hover:border-black  relative group">
+                            <div className="rounded duration-300 bg-gray-100 w-80  border hover:border-black  relative group">
                                 <figure className="px-2 pt-4">
-                                    <img src={deal.image} alt="image" className="w-full lg:h-52 md:h-52 " />
+                                    <img src={deal.image} alt="image" className="w-full h-56 lg:h-52 md:h-52 " />
                                 </figure>
                                 <div className=" my-4 text-center">
                                     <h2 className="">{deal?.name}</h2>

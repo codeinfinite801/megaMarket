@@ -1,13 +1,13 @@
- import { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Book from "../Book/Book";
 import useBooks from "../../../Hooks/useBooks";
 
 const Books = () => {
     const { category } = useParams();
-    const { data } = useBooks({ category })
-    const [author, setAuthor] = useState([])
-    const [dataIndex, setDataIndex] = useState(10)
+    const { data } = useBooks({ category });
+    const [author, setAuthor] = useState([]);
+    const [dataIndex, setDataIndex] = useState(10);
 
     useEffect(() => {
         if (data) {
@@ -21,10 +21,6 @@ const Books = () => {
             setAuthor(authorList);
         }
     }, [data]);
-    const handleData = () => {
-        setDataIndex(data?.length)
-    }
-
 
     const [sortOrder, setSortOrder] = useState(null);
     const [sortByRating, setSortByRating] = useState(false);
@@ -48,11 +44,11 @@ const Books = () => {
 
     const handleShortByDiscount = () => {
         setSortByRating(false);
-        setSortOrder('discount');
+        setSortOrder("discount");
     };
 
     const handleShortByStock = (event) => {
-        setShowOnlyAvailable(event.target.checked); 
+        setShowOnlyAvailable(event.target.checked);
     };
 
     const handleTypeFilter = (author_name) => {
@@ -85,7 +81,23 @@ const Books = () => {
     } else if (sortOrder === "asc") {
         sortedAndFilteredProducts = sortedAndFilteredProducts.slice().sort((a, b) => a.price - b.price);
     }
+    const handleSortSmallDevice = (e) => {
+        const value = e.target.value
+        console.log(value);
+        if(value === 'low-to-high'){
+            setSortOrder("asc");
+            setSortByRating(false);
+        }
+        else if (value === 'high-to-low'){
+            setSortOrder("desc");
+            setSortByRating(false)
+        }
+        else if (value === 'discount' ) {
+            setSortByRating(false);
+        setSortOrder("discount");
+        }
 
+    }
     return (
         <div>
             <div className="px-5 my-16 hidden lg:block">
@@ -95,7 +107,6 @@ const Books = () => {
                             <div className="py-2 px-2 border-b-2">
                                 <p className="font-bold">Sort</p>
                             </div>
-                            {/* price low to high shorting */}
                             <div className="form-control flex items-start">
                                 <label className="label cursor-pointer">
                                     <input type="checkbox" className="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300" onChange={handlePriceLowToHigh} />
@@ -121,7 +132,6 @@ const Books = () => {
                                 </label>
                             </div>
                         </div>
-                        {/* sort - 2 */}
                         <div className="flex gap-4 shadow-xl border-2 px-2 py-4 my-2">
                             <div className="form-control flex items-start">
                                 <label className="label cursor-pointer">
@@ -130,7 +140,6 @@ const Books = () => {
                                 </label>
                             </div>
                         </div>
-                        {/* Filter By Author */}
                         <div className="bg-white shadow-xl rounded-lg p-3 border">
                             <div className="py-2 px-2 border-b-2">
                                 <p className="font-bold">Filter By Author</p>
@@ -148,23 +157,16 @@ const Books = () => {
                                     </label>
                                 </div>
                             ))}
-
                         </div>
-
-
                     </div>
                     <div className="col-span-10">
                         <h2 className="text-2xl mb-5">{category} {data?.length}</h2>
-
                         <div className="grid lg:grid-cols-5 md:grid-cols-3 grid-cols-2  gap-3">
-                            
-                            {sortedAndFilteredProducts?.map((book) => <Book key={book?._id} book={book}></Book>
-                            )}
+                            {sortedAndFilteredProducts?.map((book) => <Book key={book?._id} book={book}></Book>)}
                         </div>
                     </div>
                 </div>
             </div>
-
             <div className="lg:hidden">
                 <div>
                     <div>
@@ -173,7 +175,7 @@ const Books = () => {
                                 <p className="font-bold">Sort</p>
                             </div>
                             <div className="my-2">
-                                <select name="sort" id="sort-select" className="focus:ring-indigo-500 h-10 text-indigo-600 border-gray-300 w-full">
+                                <select onChange={handleSortSmallDevice} name="sort" id="sort-select" className="focus:ring-indigo-500 h-10 text-indigo-600 border-gray-300 w-full">
                                     <option value="best-seller">Best Seller</option>
                                     <option value="low-to-high">Price Low to High</option>
                                     <option value="high-to-low">Price High to Low</option>
@@ -209,11 +211,8 @@ const Books = () => {
                             <h2 className="text-2xl mb-5">{category} {data?.length}</h2>
                             <div className="grid lg:grid-cols-4 md:grid-cols-3 grid-cols-2  gap-5">
                                 {
-                                    data?.slice(0, dataIndex).map(book => <Book key={book?._id} book={book}></Book>)
+                                    sortedAndFilteredProducts?.map(book => <Book key={book?._id} book={book}></Book>)
                                 }
-                            </div>
-                            <div className={dataIndex === data?.length ? 'hidden' : 'flex'}>
-                                <button onClick={() => handleData()} className="border-green-600 px-6 py-2 border rounded-lg  mx-auto">See All</button>
                             </div>
 
                         </div>
