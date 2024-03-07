@@ -1,23 +1,29 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import useAxiosSecure from "../../../Hooks/AxiosSecure/useAxiosSecure";
 import ElectricDetails from "./ElectricDetails/ElectricDetails";
+import useElectronics from "../../../Hooks/useElectronics";
 
 const SuperStoreCategory = () => {
-    const axiosSecure = useAxiosSecure();
+    const {data:data2, isLoading} = useElectronics()
     const { category } = useParams();
     const [data, setData] = useState([]);
     const [sortedData, setSortedData] = useState([]);
     const [sortBy, setSortBy] = useState("");
 
+    // useEffect(() => {
+    //     axiosSecure.get('/allElectronics')
+    //         .then(response => {
+    //             const allData = response.data.filter(item => item.category.toLowerCase() === category.toLowerCase());
+    //             setData(allData);
+    //             setSortedData(allData); // Initially set the sortedData to match the fetched data
+    //         });
+    // }, [category]);
     useEffect(() => {
-        axiosSecure.get('/allElectronics')
-            .then(response => {
-                const allData = response.data.filter(item => item.category.toLowerCase() === category.toLowerCase());
+                const allData =data2?.filter(item => item.category?.toLowerCase() === category?.toLowerCase());
                 setData(allData);
-                setSortedData(allData); // Initially set the sortedData to match the fetched data
-            });
-    }, [axiosSecure, category]);
+                setSortedData(allData);
+
+    }, [category,data2]);
 
     useEffect(() => {
         if (sortBy === "best-seller") {
@@ -70,12 +76,14 @@ const SuperStoreCategory = () => {
                             </div>
                         </div>
                     </div>
-                    <div className="col-span-10">
-                        <h2 className="text-2xl mb-5">{category} {sortedData.length}</h2>
+                    {
+                        isLoading ? <div className="flex col-span-10 items-center justify-center"><span className="loading loading-spinner loading-lg"></span></div> : <div className="col-span-10">
+                        <h2 className="text-2xl mb-5">{category} {sortedData?.length}</h2>
                         <div className="grid lg:grid-cols-5 md:grid-cols-3 grid-cols-2 gap-3">
-                            {sortedData.map(electric => <ElectricDetails key={electric?._id} electric={electric}></ElectricDetails>)}
+                            {sortedData?.map(electric => <ElectricDetails key={electric?._id} electric={electric}></ElectricDetails>)}
                         </div>
                     </div>
+                    }
                 </div>
             </div>
 
@@ -97,9 +105,9 @@ const SuperStoreCategory = () => {
                 </div>
                 <div>
                     <div className="mt-5 mx-3">
-                        <h2 className="text-2xl mb-5">{category} {sortedData.length}</h2>
+                        <h2 className="text-2xl mb-5">{category} {sortedData?.length}</h2>
                         <div className="grid lg:grid-cols-4 md:grid-cols-3 grid-cols-2 gap-5">
-                            {sortedData.map(electric => <ElectricDetails key={electric?._id} electric={electric}></ElectricDetails>)}
+                            {sortedData?.map(electric => <ElectricDetails key={electric?._id} electric={electric}></ElectricDetails>)}
                         </div>
                     </div>
                 </div>
