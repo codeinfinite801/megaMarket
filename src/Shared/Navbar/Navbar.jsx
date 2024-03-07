@@ -10,7 +10,6 @@ import useAdmin from "../../Hooks/useAdmin";
 const Navbar = () => {
   const navigate = useNavigate()
   const [allBooks, setAllBooks] = useState([]);
-  console.log(allBooks);
   const [searchQuery, setSearchQuery] = useState("");
   const [show, setShow] = useState(true)
   const [search, setSearch] = useState('All')

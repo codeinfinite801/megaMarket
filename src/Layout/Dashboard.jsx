@@ -103,6 +103,15 @@ const Dashboard = () => {
                 <ul className="">
                   <li>
                     <Link
+                      to={"/dashboard/admin"}
+                      className="flex items-center gap-2 mb-3"
+                    >
+                     <FaUser/>
+                      Admin Home
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
                       to={"/dashboard/manage-order"}
                       className="flex items-center gap-2 mb-3"
                     >
@@ -169,6 +178,15 @@ const Dashboard = () => {
                 </ul>
               ) : (
                 <ul className="">
+                  <li>
+                    <Link
+                      to={"/dashboard/user"}
+                      className="flex items-center gap-2 mb-3"
+                    >
+                      <FaArrowRight />
+                      User Home
+                    </Link>
+                  </li>
                   <li>
                     <Link
                       to={"/dashboard/order-history"}
@@ -281,6 +299,20 @@ const Dashboard = () => {
                     Manage User
                   </Link>
                 </li>
+                <div className="divider"></div>
+                  <li className="flex items-center gap-2 justify-center">
+                    <FaHome />
+                    <Link to={"/"}>Home</Link>
+                  </li>
+                  <li className="flex items-center justify-center">
+                    <button
+                      className="flex text-red-400"
+                      onClick={handleLogOut}
+                    >
+                      <IoMdLogOut className="text-2xl" />
+                      Logout
+                    </button>
+                  </li>
               </ul>
             ) : (
               <ul className="menu p-4 w-80 min-h-full bg-base-200">
