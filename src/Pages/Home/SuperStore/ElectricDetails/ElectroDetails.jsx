@@ -3,6 +3,7 @@ import useAxiosSecure from "../../../../Hooks/AxiosSecure/useAxiosSecure";
 import { useParams } from "react-router-dom";
 import Swal from "sweetalert2";
 import { FaShoppingCart } from "react-icons/fa";
+import Reviews from "../../../Reviews/Reviews";
 
 
 const ElectroDetails = () => {
@@ -149,6 +150,7 @@ const ElectroDetails = () => {
                         </div>
                     </div>
                 </div>
+                <Reviews image={image?.length ? image[0] : image} name={name} rating={rating} productId={_id}></Reviews>
             </div>
         </div>
     );
