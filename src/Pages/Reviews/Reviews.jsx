@@ -37,6 +37,14 @@ const Reviews = ({ image, name, productId, rating }) => {
                 timer: 1500
             });
         }
+        if(!user){
+            return Swal.fire({
+                icon: "error",
+                title: "Please Login",
+                showConfirmButton: false,
+                timer: 1500
+            });
+        }
         if (!reviewText) {
             return Swal.fire({
                 icon: "error",
@@ -62,11 +70,11 @@ const Reviews = ({ image, name, productId, rating }) => {
     };
 
     return (
-        <div className="mx-14">
+        <div className="lg:mx-14 mx-5">
             <div>
-                <h1 className="text-xl mb-3">Reviews And Ratings</h1>
+                <h1 className="text-xl mb-3 font-bold ">Reviews And Ratings</h1>
                 <div id="divider"></div>
-                <div className="flex items-center justify-between gap-3">
+                <div className="lg:flex items-center justify-between gap-3">
                     <div className="flex items-center gap-4">
                         <img className="w-14" src={image} alt="" />
                         <div>
@@ -81,25 +89,35 @@ const Reviews = ({ image, name, productId, rating }) => {
                         </div>
                     </div>
                     <div>
-                        <div>
+                        <div className='lg:my-0 my-4'>
                             <div>
                                 {/* <h1>{averageRating}</h1> */}
                             </div>
                             <img className="w-32" src="https://t4.ftcdn.net/jpg/03/52/11/77/360_F_352117727_d5h8yi1Smn7mxzYKte15ThuDlHzRuGkN.jpg" alt="" />
-                            <h1 className="text-center text-lg">({rating}) Ratings</h1>
-                            <h1 className="text-center text-lg">({filter?.length}) Reviews</h1>
+                            <h1 className="lg:text-center text-lg">({rating}) Ratings</h1>
+                            <h1 className="lg:text-center text-lg">({filter?.length}) Reviews</h1>
                         </div>
                     </div>
                 </div>
                 <form onSubmit={handleSubmit}>
-                    <textarea
+                <textarea
                         placeholder="Describe your opinion about this product"
                         rows={5}
                         cols={50}
-                        className="border-gray-400 border rounded p-3"
+                        className="border-gray-400 hidden lg:block border rounded p-3"
                         value={reviewText}
                         onChange={handleReviewTextChange}
-                    ></textarea><br />
+                    ></textarea>
+                    <textarea
+                        placeholder="Describe your opinion about this product"
+                        rows={5}
+                        cols={30}
+                        className="border-gray-400 lg:hidden border rounded p-3"
+                        value={reviewText}
+                        onChange={handleReviewTextChange}
+                    ></textarea>
+
+                    <br />
                     <input
                         className="border-blue-300 border px-3 py-2 rounded animation-300 hover:bg-blue-400 hover:text-white"
                         type="submit"
