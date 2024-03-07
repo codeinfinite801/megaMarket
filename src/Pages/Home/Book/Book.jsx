@@ -8,7 +8,7 @@ const Book = ({ book }) => {
     return (
         <div>
             <Link to={`/bookDetails/${book._id}`}>
-                <div className="card w-4/4 h-[29rem] bg-base-100  relative group">
+                <div className="card hover:scale-105 mb-4 duration-300 w-4/4 h-[29rem] bg-base-100  relative group">
                     <div className="p-2">
                         {/* Image and Discount Badge */}
                         <div className="relative w-full h-60 flex justify-center">
@@ -22,7 +22,7 @@ const Book = ({ book }) => {
 
                         {/* Book Title and New Badge */}
                         <div className="text-center">
-                            <h2 className="text-lg mt-2">{book.name}</h2>
+                            <h2 className="text-base font-bold mt-4">{book?.name}</h2>
                             {book.isNew === true &&
                                 <p className="text-[12px] font-bold py-1 px-2 rounded-full bg-purple-500 text-white inline-block">New</p>
                             }
