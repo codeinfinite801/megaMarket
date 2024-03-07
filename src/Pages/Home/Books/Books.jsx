@@ -52,6 +52,7 @@ const Books = () => {
     };
 
     const handleTypeFilter = (author_name) => {
+        console.log(author_name);
         setSelectedAuthorName((prevTypes) => {
             const newTypes = new Set(prevTypes);
             if (newTypes.has(author_name)) {
@@ -84,17 +85,17 @@ const Books = () => {
     const handleSortSmallDevice = (e) => {
         const value = e.target.value
         console.log(value);
-        if(value === 'low-to-high'){
+        if (value === 'low-to-high') {
             setSortOrder("asc");
             setSortByRating(false);
         }
-        else if (value === 'high-to-low'){
+        else if (value === 'high-to-low') {
             setSortOrder("desc");
             setSortByRating(false)
         }
-        else if (value === 'discount' ) {
+        else if (value === 'discount') {
             setSortByRating(false);
-        setSortOrder("discount");
+            setSortOrder("discount");
         }
 
     }
@@ -175,8 +176,8 @@ const Books = () => {
                                 <p className="font-bold">Sort</p>
                             </div>
                             <div className="my-2">
-                                <select onChange={handleSortSmallDevice} name="sort" id="sort-select" className="focus:ring-indigo-500 h-10 text-indigo-600 border-gray-300 w-full">
-                                    <option value="best-seller">Best Seller</option>
+                                <select onChange={handleSortSmallDevice} defaultValue='Sorting' name="sort" id="sort-select" className="focus:ring-indigo-500 h-10 text-indigo-600 border-gray-300 w-full">
+                                    <option disabled >Sorting</option>
                                     <option value="low-to-high">Price Low to High</option>
                                     <option value="high-to-low">Price High to Low</option>
                                     <option value="discount">Discount</option>
@@ -189,20 +190,16 @@ const Books = () => {
                                     <p className="font-bold">Filter</p>
                                 </div>
                                 <div className="relative my-2">
-                                    <select name="author" id="author-select" className="focus:ring-indigo-500 h-10 text-indigo-600 border-gray-300 w-full">
+                                    <select defaultValue="" onChange={(e) => handleTypeFilter(e.target.value)} className="focus:ring-indigo-500 h-10 text-indigo-600 border-gray-300 w-full">
                                         <option value="">Select Author</option>
-                                        {
-                                            author?.map((author, index) => (
-                                                <option key={index} value={author}>
-                                                    <label className="inline-flex items-center">
-                                                        <input type="checkbox" name="selectedAuthors" value={author} className="form-checkbox h-4 w-4 text-indigo-600 border-gray-300" />
-                                                        <span className="ml-2">{author}</span>
-                                                    </label>
-                                                </option>
-                                            ))
-                                        }
+                                        {Array.from(new Set(data?.map((product) => product.author_name))).map((author_name, index) => (
+                                            <option key={index} value={author_name}>
+                                                {author_name}
+                                            </option>
+                                        ))}
                                     </select>
                                 </div>
+
                             </div>
                         </div>
                     </div>
