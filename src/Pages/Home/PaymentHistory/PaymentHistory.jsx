@@ -21,8 +21,8 @@ const PaymentHistory = () => {
                         paymentData?.map(history => <History key={history?._id} history={history}></History>)
                     }
                 </div> : <div className="flex flex-col justify-center items-center">
-                    <h2 className="md:text-3xl text-xl font-bold mb-8">No Payment History</h2>
-                    <Link to="/placeOrder"><button className="underline text-sky-600 md:text-xl">pay first</button></Link>
+                    <h2 className="md:text-3xl text-xl font-bold mb-8 text-red-500">No Payment History</h2>
+                    <Link to="/placeOrder"><button className=" text-sky-600 md:text-xl normal-case"> Pay first</button></Link>
                 </div>
             }
         </div>

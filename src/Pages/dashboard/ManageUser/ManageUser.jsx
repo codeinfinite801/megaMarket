@@ -17,7 +17,7 @@ const ManageUser = () => {
       return res?.data;
     },
   });
-  const deteledUser = id =>{
+  const makeAdmin = id =>{
     Swal.fire({
         title: "Are you sure?",
         text: "You won't be Update this User!",
@@ -88,11 +88,11 @@ const ManageUser = () => {
                 <td>
                   <button
                     className={
-                      user?.role === "admin" ? "font-bold capitalize" : "1"
+                      user?.role === "admin" ? "font-bold capitalize w-20 text-green-600" : "btn text-red-500 btn-ghost font-normal"
                     }
-                    onClick={()=>deteledUser(user?._id)}
+                    onClick={()=>makeAdmin(user?._id)}
                   >
-                    {user?.role ? user?.role : "Normal"}
+                    {user?.role ? user?.role : "Make Admin"}
                   </button>
                 </td>
               </tr>
