@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { IoIosArrowForward } from "react-icons/io";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination, Navigation } from "swiper/modules";
 import "swiper/css";
@@ -13,16 +12,15 @@ const NewBooks = () => {
   const axiosPublic = useAxiosPublic();
   useEffect(() => {
     axiosPublic
-      .get("https://mega-merket-project-server-site.vercel.app/newPublish/books")
+      .get(
+        "https://mega-merket-project-server-site.vercel.app/newPublish/books"
+      )
       .then((res) => setNewBooks(res?.data));
   }, [axiosPublic]);
   return (
     <div className="max-w-7xl mx-auto bg-white shadow-lg p-5 h-fit">
       <div className="flex justify-between">
         <h2 className="text-3xl">নতুন প্রকাশিত বই</h2>
-        <button className="btn btn-outline text-blue-400">
-          View All <IoIosArrowForward className="text-2xl" />{" "}
-        </button>
       </div>
       <div>
         <Swiper
@@ -82,7 +80,9 @@ const NewBooks = () => {
                     </p>
                     <div className="flex items-center gap-3 mt-3 justify-center">
                       <p className="text-gray-500">
-                        <span className="line-through text-sm md:text-lg">TK{book?.price}</span>
+                        <span className="line-through text-sm md:text-lg">
+                          TK{book?.price}
+                        </span>
                       </p>
                       <p className="font-bold md:text-lg text-sm text-red-500">
                         TK.
