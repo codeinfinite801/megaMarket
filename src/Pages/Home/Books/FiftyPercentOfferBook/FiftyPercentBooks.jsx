@@ -5,7 +5,6 @@ import { Pagination, Navigation } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
-import { IoIosArrowForward } from "react-icons/io";
 import { Link } from "react-router-dom";
 const FiftyPercentBooks = () => {
   const [fiftyPercentBook, setFiftyPercentBook] = useState([]);
@@ -18,7 +17,6 @@ const FiftyPercentBooks = () => {
     "65def5db1f84c73804d2c8b5",
     "65def5db1f84c73804d2c8e9",
   ];
-
 
   useEffect(() => {
     const fetchData = async () => {
@@ -41,31 +39,28 @@ const FiftyPercentBooks = () => {
           <span className="text-red-500 text-4xl align-super">Up To 50% </span>{" "}
           ছাড়
         </h2>
-        <button className="btn btn-outline text-blue-400 hidden md:flex">
-          View All <IoIosArrowForward className="text-2xl" />{" "}
-        </button>
       </div>
       <div>
         <Swiper
-           spaceBetween={20}
-           slidesPerView={2}
-           loop={true}
-           modules={[Pagination, Navigation]}
-           className="mySwiper"
-           breakpoints={{
-             640: {
-               slidesPerView: 2,
-               spaceBetween: 20,
-             },
-             768: {
-               slidesPerView: 4,
-               spaceBetween: 20,
-             },
-             1024: {
-               slidesPerView: 5,
-               spaceBetween: 20,
-             },
-           }}
+          spaceBetween={20}
+          slidesPerView={2}
+          loop={true}
+          modules={[Pagination, Navigation]}
+          className="mySwiper"
+          breakpoints={{
+            640: {
+              slidesPerView: 2,
+              spaceBetween: 20,
+            },
+            768: {
+              slidesPerView: 4,
+              spaceBetween: 20,
+            },
+            1024: {
+              slidesPerView: 5,
+              spaceBetween: 20,
+            },
+          }}
         >
           <div className="">
             {fiftyPercentBook?.slice(0, 5).map((book) => (
@@ -103,7 +98,9 @@ const FiftyPercentBooks = () => {
                     </p>
                     <div className="flex items-center gap-3 mt-3 justify-center">
                       <p className="text-gray-500">
-                        <span className="line-through text-sm md:text-normal">TK{book?.price}</span>
+                        <span className="line-through text-sm md:text-normal">
+                          TK{book?.price}
+                        </span>
                       </p>
                       <p className="font-bold text-sm md:text-lg text-red-500">
                         TK.
